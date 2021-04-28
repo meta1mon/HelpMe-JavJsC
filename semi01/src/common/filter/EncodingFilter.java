@@ -13,7 +13,6 @@ public class EncodingFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		System.out.println("EncodingFilter 실행!");
 	}
 
 	@Override
@@ -28,7 +27,6 @@ public class EncodingFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		System.out.println("EncodingFilter 해제!");
 	}
 	
 
