@@ -9,20 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+
 import member.dao.MemberDao;
 import member.vo.Member;
 
 /**
- * Servlet implementation class MemberInsert
+ * Servlet implementation class UniqueIdCheck
  */
-@WebServlet("/memberinsert")
-public class MemberInsert extends HttpServlet {
+@WebServlet("/uniqueid")
+public class UniqueIdCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberInsert() {
+    public UniqueIdCheck() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,27 +41,20 @@ public class MemberInsert extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("일단 넘어옴");
 		String id = request.getParameter("id");
-		String nickname = request.getParameter("nickname");
-		String password1 = request.getParameter("password1");
-		String passquestion = request.getParameter("passquestion");
-		String passanswer = request.getParameter("passanswer");
-		String address = request.getParameter("address");
-		String tel = request.getParameter("tel");
-		String email = request.getParameter("email");
+		Member result = new MemberDao().selectSearch(id);
 		
-		Member vo = new Member(id, nickname, password1, passquestion, passanswer, null, address, tel, email);
-		int result = new MemberDao().insert(vo);
-		
-		PrintWriter out = response.getWriter();
-		if(result > 0) {
-			out.println("<script>alert('회원가입에 성공하였습니다');</script>");
-			out.println("<script>location.href='index.jsp';</script>");
+		Gson gson = new GsonBuilder().create();
+		String msg;
+
+		if(result == null) {
+			 msg = gson.toJson("사용가능");			
 		} else {
-			out.println("<script>alert('아이디 중복으로 회원가입에 실패하였습니다.');</script>");
-			out.println("<script>location.href='index.jsp';</script>");
+			msg = gson.toJson("사용불가능");
 		}
-		
+		PrintWriter out = response.getWriter();
+		out.println(msg);
 		out.flush();
 		out.close();
 		

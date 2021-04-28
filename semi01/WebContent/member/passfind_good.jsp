@@ -22,11 +22,11 @@
 <body>
     <div>
             <h1>비밀번호 찾기</h1>
-            <p>\아이디\님의 비밀번호는</p>
-            <input type="text" name="password" readonly>
+            <p>${idfind }님의 비밀번호는</p>
+            <input type="text" name="password" value="${passfind }" readonly>
             <p>입니다</p>
             <br>
-        <input type="button" onclick="location.href='login.html'" value="로그인으로 이동">
+        <input type="button" onclick="location.href='member/login.jsp'" value="로그인으로 이동">
     </div>
 </body>
 </html>

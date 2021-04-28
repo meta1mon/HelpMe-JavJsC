@@ -45,7 +45,7 @@ public class MemberDao {
 			close(pstmt);
 			close(conn);
 		}
-		
+
 		return list;
 	}
 
@@ -53,25 +53,24 @@ public class MemberDao {
 	public Member selectSearch(String id) {
 		Connection conn = getConnection();
 		Member vo = null;
-		String sql = "select * from member where id = ?";
+		String sql = "select * from member where id like '%" + id + "%'";
 
 		try {
-			pstmt = conn.prepareStatement(sql); // sql2
-			pstmt.setString(1, id);
+			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
-			if (rs != null) { // 결과가 1개이상 있다면
-				while (rs.next()) {
+			if (rs != null) {
+				if (rs.next()) {
 					vo = new Member();
 					vo.setId(rs.getString("id"));
 					vo.setNickname(rs.getString("nickname"));
 					vo.setPassword(rs.getString("password"));
-					vo.setPassquestion(rs.getString("passqeustion"));
+					vo.setPassquestion(rs.getString("passquestion"));
 					vo.setPassanswer(rs.getString("passanswer"));
 					vo.setRegdate(rs.getString("regdate"));
 					vo.setAddress(rs.getString("address"));
 					vo.setTel(rs.getString("tel"));
-					vo.setEmail(rs.getString("email"));	
+					vo.setEmail(rs.getString("email"));
 				}
 			}
 		} catch (SQLException e) {
@@ -84,7 +83,7 @@ public class MemberDao {
 		return vo;
 	}
 
-
+// 회원가입
 	public int insert(Member vo) {
 		Connection conn = getConnection();
 		int result = 0;
@@ -152,56 +151,43 @@ public class MemberDao {
 //		return result;
 //	}
 //
-//	// login()
-//	public Member login(Connection conn, Member vo) {
-//		String id = vo.getId();
-//		String passwd = vo.getPasswd();
-//
-//		String sql = "select * from test_member where id=?";
-//
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		Member resultVO = null;
-//
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, id);
-//			rs = pstmt.executeQuery();
-//
-//			if (rs.next()) {
-//				resultVO = new Member();
-//				resultVO.setId(rs.getString("id"));
-//				resultVO.setName(rs.getString("name"));
-//				resultVO.setPasswd(rs.getString("passwd"));
-//				resultVO.setEmail(rs.getString("email"));
-//				resultVO.setGrade(rs.getString("grade"));
-//				resultVO.setGender(rs.getString("gender").charAt(0));
-//				resultVO.setRegdate(rs.getDate("regdate"));
-//			}
-//
-//			// 로그인에 대한 결과를 확인하는 방식
-////			if(rs != null) {  // id 가 존재함.
-////				rs.next();
-////				String dbPasswd = rs.getString("passwd");
-////				if(dbPasswd.equals(passwd)) {
-////					// 아이디와 pass 동일
-////					return 0;
-////				} else {
-////					//password 틀림
-////					return -1;
-////				}
-////			} else {  // id 존재하지 않음
-////				return -2;
-////			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			JDBCTemplate.close(rs);
-//			JDBCTemplate.close(pstmt);
-//		}
-//
-//		return resultVO;
-//	}
+
+// 로그인
+	public Member login(String id) {
+		Connection conn = getConnection();
+		Member vo = null;
+
+		String sql = "select * from member where id=?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs != null) {
+				if (rs.next()) {
+					vo = new Member();
+					vo.setId(rs.getString("id"));
+					vo.setNickname(rs.getString("nickname"));
+					vo.setPassword(rs.getString("password"));
+					vo.setPassquestion(rs.getString("passquestion"));
+					vo.setPassanswer(rs.getString("passanswer"));
+					vo.setRegdate(rs.getString("regdate"));
+					vo.setAddress(rs.getString("address"));
+					vo.setTel(rs.getString("tel"));
+					vo.setEmail(rs.getString("email"));
+				}
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return vo;
+	}
 
 }

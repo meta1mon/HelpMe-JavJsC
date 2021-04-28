@@ -38,10 +38,30 @@ table {
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
+// 아이디 중복 체크 결과
 	$(function() {
 		// 아이디 중복 체크
 		$("#idcheck").click(function() {
-			alert("중복입니다!");
+			var id = $("#id").val().trim();
+			if(id == "") {
+				alert("아이디를 입력하고 중복확인을 눌러주세요");
+				$("id").focus();
+				return;
+			}
+			$.ajax({
+				url : "<%=request.getContextPath()%>/uniqueid",
+				type : "post",
+				data : {"id" : id},
+				dataType : "json",
+				success : function(data) {
+					if(data == "사용가능") {
+						alert("사용 가능한 아이디입니다");
+					} else {
+						alert("이미 존재하는 아이디입니다. 다른 아이디를 사용해주세요");
+					}
+				}
+					
+			});
 		});
 
 		// 비밀번호 일치 체크
@@ -108,10 +128,13 @@ table {
 	function regCheck() {
 		var id = $("#id").val().trim();
 		var reg1 = /^[A-Za-z0-9]{4,15}$/g;
+		
 		var nickname = $("#nickname").val().trim();
 		var reg2 = /^[가-힣A-Za-z0-9]{1,8}$/g;
+		
 		var password = $("#password1").val().trim();
-		var reg3 = /^[A-Za-z0-9!@#$%^&*()]{8,15}$/g;
+		var reg3 = /^[A-Za-z0-9!@#$%^&*]{8,15}$/g;
+		
 		var passanswer = $("#passanswer").val().trim();
 		var reg4 = /^[가-힣A-Za-z0-9]{1,20}$/g;
 
@@ -163,7 +186,7 @@ table {
 		if (passequal() == false) {
 			return false;
 		}
-
+		
 		// 다 충족 되었다면
 		return true;
 	};
@@ -242,11 +265,11 @@ table {
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="회원가입"
-						onclick="result admit();" id="btnSubmit"></td>
+						onclick="return admit();" id="btnSubmit"></td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="button" value="로그인으로 이동"
-						onclick="location.href='login.html'"></td>
+						onclick="location.href='login.jsp'"></td>
 				</tr>
 			</table>
 		</form>
