@@ -42,11 +42,14 @@ public class MemberInsert extends HttpServlet {
 		String password1 = request.getParameter("password1");
 		String passquestion = request.getParameter("passquestion");
 		String passanswer = request.getParameter("passanswer");
-		String address = request.getParameter("address");
+		String postcode = request.getParameter("postcode");
+		String address1 = request.getParameter("address1");
+		String address2 = request.getParameter("address2");
+		String address3 = request.getParameter("address3");
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
 		
-		Member vo = new Member(id, nickname, password1, passquestion, passanswer, null, address, tel, email);
+		Member vo = new Member(id, nickname, password1, passquestion, passanswer, null, postcode, address1, address2, address3, tel, email);
 		int result = new MemberDao().insert(vo);
 		
 		PrintWriter out = response.getWriter();

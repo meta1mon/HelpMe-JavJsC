@@ -106,7 +106,7 @@ if (count > 0) {
 			</td>
 			<td><%=book.getAuthor()%></td>
 			<td><%=book.getPublishing_com()%></td>
-			<td><%=book.getBimage()%></td>
+			<td><img src="../imageFile/<%=book.getBimage()%>" width="120" height="150"></td>
 			<td><%=book.getDiscountRate()%></td>
 			<td><%=sdf.format(book.getRegdate())%></td>
 			<td width="50" style="text-decoration: underline;">

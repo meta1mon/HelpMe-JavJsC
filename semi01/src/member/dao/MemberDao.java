@@ -31,7 +31,10 @@ public class MemberDao {
 					vo.setPassquestion(rs.getString("passqeustion"));
 					vo.setPassanswer(rs.getString("passanswer"));
 					vo.setRegdate(rs.getString("regdate"));
-					vo.setAddress(rs.getString("address"));
+					vo.setPostcode(rs.getString("postcode"));
+					vo.setAddress1(rs.getString("address1"));
+					vo.setAddress2(rs.getString("address2"));
+					vo.setAddress3(rs.getString("address3"));
 					vo.setTel(rs.getString("tel"));
 					vo.setEmail(rs.getString("email"));
 					list.add(vo);
@@ -68,7 +71,10 @@ public class MemberDao {
 					vo.setPassquestion(rs.getString("passquestion"));
 					vo.setPassanswer(rs.getString("passanswer"));
 					vo.setRegdate(rs.getString("regdate"));
-					vo.setAddress(rs.getString("address"));
+					vo.setPostcode(rs.getString("postcode"));
+					vo.setAddress1(rs.getString("address1"));
+					vo.setAddress2(rs.getString("address2"));
+					vo.setAddress3(rs.getString("address3"));
 					vo.setTel(rs.getString("tel"));
 					vo.setEmail(rs.getString("email"));
 				}
@@ -88,7 +94,7 @@ public class MemberDao {
 		Connection conn = getConnection();
 		int result = 0;
 
-		String sql = "insert into member values(?, ?, ?, ?, ?, to_char(sysdate, 'YYYY-MM-DD HH:MM:SS'), ?, ?, ?)";
+		String sql = "insert into member values(?, ?, ?, ?, ?, to_char(sysdate, 'YYYY-MM-DD HH:MM:SS'), ?, ?, ?, ?, ?, ?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -96,9 +102,12 @@ public class MemberDao {
 			pstmt.setString(3, vo.getPassword());
 			pstmt.setString(4, vo.getPassquestion());
 			pstmt.setString(5, vo.getPassanswer());
-			pstmt.setString(6, vo.getAddress());
-			pstmt.setString(7, vo.getTel());
-			pstmt.setString(8, vo.getEmail());
+			pstmt.setString(6, vo.getPostcode());
+			pstmt.setString(7, vo.getAddress1());
+			pstmt.setString(8, vo.getAddress2());
+			pstmt.setString(9, vo.getAddress3());
+			pstmt.setString(10, vo.getTel());
+			pstmt.setString(11, vo.getEmail());
 			result = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -173,7 +182,10 @@ public class MemberDao {
 					vo.setPassquestion(rs.getString("passquestion"));
 					vo.setPassanswer(rs.getString("passanswer"));
 					vo.setRegdate(rs.getString("regdate"));
-					vo.setAddress(rs.getString("address"));
+					vo.setPostcode(rs.getString("postcode"));
+					vo.setAddress1(rs.getString("address1"));
+					vo.setAddress2(rs.getString("address2"));
+					vo.setAddress3(rs.getString("address3"));
 					vo.setTel(rs.getString("tel"));
 					vo.setEmail(rs.getString("email"));
 				}

@@ -7,14 +7,17 @@ public class Member {
 	private String passquestion;
 	private String passanswer;
 	private String regdate;
-	private String address;
+	private String postcode;
+	private String address1;
+	private String address2;
+	private String address3;
 	private String tel;
 	private String email;
-	
+	    
 	public Member() {}
-	
+
 	public Member(String id, String nickname, String password, String passquestion, String passanswer, String regdate,
-			String address, String tel, String email) {
+			String postcode, String address1, String address2, String address3, String tel, String email) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -22,7 +25,10 @@ public class Member {
 		this.passquestion = passquestion;
 		this.passanswer = passanswer;
 		this.regdate = regdate;
-		this.address = address;
+		this.postcode = postcode;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.address3 = address3;
 		this.tel = tel;
 		this.email = email;
 	}
@@ -75,12 +81,36 @@ public class Member {
 		this.regdate = regdate;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getPostcode() {
+		return postcode;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+	public String getAddress1() {
+		return address1;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+	public String getAddress3() {
+		return address3;
+	}
+
+	public void setAddress3(String address3) {
+		this.address3 = address3;
 	}
 
 	public String getTel() {
@@ -102,11 +132,10 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", nickname=" + nickname + ", password=" + password + ", passquestion="
-				+ passquestion + ", passanswer=" + passanswer + ", regdate=" + regdate + ", address=" + address
-				+ ", tel=" + tel + ", email=" + email + "]";
+				+ passquestion + ", passanswer=" + passanswer + ", regdate=" + regdate + ", postcode=" + postcode
+				+ ", address1=" + address1 + ", address2=" + address2 + ", address3=" + address3 + ", tel=" + tel
+				+ ", email=" + email + "]";
 	}
-	
-	
 	
 	
 }
