@@ -13,14 +13,24 @@ public class MemberDao {
 	ResultSet rs = null;
 
 // 회원 전체 불러오기
-	public ArrayList<Member> selectAll() {
+	public ArrayList<Member> getMember(int start, int end, String search) {
 		Connection conn = getConnection();
 		ArrayList<Member> list = null;
-		String sql = "select * from member";
+	// 최신 회원 가입 순으로 정렬
+		String sql = "select * from member order by regdate desc";
+		if (search != null) {
+			sql = "select * from member where id like '%" + search + "%' or nickname like '%" + search
+					+ "%' order by regdate desc";
+		}
+		String sql2 = "select rownum r, d.* from (" + sql + ") d";
+		String sql3 = "select * from (" + sql2 + ") where r between ? and ?";
 
 		try {
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql3);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			rs = pstmt.executeQuery();
+			
 			if (rs.next()) {
 				list = new ArrayList<Member>();
 				do {
@@ -28,7 +38,7 @@ public class MemberDao {
 					vo.setId(rs.getString("id"));
 					vo.setNickname(rs.getString("nickname"));
 					vo.setPassword(rs.getString("password"));
-					vo.setPassquestion(rs.getString("passqeustion"));
+					vo.setPassquestion(rs.getString("passquestion"));
 					vo.setPassanswer(rs.getString("passanswer"));
 					vo.setRegdate(rs.getString("regdate"));
 					vo.setPostcode(rs.getString("postcode"));
@@ -202,4 +212,26 @@ public class MemberDao {
 		return vo;
 	}
 
+// 닉네임이나 아이디로 검색
+	public int memberCnt(String search) {
+		Connection conn = getConnection();
+		int cnt = 0;
+		String sql = "select count(*) from member";
+		if (search != null) {
+			sql += " where id like '%" + search + "%' or nickname like '%" + search + "%'";
+		}
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs != null) {
+				if (rs.next())
+					cnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return cnt;
+	}
 }

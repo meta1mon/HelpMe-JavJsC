@@ -49,9 +49,18 @@ public class MemberLogin extends HttpServlet {
 			response.sendRedirect("secondPage.jsp");
 		} else {
 			if (vo.getPassword().equals(password)) {
-				System.out.println("로그인에 성공하였습니다");
-				request.getSession().setAttribute("loginMember", vo);
-				response.sendRedirect("secondPage.jsp");
+
+				// 관리자로 로그인 시
+				if (vo.getId().equals("semi01")) {
+					System.out.println("관리자 로그인");
+					request.getSession().setAttribute("loginMember", vo);
+					response.sendRedirect("admin/admin_index.jsp");
+				} else {
+					// 일반 회원 로그인 시
+					System.out.println("로그인에 성공하였습니다");
+					request.getSession().setAttribute("loginMember", vo);
+					response.sendRedirect("secondPage.jsp");
+				}
 			} else {
 				System.out.println("잘못된 비밀번호입니다");
 				response.sendRedirect("secondPage.jsp");

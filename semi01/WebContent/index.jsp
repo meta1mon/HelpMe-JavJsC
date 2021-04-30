@@ -10,7 +10,7 @@
 <body>
 	<h1>제승하님이 만들어주시기 전까지 사용할 첫 화면 입니다</h1>
 	<c:if test="${loginMember == null }">
-		<button type="button" onclick="location.href='member/login.jsp'">로그인으로
+	<button type="button" onclick="location.href='member/login.jsp'">로그인으로
 			이동</button>
 	</c:if>
 	<button type="button" onclick="location.href='member/signup.jsp'">회원가입으로
