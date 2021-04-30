@@ -171,6 +171,26 @@ public class MemberDao {
 //	}
 //
 
+	public int delete(String id) {
+		Connection conn = getConnection();
+		int result = 0;
+
+		String sql = "delete from member where id=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(conn);
+		}
+
+		return result;
+	}
+	
 // 로그인
 	public Member login(String id) {
 		Connection conn = getConnection();

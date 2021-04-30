@@ -14,7 +14,8 @@
 	</form>
 
 	<c:if test="${empty list }">
-		회원 리스트가 없습니다. url로 직접 접속 시, 이런 문제가 발생합니다.
+		올바른 접근이 아닙니다.
+		관리자 계정으로 로그인해주세요.
 	</c:if>
 	<c:if test="${not empty list }">
 		<table border='1'>
@@ -30,6 +31,7 @@
 				<th>회원 주소3</th>
 				<th>전화번호</th>
 				<th>이메일</th>
+				<th>회원 탈퇴 처리</th>
 			</tr>
 			<c:forEach items="${list }" var='v'>
 				<tr>
@@ -44,6 +46,7 @@
 					<td>${v.address3 }</td>
 					<td>${v.tel }</td>
 					<td>${v.email }</td>
+					<td><a href="<%=request.getContextPath()%>/memberdelete?id=${v.id}">회원 탈퇴</a></td>
 				</tr>
 			</c:forEach>
 		</table>
