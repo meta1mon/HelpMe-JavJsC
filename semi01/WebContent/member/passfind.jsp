@@ -74,7 +74,7 @@ div {
 </script>
 </head>
 
-<body>
+<body class="content">
 	<div>
 		<form action="<%=request.getContextPath()%>/findpassword"
 			method="post">

@@ -258,7 +258,7 @@ table {
 </script>
 </head>
 
-<body>
+<body class="content">
 	<div>
 		<h1>회원가입</h1>
 		<form action="<%=request.getContextPath()%>/memberinsert"

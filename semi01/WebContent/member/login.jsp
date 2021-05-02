@@ -65,7 +65,7 @@ div {
 </script>
 </head>
 
-<body>
+<body class="content">
 	<div>
 		<form action="<%=request.getContextPath()%>/memberlogin" method="post">
 			<h1>로그인</h1>

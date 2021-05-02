@@ -19,7 +19,7 @@
             
         </script>
 </head>
-<body>
+<body class="content">
     <div>
             <h1>비밀번호 찾기</h1>
             <p>${idfind }님의 비밀번호는</p>
