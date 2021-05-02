@@ -19,6 +19,7 @@
             
         </script>
 </head>
+<%@include file="../view/header.jsp"%>
 <body class="content">
     <div>
             <h1>비밀번호 찾기</h1>

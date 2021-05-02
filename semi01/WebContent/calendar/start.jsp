@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	#calendar {
+		margin-top: 124px;
+	}
+</style>
 <meta charset="UTF-8">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.js"></script>
 <script>
@@ -99,6 +104,7 @@
 </script>
 <title>달력</title>
 </head>
+<%@include file="../view/header.jsp"%>
 <body>
 	<div id="calendar"></div>
 </body>

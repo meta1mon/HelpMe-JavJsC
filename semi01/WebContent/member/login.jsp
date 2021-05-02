@@ -8,9 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>로그인</title>
 <style>
-div {
+.loginFrm {
 	text-align: center;
 	background-color: rgb(209, 202, 202);
+}
+
+#btnLogin {
+	display: none;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -64,9 +68,9 @@ div {
 	}
 </script>
 </head>
-
+<%@include file="../view/header.jsp"%>
 <body class="content">
-	<div>
+	<div class="loginFrm">
 		<form action="<%=request.getContextPath()%>/memberlogin" method="post">
 			<h1>로그인</h1>
 			<span id="idcheck"></span> <br> <input type="text" id="id"
@@ -75,11 +79,11 @@ div {
 				id="password" name="password" placeholder="비밀번호를 입력해주세요"> <br>
 			<span style="font-size: 1px">비밀번호를 잊으셨나요?</span> <br> <a
 				href="passfind.jsp">비밀번호 찾기</a> <br>
-			<button type="button" onclick="location.href='signup.jsp'">회원가입</button>
 			<button type="submit" onclick="return login();">로그인하기</button>
+			<button type="button" onclick="location.href='signup.jsp'">회원가입</button>
 		</form>
 	</div>
 
 </body>
-
+<%@include file="../view/footer.jsp"%>
 </html>

@@ -17,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원가입</title>
 <style>
-div {
+.enrollFrm {
 	text-align: center;
 	background-color: rgb(209, 202, 202);
 }
@@ -38,6 +38,10 @@ table {
 
 #idcheck {
 	cursor: pointer;
+}
+
+#btnEnroll {
+	display: none;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -257,9 +261,9 @@ table {
 	}
 </script>
 </head>
-
+<%@include file="../view/header.jsp"%>
 <body class="content">
-	<div>
+	<div class="enrollFrm">
 		<h1>회원가입</h1>
 		<form action="<%=request.getContextPath()%>/memberinsert"
 			method="post">
@@ -349,5 +353,5 @@ table {
 		</form>
 	</div>
 </body>
-
+<%@include file="../view/footer.jsp"%>
 </html>
