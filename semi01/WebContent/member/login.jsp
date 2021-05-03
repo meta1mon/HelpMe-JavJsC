@@ -8,13 +8,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>로그인</title>
 <style>
-.loginFrm {
-	text-align: center;
-	background-color: rgb(209, 202, 202);
+#loginbody {
+	width: 400px;
+	margin: 200px auto 0 auto;
 }
 
 #btnLogin {
 	display: none;
+}
+
+input {
+	width: 400px;
+	height: 40px;
+	font-size: 17px;
+}
+
+#idcheck, #passcheck {
+	float:left;
+	margin: 10px 0;
+	font-size: 13px;
+}
+
+#misspass {
+	float:left;
+	margin: 5px 0;
+	font-size: 13px;
+}
+
+#showpass {
+	float: right;
+	font-size: 13px;
+	margin: 5px 0;
+	
+}
+
+#findpass {
+	clear:both;
+	float:left;
+	margin: 5px 0;
+	font-size: 13px;
+	text-decoration: none;
+	color: red;
+}
+
+#buttonbox {
+	clear:both;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -31,12 +69,10 @@
 			if (!reg1.test(id)) {
 				$("#idcheck").text("아이디 형식이 잘못되었습니다");
 				$("#idcheck").css("color", "red");
-				$("#idcheck").css("font-size", "1px");
 				rightId = false;
 			} else {
 				$("#idcheck").text("올바른 아이디 형식입니다");
 				$("#idcheck").css("color", "blue");
-				$("#idcheck").css("font-size", "1px");
 				rightId = true;
 			}
 		});
@@ -46,14 +82,22 @@
 			if (!reg2.test(password)) {
 				$("#passcheck").text("비밀번호 형식이 잘못되었습니다");
 				$("#passcheck").css("color", "red");
-				$("#passcheck").css("font-size", "1px");
 				rightPassword = false;
 			} else {
 				$("#passcheck").text("올바른 비밀번호 형식입니다");
 				$("#passcheck").css("color", "blue");
-				$("#passcheck").css("font-size", "1px");
 				rightPassword = true;
 			}
+		});
+		
+		$("#showpass").click(function() {
+			if($("#password").attr('type') == "password") {
+				$("#password").attr('type', 'text');	
+			} else {
+				$("#password").attr('type', 'password');					
+			}
+			
+			
 		});
 
 	});
@@ -70,20 +114,25 @@
 </head>
 <%@include file="../view/header.jsp"%>
 <body class="content">
+<div id="loginbody">
 	<div class="loginFrm">
 		<form action="<%=request.getContextPath()%>/memberlogin" method="post">
 			<h1>로그인</h1>
-			<span id="idcheck"></span> <br> <input type="text" id="id"
-				name="id" placeholder="아이디를 입력해주세요"> <br> <span
-				id="passcheck"></span> <br> <input type="password"
-				id="password" name="password" placeholder="비밀번호를 입력해주세요"> <br>
-			<span style="font-size: 1px">비밀번호를 잊으셨나요?</span> <br> <a
-				href="passfind.jsp">비밀번호 찾기</a> <br>
-			<button type="submit" onclick="return login();">로그인하기</button>
-			<button type="button" onclick="location.href='signup.jsp'">회원가입</button>
+			<div><span id="idcheck">&nbsp;</span></div>
+			<input type="text" id="id" name="id" placeholder="아이디를 입력해주세요">
+			<div><span id="passcheck">&nbsp;</span></div>
+			<input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요"> <br>
+			<span id="misspass">비밀번호를 잊으셨나요?</span>
+			<span id="showpass">비밀번호 보기</span>
+			<a href="passfind.jsp" id="findpass">비밀번호 찾기</a>
+			<div id="buttonbox">
+				<button type="submit" onclick="return login();">로그인하기</button>
+				<button type="button" onclick="location.href='signup.jsp'">회원가입</button>
+			</div>
 		</form>
 	</div>
 
+</div>
 </body>
 <%@include file="../view/footer.jsp"%>
 </html>

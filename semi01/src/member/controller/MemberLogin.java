@@ -59,11 +59,11 @@ public class MemberLogin extends HttpServlet {
 					// 일반 회원 로그인 시
 					System.out.println("로그인에 성공하였습니다");
 					request.getSession().setAttribute("loginMember", vo);
-					response.sendRedirect("member/secondPage.jsp");
+					response.sendRedirect("secondPage.jsp");
 				}
 			} else {
 				System.out.println("잘못된 비밀번호입니다");
-				response.sendRedirect("member/secondPage.jsp");
+				response.sendRedirect("secondPage.jsp");
 			}
 		}
 	}

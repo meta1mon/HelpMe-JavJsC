@@ -9,6 +9,8 @@ html, body {
 * {
 	margin-top: 0;
 	justify-content: center !important;
+	font-family: Montserrat;
+	font-weight: 700;
 }
 
 .content {

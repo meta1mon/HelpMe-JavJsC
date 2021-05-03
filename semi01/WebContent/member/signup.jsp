@@ -2,15 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
-
-
-
-<!-- 마지막에 약관 두 가지는 필수 체크만 하고, 실제 디비에 넣거나 메일 연동하는 건 일단 없음 -->
-
-
-
-
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,9 +10,12 @@
 <style>
 .enrollFrm {
 	text-align: center;
-	background-color: rgb(209, 202, 202);
 }
 
+input {
+	width: 400px;
+	height: 40px;
+}
 table {
 	margin: 0 auto 0 auto;
 }

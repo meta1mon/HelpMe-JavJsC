@@ -20,7 +20,7 @@ public class JDBCConnectionPool {
 			Context i2 = (Context) i1.lookup("java:/comp/env"); // web.xml 찾아가는 부분 (암기필요) / 리턴값 object 형태 -> Context 형태로
 																// 형변환
 			// DataSource 찾기
-			DataSource ds = (DataSource) i2.lookup("jdbc/myoracle");
+			DataSource ds = (DataSource) i2.lookup("jdbc/semi01");
 			
 			// 커넥션 얻어오기
 			conn = ds.getConnection();

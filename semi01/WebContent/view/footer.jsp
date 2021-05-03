@@ -5,24 +5,15 @@
 </style>
 <body>
 	<div class="footer">
-		<div class="footer-content text-center">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4 mb-5 mb-lg-0">
-						<h4 class="text-uppercase mb-4">Location</h4>
-						<p class="lead mb-0">
-							2215 John Daniel Drive <br /> Clark, MO 65243
-						</p>
-					</div>
-					<!-- Footer About Text-->
-					<div class="col-lg-4">
-						<h4 class="text-uppercase mb-4">About Freelancer</h4>
-						<p class="lead mb-0">
-							Freelance is a free to use, MIT licensed Bootstrap theme created
-							by <a href="http://startbootstrap.com">Start Bootstrap</a>
-						</p>
-					</div>
-				</div>
+		<div class="footer-content">
+			<div>(주) 도와줘 잡스씨~</div>
+			<div>
+				<ul>
+					<li><label class="footer-label">만든이</label> 김연준, 이승연, 정재훈,
+						제승하, 하도경</li>
+					<li><label class="footer-label">주소지</label> 서울특별시 중구 남대문로 120
+						대일빌딩 2F, 3F</li>
+				</ul>
 			</div>
 		</div>
 	</div>
