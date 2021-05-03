@@ -5,6 +5,9 @@
 <%@include file="../style/common.css" %>
 <%@include file="../style/header.css" %>
 </style>
+<title>
+	구해줘! 잡스
+</title>
 <body>
 <div class="header">
 	<div class="header-content">
@@ -35,7 +38,7 @@
 								src="http://ipsumimage.appspot.com/50x50?l=이미지" class="pic">
 						</div>
 						<div class="dropdown-content">
-							<a href="">마이페이지</a>
+							<a href="<%=request.getContextPath()%>/myPage/myPageEnter.jsp">마이페이지</a>
 							<a href="<%=request.getContextPath()%>/memberlogout">로그아웃</a> 
 						</div>
 					</div>

@@ -10,7 +10,6 @@
 <%@include file="style/index.css" %>
 </style>
 <meta charset="UTF-8">
-<title>index</title>
 </head>
 <%@include file="../view/header.jsp"%>
 <body class="content">
