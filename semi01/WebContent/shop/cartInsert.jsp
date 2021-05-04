@@ -1,6 +1,6 @@
-<%@page import="bookshop.DAO.cartDAO"%>
-<%@page import="bookshop.VO.cartVO"%>
 <%@page import="member.vo.Member"%>
+<%@page import="bookshop.VO.cartVO"%>
+<%@page import="bookshop.DAO.cartDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@
 	cartDAO cartprocess = cartDAO.getInstance();
 	cartprocess.insertCart(cart);
 
-	response.sendRedirect("cartList.jsp?bkind=" + bkind +"&vkind"+vkind);
+	response.sendRedirect("cartList.jsp?bkind=" + bkind +"&vkind="+vkind);
 	%>
 
 </body>
