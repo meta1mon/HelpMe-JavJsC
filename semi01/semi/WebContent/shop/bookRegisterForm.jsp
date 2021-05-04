@@ -16,8 +16,7 @@
 		<td><select name = "bkind">
 			<option value="100">JAVA</option>
 			<option value="200">JSP</option>
-			<opt
-			ion value="300">HTML</option>
+			<option value="300">HTML</option>
 		</select>
 		</td>
 	</tr>

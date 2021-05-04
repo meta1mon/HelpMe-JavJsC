@@ -30,7 +30,7 @@ public class shopBookDAO {
 	public static shopBookDAO getinstance() {
 		return instance;
 	}
-	//ê´€ë¦¬ì ì¸ì¦ 
+	//°ü¸®ÀÚ ÀÎÁõ 
 	public int managerCheck(String id, String passwd) throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		PreparedStatement pstmt = null;
@@ -47,11 +47,11 @@ public class shopBookDAO {
 			if(rs.next()) {
 				dbpasswd = rs.getString("managerPasswd");
 				if(dbpasswd.equals(passwd)) 
-					x =1; //ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜
+					x =1; //ºñ¹Ğ¹øÈ£ ÀÏÄ¡
 				else 
-					x = 0; //ë¹„ë°€ë²ˆí˜¸ í‹€ë¦¼
+					x = 0; //ºñ¹Ğ¹øÈ£ Æ²¸²
 				}else 
-					x = -1; //í•´ë‹¹ ì‰;ã„·; ì•–ã…‡,ã… 
+					x = -1; //ÇØ´ç À×;¤§; ×¤·,¤± 
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -62,7 +62,7 @@ public class shopBookDAO {
 		return x;	
 	}
 	
-	//ì±… ë“±ë¡ 
+	//Ã¥ µî·Ï 
 	public void insertBook(shopBookVo book)throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		PreparedStatement pstmt = null;
@@ -94,7 +94,7 @@ public class shopBookDAO {
 		}
 	}
 	
-	//ì „ì²´ë“±ë¡ëœ ì±…ì˜ ìˆ˜ ì–»ì–´ë‚´ê¸°
+	//ÀüÃ¼µî·ÏµÈ Ã¥ÀÇ ¼ö ¾ò¾î³»±â
 	public int getBookCount() throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
@@ -115,7 +115,7 @@ public class shopBookDAO {
 		}
 			return x;	
 	}
-	//ë¶„ë¥˜ë³„ ë˜ëŠ” ì „ì²´ ë“±ë¡ëœ ì±…ì˜ ì •ë³´ë¥¼ ì–»ì–´ëƒ„ 
+	//ºĞ·ùº° ¶Ç´Â ÀüÃ¼ µî·ÏµÈ Ã¥ÀÇ Á¤º¸¸¦ ¾ò¾î³¿ 
 	public List<shopBookVo> getBooks(String bkind) throws SQLException{
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
@@ -157,8 +157,8 @@ public class shopBookDAO {
 		}
 		return bookList;
 	}
-	//bidì— í•´ë‹¹í•˜ëŠ” ì±…ì˜ ì •ë³´ë¥¼ ì–»ì–´ë‚´ëŠ” ë©”ì†Œë“œë¡œ 
-	//ë“±ë¡ëœ ì±…ì„ ìˆ˜ì •í•˜ê¸° ìœ„í•´ ìˆ˜ì •í¼ìœ¼ë¡œ ì½ì–´ë“¤ì´ê¸° ìœ„í•œ ë©”ì†Œë“œ 
+	//bid¿¡ ÇØ´çÇÏ´Â Ã¥ÀÇ Á¤º¸¸¦ ¾ò¾î³»´Â ¸Ş¼Òµå·Î 
+	//µî·ÏµÈ Ã¥À» ¼öÁ¤ÇÏ±â À§ÇØ ¼öÁ¤ÆûÀ¸·Î ÀĞ¾îµéÀÌ±â À§ÇÑ ¸Ş¼Òµå 
 	public shopBookVo getBook(int bid) throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
@@ -188,7 +188,7 @@ public class shopBookDAO {
 		}
 		return book;
 	}
-	//ì±… ì •ë³´ ìˆ˜ì • 
+	//Ã¥ Á¤º¸ ¼öÁ¤ 
 	public void updateBook(shopBookVo book, int bid) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
@@ -212,7 +212,7 @@ public class shopBookDAO {
 			pstmt.setInt(9, book.getBid());
 			
 			pstmt.executeUpdate();
-			System.out.println("ì—…ë°ì´íŠ¸ ë“¤ì–´ì˜´.ë‹¤ì˜¤");
+			System.out.println("¾÷µ¥ÀÌÆ® µé¾î¿È.´Ù¿À");
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -220,7 +220,7 @@ public class shopBookDAO {
 		}
 				
 	}
-	//ì±… ì‚­ì œ
+	//Ã¥ »èÁ¦
 	public void deleteBook(int bid) throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;

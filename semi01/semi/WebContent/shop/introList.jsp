@@ -12,7 +12,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title>Book Shopping Mall</title>
 </head>
 <body>
@@ -43,12 +42,12 @@
 	%>
 	<table border="1px solid white">
 		<tr height="40">
-			<td rowspan="4" width="100"><a href="<%=request.getContextPath() %>/shop/bookContent.jsp?bid=<%=bookList.getBid()%>&bkind=<%=bookList.getBkind()%>">
+			<td rowspan="4" width="100"><a href="bookContent.jsp?bid=<%=bookList.getBid()%>&bkind=<%=bookList.getBkind()%>">
 					<img src="../imageFile/<%=bookList.getBimage()%>" border="0" width="100" height="120">
 			</a></td>
 			<td width="350"><font size="+1">
 			<b>
-			<a href="bookContent.jsp?bid=<%=bookList.getBid()%>&bkind=<%=bookList.getBkind()%>">
+			<a href="bookContent.jsp?bid=<%=bookList.getBid()%>%bkind=<%=bookList.getBkind()%>>">
 			<%=bookList.getBtitle() %></a></b></font></td>
 			<td rowspan="4" width="50" align="center" valign="middle">
 			<%
