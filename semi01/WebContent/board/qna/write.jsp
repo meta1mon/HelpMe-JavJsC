@@ -1,3 +1,4 @@
+<%@page import="member.vo.Member"%>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,10 +22,11 @@
 </head>
 <body>
 	<%
-		String bwriter = null;
-		if (session.getAttribute("loginMember") != null) {
-			bwriter = (String) session.getAttribute("loginMember");
-		}
+	Member vo = (Member) session.getAttribute("loginMember");
+	String bwriter = null;
+	if (session.getAttribute("loginMember") != null) {
+		bwriter = vo.getNickname();
+	}
 	%>
 
 <%@include file="../../view/header.jsp"%>

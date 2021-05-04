@@ -1,3 +1,4 @@
+<%@page import="member.vo.Member"%>
 <%@page import="board.qna.vo.Bbs"%>
 <%@page import="board.qna.dao.BbsDAO"%>
 <%@ page import="java.io.PrintWriter" %>
@@ -28,9 +29,10 @@
 <%@include file="../../view/header.jsp"%>
 <body class="content">
 	<%
+		Member vo = (Member) session.getAttribute("loginMember");
 		String bwriter = null;
 		if (session.getAttribute("loginMember") != null) {
-			bwriter = (String) session.getAttribute("loginMember");
+			bwriter = vo.getNickname();
 		}
 		int pageNumber = 1; // 1은 기본 페이지
 		if (request.getParameter("pageNumber") != null) { // 현재 페이지가 몇 페이지인지 알려주기 위해

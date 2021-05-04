@@ -17,7 +17,7 @@
 			<div class="col-md-6 col-lg-4 mb-5">
 				<div class="portfolio-item mx-auto">
 					<img class="img-fluid" src="http://ipsumimage.appspot.com/900x460?l=질문방"
-						alt="..." />
+						alt="..." onclick="location.href='board/qna/write.jsp'" />
 				</div>
 			</div>
 			<div class="col-md-6 col-lg-4 mb-5">
