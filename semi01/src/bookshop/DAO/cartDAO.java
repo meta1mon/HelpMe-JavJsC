@@ -20,6 +20,8 @@ public class cartDAO {
 				pstmt.close();
 			if(rs != null)
 				rs.close();
+			if(conn!=null)
+				conn.close();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -125,9 +127,8 @@ public class cartDAO {
 		
 		//장바구니 수량 수정 
 		public void updateCount(int cid, int count) throws Exception{
-			rs = null;
-			pstmt = null;
 			Connection conn = JDBCConnectionPool.getConnection();
+			pstmt = null;
 		
 			String sql = "update cart set buyCount=? where cid=?";
 			try {
@@ -138,7 +139,9 @@ public class cartDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}finally {
-				close();
+				if(pstmt!=null) pstmt.close();
+				if(conn != null) conn.close();
+				//close 안해주면 sendredirect 무한로딩 
 			}
 			
 		}

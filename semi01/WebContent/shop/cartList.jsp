@@ -11,8 +11,9 @@
 	Member vo = (Member) request.getSession().getAttribute("loginMember");
 String bkind = request.getParameter("bkind");
 String vkind = request.getParameter("vkind");
+String vsize = request.getParameter("vsize");
 String buyer = vo.getId();
-System.out.println(buyer);
+
 %>
 <html>
 <head>
@@ -50,9 +51,11 @@ System.out.println(buyer);
 	<%
 		} else {
 	cartLists = productprocess.getCart(buyer);
+	System.out.println("리스트로 다시들어옴22");
 	%>
 	<h3>장바구니</h3>
 	<form name="cartform">
+		<p>책 장바구니 목록</p>
 		<table border="1px">
 			<tr>
 				<td width="50">번호</td>
@@ -73,13 +76,15 @@ System.out.println(buyer);
 					src="../imageFile/<%=cartList.getBimage()%>" border="0" width="30"
 					height="50" align="middle"> <%=cartList.getBtitle()%></td>
 				<td width="100"><%=NumberFormat.getInstance().format(cartList.getBuyPrice())%></td>
+				
 				<td width="150" align="center"><input type="text"
 					name="buyCount" size="5" value="<%=cartList.getBuyCount()%>">
 					 <%
-                  String url = "../bookupdateCartForm?cid=" + cartList.getCid() + "&bkind=" + bkind + "&buyCount=" + cartList.getBuyCount()+"&vkind=" + vkind;
+                  String url = "../bookupdateCartForm?cid=" + cartList.getCid() + "&bkind=" + bkind + "&buyCount=" + cartList.getBuyCount();
                  	 %>
 					<input type="button" value="수정"
 					onclick="javascript:window.location='<%=url%>'"></td>
+				
 				<td align="center" width="150">
 					<%
 						total += cartList.getBuyCount() * cartList.getBuyPrice();
@@ -95,11 +100,14 @@ System.out.println(buyer);
 			%>
 		</table>
 		<form name="vcartform">
+			
+			<p>영상 장바구니 목록</p>
 			<table border="1px">
 				<tr>
 					<td width="50">번호</td>
 					<td width="300">영상이름</td>
 					<td width="100">판매가격</td>
+					<td width="150">수량</td>
 					<td width="150">금액</td>
 				</tr>
 				<%
@@ -114,11 +122,7 @@ System.out.println(buyer);
 						src="../imageFile/<%=cartList.getVimage()%>" border="0" width="30"
 						height="50" align="middle"> <%=cartList.getVtitle()%></td>
 					<td width="100"><%=NumberFormat.getInstance().format(cartList.getvBuyPrice())%></td>
-					<td width="150" align="center"><input type="text"
-						name="buyCount" size="5" value="1"> <%
- 	String url = "updateCartForm?cid=" + cartList.getCid() + "&bkind=" + bkind + "&buyCount=" + cartList.getBuyCount();
- %> <input type="button" value="수정"
-						onclick="javascript:window.location='<%=url%>>'"></td>
+					<td width="150"><%=cartList.getBuyCount() %></td>
 					<td align="center" width="150">
 						<%
 							vtotal += cartList.getBuyCount() * cartList.getvBuyPrice();

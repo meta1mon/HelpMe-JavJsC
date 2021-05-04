@@ -88,6 +88,7 @@ try {
 			<input type="hidden" name="vtitle" value="<%=vList.getVtitle() %>">
 			<input type="hidden" name="vBuyPrice" value="<%= vBuyPrice %>">
 			<input type="hidden" name="vkind" value="<%=vkind %>">
+			<input type="hidden" name="vsize" value="<%=vList.getVsize() %>">
 			<input type="hidden" name="bkind" value="0">
 			<input type="hidden" name="bid" value="0">
 			<input type="hidden" name="btitle" value="0">
