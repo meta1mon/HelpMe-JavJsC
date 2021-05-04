@@ -1,6 +1,6 @@
+<%@page import="board.qna.vo.Bbs"%>
+<%@page import="board.qna.dao.BbsDAO"%>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="board.qna.dao.BbsDAO" %>
-<%@ page import="board.qna.vo.Bbs" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

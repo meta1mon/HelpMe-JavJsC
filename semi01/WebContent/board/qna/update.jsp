@@ -1,6 +1,6 @@
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="board.qna.dao.BbsDAO" %> <!-- write.jsp 일부 수정해 만듦 -->
 <%@ page import="board.qna.vo.Bbs" %> <!-- 데이터베이스 접근 위해 추가 -->
+<%@ page import="board.qna.dao.BbsDAO" %> <!-- write.jsp 일부 수정해 만듦 -->
+<%@ page import="java.io.PrintWriter" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

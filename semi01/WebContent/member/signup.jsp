@@ -12,10 +12,23 @@
 	text-align: center;
 }
 
-input {
+[type='text'], [type='password'] {
 	width: 400px;
 	height: 40px;
+	font-size: 17px;
 }
+
+td {
+	padding: 5px 5px;
+}
+tr td:nth-of-type(3) {
+	width: 320px;
+}
+
+tr:nth-of-type(1) td:nth-of-type(3) div {
+		float:left;
+}
+
 table {
 	margin: 0 auto 0 auto;
 }
@@ -32,11 +45,23 @@ table {
 
 #idcheck {
 	cursor: pointer;
+	color: blue;
+}
+
+.desc {
+	font-size: 13px;
 }
 
 #btnEnroll {
 	display: none;
 }
+
+#passquestion {
+	box-sizing: border-box;
+	width: 408px;
+	height: 40px;
+}
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script
@@ -261,24 +286,23 @@ table {
 		<h1>회원가입</h1>
 		<form action="<%=request.getContextPath()%>/memberinsert"
 			method="post">
-			<span id="idcheck">중복확인</span>
 			<table>
 				<tr>
 					<td>아이디<span class="required">(필수)</span></td>
 					<td><input type="text" name="id" id="id"></td>
-					<td><span style="font-size: 1px"> 4~15자의 영문자, 숫자만 사용
-							가능합니다.</span></td>
+					<td><div><span id="idcheck">중복확인</span></div>&nbsp;<div><span class="desc"> 4~15자의 영문자, 숫자만 사용
+							가능합니다.</span></div></td>
 				</tr>
 				<tr>
 					<td>닉네임<span class="required">(필수)</span></td>
 					<td><input type="text" name="nickname" id="nickname"></td>
-					<td><span style="font-size: 1px"> 1~8자의 한글, 영문자, 숫자만 사용
+					<td><span class="desc"> 1~8자의 한글, 영문자, 숫자만 사용
 							가능합니다.</span></td>
 				</tr>
 				<tr>
 					<td>비밀번호<span class="required">(필수)</span></td>
 					<td><input type="password" name="password1" id="password1"></td>
-					<td><span style="font-size: 1px"> 8~15자의 영문자, 숫자,
+					<td><span class="desc"> 8~15자의 영문자, 숫자,
 							특수문자(!, @, #, $, %, ^, &, *)만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>
@@ -299,31 +323,27 @@ table {
 				<tr>
 					<td>비밀번호 답변<span class="required">(필수)</span></td>
 					<td><input type="text" name="passanswer" id="passanswer"></td>
-					<td><span style="font-size: 1px"> 1~20자의 한글, 영문자, 숫자만
+					<td><span class="desc"> 1~20자의 한글, 영문자, 숫자만
 							사용 가능합니다.</span></td>
 				</tr>
 				<tr>
 					<td>주소<span class="optional">(선택)</span></td>
-					<td><input type="text" id="sample6_postcode"
-						placeholder="우편번호" name="postcode" readonly> <br> <input
-						type="text" id="sample6_address" placeholder="주소" name="address1"
-						readonly><br> <input type="text"
-						id="sample6_detailAddress" placeholder="상세주소" name="address2"><br>
-						<!-- 참고항목은 도로명 주소 클릭 시, 동을 표시한다 --> <input type="text"
-						id="sample6_extraAddress" placeholder="참고항목" name="address3"
-						readonly></td>
-					<td><input type="button" onclick="sample6_execDaumPostcode()"
-						value="우편번호 찾기"></td>
+					<td><input type="text" id="sample6_postcode" placeholder="우편번호" name="postcode" readonly style="margin-bottom:5px"><br>
+						<input type="text" id="sample6_address" placeholder="주소" name="address1" readonly  style="margin-bottom:5px"><br>
+						<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="address2" style="margin-bottom:5px"><br>
+				<!-- 참고항목은 도로명 주소 클릭 시, 동을 표시한다 -->
+						<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="address3" readonly style="margin-bottom:5px"></td>
+					<td><input type="button" onclick="sample6_execDaumPostcode()"	value="우편번호 찾기"></td>
 				</tr>
 				<tr>
 					<td>전화번호<span class="optional">(선택)</span></td>
 					<td><input type="text" name="tel" id="tel"></td>
-					<td><span style="font-size: 1px"> 10~13자의 숫자만 사용 가능합니다.</span></td>
+					<td><span class="desc"> 10~13자의 숫자만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>
 					<td>이메일<span class="optional">(선택)</span></td>
 					<td><input type="text" name="email" id="email"></td>
-					<td><span style="font-size: 1px"> 8~15자의 영문자, 숫자,
+					<td><span class="desc"> 8~15자의 영문자, 숫자,
 							특수문자(@)만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>

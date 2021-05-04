@@ -78,7 +78,6 @@ public class VideoInsert extends HttpServlet {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		videoVO video = new videoVO();
 		String vkind = imageUp.getParameter("vkind");
 		String vtitle = imageUp.getParameter("vtitle");

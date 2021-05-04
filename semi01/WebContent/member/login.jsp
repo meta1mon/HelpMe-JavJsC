@@ -39,6 +39,7 @@ input {
 	float: right;
 	font-size: 13px;
 	margin: 5px 0;
+	cursor: pointer;
 	
 }
 
