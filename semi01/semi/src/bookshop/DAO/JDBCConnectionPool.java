@@ -1,6 +1,7 @@
 package bookshop.DAO;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bookshop.VO.shopBookVo;
-import common.jdbc.JDBCConnectionPool;
+import common.jdbc.JDBCCon
 
 public class shopBookDAO {
 	private PreparedStatement pstmt = null;

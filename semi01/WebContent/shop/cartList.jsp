@@ -75,10 +75,11 @@ System.out.println(buyer);
 				<td width="100"><%=NumberFormat.getInstance().format(cartList.getBuyPrice())%></td>
 				<td width="150" align="center"><input type="text"
 					name="buyCount" size="5" value="<%=cartList.getBuyCount()%>">
-					<%
-						String url = "updateCartForm?cid=" + cartList.getCid() + "&bkind=" + bkind + "&buyCount=" + cartList.getBuyCount();
-					%> <input type="button" value="수정"
-					onclick="javascript:window.location='<%=url%>>'"></td>
+					 <%
+                  String url = "../bookupdateCartForm?cid=" + cartList.getCid() + "&bkind=" + bkind + "&buyCount=" + cartList.getBuyCount()+"&vkind=" + vkind;
+                 	 %>
+					<input type="button" value="수정"
+					onclick="javascript:window.location='<%=url%>'"></td>
 				<td align="center" width="150">
 					<%
 						total += cartList.getBuyCount() * cartList.getBuyPrice();

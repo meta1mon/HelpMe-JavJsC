@@ -1,6 +1,7 @@
 package bookshop.DAO;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +31,7 @@ public class shopBookDAO {
 	public static shopBookDAO getinstance() {
 		return instance;
 	}
-	//관리자 인증 
+	//愿�由ъ옄 �씤利� 
 	public int managerCheck(String id, String passwd) throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		PreparedStatement pstmt = null;
@@ -47,11 +48,11 @@ public class shopBookDAO {
 			if(rs.next()) {
 				dbpasswd = rs.getString("managerPasswd");
 				if(dbpasswd.equals(passwd)) 
-					x =1; //비밀번호 일치
+					x =1; //鍮꾨�踰덊샇 �씪移�
 				else 
-					x = 0; //비밀번호 틀림
+					x = 0; //鍮꾨�踰덊샇 ��由�
 				}else 
-					x = -1; //해당 잉;ㄷ; 앖ㅇ,ㅁ 
+					x = -1; //�빐�떦 �엵;�꽬; �븭�뀋,�뀅 
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -62,7 +63,7 @@ public class shopBookDAO {
 		return x;	
 	}
 	
-	//책 등록 
+	//梨� �벑濡� 
 	public void insertBook(shopBookVo book)throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		PreparedStatement pstmt = null;
@@ -94,7 +95,7 @@ public class shopBookDAO {
 		}
 	}
 	
-	//전체등록된 책의 수 얻어내기
+	//�쟾泥대벑濡앸맂 梨낆쓽 �닔 �뼸�뼱�궡湲�
 	public int getBookCount() throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
@@ -115,7 +116,7 @@ public class shopBookDAO {
 		}
 			return x;	
 	}
-	//분류별 또는 전체 등록된 책의 정보를 얻어냄 
+	//遺꾨쪟蹂� �삉�뒗 �쟾泥� �벑濡앸맂 梨낆쓽 �젙蹂대�� �뼸�뼱�깂 
 	public List<shopBookVo> getBooks(String bkind) throws SQLException{
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
@@ -157,8 +158,8 @@ public class shopBookDAO {
 		}
 		return bookList;
 	}
-	//bid에 해당하는 책의 정보를 얻어내는 메소드로 
-	//등록된 책을 수정하기 위해 수정폼으로 읽어들이기 위한 메소드 
+	//bid�뿉 �빐�떦�븯�뒗 梨낆쓽 �젙蹂대�� �뼸�뼱�궡�뒗 硫붿냼�뱶濡� 
+	//�벑濡앸맂 梨낆쓣 �닔�젙�븯湲� �쐞�빐 �닔�젙�뤌�쑝濡� �씫�뼱�뱾�씠湲� �쐞�븳 硫붿냼�뱶 
 	public shopBookVo getBook(int bid) throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
@@ -188,7 +189,7 @@ public class shopBookDAO {
 		}
 		return book;
 	}
-	//책 정보 수정 
+	//梨� �젙蹂� �닔�젙 
 	public void updateBook(shopBookVo book, int bid) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
@@ -212,7 +213,7 @@ public class shopBookDAO {
 			pstmt.setInt(9, book.getBid());
 			
 			pstmt.executeUpdate();
-			System.out.println("업데이트 들어옴.다오");
+			System.out.println("�뾽�뜲�씠�듃 �뱾�뼱�샂.�떎�삤");
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -220,7 +221,7 @@ public class shopBookDAO {
 		}
 				
 	}
-	//책 삭제
+	//梨� �궘�젣
 	public void deleteBook(int bid) throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
