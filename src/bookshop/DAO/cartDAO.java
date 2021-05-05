@@ -159,24 +159,25 @@ public class cartDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}finally {
-				close();
+				if(pstmt!=null) pstmt.close();
+				if(conn != null) conn.close();
 			}
 		}
 		
 		//장바구니 모두 비우기 메소드
-		public void deleteAll(String id) {
+		public void deleteAll(String id)throws Exception {
 			Connection conn = JDBCConnectionPool.getConnection();
 			rs = null;  pstmt = null;
 			String sql = "delete from cart where buyer=?";
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);
-				
 				pstmt.executeQuery();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}finally {
-				close();
+				if(pstmt!=null) pstmt.close();
+				if(conn != null) conn.close();
 			}
 		}
 		

@@ -1,6 +1,8 @@
 package bookshop.servlet;
 
 import java.io.IOException;
+
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bookshop.DAO.cartDAO;
-import bookshop.VO.cartVO;
+import bookshop.DAO.bookcartDAO;
 import bookshop.VO.shopBookVo;
 import member.vo.Member;
 
@@ -43,10 +44,9 @@ public class bookupdateCart extends HttpServlet {
 	}
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("카트 책 수정 들어옴");
-		String cid = request.getParameter("cid");
-		String buyCount = request.getParameter("buyCount");
+		String bcid = request.getParameter("bcid");
+		String buycount = request.getParameter("buycount");
 		String bkind = request.getParameter("bkind");
-		String vkind = request.getParameter("vkind");
 
 		shopBookVo book = new shopBookVo();
 		book.setBkind(bkind);
@@ -59,15 +59,14 @@ public class bookupdateCart extends HttpServlet {
 			System.out.println("널 ");
 		}else {
 		
-			cartDAO bookprocess = cartDAO.getInstance();
+			bookcartDAO bookprocess = bookcartDAO.getInstance();
 				try {
-					bookprocess.updateCount(Integer.parseInt(cid), Integer.parseInt(buyCount));
+					bookprocess.updateBookCount(Integer.parseInt(bcid), Integer.parseInt(buycount));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				response.sendRedirect("./shop/cartList.jsp?bkind="+bkind+"&vkind="+vkind);
+				response.sendRedirect("./shop/cartList.jsp?bkind="+bkind);
 				System.out.println(bkind);
-				System.out.println(vkind);
 				System.out.println(vo.getId());
 	}
 

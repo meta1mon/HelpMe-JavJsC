@@ -9,8 +9,8 @@
 </head>
 <body>
 	<%
-		String cid = request.getParameter("cid");
-		String buyCount = request.getParameter("buyCount");
+		String bcid = request.getParameter("bcid");
+		String buycount = request.getParameter("buycount");
 		String bkind = request.getParameter("bkind");
 	
 		Member vo = (Member) request.getSession().getAttribute("loginMember");
@@ -20,10 +20,9 @@
 	%>
 	 <form method="post" action="<%=request.getContextPath() %>/bookupdateCart">
 	 	변경할 수량 : 
-	 	<input type="text" name="buyCount" size="5" value="<%=buyCount %>">
-	 	<input type="hidden" name="cid" value="<%=cid %>">
+	 	<input type="text" name="buycount" size="5" value="<%=buycount %>">
+	 	<input type="hidden" name="bcid" value="<%=bcid %>">
 	 	<input type="hidden" name="bkind" value="<%=bkind %>">
-	 	<input type="hidden" name="vkind" value="0">
 	 	<input type="submit" value="변경하기">
 	 </form>
 	
