@@ -10,7 +10,7 @@ import board.qna.vo.Qna;
 
 public class QnaDao {
 	private PreparedStatement pstmt = null;
-	ResultSet rs = null;
+	private ResultSet rs = null;
 
 	public ArrayList<Qna> getQnaBoard(Connection con, int start, int end, String search) throws SQLException {
 		ArrayList<Qna> list = new ArrayList<Qna>();
@@ -74,13 +74,13 @@ public class QnaDao {
 		return cnt;
 	}
 
-	public Qna QnaContent(Connection con, Qna inputVo) throws SQLException {
+	public Qna QnaRead(Connection con, int qno) throws SQLException {
 		String sql = "select * from qna where qno = ?";
 		Qna vo = null;
 
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, inputVo.getQno());
+			pstmt.setInt(1, qno);
 			rs = pstmt.executeQuery();
 			if (rs != null) {
 				if (rs.next()) {
@@ -109,7 +109,7 @@ public class QnaDao {
 		int max = 0;
 
 		String maxSql = "select nvl(max(qno),0)+1 from qna";
-		String sql = "insert into qna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH:MM:SS'),    ?, ?, 0, 0)";
+		String sql = "insert into qna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH:MI:SS'),    ?, ?, 0, 0)";
 
 		try {
 			pstmt = con.prepareStatement(maxSql);

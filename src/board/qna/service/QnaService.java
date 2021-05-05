@@ -34,5 +34,12 @@ public class QnaService {
 		close(con);
 		return result;
 	}
+	
+	public Qna QnaRead(int qno) throws SQLException {
+		Connection con = getConnection();
+		Qna vo = new QnaDao().QnaRead(con, qno);
+		close(con);
+		return vo;
+	}
 
 }

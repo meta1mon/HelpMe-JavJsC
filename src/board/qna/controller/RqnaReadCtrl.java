@@ -11,19 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.qna.service.QnaService;
+import board.qna.service.RqnaService;
 import board.qna.vo.Qna;
+import board.qna.vo.Rqna;
 
 /**
- * Servlet implementation class QnaListCtrl
+ * Servlet implementation class RqnaReadCtrl
  */
-@WebServlet("/qnalist")
-public class QnaListCtrl extends HttpServlet {
+@WebServlet("/RqnaReadCtrl")
+public class RqnaReadCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaListCtrl() {
+    public RqnaReadCtrl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,24 +43,17 @@ public class QnaListCtrl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);
 	}
-	
+
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		final int PAGE_SIZE = 5;
+		int qno = Integer.parseInt(request.getParameter("qno"));
+
+		final int PAGE_SIZE = 3;
 		final int PAGE_BOX = 3;
 
-		// 검색 시의 컨트롤 처리
-		String search = request.getParameter("search");
-		if (search != null && !search.equals("")) {
-			// 즉 검색 내용이 있다면
-		} else {
-			// 검색 내용이 없다면
-			search = null;
-		}
 
-		// search가 있든 없든 갖고 들어가서 전체 글 개수를 반환함
 		int allPages = 0;
 		try {
-			allPages = new QnaService().QnaCnt(search);
+			allPages = new RqnaService().RqnaCnt(qno);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -96,21 +91,20 @@ public class QnaListCtrl extends HttpServlet {
 		}
 
 		// 리스트 가져오기
-		ArrayList<Qna> list = null;
+		ArrayList<Rqna> list = null;
 		try {
-			list = new QnaService().getQnaBoard(startRnum, endRnum, search);
+			list = new RqnaService().getRqna(startRnum, endRnum, qno);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		request.setAttribute("qlist", list);
+		request.setAttribute("reply", list);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pageBoxCnt", pageBoxCnt);
-		request.setAttribute("search", search);
 		request.getRequestDispatcher("board/qna/qlist.jsp").forward(request, response);
 
 	}
-
+	
 }

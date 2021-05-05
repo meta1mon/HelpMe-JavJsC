@@ -61,7 +61,7 @@
 				<td>${q.qno }</td>
 				<td>${q.qviewcnt }</td>
 				<td>${q.qlikecnt }</td>
-				<td>${q.qsubject }</td>
+				<td><a href="qnaread?qno=${q.qno}">${q.qsubject }</a></td>
 				<td>${q.qwriter }</td>
 				<td>${q.qdate }</td>
 			</tr>
