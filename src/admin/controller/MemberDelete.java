@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.dao.MemberDao;
+import member.service.MemberService;
 
 /**
  * Servlet implementation class MemberDelete
@@ -49,7 +50,7 @@ public class MemberDelete extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("메서드 넘어는 옴");
 		String id = request.getParameter("id");
-		int result = new MemberDao().delete(id);
+		int result = new MemberService().delete(id);
 		System.out.println(result);
 		
 		PrintWriter out = response.getWriter();

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.dao.MemberDao;
+import member.service.MemberService;
 import member.vo.Member;
 
 /**
@@ -55,7 +56,7 @@ public class MemberList extends HttpServlet {
 		}
 
 		// search가 있든 없든 갖고 들어가서 전체 글 개수를 반환함
-		int allPages = new MemberDao().memberCnt(search);
+		int allPages = new MemberService().memberCnt(search);
 
 		int pageBoxCnt = 0; // 하단의 총 페이지 전환 버튼 수
 		if (allPages % PAGE_SIZE == 0) {
@@ -90,7 +91,7 @@ public class MemberList extends HttpServlet {
 		}
 
 		// 리스트 가져오기
-		ArrayList<Member> list = new MemberDao().getMember(startRnum, endRnum, search);
+		ArrayList<Member> list = new MemberService().getMember(startRnum, endRnum, search);
 
 		request.setAttribute("list", list);
 		request.setAttribute("startPage", startPage);
