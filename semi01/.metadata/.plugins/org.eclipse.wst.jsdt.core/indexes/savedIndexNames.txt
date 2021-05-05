@@ -1,8 +1,0 @@
-INDEX VERSION 1.4+C:\z_sylee\jsp\semi\semi_1\semi01\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2799932452.index
-215413299.index
-3899268984.index
-1179476992.index
-1223829211.index
-2118373024.index
-2129265817.index
