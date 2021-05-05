@@ -21,7 +21,7 @@ public class RqnaDao {
 		int max = 0;
 
 		String maxSql = "select nvl(max(rqno),0)+1 from rqna";
-		String sql = "insert into rqna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH:MI:SS'),    ?, ?, 0)";
+		String sql = "insert into rqna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),    ?, ?, 0)";
 
 		try {
 			pstmt = con.prepareStatement(maxSql);
@@ -105,4 +105,19 @@ public class RqnaDao {
 		return list;
 
 	}
+	
+	public int Rqnadelete(Connection con, int rqno) throws SQLException {
+		int result = 0;
+		String sql = "delete from rqna where rqno = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rqno);
+			result = pstmt.executeUpdate();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+
+	}
+	
 }

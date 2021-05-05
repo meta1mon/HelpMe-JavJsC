@@ -42,9 +42,20 @@
 			<c:if test="${reply != null}">
 				<c:forEach items="${reply }" var="r">
 					<tr>
-						<td>추천수 ${r.rqlikecnt }<br>태그 : 미구현
-						</td>
+						<td>추천수 ${r.rqlikecnt }<br>태그 : 미구현</td>
 						<td>${r.rqcontent }</td>
+						<td><button type="button" onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }'">삭제</button>
+						
+						
+						
+						
+<!-- 댓글 수정 기능 해야함!!!!!! -->
+
+
+
+
+						<button type="button" onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }'">수정</button>
+						</td>
 					</tr>
 				</c:forEach>
 			</c:if>
@@ -55,12 +66,16 @@
 			</tr>
 			<tr>
 				<td>빈칸</td>
-				<td><input type="text" name="rqcontent" placeholder="댓글을 입력하세요">
-					<button type="submit">댓글 작성</button></td>
+				<td><input type="text" name="rqcontent" placeholder="댓글을 입력하세요"></td>
+				<td><button type="submit">댓글 작성</button></td>
 			</tr>
 		</table>
 	</form>
-	<a href="bbs.jsp">목록</a>
+	
+	<button type="button" onclick="location.href='<%=request.getContextPath()%>/qnalist'">목록으로 돌아가기</button>
+	<button type="button" onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'">수정</button>
+	<button type="button" onclick="location.href='<%=request.getContextPath()%>/qnadelete?qno=${qna.qno }'">삭제</button>
+	
 </body>
 <%@include file="../../view/footer.jsp"%>
 </html>

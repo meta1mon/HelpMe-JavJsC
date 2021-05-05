@@ -40,4 +40,11 @@ public class RqnaService {
 		close(con);
 		return result;
 	}
+	
+	public int Rqnadelete(int rqno) throws SQLException {
+		Connection con = getConnection();
+		int result = new RqnaDao().Rqnadelete(con, rqno);
+		close(con);
+		return result;
+	}
 }

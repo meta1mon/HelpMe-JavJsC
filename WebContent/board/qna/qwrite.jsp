@@ -68,7 +68,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<input type="button" value="취소" onclick="location.href = 'bbs.jsp'">
+				<input type="button" value="취소" onclick="location.href = 'index.jsp'">
 				<input type="submit" value="등록">
 			</form>
 		</div>

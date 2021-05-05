@@ -33,7 +33,7 @@
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
-	<form action="boardlist.do" method="get">
+	<form action="qnalist" method="get">
 		<input type='search' name="search">
 		<button type=submit>검색</button>
 	</form>
