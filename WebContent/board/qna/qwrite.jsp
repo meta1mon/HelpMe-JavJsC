@@ -31,7 +31,7 @@
 	<!-- 게시판(게시글 목록) 영역 -->
 	<div class="container">
 		<div class="row">
-			<form action="<%=request.getContextPath()%>/BoardWriteCtrl"
+			<form action="<%=request.getContextPath()%>/qnawrite"
 				method="post">
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
@@ -46,11 +46,11 @@
 						<tr>
 							<!-- 내용 -->
 							<td><input type="text" class="form-control"
-								placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
+								placeholder="글 제목" name="bsubject" maxlength="50"></td>
 						</tr>
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용"
-									id="editor" name="bbsContent" maxlength="2048"
+									id="editor" name="bcontent" maxlength="2048"
 									style="height: 350px;"></textarea></td>
 
 							<script>

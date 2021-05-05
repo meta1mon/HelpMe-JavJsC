@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.qna.dao.BbsDAO;
+import board.qna.dao.QnaDao;
 import board.qna.vo.Bbs;
 
 /**
@@ -70,7 +70,7 @@ public class BoardDeleteCtrl extends HttpServlet {
 			script.println("location.href = 'board/qna/bbs.jsp'"); // 게시판 페이지로 보냄
 			script.println("</script>");
 		}
-		Bbs bbs = new BbsDAO().getBbs(bno);
+		Bbs bbs = new QnaDao().getBbs(bno);
 		if (!bwriter.equals(bbs.getBwriter())) { // 접속자와 작성자가 다르면
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -78,7 +78,7 @@ public class BoardDeleteCtrl extends HttpServlet {
 			script.println("location.href = 'board/qna/bbs.jsp'"); // 게시판 페이지로 보냄
 			script.println("</script>");
 		} else {
-			BbsDAO bbsDAO = new BbsDAO(); // 공란 없음 -> 게시글 수정
+			QnaDao bbsDAO = new QnaDao(); // 공란 없음 -> 게시글 수정
 			int result = bbsDAO.delete(bno);
 			if (result == -1) { // 데이터베이스 오류
 				PrintWriter script = response.getWriter();
