@@ -1,0 +1,17 @@
+INDEX VERSION 1.131
+C:\z_sylee\jsp\semi\semi_1\semi01\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1643743845.index
+\semi\src
+C:\z_sylee\jsp\semi\semi_1\semi01\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2737502898.index
+\semi\src
+C:\z_sylee\jsp\semi\semi_1\semi01\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\538347484.index
+\semi\src
+C:\z_sylee\jsp\semi\semi_1\semi01\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\405074384.index
+\semi\src
+C:\z_sylee\jsp\semi\semi_1\semi01\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4055702942.index
+\semi\src
+C:\z_sylee\jsp\semi\semi_1\semi01\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2678400751.index
+\semi\src
+C:\z_sylee\jsp\semi\semi_1\semi01\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2511756708.index
+\semi\src
+C:\z_sylee\jsp\semi\semi_1\semi01\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\215413299.index
+\semi\src

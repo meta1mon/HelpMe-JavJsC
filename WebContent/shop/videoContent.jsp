@@ -10,7 +10,7 @@
 	String vkind = request.getParameter("vkind");
 	String id = "";
 	Member vo = (Member) request.getSession().getAttribute("loginMember");
-int vBuyPrice = 0;
+int buyprice = 0;
 try {
 	if (session.getAttribute("loginMember") == null){
 		id = "not";	
@@ -70,11 +70,11 @@ try {
 		<tr>
 			<td width="500">정가 <%=NumberFormat.getInstance().format(vList.getVprice())%>원<br>
 				<%
-					vBuyPrice = (int) (vList.getVprice() * ((double) (100 - vList.getDiscountRate()) / 100));
-				%> 판매가: <b><font color="red"> <%=NumberFormat.getInstance().format((int) (vBuyPrice))%>원
+				buyprice = (int) (vList.getVprice() * ((double) (100 - vList.getDiscountRate()) / 100));
+				%> 판매가: <b><font color="red"> <%=NumberFormat.getInstance().format((int) (buyprice))%>원
 				</font></b></td>
 		<tr>
-			<td width="500">수량  : <input type="text" size="5" name="buyCount" value="1">개
+			<td width="500">수량  : <input type="text" size="5" name="buycount" value="1">개
 			<%
 			if(id.equals("not")){
 			%>
@@ -86,14 +86,10 @@ try {
 			<input type="hidden" name="vid" value="<%= vid %>">
 			<input type="hidden" name="vimage" value="<%=vList.getVimage() %>">
 			<input type="hidden" name="vtitle" value="<%=vList.getVtitle() %>">
-			<input type="hidden" name="vBuyPrice" value="<%= vBuyPrice %>">
+			<input type="hidden" name="buyprice" value="<%= buyprice %>">
 			<input type="hidden" name="vkind" value="<%=vkind %>">
 			<input type="hidden" name="vsize" value="<%=vList.getVsize() %>">
-			<input type="hidden" name="bkind" value="0">
-			<input type="hidden" name="bid" value="0">
-			<input type="hidden" name="btitle" value="0">
-			<input type="hidden" name="bimage" value="0">
-			<input type="hidden" name="buyPrice" value="0">
+			
 			
 			<input type="submit" value="장바구니 담기">	
 	

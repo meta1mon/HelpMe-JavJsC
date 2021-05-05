@@ -9,7 +9,7 @@
 	String bkind = request.getParameter("bkind");
 	String id = "";
 	Member vo = (Member) request.getSession().getAttribute("loginMember");
-int buyPrice = 0;
+int buyprice = 0;
 try {
 	if (session.getAttribute("loginMember") == null){
 		id = "not";	
@@ -56,7 +56,7 @@ try {
 	%>
 
 </body>
-<form name="inform" action="<%=request.getContextPath() %>/shop/cartInsert.jsp" method="post">
+<form action="<%=request.getContextPath() %>/shop/bookcartInsert.jsp" method="post">
 	<table border="1">
 		<tr>
 			<td rowspan="6" width="150"><img src="../imageFile/<%=bookList.getBimage()%>" border="0" width="150"
@@ -75,11 +75,11 @@ try {
 		<tr>
 			<td width="500">정가 <%=NumberFormat.getInstance().format(bookList.getBprice())%>원<br>
 				<%
-					buyPrice = (int) (bookList.getBprice() * ((double) (100 - bookList.getDiscountRate()) / 100));
-				%> 판매가: <b><font color="red"> <%=NumberFormat.getInstance().format((int) (buyPrice))%>원
+				buyprice = (int) (bookList.getBprice() * ((double) (100 - bookList.getDiscountRate()) / 100));
+				%> 판매가: <b><font color="red"> <%=NumberFormat.getInstance().format((int) (buyprice))%>원
 				</font></b></td>
 		<tr>
-			<td width="500">수량  : <input type="text" size="5" name="buyCount" value="1">개
+			<td width="500">수량  : <input type="text" size="5" name="buycount" value="1">개
 			<%
 			if(id.equals("not")){
 			%>
@@ -94,13 +94,9 @@ try {
 			<input type="hidden" name="bid" value="<%= bid %>">
 			<input type="hidden" name="bimage" value="<%=bookList.getBimage() %>">
 			<input type="hidden" name="btitle" value="<%=bookList.getBtitle() %>">
-			<input type="hidden" name="buyPrice" value="<%= buyPrice %>">
+			<input type="hidden" name="buyprice" value="<%= buyprice %>">
 			<input type="hidden" name="bkind" value="<%=bkind %>">
-			<input type="hidden" name="vkind" value="0">
-			<input type="hidden" name="vid" value="0">
-			<input type="hidden" name="vtitle" value="0">
-			<input type="hidden" name="vimage" value="0">
-			<input type="hidden" name="vBuyPrice" value="0">
+
 			
 			
 			<input type="submit" value="장바구니 담기">	
