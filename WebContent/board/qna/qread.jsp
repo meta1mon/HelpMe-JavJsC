@@ -8,21 +8,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 웹으로 설정 -->
-<!-- CSS(부트스트랩 사용) -->
 <title>JSP 게시판 웹 사이트</title>
 	<!-- CSS(부트스트랩 사용) -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 	<style>
-	<%@include file="../../style/common.css" %>
-	<%@include file="../../style/header.css" %>
-	<%@include file="../../style/footer.css"%>
 </style>
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
-
 	<!-- 게시글 내용 표시 -->
 	<table border="2">
 		<tr>
@@ -33,9 +26,7 @@
 			<td>게시글 내용 : ${qna.qcontent }</td>
 		</tr>
 	</table>
-
 	<br>
-
 	<form action="<%=request.getContextPath()%>/rqnawrite" method="post">
 		<table border="2">
 <!-- 댓글이 있으면 댓글 내용 표시 -->
@@ -50,10 +41,6 @@
 						
 						
 <!-- 댓글 수정 기능 해야함!!!!!! -->
-
-
-
-
 						<button type="button" onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }'">수정</button>
 						</td>
 					</tr>

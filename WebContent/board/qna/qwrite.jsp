@@ -16,12 +16,6 @@
 <script src="js/bootstrap.js"></script>
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
-	<style>
-	<%@include file="../../style/common.css" %>
-	<%@include file="../../style/header.css" %>
-	<%@include file="../../style/footer.css"%>
-</style>
-</style>
 </head>
 <body>
 
