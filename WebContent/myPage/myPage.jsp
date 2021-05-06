@@ -67,7 +67,7 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
  <script>
- function openCity(evt, cityName) {
+ function openTab(evt, tabName) {
 	  var i, tabcontent, tablinks;
 	  tabcontent = document.getElementsByClassName("tabcontent");
 	  for (i = 0; i < tabcontent.length; i++) {
@@ -77,7 +77,7 @@
 	  for (i = 0; i < tablinks.length; i++) {
 	    tablinks[i].className = tablinks[i].className.replace(" active", "");
 	  }
-	  document.getElementById(cityName).style.display = "block";
+	  document.getElementById(tabName).style.display = "block";
 	  evt.currentTarget.className += " active";
 	}
     </script>
@@ -87,10 +87,10 @@
 	<span class="welcome"><%=vo.getNickname()%>님</span>
 </div>
 	<div class="tab">
-		<button class="tablinks" onclick="openCity(event, 'myProfile')">나의 프로필</button>
-		<button class="tablinks" onclick="openCity(event, 'myCalendar')">일정관리</button>
-		<button class="tablinks" onclick="openCity(event, 'myPost')">내가 쓴 글</button>
-		<button class="tablinks" onclick="openCity(event, 'myVideo')">내 영상 보기</button>
+		<button class="tablinks" onclick="openTab(event, 'myProfile')">나의 프로필</button>
+		<button class="tablinks" onclick="openTab(event, 'myCalendar')">일정관리</button>
+		<button class="tablinks" onclick="openTab(event, 'myPost')">내가 쓴 글</button>
+		<button class="tablinks" onclick="openTab(event, 'myVideo')">내 영상 보기</button>
 	</div>
 	<hr>
 
