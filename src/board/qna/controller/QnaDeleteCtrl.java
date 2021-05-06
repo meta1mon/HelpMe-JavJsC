@@ -59,10 +59,10 @@ public class QnaDeleteCtrl extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (result > 0) {
 			out.print("<script>alert('글 삭제 성공!')</script>");
-			out.print("<script>location.href='index.jsp'</script>");
+			out.print("<script>location.href = './qnalist'</script>");
 		} else {
 			out.print("<script>alert('글 삭제 실패...')</script>");
-			out.print("<script>location.href='index.jsp'</script>");
+			out.print("<script>location.href = './qnalist'</script>");
 
 		}
 	}

@@ -14,8 +14,14 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 <style>
+	<%@include file="../../style/common.css" %>
+	<%@include file="../../style/header.css" %>
+	<%@include file="../../style/footer.css"%>
+	
 	table {
-	display:block;
+	width:70%;
+	margin-right:auto;
+	margin-left:auto;
 	}
 	
 	#page a {
@@ -23,14 +29,15 @@
 	}
 	
 </style>
+
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
+	<h3>Q&A 게시판</h3>
 	<form action="qnalist" method="get">
 		<input type='search' name="search">
 		<button type=submit>검색</button>
 	</form>
-	<h3>Q&A 게시판</h3>
 	
 	
 <!-- 미구현!!!!!
@@ -38,6 +45,8 @@
 	로그인 했으면 글쓰기로 이동!
 -->	
 	<input type="button" value="글쓰기" onclick="location.href = 'board/qna/qwrite.jsp'">
+
+
 	<table style="text-align: center; border: 1px solid #dddddd">
 		<tr>
 			<th style="background-color: #eeeeee; text-align: center;">번호</th>
@@ -64,13 +73,18 @@
 	<c:if test="${startPage !=1 }">
 		<a href="qnalist?pageNum=${startPage -1 }&search=${search }">&#60;&#60;</a>
 	</c:if>
+
 	<c:forEach begin="${startPage }" end="${endPage }" var="s" step="1">
 		<a href="qnalist?pageNum=${s }&search=${search }">${s }</a>
 	</c:forEach>
+
+
+
 	<c:if test="${endPage < pageBoxCnt }">
 		<a href="qnalist?pageNum=${endPage +1 }&search=${search }">&#62;&#62;</a>
 	</c:if>
 	</div>
+
 </body>
 <%@include file="../../view/footer.jsp"%>
 </html>
