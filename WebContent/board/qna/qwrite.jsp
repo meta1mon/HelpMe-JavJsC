@@ -7,15 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 반응형 웹으로 설정 -->
-<!-- CSS(부트스트랩 사용) -->
-<link rel="stylesheet" href="css/bootstrap.css">
 <title>JSP 게시판 웹 사이트</title>
-<!-- CSS(부트스트랩 사용) -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script
-	src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
 	<style>
 	<%@include file="../../style/common.css" %>
 	<%@include file="../../style/header.css" %>
@@ -50,24 +44,23 @@
 						</tr>
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용"
-									id="editor" name="bcontent" maxlength="2048"
+									id="editor1" name="bcontent" maxlength="2048"
 									style="height: 350px;"></textarea></td>
 
-							<script>
-                        ClassicEditor.create( document.querySelector( '#editor' ), {
-                        	ckfinder : {
-                        		uploadUrl : 'http://localhost:8090/images'
-                        	}
-                        }).then( editor => {
-                                        console.log( editor );
-                                } )
-                                .catch( error => {
-                                        console.error( error );
-                                } );
-                </script>
+							       <script>
+										CKEDITOR.replace( 'editor1' );
+					               </script>
+					               
 						</tr>
 					</tbody>
 				</table>
+				<div id="fileDiv"> <p> <input type="file" id="file" name="file_0"> 
+				<a href="#this" class="btn" id="delete" name="delete">삭제</a> 
+				</p> 
+				</div> 
+				<br/><br/> 
+				<a href="#this" class="btn" id="addFile">파일 추가</a>
+
 				<input type="button" value="취소" onclick="location.href = 'index.jsp'">
 				<input type="submit" value="등록">
 			</form>

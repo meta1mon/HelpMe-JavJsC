@@ -7,10 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 웹으로 설정 -->
-<!-- CSS(부트스트랩 사용) -->
-<link rel="stylesheet" href="css/bootstrap.css">
 <title>JSP 게시판 웹 사이트</title>
-<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
 </head>
 	<%@include file="../../view/header.jsp"%>
 <body class="content">
@@ -39,21 +37,12 @@
 						</tr>
 						<tr>
 							<td><textarea class="form-control"
-									id="editor" name="bcontent" maxlength="2048"
+									id="editor1" name="bcontent" maxlength="2048"
 									style="height: 350px;">${qna.qcontent }</textarea></td>
 
-							<script>
-                        ClassicEditor.create( document.querySelector( '#editor' ), {
-                        	ckfinder : {
-                        		uploadUrl : 'http://localhost:8090/images'
-                        	}
-                        }).then( editor => {
-                                        console.log( editor );
-                                } )
-                                .catch( error => {
-                                        console.error( error );
-                                } );
-                </script>
+							       <script>
+										CKEDITOR.replace( 'editor1' );
+					               </script>
 						</tr>
 					</tbody>
 				</table>
