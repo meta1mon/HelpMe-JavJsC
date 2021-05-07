@@ -1,0 +1,57 @@
+package bookshop.VO;
+
+public class videocartVO {
+	private int vcid;
+	private String vid;
+	private String vtitle;
+	private String vimage;
+	private String buyprice;
+	private String buycount;
+	private String buyer;
+	
+	public int getVcid() {
+		return vcid;
+	}
+	public void setVcid(int vcid) {
+		this.vcid = vcid;
+	}
+	public String getVid() {
+		return vid;
+	}
+	public void setVid(String vid) {
+		this.vid = vid;
+	}
+	public String getVtitle() {
+		return vtitle;
+	}
+	public void setVtitle(String vtitle) {
+		this.vtitle = vtitle;
+	}
+	public String getVimage() {
+		return vimage;
+	}
+	public void setVimage(String vimage) {
+		this.vimage = vimage;
+	}
+	public String getBuyprice() {
+		return buyprice;
+	}
+	public void setBuyprice(String buyprice) {
+		this.buyprice = buyprice;
+	}
+	public String getBuycount() {
+		return buycount;
+	}
+	public void setBuycount(String buycount) {
+		this.buycount = buycount;
+	}
+	public String getBuyer() {
+		return buyer;
+	}
+	public void setBuyer(String buyer) {
+		this.buyer = buyer;
+	}
+	
+	
+	
+}
