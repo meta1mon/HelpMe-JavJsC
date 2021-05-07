@@ -45,7 +45,7 @@ public class MyPageEnter extends HttpServlet {
 			out.print("<script>location.href='myPage/myPage.jsp'</script>");
 		} else {
 			out.print("<script>alert('비밀번호가 일치하지 않습니다.');</script>");
-			out.print("<script>location.href='myPage/myPage.jsp'</script>");
+			out.print("<script>location.href='secondPage.jsp'</script>");
 		}
 		
 		out.flush();

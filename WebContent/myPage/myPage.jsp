@@ -1,13 +1,311 @@
+<%@page import="member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../view/header.jsp"%>
-<body class="content">
-	<div>
-		<div class="picBtn">
-			<img alt="profilePic" src="http://ipsumimage.appspot.com/50x50?l=이미지"
-				class="pic">
-		</div>
+<style>
+/*profile*/
+.profile{
+	width: 1240px;
+	height: 60px;
+	text-align: left;
+	float: left;
+	line-height: 1em;
+}
 
+/* tab */
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.tab-main {
+	display: block;
+	clear: both;
+	margin-top: 20px;
+}
+
+.tab-main:after {
+	display: block;
+	height: 0;
+	content: ".";
+	font-size: 0;
+	visibility: hidden;
+	clear: both
+}
+
+.tab-main>.tab>li {
+	float: left;
+	margin-right: 7px;
+	text-align: center;
+	border-radius: 7px;
+	border: none;
+}
+
+.tab-main>.tab .title {
+	display: block;
+	padding: 10px;
+	color: #fff;
+	border-radius: 7px;
+	background-color: #2c3e50;
+	cursor: pointer;
+}
+
+.tab-main>.tab .on {
+	position: relative;
+}
+
+.tab-main>.tab .on .title {
+	color: #00e1d3;
+}
+
+.tab-main>.tab-cont {
+	float: left;
+	width: 1000px;
+	clear: both;
+	margin-top: 10px;
+	border-radius: 7px;
+	color: black;
+}
+
+.tab-main>.tab-cont>.cont {
+	padding: 20px;
+	background-color: white;
+	border-top: 1px solid black;
+	box-sizing: border-box;
+	width: 1240px;
+}
+
+.tab-main .comm_refer {
+	margin: 5px 0 18px 15px
+}
+
+.tab-sub {
+	display: block;
+	clear: both;
+}
+
+.tab-sub:after {
+	display: block;
+	height: 0;
+	content: ".";
+	font-size: 0;
+	visibility: hidden;
+	clear: both
+}
+
+.tab-sub>.tab {
+	float: left;
+}
+
+.tab-sub>.tab>li {
+	float: left;
+	text-align: center;
+	font-size: 13px;
+	white-space: nowrap;
+	margin-left: 4px;
+}
+
+.tab-sub>.tab .title {
+	display: block;
+	height: 20px;
+	padding: 5px 20px;
+	font-weight: bold;
+	color: white;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	border: none;
+	background-color: #2c3e50;
+	cursor: pointer;
+}
+
+.tab-sub>.tab .on {
+	position: relative;
+}
+
+.tab-sub>.tab .on .title {
+	height: 20px;
+	background-color: #2c3e50;
+	color: #1abc9c;
+}
+
+.tab-sub>.tab-cont {
+	float: left;
+	width: 960px;
+	clear: both;
+}
+
+.tab-sub>.tab-cont .cont {
+	padding: 25px;
+	color: black;
+	background-color: white;
+	box-sizing: border-box;
+	width: 1200px;
+	border: 1px solid black;
+}
+
+.tab-sub>.tab-cont>.cont:last-child {
+	border-top-right-radius: 0
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						//탭(ul) onoff
+						$('.onoff>.tab-cont').children().css('display', 'none');
+						$('.onoff>.tab-cont div:first-child').css('display',
+								'block');
+						$('.onoff>.tab li:first-child').addClass('on');
+						$('.onoff')
+								.delegate(
+										'.tab>li',
+										'click',
+										function() {
+											var index = $(this).parent()
+													.children().index(this);
+											$(this).siblings().removeClass();
+											$(this).addClass('on');
+											$(this).parent().next('.tab-cont')
+													.children().hide()
+													.eq(index).show();
+										});
+					});
+
+</script>
+</head>
+<body class="content">
+	<div class="profile">
+		<img alt="profilePic" src="http://ipsumimage.appspot.com/50x50?l=이미지">
+		<span class="welcome">${loginMember.nickname}님</span>
+	</div>
+	<div class="onoff tab-main">
+		<ul class="tab">
+			<li><a href="#" class="title">나의 프로필</a></li>
+			<li><a href="#" class="title">일정관리</a></li>
+			<li><a href="#" class="title">내가쓴글</a></li>
+			<li><a href="#" class="title">내영상보기</a></li>
+		</ul>
+		<div class="tab-cont">
+			<!-- //탭1 -->
+			<div class="cont">
+			<form action="<%=request.getContextPath()%>/memberinsert"
+			method="post">
+			<table>
+				<tr>
+					<td>아이디<span class="required">(필수)</span></td>
+					<td colspan="2"><input type="text" name="id" id="id" readonly value="${loginMember.id}"></td>
+				</tr>
+				<tr>
+					<td>닉네임<span class="required">(필수)</span></td>
+					<td><input type="text" name="nickname" id="nickname" value="${loginMember.nickname}"></td>
+					<td><span class="desc"> 1~8자의 한글, 영문자, 숫자만 사용
+							가능합니다.</span></td>
+				</tr>
+				<tr>
+					<td>비밀번호<span class="required">(필수)</span></td>
+					<td><input type="password" name="password1" id="password1" value="${loginMember.password}"></td>
+					<td><span class="desc"> 8~15자의 영문자, 숫자,
+							특수문자(!, @, #, $, %, ^, &, *)만 사용 가능합니다.</span></td>
+				</tr>
+				<tr>
+					<td>비밀번호 확인<span class="required">(필수)</span></td>
+					<td><input type="password" name="password2" id="password2" value="${loginMember.password}"></td>
+					<td><span id="passcheck"></span></td>
+				</tr>
+				<tr>
+					<td>비밀번호 질문<span class="required">(필수)</span></td>
+					<!-- 비밀번호 질문 value 값에 따라 다른 값을 대입해준다. -->
+					<c:choose>
+					<c:when test="${loginMember.passquestion == 1 }">
+					<td><input type="text" name="passquestion" id="passquestion" value="첫 수학여행 장소는?"></td>
+					</c:when>
+					<c:when test="${loginMember.passquestion == 2 }">
+					<td><input type="text" name="passquestion" id="passquestion" value="가장 친한 친구의 이름은?"></td>
+					</c:when>
+					<c:when test="${loginMember.passquestion == 3 }">
+					<td><input type="text" name="passquestion" id="passquestion" value="첫 해외여행지는?"></td>
+					</c:when>
+					<c:when test="${loginMember.passquestion == 4 }">
+					<td><input type="text" name="passquestion" id="passquestion" value="어린시절 자신의 별명은?"></td>
+					</c:when>
+					</c:choose>
+				</tr>
+				<tr>
+					<td>비밀번호 답변<span class="required">(필수)</span></td>
+					<td><input type="text" name="passanswer" id="passanswer" value="${loginMember.passanswer}"></td>
+					<td><span class="desc"> 1~20자의 한글, 영문자, 숫자만
+							사용 가능합니다.</span></td>
+				</tr>
+				<tr>
+					<td>주소<span class="optional">(선택)</span></td>
+					<td colspan="2"><input type="text" id="sample6_postcode" name="postcode" readonly style="margin-bottom:5px" value="${loginMember.postcode}"><br>
+						<input type="text" id="sample6_address" name="address1" readonly  style="margin-bottom:5px" value="${loginMember.address1}"><br>
+						<input type="text" id="sample6_detailAddress" name="address2" style="margin-bottom:5px" value="${loginMember.address2}"><br>
+				<!-- 참고항목은 도로명 주소 클릭 시, 동을 표시한다 -->
+						<input type="text" id="sample6_extraAddress" name="address3" readonly style="margin-bottom:5px" value="${loginMember.address3}"></td>
+				</tr>
+				<tr>
+					<td>전화번호<span class="optional">(선택)</span></td>
+					<td><input type="text" name="tel" id="tel"  value="${loginMember.tel}"></td>
+					<td><span class="desc"> 10~13자의 숫자만 사용 가능합니다.</span></td>
+				</tr>
+				<tr>
+					<td>이메일<span class="optional">(선택)</span></td>
+					<td><input type="text" name="email" id="email" value="${loginMember.email}"></td>
+					<td><span class="desc"> 8~15자의 영문자, 숫자,
+							특수문자(@)만 사용 가능합니다.</span></td>
+				</tr>
+				<tr>
+					<td colspan="3"><label><input type="checkbox"
+							name="agree" value="2"> 도와줘~ 잡스!의 다양한 소식을 받아보겠습니다(선택)</label></td>
+				</tr>
+				<tr>
+					<td colspan="3"><input type="submit" value="수정"
+						onclick="" id="btnSubmit"></td>
+				</tr>
+			</table>
+		</form>
+			</div>
+
+			<!-- //탭2 -->
+			<div class="cont">
+				<p>캘린더 넣기</p>
+			</div>
+
+			<!-- //탭3 -->
+			<div class="cont">
+				<div class="onoff tab-sub">
+					<ul class="tab">
+						<li><a href="#" class="title">나의 게시글</a></li>
+						<li><a href="#" class="title">나의 답글</a></li>
+					</ul>
+					<div class="tab-cont">
+						<!-- //탭3-1 -->
+						<div class="cont">
+							<p>글 목록</p>
+						</div>
+
+						<!-- //탭3-2 -->
+						<div class="cont">
+							<p>댓글 목록</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 탭4// -->
+			<div class="cont">
+				<p>구매한 영상 목록</p>
+			</div>
+		</div>
 	</div>
 </body>
+</html>
 <%@include file="../view/footer.jsp"%>

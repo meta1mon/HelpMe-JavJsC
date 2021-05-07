@@ -10,10 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 웹으로 설정 -->
-<!-- CSS(부트스트랩 사용) -->
 <title>JSP 게시판 웹 사이트</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
 
 <style>
 	<%@include file="../../style/common.css" %>
@@ -21,7 +19,9 @@
 	<%@include file="../../style/footer.css"%>
 	
 	table {
-	display:block;
+	width:70%;
+	margin-right:auto;
+	margin-left:auto;
 	}
 	
 	#page a {
@@ -33,11 +33,11 @@
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
-	<form action="boardlist.do" method="get">
+	<h3>Q&A 게시판</h3>
+	<form action="qnalist" method="get">
 		<input type='search' name="search">
 		<button type=submit>검색</button>
 	</form>
-	<h3>Q&A 게시판</h3>
 	
 	
 <!-- 미구현!!!!!
@@ -61,7 +61,7 @@
 				<td>${q.qno }</td>
 				<td>${q.qviewcnt }</td>
 				<td>${q.qlikecnt }</td>
-				<td>${q.qsubject }</td>
+				<td><a href="qnaread?qno=${q.qno}">${q.qsubject }</a></td>
 				<td>${q.qwriter }</td>
 				<td>${q.qdate }</td>
 			</tr>

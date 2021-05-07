@@ -33,7 +33,7 @@
 	margin-top: 40px;
 }
 
-a {
+.nav a {
 	color: white;
 	text-decoration: none;
 }
@@ -89,7 +89,7 @@ a:hover {
 }
 
 .dropdown:hover .picBtn {
-	border: 1px solid red;
+	border: 1px solid #1abc9c;
 }
 
 .dropdown:hover .dropdown-content {

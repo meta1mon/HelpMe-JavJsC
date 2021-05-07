@@ -132,7 +132,6 @@ input {
 			</div>
 		</form>
 	</div>
-
 </div>
 </body>
 <%@include file="../view/footer.jsp"%>
