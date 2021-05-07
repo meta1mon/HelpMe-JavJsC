@@ -79,9 +79,7 @@
 						<td><button type="button"
 								onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }'">삭제</button>
 							<button type="button" id="rqnareply" onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }')">수정</button></td>
-<!-- 
-							<button type="button" id="rqnareply" onclick="window.open('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }'">수정</button></td>
- -->					</tr>
+					</tr>
 				</c:forEach>
 			</c:if>
 			<!-- 댓글 유무에 상관없이 댓글 작성 부분은 표시 -->

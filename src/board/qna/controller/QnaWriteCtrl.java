@@ -95,8 +95,8 @@ public class QnaWriteCtrl extends HttpServlet {
 		String qsubject = request.getParameter("qsubject");
 		String qcontent = request.getParameter("qcontent");
 		
-		vo.setQsubject(mReq.getParameter("bsubject"));
-		vo.setQcontent(mReq.getParameter("bcontent"));
+		vo.setQsubject(mReq.getParameter("qsubject"));
+		vo.setQcontent(mReq.getParameter("qcontent"));
 		vo.setQwriter(qwriter);
 		vo.setQfilepath(fileName);
 		
