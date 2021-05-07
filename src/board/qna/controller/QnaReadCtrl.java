@@ -128,15 +128,6 @@ public class QnaReadCtrl extends HttpServlet {
 		} else {
 			System.out.println("해당 글을 불러오지 못했습니다.");
 		}
-		
-//// 읽어온 댓글이 있다면! 실행할 부분
-//		request.setAttribute("reply", list);
-//		request.setAttribute("startPage", startPage);
-//		request.setAttribute("endPage", endPage);
-//		request.setAttribute("currentPage", currentPage);
-//		request.setAttribute("pageBoxCnt", pageBoxCnt);
-//		request.getRequestDispatcher("board/qna/qlist.jsp").forward(request, response);
-
 	}
 
 }

@@ -69,11 +69,13 @@ public class RqnaUpdateCtrl extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (result > 0) {
 			out.print("<script>alert('댓글 수정 성공!')</script>");
-			out.print("<script>location.href='secondPage.jsp'</script>");
+			out.print("<script>opner.close</script>");
 		} else {
 			out.print("<script>alert('댓글 수정 실패...')</script>");
-			out.print("<script>location.href='secondPage.jsp'</script>");
+			out.print("<script>window.close</script>");
 			
 		}
+		
+		out.print("location.href='qread.jsp'");
 	}
 }

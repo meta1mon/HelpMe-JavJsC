@@ -36,16 +36,15 @@
 					<tbody>
 						<tr>
 							<!-- 내용 -->
-							<td><input type="text"
-								placeholder="글 제목" name="qsubject" maxlength="50"></td>
+							<td><input type="text" placeholder="글 제목" name="qsubject" maxlength="50"></td>
 						</tr>
 						<tr>
-							<td><textarea class="form-control" placeholder="글 내용"
+							<td><textarea placeholder="글 내용"
 									id="editor" name="qcontent" maxlength="2048"
 									style="height: 350px;"></textarea></td>
 
 							<script>
-								CKEDITOR.replace('editor1');
+								CKEDITOR.replace('editor');
 							</script>
 
 						</tr>
