@@ -15,7 +15,7 @@
 		<img alt="logo" src="http://ipsumimage.appspot.com/80x80?l=로고" id="logo">
 		</a>
 		<div class="nav">
-			<a href="" id="qnaBtn">질문방</a> 
+			<a href="<%=request.getContextPath()%>/qnalist" id="qnaBtn">질문방</a> 
 			<a href="" id="studyBtn">스터디방</a> 
 			<a href="" id="reviewBtn">리뷰방</a> 
 			<a href="" id="shopBtn">쇼핑방</a> 
