@@ -109,7 +109,7 @@ public void insertBookCart(bookcartVO bookcart) throws Exception{
 	public void updateBookCount(int bcid, int count) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null;
-	
+
 		String sql = "update bookcart set buyCount=? where bcid=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
