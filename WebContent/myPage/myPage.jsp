@@ -2,9 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../view/header.jsp"%>
-<%
-	Member vo = (Member) request.getSession().getAttribute("loginMember");
-%>
 <style>
 /*profile*/
 .profile{
@@ -180,12 +177,13 @@ a {
 													.eq(index).show();
 										});
 					});
+
 </script>
 </head>
 <body class="content">
 	<div class="profile">
 		<img alt="profilePic" src="http://ipsumimage.appspot.com/50x50?l=이미지">
-		<span class="welcome"><%=vo.getNickname()%>님</span>
+		<span class="welcome">${loginMember.nickname}님</span>
 	</div>
 	<div class="onoff tab-main">
 		<ul class="tab">
@@ -197,7 +195,83 @@ a {
 		<div class="tab-cont">
 			<!-- //탭1 -->
 			<div class="cont">
-				<p>테이블 만들기 닉네임/비밀번호/비밀번호질문/답변/주소/이메일/가입날짜</p>
+			<form action="<%=request.getContextPath()%>/memberinsert"
+			method="post">
+			<table>
+				<tr>
+					<td>아이디<span class="required">(필수)</span></td>
+					<td colspan="2"><input type="text" name="id" id="id" readonly value="${loginMember.id}"></td>
+				</tr>
+				<tr>
+					<td>닉네임<span class="required">(필수)</span></td>
+					<td><input type="text" name="nickname" id="nickname" value="${loginMember.nickname}"></td>
+					<td><span class="desc"> 1~8자의 한글, 영문자, 숫자만 사용
+							가능합니다.</span></td>
+				</tr>
+				<tr>
+					<td>비밀번호<span class="required">(필수)</span></td>
+					<td><input type="password" name="password1" id="password1" value="${loginMember.password}"></td>
+					<td><span class="desc"> 8~15자의 영문자, 숫자,
+							특수문자(!, @, #, $, %, ^, &, *)만 사용 가능합니다.</span></td>
+				</tr>
+				<tr>
+					<td>비밀번호 확인<span class="required">(필수)</span></td>
+					<td><input type="password" name="password2" id="password2" value="${loginMember.password}"></td>
+					<td><span id="passcheck"></span></td>
+				</tr>
+				<tr>
+					<td>비밀번호 질문<span class="required">(필수)</span></td>
+					<!-- 비밀번호 질문 value 값에 따라 다른 값을 대입해준다. -->
+					<c:choose>
+					<c:when test="${loginMember.passquestion == 1 }">
+					<td><input type="text" name="passquestion" id="passquestion" value="첫 수학여행 장소는?"></td>
+					</c:when>
+					<c:when test="${loginMember.passquestion == 2 }">
+					<td><input type="text" name="passquestion" id="passquestion" value="가장 친한 친구의 이름은?"></td>
+					</c:when>
+					<c:when test="${loginMember.passquestion == 3 }">
+					<td><input type="text" name="passquestion" id="passquestion" value="첫 해외여행지는?"></td>
+					</c:when>
+					<c:when test="${loginMember.passquestion == 4 }">
+					<td><input type="text" name="passquestion" id="passquestion" value="어린시절 자신의 별명은?"></td>
+					</c:when>
+					</c:choose>
+				</tr>
+				<tr>
+					<td>비밀번호 답변<span class="required">(필수)</span></td>
+					<td><input type="text" name="passanswer" id="passanswer" value="${loginMember.passanswer}"></td>
+					<td><span class="desc"> 1~20자의 한글, 영문자, 숫자만
+							사용 가능합니다.</span></td>
+				</tr>
+				<tr>
+					<td>주소<span class="optional">(선택)</span></td>
+					<td colspan="2"><input type="text" id="sample6_postcode" name="postcode" readonly style="margin-bottom:5px" value="${loginMember.postcode}"><br>
+						<input type="text" id="sample6_address" name="address1" readonly  style="margin-bottom:5px" value="${loginMember.address1}"><br>
+						<input type="text" id="sample6_detailAddress" name="address2" style="margin-bottom:5px" value="${loginMember.address2}"><br>
+				<!-- 참고항목은 도로명 주소 클릭 시, 동을 표시한다 -->
+						<input type="text" id="sample6_extraAddress" name="address3" readonly style="margin-bottom:5px" value="${loginMember.address3}"></td>
+				</tr>
+				<tr>
+					<td>전화번호<span class="optional">(선택)</span></td>
+					<td><input type="text" name="tel" id="tel"  value="${loginMember.tel}"></td>
+					<td><span class="desc"> 10~13자의 숫자만 사용 가능합니다.</span></td>
+				</tr>
+				<tr>
+					<td>이메일<span class="optional">(선택)</span></td>
+					<td><input type="text" name="email" id="email" value="${loginMember.email}"></td>
+					<td><span class="desc"> 8~15자의 영문자, 숫자,
+							특수문자(@)만 사용 가능합니다.</span></td>
+				</tr>
+				<tr>
+					<td colspan="3"><label><input type="checkbox"
+							name="agree" value="2"> 도와줘~ 잡스!의 다양한 소식을 받아보겠습니다(선택)</label></td>
+				</tr>
+				<tr>
+					<td colspan="3"><input type="submit" value="수정"
+						onclick="" id="btnSubmit"></td>
+				</tr>
+			</table>
+		</form>
 			</div>
 
 			<!-- //탭2 -->
