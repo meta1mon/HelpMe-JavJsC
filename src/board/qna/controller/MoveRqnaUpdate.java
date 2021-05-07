@@ -1,7 +1,6 @@
 package board.qna.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -11,19 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.qna.service.QnaService;
+import board.qna.service.RqnaService;
 import board.qna.vo.Qna;
+import board.qna.vo.Rqna;
 
 /**
- * Servlet implementation class QnaUpdateCtrl
+ * Servlet implementation class MoveRqnaUpdate
  */
-@WebServlet("/qnaupdate")
-public class QnaUpdateCtrl extends HttpServlet {
+@WebServlet("/moverqnaupdate")
+public class MoveRqnaUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaUpdateCtrl() {
+    public MoveRqnaUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,39 +42,23 @@ public class QnaUpdateCtrl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);
 	}
-	
-	private void execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-// 닉네임 불러와야되는데 아직 설정 안함
 
-//		Member me = (Member) request.getSession().getAttribute("loginMember");
-//		String qwriter = me.getNickname();
-
-		Qna vo = new Qna();
-		String qsubject = request.getParameter("qsubject");
-		String qcontent = request.getParameter("qcontent");
-		int qno = Integer.parseInt(request.getParameter("qno"));
-		
-		vo.setQsubject(qsubject);
-		vo.setQcontent(qcontent);
-		vo.setQno(qno);
-		
-		int result = 0;
+	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("이동하러 넘어옴");
+		int rqno = Integer.parseInt(request.getParameter("rqno"));
+		System.out.println("rqno값 넘어옴" + rqno);
+		Rqna rqvo = null;
 		try {
-			result = new QnaService().Qnaupdate(vo);
-			
+			rqvo = new RqnaService().RqnaRead(rqno);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		PrintWriter out = response.getWriter();
-		if (result > 0) {
-			out.print("<script>alert('글 수정 성공!')</script>");
-			out.print("<script>location.href='index.jsp'</script>");
+		if (rqvo != null) {
+			request.setAttribute("rqna", rqvo);
+			request.getRequestDispatcher("/board/qna/rqnapopup.jsp").forward(request, response);
 		} else {
-			out.print("<script>alert('글 수정 실패...')</script>");
-			out.print("<script>location.href='index.jsp'</script>");
-			
+			System.out.println("해당 댓글을 불러오지 못했습니다.");
 		}
 	}
 }

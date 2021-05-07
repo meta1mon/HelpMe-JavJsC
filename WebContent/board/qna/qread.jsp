@@ -19,6 +19,11 @@
 	<%@include file="../../style/header.css" %>
 	<%@include file="../../style/footer.css"%>
 </style>
+<script>
+	function open_win(url){
+		window.open(url, "width=500, height=230");
+	}
+</script>
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
@@ -26,10 +31,13 @@
 	<!-- 게시글 내용 표시 -->
 	<table border="2">
 		<tr>
-			<td colspan="2" style="background-color: #eeeeee; text-align: center;">게시글 제목 : ${qna.qsubject }</td>
+			<td colspan="2"
+				style="background-color: #eeeeee; text-align: center;">게시글 제목 :
+				${qna.qsubject }</td>
 		</tr>
 		<tr>
-			<td>조회수 ${qna.qviewcnt }<br>추천수 ${qna.qlikecnt }</td>
+			<td>조회수 ${qna.qviewcnt }<br>추천수 ${qna.qlikecnt }
+			</td>
 			<td>게시글 내용 : ${qna.qcontent }</td>
 		</tr>
 	</table>
@@ -38,31 +46,24 @@
 
 	<form action="<%=request.getContextPath()%>/rqnawrite" method="post">
 		<table border="2">
-<!-- 댓글이 있으면 댓글 내용 표시 -->
+			<!-- 댓글이 있으면 댓글 내용 표시 -->
 			<c:if test="${reply != null}">
 				<c:forEach items="${reply }" var="r">
 					<tr>
-						<td>추천수 ${r.rqlikecnt }<br>태그 : 미구현</td>
-						<td>${r.rqcontent }</td>
-						<td><button type="button" onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }'">삭제</button>
-						
-						
-						
-						
-<!-- 댓글 수정 기능 해야함!!!!!! -->
-
-
-
-
-						<button type="button" onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }'">수정</button>
+						<td>추천수 ${r.rqlikecnt }<br>태그 : 미구현
 						</td>
-					</tr>
+						<td>${r.rqcontent }</td>
+						<td><button type="button"
+								onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }'">삭제</button>
+							<button type="button" id="rqnareply" onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }')">수정</button></td>
+<!-- 
+							<button type="button" id="rqnareply" onclick="window.open('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }'">수정</button></td>
+ -->					</tr>
 				</c:forEach>
 			</c:if>
-<!-- 댓글 유무에 상관없이 댓글 작성 부분은 표시 -->
+			<!-- 댓글 유무에 상관없이 댓글 작성 부분은 표시 -->
 			<tr>
-				<td colspan="2"><input type="hidden" name="qno"
-					value="${qna.qno }"></td>
+				<td colspan="2"><input type="hidden" name="qno" value="${qna.qno }"></td>
 			</tr>
 			<tr>
 				<td>빈칸</td>
@@ -71,11 +72,15 @@
 			</tr>
 		</table>
 	</form>
-	
-	<button type="button" onclick="location.href='<%=request.getContextPath()%>/qnalist'">목록으로 돌아가기</button>
-	<button type="button" onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'">수정</button>
-	<button type="button" onclick="location.href='<%=request.getContextPath()%>/qnadelete?qno=${qna.qno }'">삭제</button>
-	
+
+	<button type="button"
+		onclick="location.href='<%=request.getContextPath()%>/qnalist'">목록으로
+		돌아가기</button>
+	<button type="button"
+		onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'">수정</button>
+	<button type="button"
+		onclick="location.href='<%=request.getContextPath()%>/qnadelete?qno=${qna.qno }'">삭제</button>
+		
 </body>
 <%@include file="../../view/footer.jsp"%>
 </html>

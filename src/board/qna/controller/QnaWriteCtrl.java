@@ -58,11 +58,11 @@ public class QnaWriteCtrl extends HttpServlet {
 		String qwriter = "eeee";
 
 		Qna vo = new Qna();
-		String bsubject = request.getParameter("bsubject");
-		String bcontent = request.getParameter("bcontent");
+		String qsubject = request.getParameter("qsubject");
+		String qcontent = request.getParameter("qcontent");
 		
-		vo.setQsubject(bsubject);
-		vo.setQcontent(bcontent);
+		vo.setQsubject(qsubject);
+		vo.setQcontent(qcontent);
 		vo.setQwriter(qwriter);
 		
 		int result = 0;

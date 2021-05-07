@@ -120,4 +120,47 @@ public class RqnaDao {
 
 	}
 	
+	public Rqna RqnaRead(Connection con, int rqno) throws SQLException {
+		String sql = "select * from rqna where rqno = ?";
+		Rqna vo = null;
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rqno);
+			rs = pstmt.executeQuery();
+			if (rs != null) {
+				if (rs.next()) {
+					vo = new Rqna();
+					vo.setRqno(rs.getInt("rqno"));
+					vo.setQno(rs.getInt("qno"));
+					vo.setRqwriter(rs.getString("rqwriter"));
+					vo.setRqcontent(rs.getString("rqcontent"));
+					vo.setRqdate(rs.getString("rqdate"));
+					vo.setRqimage(rs.getString("rqimage"));
+					vo.setRqfilepath(rs.getString("rqfilepath"));
+					vo.setRqlikecnt(rs.getInt("rqlikecnt"));
+				}
+			}
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return vo;
+	}
+	
+	public int Rqnaupdate(Connection con, Rqna vo) throws SQLException {
+		int result = 0;
+// 지금은 내용만 바꿀 수 있게 한다
+		String sql = "update rqna set rqcontent = ? where rqno = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo.getRqcontent());
+			pstmt.setInt(2, vo.getRqno());
+			result = pstmt.executeUpdate();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+
+	}
 }

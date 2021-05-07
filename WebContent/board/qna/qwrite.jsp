@@ -46,11 +46,11 @@
 						<tr>
 							<!-- 내용 -->
 							<td><input type="text" class="form-control"
-								placeholder="글 제목" name="bsubject" maxlength="50"></td>
+								placeholder="글 제목" name="qsubject" maxlength="50"></td>
 						</tr>
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용"
-									id="editor" name="bcontent" maxlength="2048"
+									id="editor" name="qcontent" maxlength="2048"
 									style="height: 350px;"></textarea></td>
 
 							<script>

@@ -35,11 +35,11 @@
 						<tr>
 							<!-- 내용 -->
 							<td><input type="text" class="form-control"
-								name="bsubject" maxlength="50" value="${qna.qsubject }"></td>
+								name="qsubject" maxlength="50" value="${qna.qsubject }"></td>
 						</tr>
 						<tr>
 							<td><textarea class="form-control"
-									id="editor" name="bcontent" maxlength="2048"
+									id="editor" name="qcontent" maxlength="2048"
 									style="height: 350px;">${qna.qcontent }</textarea></td>
 
 							<script>

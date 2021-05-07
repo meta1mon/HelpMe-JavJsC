@@ -44,6 +44,30 @@ public class RqnaService {
 	public int Rqnadelete(int rqno) throws SQLException {
 		Connection con = getConnection();
 		int result = new RqnaDao().Rqnadelete(con, rqno);
+		if (result != 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+	
+	public Rqna RqnaRead(int rqno) throws SQLException {
+		Connection con = getConnection();
+		Rqna vo = new RqnaDao().RqnaRead(con, rqno);
+		close(con);
+		return vo;
+	}
+	
+	public int Rqnaupdate(Rqna vo) throws SQLException {
+		Connection con = getConnection();
+		int result = new RqnaDao().Rqnaupdate(con, vo);
+		if (result != 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
 		close(con);
 		return result;
 	}

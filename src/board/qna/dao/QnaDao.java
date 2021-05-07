@@ -170,22 +170,4 @@ public class QnaDao {
 
 	}
 
-//	// 수정 함수
-//	public int update(int bno, String newbbsTitle, String newbbsContent) {
-//		String SQL = "UPDATE QNA SET bsubject = ?, bcontent = ? WHERE BNO = ?";
-//		try {
-//			System.out.println("수정함수 들어옴");
-//			PreparedStatement pstmt = conn.prepareStatement(SQL);
-//			pstmt.setString(1, newbbsTitle);
-//			pstmt.setString(2, newbbsContent);
-//			pstmt.setInt(3, bno);
-//			return pstmt.executeUpdate();
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return -1; // 데이터베이스 오류
-//	}
-//
-
 }

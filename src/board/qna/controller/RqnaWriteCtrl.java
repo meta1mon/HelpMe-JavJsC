@@ -53,6 +53,8 @@ public class RqnaWriteCtrl extends HttpServlet {
 		String rqwriter = "reply";
 		
 		Rqna vo = new Rqna();
+		String a = request.getParameter("qno");
+		System.out.println("qno 있나" + a);
 		int qno = Integer.parseInt(request.getParameter("qno"));
 		String rqcontent = request.getParameter("rqcontent");
 		System.out.println(qno +" : qno 값 받은거 나오나? ");

@@ -11,19 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.qna.service.QnaService;
+import board.qna.service.RqnaService;
 import board.qna.vo.Qna;
+import board.qna.vo.Rqna;
 
 /**
- * Servlet implementation class QnaUpdateCtrl
+ * Servlet implementation class RqnaUpdateCtrl
  */
-@WebServlet("/qnaupdate")
-public class QnaUpdateCtrl extends HttpServlet {
+@WebServlet("/rqnaupdate")
+public class RqnaUpdateCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaUpdateCtrl() {
+    public RqnaUpdateCtrl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,18 +51,16 @@ public class QnaUpdateCtrl extends HttpServlet {
 //		Member me = (Member) request.getSession().getAttribute("loginMember");
 //		String qwriter = me.getNickname();
 
-		Qna vo = new Qna();
-		String qsubject = request.getParameter("qsubject");
-		String qcontent = request.getParameter("qcontent");
-		int qno = Integer.parseInt(request.getParameter("qno"));
+		Rqna vo = new Rqna();
+		String rqcontent = request.getParameter("rqcontent");
+		int rqno = Integer.parseInt(request.getParameter("rqno"));
 		
-		vo.setQsubject(qsubject);
-		vo.setQcontent(qcontent);
-		vo.setQno(qno);
+		vo.setRqcontent(rqcontent);
+		vo.setRqno(rqno);
 		
 		int result = 0;
 		try {
-			result = new QnaService().Qnaupdate(vo);
+			result = new RqnaService().Rqnaupdate(vo);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -68,11 +68,11 @@ public class QnaUpdateCtrl extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		if (result > 0) {
-			out.print("<script>alert('글 수정 성공!')</script>");
-			out.print("<script>location.href='index.jsp'</script>");
+			out.print("<script>alert('댓글 수정 성공!')</script>");
+			out.print("<script>location.href='secondPage.jsp'</script>");
 		} else {
-			out.print("<script>alert('글 수정 실패...')</script>");
-			out.print("<script>location.href='index.jsp'</script>");
+			out.print("<script>alert('댓글 수정 실패...')</script>");
+			out.print("<script>location.href='secondPage.jsp'</script>");
 			
 		}
 	}
