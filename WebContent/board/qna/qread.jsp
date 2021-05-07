@@ -11,8 +11,7 @@
 <title>JSP 게시판 웹 사이트</title>
 	<!-- CSS(부트스트랩 사용) -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 	
 	<style>
 	<%@include file="../../style/common.css" %>
@@ -87,7 +86,7 @@
 				<td colspan="2"><input type="hidden" name="qno" value="${qna.qno }"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="text" name="rqcontent" placeholder="댓글 쓰기"></td>
+				<td colspan="2"><input id="editor" type="text" name="rqcontent" placeholder="댓글 쓰기"></td>
 				<td><button type="submit">등록</button></td>
 			</tr>
 		</table>
@@ -101,6 +100,13 @@
 	<button type="button"
 		onclick="location.href='<%=request.getContextPath()%>/qnadelete?qno=${qna.qno }'">삭제</button>
 		
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 </body>
 <%@include file="../../view/footer.jsp"%>
 </html>

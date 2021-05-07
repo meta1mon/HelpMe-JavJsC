@@ -19,8 +19,7 @@
 	<div class="container">
 		<div class="row">
 			<form action="<%=request.getContextPath()%>/qnaupdate" method="post">
-				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd">
+				<table style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
 							<!-- 양식 -->
@@ -39,8 +38,8 @@
 								name="qsubject" maxlength="50" value="${qna.qsubject }"></td>
 						</tr>
 						<tr>
-							<td><textarea class="form-control"
-									id="editor" name="qcontent" maxlength="2048"
+							<td><textarea
+									id="editor1" name="qcontent" maxlength="2048"
 									style="height: 350px;">${qna.qcontent }</textarea></td>
 
 							<script>
