@@ -34,7 +34,7 @@
 </style>
 <script>
 	function open_win(url, name){
-		window.open(url, name, "width=500, height=230");
+		window.open(url, name, "width=1000px, height=500px, resizable = no, left= 100, top=100");
 	}
 </script>
 </head>
@@ -77,7 +77,7 @@
 						<td>${r.rqcontent }</td>
 						<td><button type="button"
 								onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }'">삭제</button>
-							<button type="button" id="rqnareply" onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', 'update')">수정</button></td>
+							<button type="button" id="rqnareply" onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', '_blank')">수정</button></td>
 					</tr>
 				</c:forEach>
 			</c:if>

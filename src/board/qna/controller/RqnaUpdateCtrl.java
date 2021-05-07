@@ -50,7 +50,7 @@ public class RqnaUpdateCtrl extends HttpServlet {
 
 //		Member me = (Member) request.getSession().getAttribute("loginMember");
 //		String qwriter = me.getNickname();
-
+		System.out.println("서블릿 ㅡㄹ얼옹ㅁ");
 		Rqna vo = new Rqna();
 		String rqcontent = request.getParameter("rqcontent");
 		int rqno = Integer.parseInt(request.getParameter("rqno"));
@@ -69,13 +69,13 @@ public class RqnaUpdateCtrl extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (result > 0) {
 			out.print("<script>alert('댓글 수정 성공!')</script>");
-			out.print("<script>opner.close</script>");
 		} else {
 			out.print("<script>alert('댓글 수정 실패...')</script>");
-			out.print("<script>window.close</script>");
-			
 		}
+		out.print("<script>window.opener.location.reload();</script>");
+		out.print("<script>window.close();</script>");
 		
-		out.print("location.href='qread.jsp'");
+		out.flush();
+		out.close();
 	}
 }
