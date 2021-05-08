@@ -84,11 +84,7 @@ try {
 				}else{
 			%>
 			<input type="hidden" name="vid" value="<%= vid %>">
-			<input type="hidden" name="vimage" value="<%=vList.getVimage() %>">
-			<input type="hidden" name="vtitle" value="<%=vList.getVtitle() %>">
-			<input type="hidden" name="buyprice" value="<%= buyprice %>">
 			<input type="hidden" name="vkind" value="<%=vkind %>">
-			<input type="hidden" name="vsize" value="<%=vList.getVsize() %>">
 			
 			
 			<input type="submit" value="장바구니 담기">	

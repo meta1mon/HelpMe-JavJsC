@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bookshop.VO.bookcartVO;
+import bookshop.VO.cartVO;
 import common.jdbc.JDBCConnectionPool;
 
 public class bookcartDAO {
@@ -24,18 +25,13 @@ public class bookcartDAO {
 public void insertBookCart(bookcartVO bookcart) throws Exception{
 	Connection conn = JDBCConnectionPool.getConnection();
 	rs = null; pstmt = null;
-	String sql = "insert into bookcart (bcid, bid, buyer " +
-				" ,btitle, buyCount, buyPrice, bimage) " +
-				" values ( bookcart_seq.nextval, ?,?,?,?,?,?)";
+	String sql = " insert into bookcart (bcid, bid, id, buycount)" +
+				 " values(bcid_seq.nextval,?,?,?)";
 	try {
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, bookcart.getBid());
-		pstmt.setString(2, bookcart.getBuyer());;
-		pstmt.setString(3, bookcart.getBtitle());
-		pstmt.setInt(4, bookcart.getBuycount());
-		pstmt.setInt(5, bookcart.getBuyprice());
-		pstmt.setString(6, bookcart.getBimage());
-		
+		pstmt.setInt(1, bookcart.getBid());
+		pstmt.setString(2, bookcart.getId());
+		pstmt.setInt(3, bookcart.getBuycount());
 		pstmt.executeUpdate();
 	}catch (Exception e) {
 		e.printStackTrace();
@@ -49,7 +45,7 @@ public void insertBookCart(bookcartVO bookcart) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
 		rs = null; pstmt = null;
 		int x = 0;
-		String sql = "select count(*) from bookcart where buyer=?";
+		String sql = "select count(*) from bookcart where id=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -72,45 +68,48 @@ public void insertBookCart(bookcartVO bookcart) throws Exception{
 	//id에 해당하는 레코드의 목록을 얻어내는 메소드
 	public List<bookcartVO> getBookCart(String id) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
-		rs = null; pstmt = null;
-		bookcartVO  bookcart = null;
-		String sql = "select * from bookcart where buyer=?";
-		List<bookcartVO> booklists = null;
-		
+		List<bookcartVO> list = null;
+		String sql = " select bcid, bimage,btitle,bprice,buycount, bookcart.bid"+
+					" from bookcart left join book" +
+					" on bookcart.bid = book.bid";
+		pstmt = null;
+		rs = null;
+
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
+			list = new ArrayList<bookcartVO>();
 			
-			booklists = new ArrayList<bookcartVO>();
-			
-			while(rs.next()) {
-				bookcart = new bookcartVO();
-				bookcart.setBcid(rs.getInt("bcid"));
-				bookcart.setBid(rs.getString("bid"));
-				bookcart.setBimage(rs.getString("bimage"));
-				bookcart.setBtitle(rs.getString("btitle"));
-				bookcart.setBuycount(rs.getInt("buycount"));
-				bookcart.setBuyer(rs.getString("buyer"));
-				bookcart.setBuyprice(rs.getInt("buyprice"));
-				booklists.add(bookcart);
-			}
-		}catch (Exception e) {
+		while(rs.next()) {
+					bookcartVO vo = new bookcartVO();
+					vo.setBprice(rs.getInt("bprice"));
+					vo.setBtitle(rs.getString("btitle"));
+					vo.setBimage(rs.getString("bimage"));
+					vo.setBuycount(rs.getInt("buycount"));
+					vo.setBid(rs.getInt("bid"));
+					vo.setBcid(rs.getInt("bcid"));
+					
+					list.add(vo);
+					
+				}
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			if(rs != null) rs.close();
 			if(pstmt != null) pstmt.close();
 			if(conn != null) conn.close();
 		}
-		return booklists;
+
+		return list;
 	}
 	
 	//장바구니 수량 수정 
 	public void updateBookCount(int bcid, int count) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null;
-
-		String sql = "update bookcart set buyCount=? where bcid=?";
+	
+		String sql = "update bookcart set buycount=? where bcid=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, count);
@@ -148,7 +147,7 @@ public void insertBookCart(bookcartVO bookcart) throws Exception{
 	public void deleteBookAll(String id)throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		rs = null;  pstmt = null;
-		String sql = "delete from bookcart where buyer=?";
+		String sql = "delete from bookcart where id =?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);

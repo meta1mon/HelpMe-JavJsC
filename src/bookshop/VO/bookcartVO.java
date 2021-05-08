@@ -2,12 +2,14 @@ package bookshop.VO;
 
 public class bookcartVO {
 	private int bcid;
-	private String bid;
+	private int bid;
 	private String btitle;
 	private String bimage;
-	private int buyprice;
+	private int bprice;
 	private int buycount;
-	private String buyer;
+	private String id;
+	
+	
 	
 	public int getBcid() {
 		return bcid;
@@ -15,10 +17,10 @@ public class bookcartVO {
 	public void setBcid(int bcid) {
 		this.bcid = bcid;
 	}
-	public String getBid() {
+	public int getBid() {
 		return bid;
 	}
-	public void setBid(String bid) {
+	public void setBid(int bid) {
 		this.bid = bid;
 	}
 	public String getBtitle() {
@@ -33,24 +35,25 @@ public class bookcartVO {
 	public void setBimage(String bimage) {
 		this.bimage = bimage;
 	}
-	public int getBuyprice() {
-		return buyprice;
+	public int getBprice() {
+		return bprice;
 	}
-	public void setBuyprice( int buyprice) {
-		this.buyprice = buyprice;
+	public void setBprice(int bprice) {
+		this.bprice = bprice;
 	}
-	public  int getBuycount() {
+	public int getBuycount() {
 		return buycount;
 	}
-	public void setBuycount( int buycount) {
+	public void setBuycount(int buycount) {
 		this.buycount = buycount;
 	}
-	public String getBuyer() {
-		return buyer;
+	public String getId() {
+		return id;
 	}
-	public void setBuyer(String buyer) {
-		this.buyer = buyer;
+	public void setId(String id) {
+		this.id = id;
 	}
-
+	
+	
 	
 }

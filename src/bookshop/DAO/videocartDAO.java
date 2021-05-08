@@ -1,12 +1,12 @@
 package bookshop.DAO;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import bookshop.VO.bookcartVO;
+import bookshop.VO.videocartVO;
 import common.jdbc.JDBCConnectionPool;
 
 public class videocartDAO {
@@ -24,17 +24,13 @@ public class videocartDAO {
 public void insertVideoCart(videocartVO videocart) throws Exception{
 	Connection conn = JDBCConnectionPool.getConnection();
 	rs = null; pstmt = null;
-	String sql = "insert into videocart (vcid, vid, buyer " +
-				" ,vtitle, buyCount, buyPrice, vimage) " +
-				" values ( bookcart_seq.nextval, ?,?,?,?,?,?)";
+	String sql = "insert into videocart (vcid, vid, id,buycount) " +
+				" values ( videocart_seq.nextval, ?,?,?)";
 	try {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, videocart.getVid());
-		pstmt.setString(2, videocart.getBuyer());;
-		pstmt.setString(3, videocart.getVtitle());
-		pstmt.setInt(4, videocart.getBuycount());
-		pstmt.setInt(5, videocart.getBuyprice());
-		pstmt.setString(6, videocart.getVimage());
+		pstmt.setString(2, videocart.getId());
+		pstmt.setInt(3, videocart.getBuycount());
 		
 		pstmt.executeUpdate();
 	}catch (Exception e) {
@@ -49,7 +45,7 @@ public void insertVideoCart(videocartVO videocart) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
 		rs = null; pstmt = null;
 		int x = 0;
-		String sql = "select count(*) from videocart where buyer=?";
+		String sql = "select count(*) from videocart where id=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -72,28 +68,29 @@ public void insertVideoCart(videocartVO videocart) throws Exception{
 	//id에 해당하는 레코드의 목록을 얻어내는 메소드
 	public List<videocartVO> getVideoCart(String id) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
-		rs = null; pstmt = null;
-		videocartVO  vidoekcart = null;
-		String sql = "select * from videocart where buyer=?";
 		List<videocartVO> videolists = null;
+		rs = null; pstmt = null;
+		videocartVO  videocart = null;
+		String sql = "select vcid, vimage, vtitle,vprice,buycount, videocart.vid" +
+					 " from videocart left join video" +
+				     " on videocart.vid = video.vid";
+				
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			videolists = new ArrayList<videocartVO>();
 			
 			while(rs.next()) {
-				vidoekcart = new videocartVO();
-				vidoekcart.setVcid(rs.getInt("Vcid"));
-				vidoekcart.setVid(rs.getString("Vid"));
-				vidoekcart.setVimage(rs.getString("vimage"));
-				vidoekcart.setVtitle(rs.getString("vtitle"));
-				vidoekcart.setBuycount(rs.getInt("buycount"));
-				vidoekcart.setBuyer(rs.getString("buyer"));
-				vidoekcart.setBuyprice(rs.getInt("buyprice"));
-				videolists.add(vidoekcart);
+				videocart = new videocartVO();
+				videocart.setVcid(rs.getInt("Vcid"));
+				videocart.setVid(rs.getString("Vid"));
+				videocart.setVimage(rs.getString("vimage"));
+				videocart.setVtitle(rs.getString("vtitle"));
+				videocart.setBuycount(rs.getInt("buycount"));
+				videocart.setVprice(rs.getInt("vprice"));
+				videolists.add(videocart);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -110,7 +107,7 @@ public void insertVideoCart(videocartVO videocart) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null;
 	
-		String sql = "update videocart set buyCount=? where vcid=?";
+		String sql = "update videocart set buycount=? where vcid=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, count);
@@ -148,7 +145,7 @@ public void insertVideoCart(videocartVO videocart) throws Exception{
 	public void deleteVideoAll(String id)throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		rs = null;  pstmt = null;
-		String sql = "delete from videocart where buyer=?";
+		String sql = "delete from videocart where id=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);

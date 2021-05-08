@@ -9,11 +9,11 @@
 </head>
 <body>
 	<%
+		Member vo = (Member) request.getSession().getAttribute("loginMember");
 		String bcid = request.getParameter("bcid");
 		String buycount = request.getParameter("buycount");
 		String bkind = request.getParameter("bkind");
 	
-		Member vo = (Member) request.getSession().getAttribute("loginMember");
 		if (session.getAttribute("loginMember") == null) {
 			response.sendRedirect("#");
 		} else {	

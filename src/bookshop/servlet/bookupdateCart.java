@@ -52,6 +52,7 @@ public class bookupdateCart extends HttpServlet {
 		book.setBkind(bkind);
 		
 		
+		
 		HttpSession session = request.getSession();
 		Member vo = (Member) request.getSession().getAttribute("loginMember");	
 		if(session.getAttribute("loginMember")==null) {
@@ -68,6 +69,7 @@ public class bookupdateCart extends HttpServlet {
 				response.sendRedirect("./shop/cartList.jsp?bkind="+bkind);
 				System.out.println(bkind);
 				System.out.println(vo.getId());
+				System.out.println(bcid);
 	}
 
 			}

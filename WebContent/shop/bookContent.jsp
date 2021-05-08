@@ -25,15 +25,17 @@ try {
 <meta charset="UTF-8">
 
 <title>책 상세 페이지</title>
+
 <script>
+
 	function check(){
-		var m = bcount - parseInt(document.inform.bCount.value);
+		 var m = bcount - parseInt(document.inform.buycount.value);
 		if(m < 0){
 			alert("주문하실 책 수량이 재고 수량보다 많습니다");
-			document.imform.bCount.focus();
-			return falsel
+			document.inform.buycount.focus();
+			return false;
 		}else{
-			document.imform.submit();
+			document.inform.submit();
 		}
 	}
 </script>
@@ -56,7 +58,7 @@ try {
 	%>
 
 </body>
-<form action="<%=request.getContextPath() %>/shop/bookcartInsert.jsp" method="post">
+<form action="<%=request.getContextPath() %>/shop/bookcartInsert.jsp" method="post" name="inform">
 	<table border="1">
 		<tr>
 			<td rowspan="6" width="150"><img src="../imageFile/<%=bookList.getBimage()%>" border="0" width="150"
@@ -99,7 +101,7 @@ try {
 
 			
 			
-			<input type="submit" value="장바구니 담기">	
+			<input type="submit" value="장바구니 담기" onclick="function check()">	
 	
 			<%
 				}

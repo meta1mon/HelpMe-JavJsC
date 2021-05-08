@@ -1,4 +1,4 @@
-<%@page import="bookshop.DAO.videocartVO"%>
+<%@page import="bookshop.VO.videocartVO"%>
 <%@page import="bookshop.DAO.videocartDAO"%>
 <%@page import="bookshop.VO.bookcartVO"%>
 <%@page import="bookshop.DAO.bookcartDAO"%>
@@ -12,10 +12,10 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	Member vo = (Member) request.getSession().getAttribute("loginMember");
+Member vo = (Member) request.getSession().getAttribute("loginMember");
 String bkind = request.getParameter("bkind");
 String vkind = request.getParameter("vkind");
-String buyer = vo.getId();
+String id = vo.getId();
 %>
 <html>
 <head>
@@ -42,10 +42,10 @@ String buyer = vo.getId();
 		response.sendRedirect("#");
 	} else {
 		bookcartDAO bookprocess = bookcartDAO.getInstance();
-		count = bookprocess.getBookListCount(buyer);
+		count = bookprocess.getBookListCount(id);
 		
 		videocartDAO videoprocess = videocartDAO.getInstance();
-		count2 = videoprocess.getVideoListCount(buyer);
+		count2 = videoprocess.getVideoListCount(id);
 						
 		if (count == 0 && count2 ==0) {
 	%>
@@ -62,8 +62,8 @@ String buyer = vo.getId();
 
 	<%
 		} else {
-			bookcartLists = bookprocess.getBookCart(buyer);
-			videocartLists = videoprocess.getVideoCart(buyer);
+			bookcartLists = bookprocess.getBookCart(id);
+			videocartLists = videoprocess.getVideoCart(id);
 		System.out.println("리스트로 다시들어옴22");
 	%>
 	<h3>장바구니</h3>
@@ -86,7 +86,7 @@ String buyer = vo.getId();
 				<td width="300" align="left"><img
 					src="../imageFile/<%=bookcartList.getBimage()%>" border="0" width="30"
 					height="50" align="middle"> <%=bookcartList.getBtitle()%></td>
-				<td width="100"><%=NumberFormat.getInstance().format(bookcartList.getBuyprice())%></td>
+				<td width="100"><%=NumberFormat.getInstance().format(bookcartList.getBprice())%></td>
 
 				<td width="150" align="center"><input type="text"
 					name="buycount" size="5" value="<%=bookcartList.getBuycount()%>">
@@ -98,8 +98,8 @@ String buyer = vo.getId();
 
 				<td align="center" width="150">
 					<%
-						total += bookcartList.getBuycount() * bookcartList.getBuyprice();
-					%> <%=NumberFormat.getInstance().format(bookcartList.getBuycount() * bookcartList.getBuyprice())%>
+						total += bookcartList.getBuycount() * bookcartList.getBprice();
+					%> <%=NumberFormat.getInstance().format(bookcartList.getBuycount() * bookcartList.getBprice())%>
 					<%
 						String url2 = "../bookcartListDel?list=" + bookcartList.getBcid() + "&bkind=" + bkind;
 					%> <input type="button" value="삭제"
@@ -140,15 +140,15 @@ String buyer = vo.getId();
 				<td width="300" align="left"><img
 					src="../imageFile/<%=videocartList.getVimage()%>" border="0" width="30"
 					height="50" align="middle"> <%=videocartList.getVtitle()%></td>
-				<td width="100"><%=NumberFormat.getInstance().format(videocartList.getBuyprice())%></td>
+				<td width="100"><%=NumberFormat.getInstance().format(videocartList.getVprice())%></td>
 
 				<td width="150" align="center"><input type="text"
 					name="buycount" size="5" value="1">
 
 				<td align="center" width="150">
 					<%
-						vtotal += videocartList.getBuycount() * videocartList.getBuyprice();
-					%> <%=NumberFormat.getInstance().format(videocartList.getBuycount() * videocartList.getBuyprice())%>
+						vtotal += videocartList.getBuycount() * videocartList.getVprice();
+					%> <%=NumberFormat.getInstance().format(videocartList.getBuycount() * videocartList.getVprice())%>
 					<%
 						String url2 = "../videocartListDel?list=" + videocartList.getVcid() + "&vkind=" + vkind;
 					%> <input type="button" value="삭제"
@@ -171,8 +171,11 @@ String buyer = vo.getId();
 					<td colspan="5" align="right"><b>총 금액 :<%=NumberFormat.getInstance().format(total + vtotal)%></b></td>
 				</tr>
 				<tr>
+				<%
+							String url5 = "../buyForm";
+				%>
 					<td colspan="5"><input type="button" value="구매하기"
-						onclick="javascript:window.location='butForm'"> <input
+						onclick="javascript:window.location='<%=url5%>'"> <input
 						type="button" value="쇼핑 계속하기"
 						onclick="javascript:window.location='introList.jsp?bkind=<%=bkind%>'"></td>
 						

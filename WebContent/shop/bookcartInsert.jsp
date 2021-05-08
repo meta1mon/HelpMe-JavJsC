@@ -19,22 +19,17 @@
 	Member vo = (Member) request.getSession().getAttribute("loginMember");
 	String bkind = request.getParameter("bkind");
 	String bid = request.getParameter("bid");
-	String btitle = request.getParameter("btitle");
-	String bimage = request.getParameter("bimage");
 	String buycount = request.getParameter("buycount");
-	String buyprice = request.getParameter("buyprice");
-	String buyer = vo.getId();
+	String id = vo.getId();
+	String bprice = request.getParameter("bprice");
 	%>
 
 	<%
 		bookcartVO bookcart = new bookcartVO();
 
-	bookcart.setBid(bid);
-	bookcart.setBimage(bimage);
-	bookcart.setBtitle(btitle);
+	bookcart.setBid(Integer.parseInt(bid));
 	bookcart.setBuycount(Integer.parseInt(buycount));
-	bookcart.setBuyprice(Integer.parseInt(buyprice));
-	bookcart.setBuyer(buyer);
+	bookcart.setId(id);
 
 	bookcartDAO bookcartprocess = bookcartDAO.getInstance();
 	bookcartprocess.insertBookCart(bookcart);

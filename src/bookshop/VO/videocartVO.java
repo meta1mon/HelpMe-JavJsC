@@ -5,10 +5,9 @@ public class videocartVO {
 	private String vid;
 	private String vtitle;
 	private String vimage;
-	private String buyprice;
-	private String buycount;
-	private String buyer;
-	
+	private int vprice;
+	private int buycount;
+	private String id;
 	public int getVcid() {
 		return vcid;
 	}
@@ -33,25 +32,25 @@ public class videocartVO {
 	public void setVimage(String vimage) {
 		this.vimage = vimage;
 	}
-	public String getBuyprice() {
-		return buyprice;
+	public int getVprice() {
+		return vprice;
 	}
-	public void setBuyprice(String buyprice) {
-		this.buyprice = buyprice;
+	public void setVprice(int vprice) {
+		this.vprice = vprice;
 	}
-	public String getBuycount() {
+	public int getBuycount() {
 		return buycount;
 	}
-	public void setBuycount(String buycount) {
+	public void setBuycount(int buycount) {
 		this.buycount = buycount;
 	}
-	public String getBuyer() {
-		return buyer;
+	public String getId() {
+		return id;
 	}
-	public void setBuyer(String buyer) {
-		this.buyer = buyer;
+	public void setId(String id) {
+		this.id = id;
 	}
 	
-	
+		
 	
 }
