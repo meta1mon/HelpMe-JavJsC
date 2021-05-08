@@ -170,4 +170,18 @@ public class QnaDao {
 
 	}
 
+	public int viewInt(Connection con, int qno) throws SQLException {
+		int result = 0;
+		// 지금은 제목이랑 내용만 바꿀 수 있게 한다
+		String sql = "update qna set qviewcnt = qviewcnt+1 where qno = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, qno);
+			result = pstmt.executeUpdate();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

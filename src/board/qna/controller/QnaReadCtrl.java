@@ -53,6 +53,21 @@ public class QnaReadCtrl extends HttpServlet {
 // 글 목록에서 넘겨 받은 것
 		int qno = Integer.parseInt(request.getParameter("qno"));
 		
+		// 조회수 증가
+		try {
+		int viewcnt =new QnaService().viewInt(qno);
+		if(viewcnt > 0) {
+			System.out.println("조회수 증가");
+		} else {
+			System.out.println("문제 생김");
+		}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		
 // 글 가져오기
 		Qna qvo = null;
 		try {

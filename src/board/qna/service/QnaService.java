@@ -65,5 +65,17 @@ public class QnaService {
 		close(con);
 		return result;
 	}
+	
+	public int viewInt(int qno) throws SQLException {
+		Connection con = getConnection();
+		int result = new QnaDao().viewInt(con, qno);
+		if (result != 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 
 }

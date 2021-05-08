@@ -28,14 +28,5 @@
 		CKEDITOR.replace('editor');
 	</script>
 	
-	<script>
-function send(){
-        
-        var parent = window.opener;
- 
-        parent.location.reload();
-        
-        }
-	</script>
 </body>
 </html>

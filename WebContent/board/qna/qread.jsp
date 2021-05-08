@@ -36,6 +36,12 @@
 	function open_win(url, name){
 		window.open(url, name, "width=1000px, height=500px, resizable = no, left= 100, top=100");
 	}
+	
+	function like() {
+		console.log("좋아요 들어왕");
+		
+		
+	}
 </script>
 </head>
 <%@include file="../../view/header.jsp"%>
@@ -101,7 +107,8 @@
 		onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'">수정</button>
 	<button type="button"
 		onclick="location.href='<%=request.getContextPath()%>/qnadelete?qno=${qna.qno }'">삭제</button>
-		
+	<button type="button"
+		onclick="like();">추천</button>
 <script>
 								CKEDITOR.replace('editor');
 							</script>
