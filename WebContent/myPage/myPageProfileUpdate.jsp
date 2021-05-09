@@ -231,7 +231,7 @@
 			</tr>
 			<tr>
 				<td>주소<span class="optional">(선택)</span></td>
-				<td colspan="2"><input type="text" id="sample6_postcode"
+				<td><input type="text" id="sample6_postcode"
 					name="postcode" readonly style="margin-bottom: 5px"
 					value="${loginMember.postcode}"><br> <input
 					type="text" id="sample6_address" name="address1" readonly
