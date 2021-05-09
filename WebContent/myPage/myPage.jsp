@@ -180,6 +180,17 @@ a {
 
 </script>
 </head>
+<script>
+function showPopup(url, name) { 
+	window.open(url, name, "width=1000px, height=500px resizable=no");
+	
+}
+</script>
+<script>
+$(document).ready(function(){
+    $("select option[value='${loginMember.passquestion}']").attr("selected", true);
+});
+</script>
 <body class="content">
 	<div class="profile">
 		<img alt="profilePic" src="http://ipsumimage.appspot.com/50x50?l=이미지">
@@ -195,8 +206,6 @@ a {
 		<div class="tab-cont">
 			<!-- //탭1 -->
 			<div class="cont">
-			<form action="<%=request.getContextPath()%>/memberinsert"
-			method="post">
 			<table>
 				<tr>
 					<td>아이디<span class="required">(필수)</span></td>
@@ -221,21 +230,13 @@ a {
 				</tr>
 				<tr>
 					<td>비밀번호 질문<span class="required">(필수)</span></td>
-					<!-- 비밀번호 질문 value 값에 따라 다른 값을 대입해준다. -->
-					<c:choose>
-					<c:when test="${loginMember.passquestion == 1 }">
-					<td><input type="text" name="passquestion" id="passquestion" value="첫 수학여행 장소는?"></td>
-					</c:when>
-					<c:when test="${loginMember.passquestion == 2 }">
-					<td><input type="text" name="passquestion" id="passquestion" value="가장 친한 친구의 이름은?"></td>
-					</c:when>
-					<c:when test="${loginMember.passquestion == 3 }">
-					<td><input type="text" name="passquestion" id="passquestion" value="첫 해외여행지는?"></td>
-					</c:when>
-					<c:when test="${loginMember.passquestion == 4 }">
-					<td><input type="text" name="passquestion" id="passquestion" value="어린시절 자신의 별명은?"></td>
-					</c:when>
-					</c:choose>
+					<td><select name="passquestion" id="passquestion">
+							<option value="0">비밀번호 질문을 선택해주세요</option>
+							<option value="1">첫 수학여행 장소는?</option>
+							<option value="2">가장 친한 친구의 이름은?</option>
+							<option value="3">첫 해외여행지는?</option>
+							<option value="4">어린시절 자신의 별명은?</option>
+					</select></td>
 				</tr>
 				<tr>
 					<td>비밀번호 답변<span class="required">(필수)</span></td>
@@ -267,11 +268,10 @@ a {
 							name="agree" value="2"> 도와줘~ 잡스!의 다양한 소식을 받아보겠습니다(선택)</label></td>
 				</tr>
 				<tr>
-					<td colspan="3"><input type="submit" value="수정"
-						onclick="" id="btnSubmit"></td>
+					<td colspan="3"><input type="button" value="수정"
+						onclick="showPopup('myPageProfileUpdate.jsp', 'popup');"></td>
 				</tr>
 			</table>
-		</form>
 			</div>
 
 			<!-- //탭2 -->

@@ -34,6 +34,14 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	
+	public int update(Member vo) {
+		Connection conn = getConnection();
+		int result = new MemberDao().update(conn, vo);
+		close(conn);
+		
+		return result;
+	}
 
 	public int delete(String id) {
 		Connection conn = getConnection();

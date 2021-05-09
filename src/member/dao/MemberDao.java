@@ -125,46 +125,36 @@ public class MemberDao {
 		return result;
 	}
 
-// 회원 정보 변경
-//	public int update(String col, Member vo) {
-//		Connection conn = getConnection();
-//		int result = 0;
-//		String sql = "update test_member set " + col + " = ?  where id = ?";
-//
-//		PreparedStatement pstmt = null;
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			switch (col) {
-//			case "name":
-//				pstmt.setString(1, vo.getName());
-//				break;
-//			case "passwd":
-//				pstmt.setString(1, vo.getPasswd());
-//				break;
-//			case "email":
-//				pstmt.setString(1, vo.getEmail());
-//				break;
-//			}
-//			pstmt.setString(2, vo.getId());
-//
-//			result = pstmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(pstmt);
-//			close(conn);
-//		}
-//
-//		return result;
-//	}
-//
-//	// delete()
-//	public int delete(Connection conn, String col, String str) {
-//		int result = 0;
-//
-//		return result;
-//	}
-//
+	// 회원 정보 변경
+	public int update(Connection conn, Member vo) {
+		conn = getConnection();
+		int result = 0;
+		String sql = "update member set nickname = ? , password = ? , passquestion = ? , passanswer = ? , postcode = ? , address1 = ? , address2 = ? , address3 = ? , tel = ? , email = ? where id = ?";
+
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getNickname());
+			pstmt.setString(2, vo.getPassword());
+			pstmt.setString(3, vo.getPassquestion());
+			pstmt.setString(4, vo.getPassanswer());
+			pstmt.setString(5, vo.getPostcode());
+			pstmt.setString(6, vo.getAddress1());
+			pstmt.setString(7, vo.getAddress2());
+			pstmt.setString(8, vo.getAddress3());
+			pstmt.setString(9, vo.getTel());
+			pstmt.setString(10, vo.getEmail());
+			pstmt.setString(11, vo.getId());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(conn);
+		}
+
+		return result;
+	}
 
 	public int delete(Connection conn, String id) {
 		int result = 0;
