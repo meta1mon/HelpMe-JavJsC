@@ -1,5 +1,5 @@
+<%@page import="bookshop.VO.videocartVO"%>
 <%@page import="bookshop.DAO.videocartDAO"%>
-<%@page import="bookshop.DAO.videocartVO"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="bookshop.DAO.buyDAO"%>
 <%@page import="member.dao.MemberDao"%>
@@ -14,7 +14,7 @@
 	Member vo = (Member) request.getSession().getAttribute("loginMember");
 	String bkind = request.getParameter("bkind");
 	String vkind = request.getParameter("vkind");
-	String buyer = vo.getId();
+	String id = vo.getId();
 %>
 
 <html>
@@ -82,13 +82,13 @@ function sample6_execDaumPostcode() {
 		response.sendRedirect("#");
 			}else{
 		bookcartDAO bookprocess = bookcartDAO.getInstance();
-		bookcartLists = bookprocess.getBookCart(buyer); //서비스구현
+		bookcartLists = bookprocess.getBookCart(id); //서비스구현
 		
 		videocartDAO videoprocess = videocartDAO.getInstance();
-		videocartLists = videoprocess.getVideoCart(buyer);
+		videocartLists = videoprocess.getVideoCart(id);
 		
 		MemberDao memberprocess = new MemberDao();
-		member = memberprocess.login(buyer);
+		member = memberprocess.login(id);
 		
 		buyDAO buyprocess = buyDAO.getinstance();
 		accountLists = buyprocess.getAccount();
@@ -115,14 +115,14 @@ function sample6_execDaumPostcode() {
 			<%= bookcartList.getBtitle() %>
 			</td>
 			<td width="100">
-			<%=NumberFormat.getInstance().format(bookcartList.getBuyprice()) %>
+			<%=NumberFormat.getInstance().format(bookcartList.getBprice()) %>
 			</td>
 			<td width="150">
 			<%=bookcartList.getBuycount() %>
 			</td>
 			<td width="150">
-			<%total += bookcartList.getBuycount() * bookcartList.getBuyprice(); %>
-			<%= NumberFormat.getInstance().format(bookcartList.getBuycount() * bookcartList.getBuyprice()) %>
+			<%total += bookcartList.getBuycount() * bookcartList.getBprice(); %>
+			<%= NumberFormat.getInstance().format(bookcartList.getBuycount() * bookcartList.getBprice()) %>
 			</td>
 			</tr>		
 			<% 
@@ -160,14 +160,14 @@ function sample6_execDaumPostcode() {
 			<%= videocartList.getVtitle() %>
 			</td>
 			<td width="100">
-			<%=NumberFormat.getInstance().format(videocartList.getBuyprice()) %>
+			<%=NumberFormat.getInstance().format(videocartList.getVprice()) %>
 			</td>
 			<td width="150">
-			<%=videocartList.getBuycount() %>
+			1
 			</td>
 			<td width="150">
-			<%total2 += videocartList.getBuycount() * videocartList.getBuyprice(); %>
-			<%= NumberFormat.getInstance().format(videocartList.getBuycount() * videocartList.getBuyprice()) %>
+			<%total2 += videocartList.getBuycount() * videocartList.getVprice(); %>
+			<%= NumberFormat.getInstance().format(videocartList.getBuycount() * videocartList.getVprice()) %>
 			</td>
 			</tr>		
 			<% 
@@ -256,6 +256,10 @@ function sample6_execDaumPostcode() {
 			</td>
 			</tr>
 			</table>
+			<input type="hidden" name="buyprice" value="<%= (total + total2)%>">
+			<input type="hidden" name="bid" value="<%=bookcartList.getBid() %>">
+			<input type="hidden" name="vid" value="<%=videocartList.getVid() %>">
+			<input type="hidden" name="buycount" value="<%=bookcartList.getBuycount()%>">
 		</form>
 </body>
 </html>

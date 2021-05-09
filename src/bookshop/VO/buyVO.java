@@ -3,14 +3,16 @@ package bookshop.VO;
 import java.sql.Timestamp;
 
 public class buyVO {
-	private long buyid;
-	private String buyer;
-	private String bid;
-	private String btitle;
+	private int buyid;
+	private int bid;
+	private int vid;
 	private String bimage;
-	private String vid;
-	private String vtitle;
+	private String btitle;
+	private int bprice;
 	private String vimage;
+	private String vtitle;
+	private int vprice;
+	private String id;
 	private int buyprice;
 	private int buycount;
 	private Timestamp buydate;
@@ -20,31 +22,23 @@ public class buyVO {
 	private String deliveryadd1;
 	private String deliveryadd2;
 	private String saction;
-	
-	
-	public long getBuyid() {
+	public int getBuyid() {
 		return buyid;
 	}
-	public void setBuyid(long l) {
-		this.buyid = l;
+	public void setBuyid(int buyid) {
+		this.buyid = buyid;
 	}
-	public String getBuyer() {
-		return buyer;
-	}
-	public void setBuyer(String buyer) {
-		this.buyer = buyer;
-	}
-	public String getBid() {
+	public int getBid() {
 		return bid;
 	}
-	public void setBid(String bid) {
+	public void setBid(int bid) {
 		this.bid = bid;
 	}
-	public String getBtitle() {
-		return btitle;
+	public int getVid() {
+		return vid;
 	}
-	public void setBtitle(String btitle) {
-		this.btitle = btitle;
+	public void setVid(int vid) {
+		this.vid = vid;
 	}
 	public String getBimage() {
 		return bimage;
@@ -52,19 +46,11 @@ public class buyVO {
 	public void setBimage(String bimage) {
 		this.bimage = bimage;
 	}
-	
-	
-	public String getVid() {
-		return vid;
+	public String getBtitle() {
+		return btitle;
 	}
-	public void setVid(String vid) {
-		this.vid = vid;
-	}
-	public String getVtitle() {
-		return vtitle;
-	}
-	public void setVtitle(String vtitle) {
-		this.vtitle = vtitle;
+	public void setBtitle(String btitle) {
+		this.btitle = btitle;
 	}
 	public String getVimage() {
 		return vimage;
@@ -72,17 +58,23 @@ public class buyVO {
 	public void setVimage(String vimage) {
 		this.vimage = vimage;
 	}
+	public String getVtitle() {
+		return vtitle;
+	}
+	public void setVtitle(String vtitle) {
+		this.vtitle = vtitle;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getBuyprice() {
 		return buyprice;
 	}
 	public void setBuyprice(int buyprice) {
 		this.buyprice = buyprice;
-	}
-	public int getBuycount() {
-		return buycount;
-	}
-	public void setBuycount(int buycount) {
-		this.buycount = buycount;
 	}
 	public Timestamp getBuydate() {
 		return buydate;
@@ -108,7 +100,6 @@ public class buyVO {
 	public void setDeliverytel(String deliverytel) {
 		this.deliverytel = deliverytel;
 	}
-	
 	public String getDeliveryadd1() {
 		return deliveryadd1;
 	}
@@ -127,6 +118,25 @@ public class buyVO {
 	public void setSaction(String saction) {
 		this.saction = saction;
 	}
+	public int getBuycount() {
+		return buycount;
+	}
+	public void setBuycount(int buycount) {
+		this.buycount = buycount;
+	}
+	public int getBprice() {
+		return bprice;
+	}
+	public void setBprice(int bprice) {
+		this.bprice = bprice;
+	}
+	public int getVprice() {
+		return vprice;
+	}
+	public void setVprice(int vprice) {
+		this.vprice = vprice;
+	}
+	
 	
 	
 	

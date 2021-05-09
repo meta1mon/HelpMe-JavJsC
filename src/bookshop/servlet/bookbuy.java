@@ -12,9 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import bookshop.DAO.bookcartDAO;
 import bookshop.DAO.buyDAO;
+import bookshop.DAO.cartDAO;
 import bookshop.DAO.videocartDAO;
-import bookshop.DAO.videocartVO;
 import bookshop.VO.bookcartVO;
+import bookshop.VO.buyVO;
+import bookshop.VO.videocartVO;
 import member.vo.Member;
 
 /**
@@ -47,31 +49,43 @@ public class bookbuy extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Member vo = (Member) request.getSession().getAttribute("loginMember");
+		String buyprice = request.getParameter("buyprice");
+		String vid = request.getParameter("vid");
+		String bid = request.getParameter("bid");
 		String account = request.getParameter("account");
 		String deliveryname = request.getParameter("deliveryname");
 		String deliverytel = request.getParameter("deliverytel");
 		String deliveryadd1 = request.getParameter("deliveryadd1");
 		String deliveryadd2 = request.getParameter("deliveryadd2");
-		String buyer = vo.getId();
+		String buycount = request.getParameter("buycount");
+		String id = vo.getId();
+				
+		buyVO buy = new buyVO();
 		
-		bookcartDAO cartprocess = bookcartDAO.getInstance();
-		List<bookcartVO> cartLists =null;
 		
-		videocartDAO videoprocess = videocartDAO.getInstance();
-		List<videocartVO> videocartLists = null;
-		try {
-			cartLists = cartprocess.getBookCart(buyer);
-			videocartLists = videoprocess.getVideoCart(buyer);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		buy.setId(id);
+		buy.setBid(Integer.parseInt(bid));
+		buy.setVid(Integer.parseInt(vid));
+		buy.setAccount(account);
+		buy.setDeliveryname(deliveryname);
+		buy.setDeliverytel(deliverytel);
+		buy.setDeliveryadd1(deliveryadd1);
+		buy.setDeliveryadd2(deliveryadd2);
+		buy.setBuyprice(Integer.parseInt(buyprice));
+		buy.setBuycount(Integer.parseInt(buycount));
+		System.out.println(buycount);
 		
 		buyDAO buyprocess = buyDAO.getinstance();
 		try {
-			buyprocess.insertBuy(cartLists, videocartLists, buyer, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2);
+			buyprocess.insertBuy(Integer.parseInt(vid), Integer.parseInt(bid), id, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2,
+					Integer.parseInt(buyprice),Integer.parseInt(buycount));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 		System.out.println();
 		response.sendRedirect("./shop/buyList.jsp");
 	}
