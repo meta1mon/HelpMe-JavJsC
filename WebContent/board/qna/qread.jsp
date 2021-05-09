@@ -57,9 +57,15 @@
 			<td>&nbsp;</td>
 		</tr>
 		<tr style="border-bottom: hidden;">
-			<td colspan="2">&nbsp;</td>
-			<td><a name="bfilepath" href="<%=request.getContextPath() %>/board/files/${qna.qfilepath }"
-				download="${qna.qfilepath }">${qna.qfilepath }</a></td>
+			<td colspan="2">첨부파일</td>
+			<td style="text-align:left;text-indent:10px;">
+			<c:forTokens var="fileName" items="${qna.qfilepath}" delims="," varStatus="st">
+				<a download href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
+				<c:if test="${!st.last }">
+				/
+				</c:if>
+			</c:forTokens>
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2">글 내용 ${qna.qcontent }</td>

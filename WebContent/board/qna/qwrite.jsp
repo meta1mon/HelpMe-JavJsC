@@ -14,6 +14,14 @@
 	<%@include file="../../style/common.css" %>
 	<%@include file="../../style/header.css" %>
 	<%@include file="../../style/footer.css"%>
+	
+		table {
+	width:80%;
+	margin-right:auto;
+	margin-left:auto;
+	text-align: center;
+	}
+	
 </style>
 </head>
 <body>
@@ -23,9 +31,9 @@
 	<!-- 게시판(게시글 목록) 영역 -->
 	<div class="container">
 		<div class="row">
-			<form action="<%=request.getContextPath()%>/qnawrite" method="post" enctype="multipart/form-data">
-				<table 
-					style="text-align: center; border: 1px solid #dddddd">
+			<form action="<%=request.getContextPath()%>/qnawrite" method="post"
+				enctype="multipart/form-data">
+				<table style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
 							<!-- 양식 -->
@@ -36,12 +44,12 @@
 					<tbody>
 						<tr>
 							<!-- 내용 -->
-							<td><input type="text" placeholder="글 제목" name="qsubject" maxlength="50"></td>
+							<td><input type="text" placeholder="글 제목" name="qsubject"
+								maxlength="50"></td>
 						</tr>
 						<tr>
-							<td><textarea placeholder="글 내용"
-									id="editor" name="qcontent" maxlength="2048"
-									style="height: 350px;"></textarea></td>
+							<td><textarea placeholder="글 내용" id="editor" name="qcontent"
+									maxlength="2048"></textarea></td>
 
 							<script>
 								CKEDITOR.replace('editor');
@@ -51,14 +59,15 @@
 					</tbody>
 				</table>
 				<div id="fileDiv">
-					<p>
-						<input type="file" id="file" name="file_0"> 
-						<a href="#this" class="btn" id="delete" name="delete">삭제</a>
+					<p>첨부파일<br>
+					<input type="file" id="file" name="file"> 
+					<a href="#this" class="btn" id="delete" name="delete">삭제</a>
 					</p>
 				</div>
-				<br/><br/> 
-				<a href="#this" class="btn" id="addFile">파일 추가</a> 
-				<input type="button" value="취소" onclick="location.href = '<%=request.getContextPath()%>/qnalist'">
+				<br />
+				<br /> <a href="#this" class="btn" id="addFile">파일 추가</a> <input
+					type="button" value="취소"
+					onclick="location.href = '<%=request.getContextPath()%>/qnalist'">
 				<input type="submit" value="등록">
 			</form>
 		</div>
@@ -81,7 +90,7 @@
 		
 		
 		function fn_addFile(){
-			var str = "<p><input type='file' name='file_"+(gfv_count++)+"'><a href='#this' class='btn' name='delete'>삭제</a></p>";
+			var str = "<p><input type='file' name='file'><a href='#this' class='btn' name='delete'>삭제</a></p>";
 			$("#fileDiv").append(str);
 			$("a[name='delete']").on("click", function(e){ //삭제 버튼
 				e.preventDefault();
