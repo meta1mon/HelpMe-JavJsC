@@ -44,20 +44,10 @@ public class ScheduleInsertCtrl extends HttpServlet {
 //		private String scheContent;
 
 		String dbScheName = request.getParameter("scheName");
-		System.out.println("dbScheName: " + dbScheName);
-		
 		String dbScheStart = request.getParameter("scheStart");
-		System.out.println("dbScheStart: " + dbScheStart);
-		
 		String dbScheEnd = request.getParameter("scheEnd");
-		System.out.println("dbScheEnd: " + dbScheEnd);
-		
 		int dbScheCode = Integer.parseInt(request.getParameter("scheCode"));
-		System.out.println("dbScheCode: " + dbScheCode);
-		
 		String dbScheContent = request.getParameter("scheContent");
-		System.out.println("dbScheContent: " + dbScheContent);
-		
 		
 		vo.setScheName(dbScheName);
 		vo.setScheStart(dbScheStart);
@@ -72,14 +62,6 @@ public class ScheduleInsertCtrl extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 

@@ -6,18 +6,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import calendar.VO.CalendarVO;
 
 public class CalendarDAO {
 	
-	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
 	
-	// 달력에 일정 표시
-
 	
 	
 	// 일정 등록

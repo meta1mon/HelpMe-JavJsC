@@ -101,7 +101,8 @@
 							start: editStart.val(),
 							end: editEnd.val(),
 							type: editType.val(),
-							backgoundColor: editColor.val(),
+							backgroundColor: editColor.val(),
+							content: editCont.val(),
 							textColor: "fff",
 							allDay: false
 						};
@@ -113,21 +114,19 @@
 						}
 						
 						// 일정명을 기입하지 않았을 경우
-						if(scheduleData.title === ''){
+						if(scheduleData.title == ''){
 							alert('일정명은 필수입니다.')
 							return false;
 						}
-						
-						var realEndDay;
 						
 						
 						// 하루종일 체크박스가 체크되었을 경우 - 현재 동작 안 하는 듯 ㅠㅜㅠㅜ
 						if(editAllDay.is(':checked')){
 							scheduleData.start = moment(scheduleData.start).format('YYYY-MM-DD');
 							// 달력 render 시 날짜 표기 수정
-							scheduleData.end = moment(scheduleData.end).add(1, 'days').format('YYYY-MM-DD');
+							scheduleData.end = moment(scheduleData.end).format('YYYY-MM-DD');
 							// db에 넣을 때
-							//realEndDay = moment(eventData.end).format('YYYY-MM-DD');
+							var realEndDay = moment(scheduleData.end).format('YYYY-MM-DD');
 							
 							scheduleData.allDay = true;
 							
@@ -137,10 +136,8 @@
 
 						
 				        console.log(scheduleData);
-				        console.log("a01");
 				        // 입력한 새로운 일정 저장
 				        var querystring = $("#frm").serialize();
-				        console.log("a02");
 				        console.log(querystring);
 				        $.ajax({
 				        	type: "post",
@@ -165,13 +162,7 @@
 				} //newSchedule
 				
 			}, //select 
-			events: function(into, successCallback, failureCallback){
-				$.ajax({
-					type: "post",
-					
-				})
-				
-			},
+			
 			eventClick : function(arg) {
 				if (confirm('일정을 삭제하시겠습니까?')) {
 					arg.event.remove();
@@ -183,6 +174,8 @@
 		console.log("calendar.render()");
 		calendar.render();
 	}); //$(document)
+
+	
 </script>
 <title>달력</title>
 </head>
@@ -250,7 +243,7 @@
 				</div>
 				<!-- modal-body 끝 -->
 				<div class="modal-footer modalBtnContainer-addSchedule">
-					<button type="reset" class="btn btn-default" data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-default" id="reset-schedule">초기화</button>
 					<button type="button" class="btn btn-primary" id="save-schedule">저장</button>
 				</div>
 				<!-- modal-footer 끝 -->
