@@ -35,6 +35,11 @@
 <body class="content">
 	<h3>Q&A 게시판</h3>
 	<form action="qnalist" method="get">
+		<select name="searchType">
+			<option value="1">글제목</option>
+			<option value="2">작성자</option>
+			<option value="3">글내용</option>
+		</select>
 		<input type='search' name="search">
 		<button type=submit>검색</button>
 	</form>
@@ -79,17 +84,17 @@
 	</table>
 	<div id="page">
 	<c:if test="${startPage !=1 }">
-		<a href="qnalist?pageNum=${startPage -1 }&search=${search }">&#60;&#60;</a>
+		<a href="qnalist?pageNum=${startPage -1 }&search=${search }&searchType=${searchType}">&#60;&#60;</a>
 	</c:if>
 
 	<c:forEach begin="${startPage }" end="${endPage }" var="s" step="1">
-		<a href="qnalist?pageNum=${s }&search=${search }">${s }</a>
+		<a href="qnalist?pageNum=${s }&search=${search }&searchType=${searchType}">${s }</a>
 	</c:forEach>
 
 
 
 	<c:if test="${endPage < pageBoxCnt }">
-		<a href="qnalist?pageNum=${endPage +1 }&search=${search }">&#62;&#62;</a>
+		<a href="qnalist?pageNum=${endPage +1 }&search=${search }&searchType=${searchType}">&#62;&#62;</a>
 	</c:if>
 	</div>
 

@@ -9,16 +9,16 @@ import board.qna.dao.QnaDao;
 import board.qna.vo.Qna;
 
 public class QnaService {
-	public ArrayList<Qna> getQnaBoard(int start, int end, String search) throws SQLException {
+	public ArrayList<Qna> getQnaBoard(int start, int end, String search, int searchType) throws SQLException {
 		Connection con = getConnection();
-		ArrayList<Qna> list = new QnaDao().getQnaBoard(con, start, end, search);
+		ArrayList<Qna> list = new QnaDao().getQnaBoard(con, start, end, search, searchType);
 		close(con);
 		return list;
 	}
 	
-	public int QnaCnt(String search) throws SQLException {
+	public int QnaCnt(String search, int searchType ) throws SQLException {
 		Connection con = getConnection();
-		int cnt = new QnaDao().QnaCnt(con, search);
+		int cnt = new QnaDao().QnaCnt(con, search, searchType);
 		close(con);
 		return cnt;
 	}

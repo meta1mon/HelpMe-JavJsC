@@ -12,12 +12,26 @@ public class QnaDao {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 
-	public ArrayList<Qna> getQnaBoard(Connection con, int start, int end, String search) throws SQLException {
+	public ArrayList<Qna> getQnaBoard(Connection con, int start, int end, String search, int searchType)
+			throws SQLException {
 		ArrayList<Qna> list = new ArrayList<Qna>();
 		String sql = "select * from qna order by qno desc";
 		if (search != null) {
-			sql = "select * from qna where (qsubject like '%" + search + "%' or qcontent like '%" + search
-					+ "%' or qwriter like '%" + search + "%') order by qno desc";
+			switch (searchType) {
+			case 1:
+				sql = "select * from qna where qsubject like '%" + search + "%' order by qno desc";
+				break;
+			case 2:
+				sql = "select * from qna where qwriter like '%" + search + "%' order by qno desc";
+				break;
+			case 3:
+				sql = "select * from qna where qcontent like '%" + search + "%' order by qno desc";
+				break;
+			default:
+				System.out.println("dao 오류");
+				break;
+			}
+
 		}
 		String sql2 = "select rownum r, d.* from (" + sql + ") d";
 		String sql3 = "select * from (" + sql2 + ") where r between ? and ?";
@@ -54,11 +68,24 @@ public class QnaDao {
 
 	}
 
-	public int QnaCnt(Connection con, String search) throws SQLException {
+	public int QnaCnt(Connection con, String search, int searchType) throws SQLException {
 		int cnt = 0;
-		String sql = "select count(*) from qna";
+		String sql = "select count(*) from qna ";
 		if (search != null) {
-			sql += " where qsubject like '%" + search + "%' or qcontent like '%" + search + "%' or qwriter like '%" + search + "%'";
+			switch (searchType) {
+			case 1:
+				sql += "where qsubject like '%" + search + "%'";
+				break;
+			case 2:
+				sql += "where qwriter like '%" + search + "%'";
+				break;
+			case 3:
+				sql += "where qcontent like '%" + search + "%'";
+				break;
+			default:
+				System.out.println("dao 오류");
+				break;
+			}
 		}
 
 		try {

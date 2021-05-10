@@ -47,8 +47,10 @@ public class QnaListCtrl extends HttpServlet {
 		final int PAGE_BOX = 3;
 
 		// 검색 시의 컨트롤 처리
+		int searchType = 0; 
 		String search = request.getParameter("search");
 		if (search != null && !search.equals("")) {
+			searchType = Integer.parseInt(request.getParameter("searchType"));
 			// 즉 검색 내용이 있다면
 		} else {
 			// 검색 내용이 없다면
@@ -58,7 +60,7 @@ public class QnaListCtrl extends HttpServlet {
 		// search가 있든 없든 갖고 들어가서 전체 글 개수를 반환함
 		int allPages = 0;
 		try {
-			allPages = new QnaService().QnaCnt(search);
+			allPages = new QnaService().QnaCnt(search, searchType);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -98,7 +100,7 @@ public class QnaListCtrl extends HttpServlet {
 		// 리스트 가져오기
 		ArrayList<Qna> list = null;
 		try {
-			list = new QnaService().getQnaBoard(startRnum, endRnum, search);
+			list = new QnaService().getQnaBoard(startRnum, endRnum, search, searchType);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -109,6 +111,7 @@ public class QnaListCtrl extends HttpServlet {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pageBoxCnt", pageBoxCnt);
 		request.setAttribute("search", search);
+		request.setAttribute("searchType", searchType);
 		request.getRequestDispatcher("board/qna/qlist.jsp").forward(request, response);
 
 	}

@@ -3,7 +3,6 @@ package board.qna.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,49 +10,42 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import board.qna.dao.QlikeDao;
 import board.qna.service.QlikeService;
+import board.qna.service.RqlikeService;
 
 /**
- * Servlet implementation class QlikeCtrl
+ * Servlet implementation class RqlikeCtrl
  */
-@WebServlet("/qlike")
-public class QlikeCtrl extends HttpServlet {
+@WebServlet("/rqlike")
+public class RqlikeCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RqlikeCtrl() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public QlikeCtrl() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);
 	}
 
 	private void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
-		int qno = Integer.parseInt(request.getParameter("qno"));
+		int rqno = Integer.parseInt(request.getParameter("rqno"));
 
 		// 이미 추천했는지 판단
 		int isLike = 0;
@@ -62,14 +54,14 @@ public class QlikeCtrl extends HttpServlet {
 		int result = 0;
 		String like = null;
 		try {
-			isLike = new QlikeService().isLike(id, qno);
+			isLike = new RqlikeService().isLike(id, rqno);
 			if (isLike == 1) { // 이미 추천했음 => 추천 취소
-				result = new QlikeService().deleteLike(id, qno);
+				result = new RqlikeService().deleteLike(id, rqno);
 				if (result > 0) {
 					like = "추천 취소";
 				}
 			} else if (isLike == 0) { // 추천 안했음 => 추천 실행
-				result = new QlikeService().insertLike(id, qno);
+				result = new RqlikeService().insertLike(id, rqno);
 				if (result > 0) {
 					like = "추천 성공";
 				}
@@ -87,7 +79,7 @@ public class QlikeCtrl extends HttpServlet {
 		if(!like.equals(null)) {
 			out.print(like);
 		} else {
-			System.out.println("추천 삽입 | 삭제 메서드에서 문제 발생");
+			System.out.println("추천 삽입 또는 삭제 메서드에서 문제 발생");
 		}
 		out.flush();
 		out.close();

@@ -36,7 +36,7 @@ tr {
 <script>
 	function open_win(url, name){
 		window.open(url, name, "width=1000px, height=500px, resizable = no, left= 100, top=100");
-	}
+	};
 	
 	function qlike() {
 		$.ajax({
@@ -54,8 +54,20 @@ tr {
 		});
 	};
 
-	function rqnaLike() {
-
+	function rqlike(rqno) {
+		$.ajax({
+			url : "<%=request.getContextPath()%>/rqlike",
+			type : "post",
+			data : {
+				id : "${loginMember.id}",
+				rqno : rqno
+			},
+			datatype : "json",
+			success : function(data) {
+				alert(data);
+	            window.location.reload();
+			}
+		});
 	}
 </script>
 </head>
@@ -110,13 +122,13 @@ tr {
 			<c:if test="${reply != null}">
 				<c:forEach items="${reply }" var="r">
 					<tr>
-						<td>추천수 ${r.rqlikecnt }<br>태그 : 미구현
-						</td>
+						<td>추천수 ${r.rqlikecnt }</td>
 						<td>${r.rqcontent }</td>
 						<td><button type="button"
 								onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }'">삭제</button>
-							<button type="button" id="rqnareply"
-								onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', '_blank')">수정</button></td>
+							<button type="button"
+								onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', '_blank')">수정</button>
+							<button type="button" onclick="rqlike(${r.rqno})">추천</button></td>
 					</tr>
 				</c:forEach>
 			</c:if>
