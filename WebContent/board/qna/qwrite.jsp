@@ -41,12 +41,10 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>분류선택</td>
-							<td><select name="bkind">
-									<option value="100">JAVA</option>
-									<option value="200">JSP</option>
-									<opt ion value="300">HTML
-									</option>
+							<td><select name="qtag">
+									<option value="1">JAVA</option>
+									<option value="2">C</option>
+									<option value="3">Python</option>
 							</select></td>
 							<!-- 내용 -->
 							<td><input type="text" placeholder="글 제목" name="qsubject"

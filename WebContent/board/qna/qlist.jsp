@@ -52,6 +52,7 @@
 			<th style="background-color: #eeeeee; text-align: center;">번호</th>
 			<th style="background-color: #eeeeee; text-align: center;">조회수</th>
 			<th style="background-color: #eeeeee; text-align: center;">추천수</th>
+			<th style="background-color: #eeeeee; text-align: center;">카테고리</th>
 			<th style="background-color: #eeeeee; text-align: center;">제목</th>
 			<th style="background-color: #eeeeee; text-align: center;">작성자</th>
 			<th style="background-color: #eeeeee; text-align: center;">작성일</th>
@@ -61,6 +62,13 @@
 				<td>${q.qno }</td>
 				<td>${q.qviewcnt }</td>
 				<td>${q.qlikecnt }</td>
+				<td>
+				<c:choose>
+					<c:when test="${q.qtag ==1}">Java</c:when>
+					<c:when test="${q.qtag ==2}">C</c:when>
+					<c:when test="${q.qtag ==3}">Python</c:when>
+				</c:choose>
+				</td>
 				<td><a href="qnaread?qno=${q.qno}">${q.qsubject }</a></td>
 				<td>${q.qwriter }</td>
 				<td>${q.qdate }</td>

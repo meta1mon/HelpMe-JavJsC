@@ -41,6 +41,7 @@ public class QnaDao {
 					vo.setQfilepath(rs.getString("qfilepath"));
 					vo.setQviewcnt(rs.getInt("qviewcnt"));
 					vo.setQlikecnt(rs.getInt("qlikecnt"));
+					vo.setQtag(rs.getInt("qtag"));
 					list.add(vo);
 				}
 			}
@@ -94,6 +95,7 @@ public class QnaDao {
 					vo.setQfilepath(rs.getString("qfilepath"));
 					vo.setQviewcnt(rs.getInt("qviewcnt"));
 					vo.setQlikecnt(rs.getInt("qlikecnt"));
+					vo.setQtag(rs.getInt("qtag"));
 				}
 			}
 		} finally {
@@ -109,7 +111,7 @@ public class QnaDao {
 		int max = 0;
 
 		String maxSql = "select nvl(max(qno),0)+1 from qna";
-		String sql = "insert into qna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),    ?, ?, 0, 0)";
+		String sql = "insert into qna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),    ?, ?, 0, 0, ?)";
 
 		try {
 			pstmt = con.prepareStatement(maxSql);
@@ -129,7 +131,7 @@ public class QnaDao {
 			pstmt.setString(4, vo.getQcontent());
 			pstmt.setString(5, vo.getQimage());
 			pstmt.setString(6, vo.getQfilepath());
-
+			pstmt.setInt(7, vo.getQtag());
 			result = pstmt.executeUpdate();
 		} finally {
 			close(pstmt);

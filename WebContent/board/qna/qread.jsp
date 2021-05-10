@@ -49,26 +49,36 @@
 	<!-- 게시글 내용 표시 -->
 	<table class="1" border="2">
 		<tr>
-			<td colspan="2" style= text-align: center;"><h3>글쓴이 ${qna.qwriter }</h3></td>
+			<td style=text-align:center;"><h3>글쓴이 ${qna.qwriter }</h3></td>
 			<td>조회수 ${qna.qviewcnt } 추천수 ${qna.qlikecnt }</td>
 		</tr>
 		<tr>
-			<td colspan="2"><h4>글 제목 ${qna.qsubject }</h4></td>
+			<td>카테고리</td>
+			<td><c:choose>
+					<c:when test="${qna.qtag ==1}">Java</c:when>
+					<c:when test="${qna.qtag ==2}">C</c:when>
+					<c:when test="${qna.qtag ==3}">Python</c:when>
+				</c:choose></td>
+		</tr>
+		<tr>
+			<td><h4>
+					글 제목 <br> ${qna.qsubject }
+				</h4></td>
 			<td>&nbsp;</td>
 		</tr>
 		<tr style="border-bottom: hidden;">
-			<td colspan="2">첨부파일</td>
-			<td style="text-align:left;text-indent:10px;">
-			<c:forTokens var="fileName" items="${qna.qfilepath}" delims="," varStatus="st">
-				<a download href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
-				<c:if test="${!st.last }">
+			<td>첨부파일</td>
+			<td style="text-align: left; text-indent: 10px;"><c:forTokens
+					var="fileName" items="${qna.qfilepath}" delims="," varStatus="st">
+					<a download
+						href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
+					<c:if test="${!st.last }">
 				/
 				</c:if>
-			</c:forTokens>
-			</td>
+				</c:forTokens></td>
 		</tr>
 		<tr>
-			<td colspan="2">글 내용 ${qna.qcontent }</td>
+			<td>글 내용 ${qna.qcontent }</td>
 			<td>&nbsp;</td>
 		</tr>
 	</table>
@@ -77,9 +87,10 @@
 
 	<form action="<%=request.getContextPath()%>/rqnawrite" method="post">
 		<table border="2">
-					<tr>
-						<td colspan="3" style="background-color: #F0F0F0; text-align: center;">댓글</td>
-					</tr>
+			<tr>
+				<td colspan="3"
+					style="background-color: #F0F0F0; text-align: center;">댓글</td>
+			</tr>
 			<!-- 댓글이 있으면 댓글 내용 표시 -->
 			<c:if test="${reply != null}">
 				<c:forEach items="${reply }" var="r">
@@ -89,18 +100,19 @@
 						<td>${r.rqcontent }</td>
 						<td><button type="button"
 								onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }'">삭제</button>
-							<button type="button" id="rqnareply" onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', '_blank')">수정</button></td>
+							<button type="button" id="rqnareply"
+								onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', '_blank')">수정</button></td>
 					</tr>
 				</c:forEach>
 			</c:if>
 			<!-- 댓글 유무에 상관없이 댓글 작성 부분은 표시 -->
 			<tr>
-				<td colspan="2"><input type="hidden" name="qno" value="${qna.qno }"></td>
+				<td colspan="2"><input type="hidden" name="qno"
+					value="${qna.qno }"></td>
 			</tr>
-			<tr>							
-				<td><textarea placeholder="댓글 쓰기"
-									id="editor" name="rqcontent" maxlength="2048"
-									style="height: 350px;"></textarea></td>
+			<tr>
+				<td><textarea placeholder="댓글 쓰기" id="editor" name="rqcontent"
+						maxlength="2048" style="height: 350px;"></textarea></td>
 				<td><button type="submit">등록</button></td>
 			</tr>
 		</table>
@@ -113,11 +125,10 @@
 		onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'">수정</button>
 	<button type="button"
 		onclick="location.href='<%=request.getContextPath()%>/qnadelete?qno=${qna.qno }'">삭제</button>
-	<button type="button"
-		onclick="like();">추천</button>
-<script>
-								CKEDITOR.replace('editor');
-							</script>
+	<button type="button" onclick="like();">추천</button>
+	<script>
+		CKEDITOR.replace('editor');
+	</script>
 
 </body>
 <%@include file="../../view/footer.jsp"%>

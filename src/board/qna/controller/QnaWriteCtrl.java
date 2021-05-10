@@ -91,11 +91,12 @@ public class QnaWriteCtrl extends HttpServlet {
 		String qwriter = "eeee";
 
 		Qna vo = new Qna();
-		String qsubject = request.getParameter("qsubject");
-		String qcontent = request.getParameter("qcontent");
+		String qtag = request.getParameter("qtag");
+		System.out.println(qtag + ": 태그 밸류");
 		
 		vo.setQsubject(request.getParameter("qsubject"));
 		vo.setQcontent(request.getParameter("qcontent"));
+		vo.setQtag(Integer.parseInt(qtag));
 		vo.setQwriter(qwriter);
 		vo.setQfilepath(builder.toString()); //build가 갖고있는 문자열을 세팅
 		
