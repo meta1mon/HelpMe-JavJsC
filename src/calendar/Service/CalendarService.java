@@ -20,5 +20,26 @@ public class CalendarService {
 		
 		return result;
 	}
-
+	
+	//update
+	public int updateSchedule(CalendarVO vo) throws SQLException {
+		int result = 0;
+		
+		Connection conn = JDBCConnectionPool.getConnection();
+		CalendarDAO dao = new CalendarDAO();
+		result = dao.insertSchedule(conn, vo);
+		
+		return result;
+	}
+	
+	//delete
+		public int deleteSchedule(String scheName) throws SQLException {
+			int result = 0;
+			
+			Connection conn = JDBCConnectionPool.getConnection();
+			CalendarDAO dao = new CalendarDAO();
+			result = dao.deleteSchedule(conn, scheName);
+			
+			return result;
+		}
 }

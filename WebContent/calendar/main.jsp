@@ -14,9 +14,26 @@
 <script src="moment.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+	var calendar = null;
+	
 	$(document).ready(function(){
-		var calendarEl = document.getElementById("calendar");
-		var calendar = new FullCalendar.Calendar(calendarEl, {
+	
+	var scheModal = $('#scheModal');
+	
+	var modalTitle = $('.modal-title');
+	var editAllDay = $('#edit-allDay');
+	var editTitle = $('#edit-title');
+	var editStart = $('#edit-start');
+	var editEnd = $('#edit-end');
+	var editType = $('#edit-type');
+	var editColor = $('#edit-color');
+	var editCont = $('#edit-cont');
+	
+	var addBtnContainer = $('.modalBtnContainer-addSchedule');
+	var modifyBtnContainer = $('.modalBtnContainer-modifySchedule');
+
+	var calendarEl = document.getElementById("calendar");
+		calendar = new FullCalendar.Calendar(calendarEl, {
 			initialView: "dayGridMonth",
 			timeZone: "local",
 			locale: "ko",
@@ -27,12 +44,11 @@
 			},
 			dayMaxEvents: true,
 			displayEventTime: true,
-			displayEventEnd: true,
+			displayEventEnd: false,
 			eventTimeFormat: 
 			{
 				hour : 'numeric',
 				minute: '2-digit',
-				meridiem: true
 			},
 			selectable: true,
 			selectMirror: true,
@@ -40,35 +56,15 @@
 			select: function(arg){ 
 				// 달력 한 칸을 select하면 arg에 start, end, startStr("yyyy-mm-dd") endStr, view(type:"dayGridMonth")가 들어옴
 				
-				var scheModal = $('#scheModal');
-				console.log(arg);
-				console.log("들어와라라라아아아ㅏㅇ")
 				var start = arg.start;
 				var end = arg.end;
 				var view = arg.view;
-				console.log(start);
-				console.log(end);
-				console.log(view);
-	
-				var modalTitle = $('.modal-title');
-				var editAllDay = $('#edit-allDay');
-				var editTitle = $('#edit-title');
-				var editStart = $('#edit-start');
-				var editEnd = $('#edit-end');
-				var editType = $('#edit-type');
-				var editColor = $('#edit-color');
-				var editCont = $('#edit-cont');
-
-				var addBtnContainer = $('.modalBtnContainer-addSchedule');
-				var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
 				
 				// start, end 날짜 포맷 정하기 -> 일단 자동으로 00:00으로 입력됨. (클릭했을 당시의 시간 입력되도록 수정 가능하면 하기...)
 				if (view.type == "dayGridMonth") {
 					console.log("if 들어옴!");
-					
 					start = moment(start).format('YYYY-MM-DD HH:mm');
 					end = moment(end).format('YYYY-MM-DD HH:mm');
-
 				} else {
 					alert("다시 시도해주세요");
 				}
@@ -80,20 +76,34 @@
 					function newSchedule (start, end) {
 					console.log("들어오오옴 제바아알dfdf");
 					
-					// 모달창 내용 초기화
+					
+					
+					// 새로운 일정 등록 모달창 기본 설정
 					modalTitle.text('새로운 일정 등록');
-					editStart.val(start);
-					editEnd.val(end);
-					/* editTitle.val('');
+					$('#edit-start').val(start);
+					$('#edit-end').val(end);
+					// 모달창 초기화 - 위치 수정 필요	   		
+			        editAllDay.prop('checked', false);
+			        editTitle.val('');
 					editType.val('');
-					editCont.val(''); */
-					addBtnContainer.show();
+					editCont.val('');
+					if(addBtnContainer.css("display") == "none"){
+						addBtnContainer.show();
+					}else{
+						addBtnContainer.hide();
+					}
+				
 					$("#scheModal").css("display", "block");
+
 
 					$(".close").on("click", function() {
 						$("#scheModal").css("display", "none");
 					});
-	
+					
+					$(".btn-default").on("click", function() {
+						$("#scheModal").css("display", "none");
+					});
+					
 					//새로운 일정 저장 버튼 클릭
 					$("#save-schedule").on('click', function(){
 						var scheduleData = {
@@ -114,13 +124,13 @@
 						}
 						
 						// 일정명을 기입하지 않았을 경우
-						if(scheduleData.title == ''){
+						if(scheduleData.title === ''){
 							alert('일정명은 필수입니다.')
 							return false;
 						}
 						
 						
-						// 하루종일 체크박스가 체크되었을 경우 - 현재 동작 안 하는 듯 ㅠㅜㅠㅜ
+						// 하루종일 체크박스가 체크되었을 경우
 						if(editAllDay.is(':checked')){
 							scheduleData.start = moment(scheduleData.start).format('YYYY-MM-DD');
 							// 달력 render 시 날짜 표기 수정
@@ -154,24 +164,135 @@
 	
 				        })
 				        
-						scheModal.find('input, textarea').val('');
-				        editAllDay.prop('checked', false);
-				        scheModal.hide();
+						
 					}) // 저장버튼 클릭
 
 				} //newSchedule
 				
 			}, //select 
 			
-			eventClick : function(arg) {
-				if (confirm('일정을 삭제하시겠습니까?')) {
-					arg.event.remove();
-				}
-			},
 			editable : true,
+			eventClick : function(info) {
+				console.log(info);
+				
+				editSchedule(info.event);
+				
+				function editSchedule(event){
+					console.log("event : " + event);
+					
+					modalTitle.html('일정 수정');
+				    editTitle.val(event.title);
+				    editStart.val(moment(event.start).format('YYYY-MM-DD HH:mm'));
+				    editType.val(event.type);
+				    editCont.val(event.content);
+				    editColor.val(event.backgroundColor).css('color', event.backgroundColor);
 
+				    
+				    if(modifyBtnContainer.css("display") == "none"){
+				    	addBtnContainer.hide();
+				    	modifyBtnContainer.show();
+					} else {
+						modifyBtnContainer.hide();
+					}
+					
+
+					$("#scheModal").css("display", "block");
+
+
+					$(".close").on("click", function() {
+						$("#scheModal").css("display", "none");
+					});
+					
+					$(".btn-default").on("click", function() {
+						$("#scheModal").css("display", "none");
+					});
+					
+					 // 수정 버튼 클릭 시
+				    $("#updateSchedule").on('click', function(){
+				    	
+					console.log("update 수행!!!!");
+				    	if(editStart.val() > editEnd.val()){
+				    		alert('끝나는 날짜가 앞설 수 없습니다.');
+				    		return false;
+				    	}
+				    	
+				    	if(editTitle.val() === '') {
+				    		alert('일정명은 필수입니다.');
+				    		return false;
+				    	}
+				    	
+				    	var statusAllDay;
+				        var startDate;
+				        var endDate;
+				        var displayDate;
+				    	
+				    	if(editAllDay.is(':checked')){
+				    		statusAllDay = true;
+				    		startDate = editStart.val();
+				    		endDate = editEnd.val();
+				    		displayDate = endDate;
+				    	}
+							
+				    	console.log(statusAllDay);
+				    	console.log(startDate);
+				    	console.log(endDate);
+				    	console.log(displayDate);
+				    	
+				    	event.remove();
+				    	var modifyData = {
+				          allDay : statusAllDay,
+				          title : editTitle.val(),
+				          start : startDate,
+				          end : displayDate,
+				          type : editType.val(),
+				          backgroundColor : editColor.val(),
+				          content : editCont.val()
+				    			
+				    	}
+					      console.log(event);
+					      
+					      calendar.addEvent(modifyData);
+					      console.log(modifyData);
+					      $.ajax({
+					            type: "post",
+					            url: "<%=request.getContextPath()%>/scheduleupdate",
+					            data: modifyData,
+					            
+					            success: function (response) {
+					                alert('수정되었습니다.');
+					            },
+					     		error: function(request, status, error ){
+				        		console.log("일정 수정 실패");
+								alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
+							} 
+					        });
+					      
+				    }) // 수정 버튼 클릭 끝
+				    
+				    // 삭제 버튼 클릭 시
+				    $("#deleteSchedule").on('click', function(){
+				    	event.remove();
+				    	$("#scheModal").css("display", "none");
+				    	
+				    	 $.ajax({
+				    	        type: "post",
+				    	        url: "<%=request.getContextPath()%>/scheduledelete",
+				    	      
+				    	        success: function (response) {
+				    	            alert('삭제되었습니다.');
+				    	        },
+				    	        error: function(request, status, error ){
+					        		console.log("일정 삭제 실패");
+									alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
+								} 
+				    	  })
+				    }) // 삭제 버튼 클릭 끝
+				    
+				} // editSchedule 끝
+				} /* eventClick 끝*/
+				
+			
 		}); // var calendar
-		console.log("calendar.render()");
 		calendar.render();
 	}); //$(document)
 
@@ -179,7 +300,7 @@
 </script>
 <title>달력</title>
 </head>
-<body>
+<body class="content">
 	
 	<div id="calendar"></div>
 <!-- 일정 추가 modal -->
@@ -243,9 +364,14 @@
 				</div>
 				<!-- modal-body 끝 -->
 				<div class="modal-footer modalBtnContainer-addSchedule">
-					<button type="button" class="btn btn-default" id="reset-schedule">초기화</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-primary" id="save-schedule">저장</button>
 				</div>
+				 <div class="modal-footer modalBtnContainer-modifySchedule">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-danger" id="deleteSchedule">삭제</button>
+                    <button type="button" class="btn btn-primary" id="updateSchedule">저장</button>
+                 </div>
 				<!-- modal-footer 끝 -->
 			</div>
 		<!-- modal-content 끝 -->

@@ -1,7 +1,5 @@
 package calendar.VO;
 
-import java.sql.Date;
-
 public class CalendarVO {
 	
 	private String scheNum;
