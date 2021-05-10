@@ -2,24 +2,26 @@ package bookshop.servlet;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bookshop.DAO.ShopvideoDAO;
+
+
 /**
- * Servlet implementation class videodeleteForm
+ * Servlet implementation class videodelete
  */
-@WebServlet("/videodeleteForm")
-public class videodeleteForm extends HttpServlet {
+@WebServlet("/videodelete")
+public class Videodelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public videodeleteForm() {
+    public Videodelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,23 +30,32 @@ public class videodeleteForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		execute(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		execute(request, response);
+		request.setCharacterEncoding("utf-8");
+		System.out.println("영상 딜리트 들어옴");
+		
+		int vid = Integer.parseInt(request.getParameter("vid"));
+		String vkind = request.getParameter("vkind");
+		System.out.println(vid);
+		System.out.println(vkind);
+			
+		
+		try {
+			ShopvideoDAO video = ShopvideoDAO.getinstance();
+			video.deleteVideo(vid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		response.sendRedirect("./shop/videoList.jsp?vkind="+vkind);
 	
 	}
-	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("딜리트폼 들어옴 ");
-		String url = "./shop/videoDeleteForm.jsp";
 		
-//		response.sendRedirect(url);
-		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-		dispatcher.forward(request, response);
 	}
 
-}
+

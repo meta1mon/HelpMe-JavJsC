@@ -11,10 +11,11 @@ public class Qna {
 	private String qfilepath;
 	private int qviewcnt;			 // 처음 0
 	private int qlikecnt;			 // 처음 0
+	private int qtag;
 
 	public Qna() {}
 	
-	public Qna(int qno, String qsubject, String qwriter, String qcontent, String qdate, String qimage, String qfilepath, int qviewcnt, int qlikecnt) {
+	public Qna(int qno, String qsubject, String qwriter, String qcontent, String qdate, String qimage, String qfilepath, int qviewcnt, int qlikecnt, int qtag) {
 		super();
 		this.qno = qno;
 		this.qsubject = qsubject;
@@ -25,6 +26,7 @@ public class Qna {
 		this.qfilepath = qfilepath;
 		this.qviewcnt = qviewcnt;
 		this.qlikecnt = qlikecnt;
+		this.qtag = qtag;
 	}
 
 	public int getQno() {
@@ -97,6 +99,14 @@ public class Qna {
 
 	public void setQlikecnt(int qlikecnt) {
 		this.qlikecnt = qlikecnt;
+	}
+
+	public int getQtag() {
+		return qtag;
+	}
+
+	public void setQtag(int qtag) {
+		this.qtag = qtag;
 	}
 
 	

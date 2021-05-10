@@ -1,7 +1,7 @@
 <%@page import="member.vo.Member"%>
 <%@page import="java.text.NumberFormat"%>
-<%@page import="bookshop.DAO.shopBookDAO"%>
-<%@page import="bookshop.VO.shopBookVo"%>
+<%@page import="bookshop.DAO.ShopBookDAO"%>
+<%@page import="bookshop.VO.ShopBookVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -42,19 +42,19 @@ try {
 </head>
 <body>
 	<%
-	shopBookVo bookList = null;
-	String book_kindName = "";
+		ShopBookVo bookList = null;
+			String book_kindName = "";
 
-	shopBookDAO bookprocess = shopBookDAO.getinstance();
-	bookList = bookprocess.getBook(Integer.parseInt(bid));
+			ShopBookDAO bookprocess = ShopBookDAO.getinstance();
+			bookList = bookprocess.getBook(Integer.parseInt(bid));
 
-	if (bkind.equals("100")) {
+			if (bkind.equals("100")) {
 		book_kindName = "JAVA";
-	} else if (bkind.equals("200")) {
+			} else if (bkind.equals("200")) {
 		book_kindName = "JSP";
-	} else if (bkind.equals("300")) {
+			} else if (bkind.equals("300")) {
 		book_kindName = "HTML";
-	}
+			}
 	%>
 
 </body>

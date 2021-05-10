@@ -1,6 +1,6 @@
 package bookshop.VO;
 
-public class allcartVO {
+public class AllcartVO {
 	private int cid;
 	private String buyprice;
 	private String buycount;

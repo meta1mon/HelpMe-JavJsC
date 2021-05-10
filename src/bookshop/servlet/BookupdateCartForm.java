@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class videoupdateForm
+ * Servlet implementation class bookupdateCartForm
  */
-@WebServlet("/videoupdateForm")
-public class videoupdateForm extends HttpServlet {
+@WebServlet("/bookupdateCartForm")
+public class BookupdateCartForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public videoupdateForm() {
+    public BookupdateCartForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,6 +30,7 @@ public class videoupdateForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -37,10 +38,9 @@ public class videoupdateForm extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);
 	}
-	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("폼 들어옴 ");
-		String url = "./shop/videoUpdateForm.jsp";
-//		response.sendRedirect(url);
+	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = "./shop/bookCartUpdateForm.jsp";
+		System.out.println("업데이트카트 폼 들어옴");
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}

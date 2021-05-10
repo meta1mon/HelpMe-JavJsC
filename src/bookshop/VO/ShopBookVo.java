@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 
-public class shopBookVo {
+public class ShopBookVo {
 	private int bid;
 	private String bkind;
 	private String btitle;

@@ -1,14 +1,14 @@
-<%@page import="bookshop.DAO.shopvideoDAO"%>
+<%@page import="bookshop.DAO.ShopvideoDAO"%>
 <%@page import="com.sun.media.jfxmedia.control.VideoDataBuffer"%>
-<%@page import="bookshop.VO.videoVO"%>
+<%@page import="bookshop.VO.VideoVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	int vid = Integer.parseInt(request.getParameter("vid"));
 String vkind = request.getParameter("vkind");
 try {
-	shopvideoDAO vProcess = shopvideoDAO.getinstance();
-	videoVO video = vProcess.getVideo(vid);
+	ShopvideoDAO vProcess = ShopvideoDAO.getinstance();
+	VideoVO video = vProcess.getVideo(vid);
 %>
 <!DOCTYPE html>
 <html>

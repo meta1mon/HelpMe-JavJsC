@@ -6,22 +6,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import bookshop.VO.videocartVO;
+import bookshop.VO.VideocartVO;
 import common.jdbc.JDBCConnectionPool;
 
-public class videocartDAO {
+public class VideocartDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-	public static videocartDAO instance = new videocartDAO();
+	public static VideocartDAO instance = new VideocartDAO();
 	
-	public static videocartDAO getInstance() {
+	public static VideocartDAO getInstance() {
 		return instance;
 	}
 	
-	private videocartDAO() {}
+	private VideocartDAO() {}
 
 
-public void insertVideoCart(videocartVO videocart) throws Exception{
+public void insertVideoCart(VideocartVO videocart) throws Exception{
 	Connection conn = JDBCConnectionPool.getConnection();
 	rs = null; pstmt = null;
 	String sql = "insert into videocart (vcid, vid, id,buycount) " +
@@ -66,11 +66,11 @@ public void insertVideoCart(videocartVO videocart) throws Exception{
 		
 	
 	//id에 해당하는 레코드의 목록을 얻어내는 메소드
-	public List<videocartVO> getVideoCart(String id) throws Exception{
+	public List<VideocartVO> getVideoCart(String id) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
-		List<videocartVO> videolists = null;
+		List<VideocartVO> videolists = null;
 		rs = null; pstmt = null;
-		videocartVO  videocart = null;
+		VideocartVO  videocart = null;
 		String sql = "select vcid, vimage, vtitle,vprice,buycount, videocart.vid" +
 					 " from videocart left join video" +
 				     " on videocart.vid = video.vid";
@@ -80,10 +80,10 @@ public void insertVideoCart(videocartVO videocart) throws Exception{
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			videolists = new ArrayList<videocartVO>();
+			videolists = new ArrayList<VideocartVO>();
 			
 			while(rs.next()) {
-				videocart = new videocartVO();
+				videocart = new VideocartVO();
 				videocart.setVcid(rs.getInt("Vcid"));
 				videocart.setVid(rs.getString("Vid"));
 				videocart.setVimage(rs.getString("vimage"));

@@ -1,7 +1,7 @@
 <%@page import="java.text.NumberFormat"%>
-<%@page import="bookshop.DAO.shopBookDAO"%>
-<%@page import="bookshop.VO.shopBookVo"%>
-<%@page import="bookshop.VO.videoVO"%>
+<%@page import="bookshop.DAO.ShopBookDAO"%>
+<%@page import="bookshop.VO.ShopBookVo"%>
+<%@page import="bookshop.VO.VideoVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -17,29 +17,29 @@
 </head>
 <body>
 	<%
-		List<shopBookVo> bookLists = null;
-	shopBookVo bookList = null;
-	String book_kindName = "";
+		List<ShopBookVo> bookLists = null;
+			ShopBookVo bookList = null;
+			String book_kindName = "";
 
-	shopBookDAO bookprocess = shopBookDAO.getinstance();
+			ShopBookDAO bookprocess = ShopBookDAO.getinstance();
 
-	bookLists = bookprocess.getBooks(bkind);
-	if (bkind.equals("100")) {
+			bookLists = bookprocess.getBooks(bkind);
+			if (bkind.equals("100")) {
 		book_kindName = "JAVA";
-	} else if (bkind.equals("200")) {
+			} else if (bkind.equals("200")) {
 		book_kindName = "JSP";
-	} else if (bkind.equals("300")) {
+			} else if (bkind.equals("300")) {
 		book_kindName = "HTML";
-	} else if (bkind.equals("all")) {
+			} else if (bkind.equals("all")) {
 		book_kindName = "전체";
-	}
+			}
 	%>
 	<h3>
 		<b><%=book_kindName%>분류의 목록</b>
 	</h3>
 	<%
 		for (int i = 0; i < bookLists.size(); i++) {
-		bookList = (shopBookVo) bookLists.get(i);
+			bookList = (ShopBookVo) bookLists.get(i);
 	%>
 	<table border="1px solid white">
 		<tr height="40">

@@ -1,7 +1,6 @@
 package bookshop.servlet;
 
 import java.io.IOException;
-
 import java.sql.Timestamp;
 import java.util.Enumeration;
 
@@ -15,20 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import bookshop.DAO.shopBookDAO;
-import bookshop.VO.shopBookVo;
+import bookshop.DAO.ShopBookDAO;
+import bookshop.VO.ShopBookVo;
 
 /**
- * Servlet implementation class bookRegister
+ * Servlet implementation class bookupdate
  */
-@WebServlet("/bookInsert")
-public class bookRegister extends HttpServlet {
+@WebServlet("/bookupdate")
+public class Bookupdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public bookRegister() {
+    public Bookupdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,6 +36,7 @@ public class bookRegister extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 	/**
@@ -44,11 +44,12 @@ public class bookRegister extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		System.out.println("서블릿 들어옴");
 		
 		String realFolder = "";// 웹 어플리케이션 상의 절대 경로
 		String filename = "";
 		MultipartRequest imageUp = null;
-		
+		System.out.println("들어옴 2");
 		String saveFolder = "/imageFile";// 파일 업로드 되는 폴더
 		String encType = "utf-8"; //엔코딩타입
 		int maxSize = 2*1024*1024; // 최대 업로드될 파일크기 5mb
@@ -76,7 +77,10 @@ public class bookRegister extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		shopBookVo book = new shopBookVo();
+		System.out.println("22");
+		ShopBookVo book = new ShopBookVo();
+		
+		int bid= Integer.parseInt(imageUp.getParameter("bid"));
 		String bkind = imageUp.getParameter("bkind");
 		String btitle = imageUp.getParameter("btitle");
 		String bprice = imageUp.getParameter("bprice");
@@ -85,6 +89,7 @@ public class bookRegister extends HttpServlet {
 		String publishing_com = imageUp.getParameter("publishing_com");
 		String discountRate = imageUp.getParameter("discountRate");
 		
+		book.setBid(bid);
 		book.setBkind(bkind);
 		book.setBtitle(btitle);
 		book.setBprice(Integer.parseInt(bprice));
@@ -94,22 +99,19 @@ public class bookRegister extends HttpServlet {
 		book.setBimage(filename);
 		book.setDiscountRate(Integer.parseInt(discountRate));
 		book.setRegdate(new Timestamp(System.currentTimeMillis()));
+		System.out.println("업데이트 들어옴 ");
 		
 		try {
-			shopBookDAO bookprocess = shopBookDAO.getinstance();
-			bookprocess.insertBook(book);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ShopBookDAO bookprocess = ShopBookDAO.getinstance();
+			bookprocess.updateBook(book, bid);
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
-		System.out.println("완료");
 		response.sendRedirect("./shop/bookList.jsp?bkind=" + bkind);
-		
-		
-		
-		
-		
-		
-	}
-
 }
+		
+	
+	}
+	
+
+

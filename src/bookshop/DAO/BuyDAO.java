@@ -8,21 +8,21 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.rmi.rmid.ExecOptionPermission;
+//import com.sun.rmi.rmid.ExecOptionPermission;
 
-import bookshop.VO.bookcartVO;
-import bookshop.VO.buyVO;
-import bookshop.VO.videocartVO;
+import bookshop.VO.BookcartVO;
+import bookshop.VO.BuyVO;
+import bookshop.VO.VideocartVO;
 import common.jdbc.JDBCConnectionPool;
 
-public class buyDAO {
+public class BuyDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
-	private static buyDAO instance = new buyDAO();
+	private static BuyDAO instance = new BuyDAO();
 
 	
-	public static buyDAO getinstance() {
+	public static BuyDAO getinstance() {
 		return instance;
 	}
 	
@@ -194,11 +194,11 @@ public class buyDAO {
 		//통계 메소드 
 		
 		//buy테이블의 전체 목록을 얻어내는 메소드
-		public List<buyVO> getBuyBookList() throws Exception{
+		public List<BuyVO> getBuyBookList() throws Exception{
 			Connection conn = JDBCConnectionPool.getConnection();
 			rs = null; pstmt = null;
-			List<buyVO> lists = null;
-			buyVO buybook = null;
+			List<BuyVO> lists = null;
+			BuyVO buybook = null;
 			String sql = "select bimage, btitle, vimage, vtitle " ;
 				   sql += " ,buyprice, buycount, buydate, account "; 
 			       sql += " ,deliveryname, deliverytel, deliveryadd1, deliveryadd2, saction, book.bid, video.vid ";
@@ -210,10 +210,10 @@ public class buyDAO {
 			       try {
 						pstmt = conn.prepareStatement(sql);
 						rs = pstmt.executeQuery();
-						lists = new ArrayList<buyVO>();
+						lists = new ArrayList<BuyVO>();
 						
 					while(rs.next()) {
-								buyVO buy = new buyVO();
+								BuyVO buy = new BuyVO();
 								buy.setBimage(rs.getString("bimage"));
 								buy.setBtitle(rs.getString("btitle"));
 								buy.setVimage(rs.getString("vimage"));
@@ -246,10 +246,10 @@ public class buyDAO {
 		
 		//id에 해당하는 구매목록을 얻어내는 메소드
 		
-		public List<buyVO> getBuyList_id(String id) throws Exception{
+		public List<BuyVO> getBuyList_id(String id) throws Exception{
 			Connection conn = JDBCConnectionPool.getConnection();
 			rs = null; pstmt = null;
-			buyVO buy = null;
+			BuyVO buy = null;
 			String sql = "select bimage, btitle, bprice, vimage, vtitle, vprice " ;
 			   sql += " ,buyprice, buycount, buydate, account "; 
 		       sql += " ,deliveryname, deliverytel, deliveryadd1, deliveryadd2, saction, book.bid, video.vid ";
@@ -258,17 +258,17 @@ public class buyDAO {
 		       sql += " inner join video";
 		       sql += " on buy.vid = video.vid";
 		       sql += " where id=?";
-			List<buyVO> lists = null;
+			List<BuyVO> lists = null;
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
 				
-				lists = new ArrayList<buyVO>();
+				lists = new ArrayList<BuyVO>();
 				
 				while(rs.next()) {
-					buy = new buyVO();
+					buy = new BuyVO();
 					
 					buy.setBimage(rs.getString("bimage"));
 					buy.setBtitle(rs.getString("btitle"));

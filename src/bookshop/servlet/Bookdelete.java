@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bookshop.DAO.shopBookDAO;
-import bookshop.VO.shopBookVo;
+import bookshop.DAO.ShopBookDAO;
+import bookshop.VO.ShopBookVo;
 
 /**
  * Servlet implementation class bookdelete
  */
 @WebServlet("/bookdelete")
-public class bookdelete extends HttpServlet {
+public class Bookdelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public bookdelete() {
+    public Bookdelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,7 +43,7 @@ public class bookdelete extends HttpServlet {
 			
 		
 		try {
-			shopBookDAO bookprocess = shopBookDAO.getinstance();
+			ShopBookDAO bookprocess = ShopBookDAO.getinstance();
 			bookprocess.deleteBook(bid);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

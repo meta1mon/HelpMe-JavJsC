@@ -1,18 +1,18 @@
-<%@page import="bookshop.DAO.shopvideoDAO"%>
-<%@page import="bookshop.VO.videoVO"%>
+<%@page import="bookshop.DAO.ShopvideoDAO"%>
+<%@page import="bookshop.VO.VideoVO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%!SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
 <%
-	List<videoVO> vList = null;
+	List<VideoVO> vList = null;
 int number = 0;
 String vkind = "";
 
 vkind = request.getParameter("vkind");
 
-shopvideoDAO vProcess = shopvideoDAO.getinstance();
+ShopvideoDAO vProcess = ShopvideoDAO.getinstance();
 int count = vProcess.getVideoCount();
 
 if (count > 0) {
@@ -27,15 +27,15 @@ if (count > 0) {
 <body>
 	<%
 		String v_kindName = "";
-	if (vkind.equals("100")) {
-		v_kindName = "JAVA";
-	} else if (vkind.equals("200")) {
-		v_kindName = "JSP";
-	} else if (vkind.equals("300")) {
-		v_kindName = "HTML";
-	} else if (vkind.equals("all")) {
-		v_kindName = "전체";
-	}
+		if (vkind.equals("100")) {
+			v_kindName = "JAVA";
+		} else if (vkind.equals("200")) {
+			v_kindName = "JSP";
+		} else if (vkind.equals("300")) {
+			v_kindName = "HTML";
+		} else if (vkind.equals("all")) {
+			v_kindName = "전체";
+		}
 	%>
 
 	<p><%=v_kindName%>
@@ -85,7 +85,7 @@ if (count > 0) {
 		</tr>
 			<%
 				for (int i = 0; i < vList.size(); i++) {
-				videoVO video = (videoVO)vList.get(i);
+					VideoVO video = (VideoVO)vList.get(i);
 			%>
 			<tr height="30">
 			<td><%=++number%></td>

@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class bookdeleteForm
  */
 @WebServlet("/bookdeleteForm")
-public class bookdeleteForm extends HttpServlet {
+public class BookdeleteForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public bookdeleteForm() {
+    public BookdeleteForm() {
         super();
         // TODO Auto-generated constructor stub
     }

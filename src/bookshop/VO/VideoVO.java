@@ -3,7 +3,7 @@ package bookshop.VO;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class videoVO {
+public class VideoVO {
 	private int vid;
 	private String vkind;
 	private String vtitle;

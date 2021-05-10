@@ -10,21 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bookshop.DAO.bookcartDAO;
-import bookshop.VO.shopBookVo;
+import bookshop.DAO.BookcartDAO;
+import bookshop.VO.ShopBookVo;
 import member.vo.Member;
 
 /**
  * Servlet implementation class bookupdateCart
  */
 @WebServlet("/bookupdateCart")
-public class bookupdateCart extends HttpServlet {
+public class BookupdateCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public bookupdateCart() {
+    public BookupdateCart() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,7 +48,7 @@ public class bookupdateCart extends HttpServlet {
 		String buycount = request.getParameter("buycount");
 		String bkind = request.getParameter("bkind");
 
-		shopBookVo book = new shopBookVo();
+		ShopBookVo book = new ShopBookVo();
 		book.setBkind(bkind);
 		
 		
@@ -60,7 +60,7 @@ public class bookupdateCart extends HttpServlet {
 			System.out.println("널 ");
 		}else {
 		
-			bookcartDAO bookprocess = bookcartDAO.getInstance();
+			BookcartDAO bookprocess = BookcartDAO.getInstance();
 				try {
 					bookprocess.updateBookCount(Integer.parseInt(bcid), Integer.parseInt(buycount));
 				} catch (Exception e) {

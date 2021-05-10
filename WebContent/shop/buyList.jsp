@@ -1,6 +1,6 @@
 <%@page import="java.text.NumberFormat"%>
-<%@page import="bookshop.DAO.buyDAO"%>
-<%@page import="bookshop.VO.buyVO"%>
+<%@page import="bookshop.DAO.BuyDAO"%>
+<%@page import="bookshop.VO.BuyVO"%>
 <%@page import="java.util.List"%>
 <%@page import="member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -17,8 +17,8 @@ String id = vo.getId();
 </head>
 <body>
 	<%
-		List<buyVO> buyLists = null;
-			buyVO buyList = null;
+		List<BuyVO> buyLists = null;
+			BuyVO buyList = null;
 			int count = 0;
 			int number = 0;
 			int number2 = 0;
@@ -27,7 +27,7 @@ String id = vo.getId();
 			if (session.getAttribute("loginMember") == null) {
 		response.sendRedirect("#");
 			} else {
-		buyDAO buyProcess = buyDAO.getinstance();
+		BuyDAO buyProcess = BuyDAO.getinstance();
 		count = buyProcess.getListCount(id);
 
 		if (count == 0) {

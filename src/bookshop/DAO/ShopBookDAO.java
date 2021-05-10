@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bookshop.VO.shopBookVo;
+import bookshop.VO.ShopBookVo;
 import common.jdbc.JDBCConnectionPool;
 
-public class shopBookDAO {
+public class ShopBookDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
@@ -25,9 +25,9 @@ public class shopBookDAO {
 		}
 		
 	}
-	private static shopBookDAO instance = new shopBookDAO();
+	private static ShopBookDAO instance = new ShopBookDAO();
 	
-	public static shopBookDAO getinstance() {
+	public static ShopBookDAO getinstance() {
 		return instance;
 	}
 	//관리자 인증 
@@ -63,7 +63,7 @@ public class shopBookDAO {
 	}
 	
 	//책 등록 
-	public void insertBook(shopBookVo book)throws Exception {
+	public void insertBook(ShopBookVo book)throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		PreparedStatement pstmt = null;
 	
@@ -116,10 +116,10 @@ public class shopBookDAO {
 			return x;	
 	}
 	//분류별 또는 전체 등록된 책의 정보를 얻어냄 
-	public List<shopBookVo> getBooks(String bkind) throws SQLException{
+	public List<ShopBookVo> getBooks(String bkind) throws SQLException{
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
-		List<shopBookVo> bookList = null;
+		List<ShopBookVo> bookList = null;
 		String sql1 = "select * from book";
 		String sql2 =  " select * from book";
 		sql2 += " where bkind = ? order by regdate desc";
@@ -133,9 +133,9 @@ public class shopBookDAO {
 		}
 		rs = pstmt.executeQuery();
 		if(rs.next()) {
-			bookList = new ArrayList<shopBookVo>();
+			bookList = new ArrayList<ShopBookVo>();
 			do {
-				shopBookVo book = new shopBookVo();
+				ShopBookVo book = new ShopBookVo();
 				book.setBid(rs.getInt("bid"));
 				book.setBkind(rs.getString("bkind"));
 				book.setBtitle(rs.getString("btitle"));
@@ -159,10 +159,10 @@ public class shopBookDAO {
 	}
 	//bid에 해당하는 책의 정보를 얻어내는 메소드로 
 	//등록된 책을 수정하기 위해 수정폼으로 읽어들이기 위한 메소드 
-	public shopBookVo getBook(int bid) throws Exception {
+	public ShopBookVo getBook(int bid) throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
-		shopBookVo book = null;
+		ShopBookVo book = null;
 		String sql = "select * from book where bid = ? ";
 		
 		try {
@@ -171,7 +171,7 @@ public class shopBookDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				book = new shopBookVo();
+				book = new ShopBookVo();
 				book.setBkind(rs.getString("bkind"));
 				book.setBtitle(rs.getString("btitle"));
 				book.setBprice(rs.getInt("bprice"));
@@ -189,7 +189,7 @@ public class shopBookDAO {
 		return book;
 	}
 	//책 정보 수정 
-	public void updateBook(shopBookVo book, int bid) throws Exception{
+	public void updateBook(ShopBookVo book, int bid) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
 		String sql = " update book set bkind=?, btitle=?, bprice=?";

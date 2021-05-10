@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class bookupdateForm
+ * Servlet implementation class videodeleteForm
  */
-@WebServlet("/bookupdateForm")
-public class bookupdateForm extends HttpServlet {
+@WebServlet("/videodeleteForm")
+public class VideodeleteForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public bookupdateForm() {
+    public VideodeleteForm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,10 +36,12 @@ public class bookupdateForm extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);
+	
 	}
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("폼 들어옴 ");
-		String url = "./shop/bookUpdateForm.jsp";
+		System.out.println("딜리트폼 들어옴 ");
+		String url = "./shop/videoDeleteForm.jsp";
+		
 //		response.sendRedirect(url);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

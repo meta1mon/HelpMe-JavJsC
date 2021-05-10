@@ -8,21 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bookshop.DAO.bookcartDAO;
-import bookshop.DAO.videocartDAO;
+import bookshop.DAO.BookcartDAO;
+import bookshop.DAO.VideocartDAO;
 import member.vo.Member;
 
 /**
  * Servlet implementation class videocartListDel
  */
 @WebServlet("/videocartListDel")
-public class videocartListDel extends HttpServlet {
+public class VideocartListDel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public videocartListDel() {
+	public VideocartListDel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -57,7 +57,7 @@ public class videocartListDel extends HttpServlet {
 		if (session.getAttribute("loginMember") == null) {
 			response.sendRedirect("#");
 		} else {
-			videocartDAO videoprocess = videocartDAO.getInstance();
+			VideocartDAO videoprocess = VideocartDAO.getInstance();
 			if (list.equals("all")) {
 				try {
 					videoprocess.deleteVideoAll(buyer);

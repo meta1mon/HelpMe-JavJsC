@@ -6,22 +6,22 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import bookshop.VO.bookcartVO;
+import bookshop.VO.BookcartVO;
 import common.jdbc.JDBCConnectionPool;
 
-public class bookcartDAO {
+public class BookcartDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-	public static bookcartDAO instance = new bookcartDAO();
+	public static BookcartDAO instance = new BookcartDAO();
 	
-	public static bookcartDAO getInstance() {
+	public static BookcartDAO getInstance() {
 		return instance;
 	}
 	
-	private bookcartDAO() {}
+	private BookcartDAO() {}
 
 
-public void insertBookCart(bookcartVO bookcart) throws Exception{
+public void insertBookCart(BookcartVO bookcart) throws Exception{
 	Connection conn = JDBCConnectionPool.getConnection();
 	rs = null; pstmt = null;
 	String sql = " insert into bookcart (bcid, bid, id, buycount)" +
@@ -65,9 +65,9 @@ public void insertBookCart(bookcartVO bookcart) throws Exception{
 		
 	
 	//id에 해당하는 레코드의 목록을 얻어내는 메소드
-	public List<bookcartVO> getBookCart(String id) throws Exception{
+	public List<BookcartVO> getBookCart(String id) throws Exception{
 		Connection conn = JDBCConnectionPool.getConnection();
-		List<bookcartVO> list = null;
+		List<BookcartVO> list = null;
 		String sql = " select bcid, bimage,btitle,bprice,buycount, bookcart.bid"+
 					" from bookcart left join book" +
 					" on bookcart.bid = book.bid";
@@ -77,10 +77,10 @@ public void insertBookCart(bookcartVO bookcart) throws Exception{
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			list = new ArrayList<bookcartVO>();
+			list = new ArrayList<BookcartVO>();
 			
 		while(rs.next()) {
-					bookcartVO vo = new bookcartVO();
+					BookcartVO vo = new BookcartVO();
 					vo.setBprice(rs.getInt("bprice"));
 					vo.setBtitle(rs.getString("btitle"));
 					vo.setBimage(rs.getString("bimage"));

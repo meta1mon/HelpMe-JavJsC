@@ -1,5 +1,5 @@
-<%@page import="bookshop.VO.videocartVO"%>
-<%@page import="bookshop.DAO.videocartDAO"%>
+<%@page import="bookshop.VO.VideocartVO"%>
+<%@page import="bookshop.DAO.VideocartDAO"%>
 <%@page import="member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -16,24 +16,24 @@
 
 	<%
 		System.out.println("bookcart 들어옴");
-	Member vo = (Member) request.getSession().getAttribute("loginMember");
-	String vkind = request.getParameter("vkind");
-	String	vid = request.getParameter("vid");
-	String buycount = request.getParameter("buycount");
-	String id = vo.getId();
+			Member vo = (Member) request.getSession().getAttribute("loginMember");
+			String vkind = request.getParameter("vkind");
+			String	vid = request.getParameter("vid");
+			String buycount = request.getParameter("buycount");
+			String id = vo.getId();
 	%>
 
 	<%
-		videocartVO videocart = new videocartVO();
+		VideocartVO videocart = new VideocartVO();
 
-	videocart.setVid(vid);
-	videocart.setBuycount(Integer.parseInt(buycount));
-	videocart.setId(id);
+			videocart.setVid(vid);
+			videocart.setBuycount(Integer.parseInt(buycount));
+			videocart.setId(id);
 
-	videocartDAO videocartprocess = videocartDAO.getInstance();
-	videocartprocess.insertVideoCart(videocart);
+			VideocartDAO videocartprocess = VideocartDAO.getInstance();
+			videocartprocess.insertVideoCart(videocart);
 
-	response.sendRedirect("cartList.jsp?vkind=" + vkind);
+			response.sendRedirect("cartList.jsp?vkind=" + vkind);
 	%>
 		
 </body>

@@ -1,18 +1,18 @@
-<%@page import="bookshop.DAO.shopBookDAO"%>
-<%@page import="bookshop.VO.shopBookVo"%>
+<%@page import="bookshop.DAO.ShopBookDAO"%>
+<%@page import="bookshop.VO.ShopBookVo"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%!SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
 <%
-	List<shopBookVo> bookList = null;
+	List<ShopBookVo> bookList = null;
 int number = 0;
 String bkind = "";
 
 bkind = request.getParameter("bkind");
 
-shopBookDAO bookProcess = shopBookDAO.getinstance();
+ShopBookDAO bookProcess = ShopBookDAO.getinstance();
 int count = bookProcess.getBookCount();
 
 if (count > 0) {
@@ -27,15 +27,15 @@ if (count > 0) {
 <body>
 	<%
 		String book_kindName = "";
-	if (bkind.equals("100")) {
-		book_kindName = "JAVA";
-	} else if (bkind.equals("200")) {
-		book_kindName = "JSP";
-	} else if (bkind.equals("300")) {
-		book_kindName = "HTML";
-	} else if (bkind.equals("all")) {
-		book_kindName = "전체";
-	}
+		if (bkind.equals("100")) {
+			book_kindName = "JAVA";
+		} else if (bkind.equals("200")) {
+			book_kindName = "JSP";
+		} else if (bkind.equals("300")) {
+			book_kindName = "HTML";
+		} else if (bkind.equals("all")) {
+			book_kindName = "전체";
+		}
 	%>
 
 	<p><%=book_kindName%>
@@ -85,7 +85,7 @@ if (count > 0) {
 		</tr>
 			<%
 				for (int i = 0; i < bookList.size(); i++) {
-				shopBookVo book = (shopBookVo) bookList.get(i);
+					ShopBookVo book = (ShopBookVo) bookList.get(i);
 			%>
 			<tr height="30">
 			<td><%=++number%></td>

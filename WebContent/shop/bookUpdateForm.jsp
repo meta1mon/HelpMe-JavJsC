@@ -1,13 +1,13 @@
-<%@page import="bookshop.DAO.shopBookDAO"%>
-<%@page import="bookshop.VO.shopBookVo"%>
+<%@page import="bookshop.DAO.ShopBookDAO"%>
+<%@page import="bookshop.VO.ShopBookVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	int bid = Integer.parseInt(request.getParameter("bid"));
 	String bkind = request.getParameter("bkind");
 	try {
-	shopBookDAO bookProcess = shopBookDAO.getinstance();
-	shopBookVo book = bookProcess.getBook(bid);
+	ShopBookDAO bookProcess = ShopBookDAO.getinstance();
+	ShopBookVo book = bookProcess.getBook(bid);
 %>
 <html>
 <head>

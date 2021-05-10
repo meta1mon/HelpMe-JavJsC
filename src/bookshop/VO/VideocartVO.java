@@ -1,6 +1,6 @@
 package bookshop.VO;
 
-public class videocartVO {
+public class VideocartVO {
 	private int vcid;
 	private String vid;
 	private String vtitle;

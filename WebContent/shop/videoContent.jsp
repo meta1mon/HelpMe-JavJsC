@@ -1,7 +1,7 @@
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.util.List"%>
-<%@page import="bookshop.DAO.shopvideoDAO"%>
-<%@page import="bookshop.VO.videoVO"%>
+<%@page import="bookshop.DAO.ShopvideoDAO"%>
+<%@page import="bookshop.VO.VideoVO"%>
 <%@page import="member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -29,23 +29,23 @@ try {
 </head>
 <body>
 	<%
-	List<videoVO> vLists = null;
-	videoVO vList = null;
-	String video_kindName = "";
+		List<VideoVO> vLists = null;
+			VideoVO vList = null;
+			String video_kindName = "";
 
-	shopvideoDAO vprocess = shopvideoDAO.getinstance();
-	vList = vprocess.getVideo(Integer.parseInt(vid));
+			ShopvideoDAO vprocess = ShopvideoDAO.getinstance();
+			vList = vprocess.getVideo(Integer.parseInt(vid));
 
-	vLists = vprocess.getVideos(vkind);
-	if (vkind.equals("100")) {
+			vLists = vprocess.getVideos(vkind);
+			if (vkind.equals("100")) {
 		video_kindName = "JAVA";
-	} else if (vkind.equals("200")) {
+			} else if (vkind.equals("200")) {
 		video_kindName = "JSP";
-	} else if (vkind.equals("300")) {
+			} else if (vkind.equals("300")) {
 		video_kindName = "HTML";
-	} else if (vkind.equals("all")) {
+			} else if (vkind.equals("all")) {
 		video_kindName = "전체";
-	}
+			}
 	%>
 
 </body>

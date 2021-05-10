@@ -15,22 +15,22 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import bookshop.DAO.shopBookDAO;
-import bookshop.DAO.shopvideoDAO;
-import bookshop.VO.videoVO;
+import bookshop.DAO.ShopBookDAO;
+import bookshop.DAO.ShopvideoDAO;
+import bookshop.VO.VideoVO;
 import sun.awt.image.IntegerComponentRaster;
 
 /**
  * Servlet implementation class videoUpdate
  */
 @WebServlet("/videoUpdate")
-public class videoUpdate extends HttpServlet {
+public class VideoUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public videoUpdate() {
+    public VideoUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -79,7 +79,7 @@ public class videoUpdate extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		videoVO video = new videoVO();
+		VideoVO video = new VideoVO();
 		
 		int vid =  Integer.parseInt(imageUp.getParameter("vid"));
 		String vkind = imageUp.getParameter("vkind");
@@ -102,7 +102,7 @@ public class videoUpdate extends HttpServlet {
 		
 		
 	try {
-		shopvideoDAO vprocess = shopvideoDAO.getinstance();
+		ShopvideoDAO vprocess = ShopvideoDAO.getinstance();
 		vprocess.updateVideo(video, vid);
 	}catch (Exception e) {
 		e.printStackTrace();

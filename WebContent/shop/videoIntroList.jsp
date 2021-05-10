@@ -1,8 +1,8 @@
-<%@page import="bookshop.DAO.shopvideoDAO"%>
+<%@page import="bookshop.DAO.ShopvideoDAO"%>
 <%@page import="java.text.NumberFormat"%>
-<%@page import="bookshop.DAO.shopBookDAO"%>
-<%@page import="bookshop.VO.shopBookVo"%>
-<%@page import="bookshop.VO.videoVO"%>
+<%@page import="bookshop.DAO.ShopBookDAO"%>
+<%@page import="bookshop.VO.ShopBookVo"%>
+<%@page import="bookshop.VO.VideoVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -18,29 +18,29 @@
 </head>
 <body>
 	<%
-	List<videoVO> vLists = null;
-	videoVO vList = null;
-	String video_kindName = "";
+		List<VideoVO> vLists = null;
+			VideoVO vList = null;
+			String video_kindName = "";
 
-	shopvideoDAO vprocess = shopvideoDAO.getinstance();
+			ShopvideoDAO vprocess = ShopvideoDAO.getinstance();
 
-	vLists = vprocess.getVideos(vkind);
-	if (vkind.equals("100")) {
+			vLists = vprocess.getVideos(vkind);
+			if (vkind.equals("100")) {
 		video_kindName = "JAVA";
-	} else if (vkind.equals("200")) {
+			} else if (vkind.equals("200")) {
 		video_kindName = "JSP";
-	} else if (vkind.equals("300")) {
+			} else if (vkind.equals("300")) {
 		video_kindName = "HTML";
-	} else if (vkind.equals("all")) {
+			} else if (vkind.equals("all")) {
 		video_kindName = "전체";
-	}
+			}
 	%>
 	<h3>
 		<b><%=video_kindName%>분류의 목록</b>
 	</h3>
 	<%
 		for (int i = 0; i < vLists.size(); i++) {
-		vList = (videoVO) vLists.get(i);
+			vList = (VideoVO) vLists.get(i);
 	%>
 	<table border="1px solid white">
 		<tr height="40">

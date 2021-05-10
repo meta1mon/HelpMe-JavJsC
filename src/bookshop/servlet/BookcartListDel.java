@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bookshop.DAO.bookcartDAO;
+import bookshop.DAO.BookcartDAO;
 import member.vo.Member;
 
 /**
  * Servlet implementation class cartListDel
  */
 @WebServlet("/bookcartListDel")
-public class bookcartListDel extends HttpServlet {
+public class BookcartListDel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public bookcartListDel() {
+	public BookcartListDel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -57,7 +57,7 @@ public class bookcartListDel extends HttpServlet {
 		if (session.getAttribute("loginMember") == null) {
 			response.sendRedirect("#");
 		} else {
-			bookcartDAO bookprocess = bookcartDAO.getInstance();
+			BookcartDAO bookprocess = BookcartDAO.getInstance();
 			if (list.equals("all")) {
 				try {
 					bookprocess.deleteBookAll(buyer);

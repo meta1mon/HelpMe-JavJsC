@@ -2,7 +2,7 @@ package bookshop.VO;
 
 import java.sql.Timestamp;
 
-public class buyVO {
+public class BuyVO {
 	private int buyid;
 	private int bid;
 	private int vid;

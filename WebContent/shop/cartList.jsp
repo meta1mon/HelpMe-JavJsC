@@ -1,7 +1,7 @@
-<%@page import="bookshop.VO.videocartVO"%>
-<%@page import="bookshop.DAO.videocartDAO"%>
-<%@page import="bookshop.VO.bookcartVO"%>
-<%@page import="bookshop.DAO.bookcartDAO"%>
+<%@page import="bookshop.VO.VideocartVO"%>
+<%@page import="bookshop.DAO.VideocartDAO"%>
+<%@page import="bookshop.VO.BookcartVO"%>
+<%@page import="bookshop.DAO.BookcartDAO"%>
 <%@page import="member.vo.Member"%>
 <%@page import="java.text.NumberFormat"%>
 
@@ -10,7 +10,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
-Member vo = (Member) request.getSession().getAttribute("loginMember");
+	Member vo = (Member) request.getSession().getAttribute("loginMember");
 String bkind = request.getParameter("bkind");
 String vkind = request.getParameter("vkind");
 String id = vo.getId();
@@ -22,29 +22,29 @@ String id = vo.getId();
 </head>
 <body>
 	<%
-		List<bookcartVO> bookcartLists = null;
-	bookcartVO bookcartList = null;
+		List<BookcartVO> bookcartLists = null;
+			BookcartVO bookcartList = null;
 
-	List<videocartVO> videocartLists = null;
-	videocartVO videocartList = null;
+			List<VideocartVO> videocartLists = null;
+			VideocartVO videocartList = null;
 
-	
-	int count = 0;
-	int count2 = 0;
-	int number = 0;
-	int number2 = 0;
-	int total = 0;
-	int vtotal = 0;
+			
+			int count = 0;
+			int count2 = 0;
+			int number = 0;
+			int number2 = 0;
+			int total = 0;
+			int vtotal = 0;
 
-	if (session.getAttribute("loginMember") == null) {
+			if (session.getAttribute("loginMember") == null) {
 		response.sendRedirect("#");
-	} else {
-		bookcartDAO bookprocess = bookcartDAO.getInstance();
+			} else {
+		BookcartDAO bookprocess = BookcartDAO.getInstance();
 		count = bookprocess.getBookListCount(id);
 		
-		videocartDAO videoprocess = videocartDAO.getInstance();
+		VideocartDAO videoprocess = VideocartDAO.getInstance();
 		count2 = videoprocess.getVideoListCount(id);
-						
+		
 		if (count == 0 && count2 ==0) {
 	%>
 	<h3>장바구니</h3>
@@ -77,7 +77,7 @@ String id = vo.getId();
 			</tr>
 			<%
 				for (int i = 0; i < bookcartLists.size(); i++) {
-				bookcartList = (bookcartVO) bookcartLists.get(i);
+						bookcartList = (BookcartVO) bookcartLists.get(i);
 			%>
 			<tr>
 				<td width="50"><%=++number%></td>
@@ -90,7 +90,7 @@ String id = vo.getId();
 					name="buycount" size="5" value="<%=bookcartList.getBuycount()%>">
 					<%
 						String url = "../bookupdateCartForm?bcid=" + bookcartList.getBcid() + "&bkind=" + bkind + "&buycount="
-							+ bookcartList.getBuycount();
+										+ bookcartList.getBuycount();
 					%> <input type="button" value="수정"
 					onclick="javascript:window.location='<%=url%>'"></td>
 
@@ -106,16 +106,15 @@ String id = vo.getId();
 			</tr>
 		
 			<%
-				
-			}
-			%>
+						}
+					%>
 			</table>
 			</form>
 				
 			<div>
 			<%
-							String url3 = "../bookcartListDel?list=all&bkind=" + bkind;
-						%> <input type="button" value="책 모두 비우기"
+				String url3 = "../bookcartListDel?list=all&bkind=" + bkind;
+			%> <input type="button" value="책 모두 비우기"
 						onclick="javascript:window.location='<%=url3%>'">
 		</div>			
 		<form name="cartform2">
@@ -131,7 +130,7 @@ String id = vo.getId();
 
 			<%
 				for (int i = 0; i < videocartLists.size(); i++) {
-				videocartList = (videocartVO) videocartLists.get(i);
+					videocartList = (VideocartVO) videocartLists.get(i);
 			%>
 			<tr>
 				<td width="50"><%=++number2%></td>

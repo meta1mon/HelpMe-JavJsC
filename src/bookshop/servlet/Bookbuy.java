@@ -10,26 +10,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bookshop.DAO.bookcartDAO;
-import bookshop.DAO.buyDAO;
+import bookshop.DAO.BookcartDAO;
+import bookshop.DAO.BuyDAO;
 import bookshop.DAO.cartDAO;
-import bookshop.DAO.videocartDAO;
-import bookshop.VO.bookcartVO;
-import bookshop.VO.buyVO;
-import bookshop.VO.videocartVO;
+import bookshop.DAO.VideocartDAO;
+import bookshop.VO.BookcartVO;
+import bookshop.VO.BuyVO;
+import bookshop.VO.VideocartVO;
 import member.vo.Member;
 
 /**
  * Servlet implementation class bookbuy
  */
 @WebServlet("/bookbuy")
-public class bookbuy extends HttpServlet {
+public class Bookbuy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public bookbuy() {
+    public Bookbuy() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -60,7 +60,7 @@ public class bookbuy extends HttpServlet {
 		String buycount = request.getParameter("buycount");
 		String id = vo.getId();
 				
-		buyVO buy = new buyVO();
+		BuyVO buy = new BuyVO();
 		
 		
 		buy.setId(id);
@@ -75,7 +75,7 @@ public class bookbuy extends HttpServlet {
 		buy.setBuycount(Integer.parseInt(buycount));
 		System.out.println(buycount);
 		
-		buyDAO buyprocess = buyDAO.getinstance();
+		BuyDAO buyprocess = BuyDAO.getinstance();
 		try {
 			buyprocess.insertBuy(Integer.parseInt(vid), Integer.parseInt(bid), id, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2,
 					Integer.parseInt(buyprice),Integer.parseInt(buycount));
