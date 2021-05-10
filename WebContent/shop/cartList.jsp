@@ -2,8 +2,6 @@
 <%@page import="bookshop.DAO.videocartDAO"%>
 <%@page import="bookshop.VO.bookcartVO"%>
 <%@page import="bookshop.DAO.bookcartDAO"%>
-<%@page import="bookshop.DAO.cartDAO"%>
-<%@page import="bookshop.VO.cartVO"%>
 <%@page import="member.vo.Member"%>
 <%@page import="java.text.NumberFormat"%>
 

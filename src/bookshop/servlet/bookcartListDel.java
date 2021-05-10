@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bookshop.DAO.bookcartDAO;
-import bookshop.DAO.cartDAO;
 import member.vo.Member;
 
 /**

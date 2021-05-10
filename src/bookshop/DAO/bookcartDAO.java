@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bookshop.VO.bookcartVO;
-import bookshop.VO.cartVO;
 import common.jdbc.JDBCConnectionPool;
 
 public class bookcartDAO {

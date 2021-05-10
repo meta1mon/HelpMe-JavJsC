@@ -24,8 +24,6 @@
 	
 </style>
 </head>
-<body>
-
 	<%@include file="../../view/header.jsp"%>
 <body class="content">
 	<!-- 게시판(게시글 목록) 영역 -->
@@ -43,13 +41,20 @@
 					</thead>
 					<tbody>
 						<tr>
+							<td>분류선택</td>
+							<td><select name="bkind">
+									<option value="100">JAVA</option>
+									<option value="200">JSP</option>
+									<opt ion value="300">HTML
+									</option>
+							</select></td>
 							<!-- 내용 -->
 							<td><input type="text" placeholder="글 제목" name="qsubject"
 								maxlength="50"></td>
 						</tr>
 						<tr>
-							<td><textarea placeholder="글 내용" id="editor" name="qcontent"
-									maxlength="2048"></textarea></td>
+							<td colspan="2"><textarea placeholder="글 내용" id="editor"
+									name="qcontent" maxlength="2048"></textarea></td>
 
 							<script>
 								CKEDITOR.replace('editor');
@@ -59,13 +64,12 @@
 					</tbody>
 				</table>
 				<div id="fileDiv">
-					<p>첨부파일<br>
-					<input type="file" id="file" name="file"> 
-					<a href="#this" class="btn" id="delete" name="delete">삭제</a>
+					<p>
+						첨부파일<br> <input type="file" id="file" name="file"> <a
+							href="#this" class="btn" id="delete" name="delete">삭제</a>
 					</p>
 				</div>
-				<br />
-				<br /> <a href="#this" class="btn" id="addFile">파일 추가</a> <input
+				<br /> <br /> <a href="#this" class="btn" id="addFile">파일 추가</a> <input
 					type="button" value="취소"
 					onclick="location.href = '<%=request.getContextPath()%>/qnalist'">
 				<input type="submit" value="등록">
@@ -73,32 +77,31 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	var gfv_count = 1;
-	
-		$(document).ready(function(){
-			
-			$("#addFile").on("click", function(e){ //파일 추가 버튼
+		var gfv_count = 1;
+
+		$(document).ready(function() {
+
+			$("#addFile").on("click", function(e) { //파일 추가 버튼
 				e.preventDefault();
 				fn_addFile();
 			});
-			
-			$("a[name='delete']").on("click", function(e){ //삭제 버튼
+
+			$("a[name='delete']").on("click", function(e) { //삭제 버튼
 				e.preventDefault();
 				fn_deleteFile($(this));
 			});
 		});
-		
-		
-		function fn_addFile(){
+
+		function fn_addFile() {
 			var str = "<p><input type='file' name='file'><a href='#this' class='btn' name='delete'>삭제</a></p>";
 			$("#fileDiv").append(str);
-			$("a[name='delete']").on("click", function(e){ //삭제 버튼
+			$("a[name='delete']").on("click", function(e) { //삭제 버튼
 				e.preventDefault();
 				fn_deleteFile($(this));
 			});
 		}
-		
-		function fn_deleteFile(obj){
+
+		function fn_deleteFile(obj) {
 			obj.parent().remove();
 		}
 	</script>
