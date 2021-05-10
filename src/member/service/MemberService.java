@@ -16,9 +16,9 @@ public class MemberService {
 		return list;
 	}
 
-	public Member selectSearch(String id) {
+	public Member selectSearch(String str, int tag) {
 		Connection conn = getConnection();
-		Member vo = new MemberDao().selectSearch(conn, id);
+		Member vo = new MemberDao().selectSearch(conn, str, tag);
 		close(conn);
 		return vo;
 	}

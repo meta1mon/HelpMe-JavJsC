@@ -25,7 +25,7 @@ tr td:nth-of-type(3) {
 	width: 320px;
 }
 
-tr:nth-of-type(1) td:nth-of-type(3) div {
+tr:nth-of-type(1) td:nth-of-type(3) div, tr:nth-of-type(2) td:nth-of-type(3) div {
 		float:left;
 }
 
@@ -43,7 +43,7 @@ table {
 	font-size: 1px;
 }
 
-#idcheck {
+#idcheck, #nicknamecheck {
 	cursor: pointer;
 	color: blue;
 }
@@ -68,6 +68,8 @@ table {
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 // 아이디 중복 체크 결과
+		var idcheck = false;
+		var nicknamecheck = false;
 	$(function() {
 		// 아이디 중복 체크
 		$("#idcheck").click(function() {
@@ -81,18 +83,50 @@ table {
 				url : "<%=request.getContextPath()%>/uniqueid",
 				type : "post",
 				data : {
-					"id" : id
+					"id" : id,
+					"tag" : 1
 				},
 				dataType : "json",
 				success : function(data) {
 					if (data == "사용가능") {
 						alert("사용 가능한 아이디입니다");
+						idcheck = true;
 					} else {
 						alert("이미 존재하는 아이디입니다. 다른 아이디를 사용해주세요");
+						idcheck = false;
 					}
 				}
 
 			});
+		});
+		
+		// 닉네임 중복 체크
+		$("#nicknamecheck").click(function() {
+			var nickname = $("#nickname").val().trim();
+			if(nickname == "") {
+				alert("닉네임을 입력하고 중복확인을 눌러주세요");
+				$("nickname").focus();
+				return;
+			}
+			$.ajax({
+				url : "<%=request.getContextPath()%>/uniquenickname",
+				type : "post",
+				data : {
+					"nickname" : nickname,
+					"tag" : 2
+				},
+				dataType : "json",
+				success : function(data) {
+					if (data == "사용가능") {
+						alert("사용 가능한 닉네임입니다");
+						nicknamecheck = true;
+					} else {
+						alert("이미 존재하는 닉네임입니다. 다른 닉네임을 사용해주세요");
+						nicknamecheck = false;
+					}
+				}
+			});
+
 		});
 
 		// 비밀번호 일치 체크
@@ -195,7 +229,7 @@ table {
 			$("#passanswer").focus();
 			return false;
 		}
-		
+
 		if (!reg5.test(tel) && (tel != "")) {
 			alert("전화번호 형식이 잘못되었습니다");
 			$("#tel").focus();
@@ -231,6 +265,16 @@ table {
 		}
 
 		if (passequal() == false) {
+			return false;
+		}
+
+		if (idcheck == false) {
+			alert("아이디 중복확인이 필요합니다");
+			return false;
+		}
+
+		if (nicknamecheck == false) {
+			alert("닉네임 중복확인이 필요합니다");
 			return false;
 		}
 
@@ -296,8 +340,8 @@ table {
 				<tr>
 					<td>닉네임<span class="required">(필수)</span></td>
 					<td><input type="text" name="nickname" id="nickname"></td>
-					<td><span class="desc"> 1~8자의 한글, 영문자, 숫자만 사용
-							가능합니다.</span></td>
+					<td><div><span id="nicknamecheck">중복확인</span></div><div><span class="desc"> 1~8자의 한글, 영문자, 숫자만 사용
+							가능합니다.</span></div></td>
 				</tr>
 				<tr>
 					<td>비밀번호<span class="required">(필수)</span></td>

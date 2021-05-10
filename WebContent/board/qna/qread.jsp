@@ -124,7 +124,7 @@ tr {
 						<td>추천수 ${r.rqlikecnt }</td>
 						<td>${r.rqcontent }</td>
 						<td><button type="button"
-								onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }'">삭제</button>
+								onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }&qno=${r.qno }'">삭제</button>
 							<button type="button"
 								onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', '_blank')">수정</button>
 							<button type="button" onclick="rqlike(${r.rqno})">추천</button></td>

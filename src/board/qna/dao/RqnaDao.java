@@ -19,10 +19,12 @@ public class RqnaDao {
 	public int RqnaWrite(Connection con, Rqna vo) throws SQLException {
 		int result = 0;
 		int max = 0;
-
+		int result2 = 0;
+		
 		String maxSql = "select nvl(max(rqno),0)+1 from rqna";
 		String sql = "insert into rqna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),    ?, ?, 0)";
-
+		String replycnt = "update qna set rqnacnt = rqnacnt+1 where qno = ?";
+		
 		try {
 			pstmt = con.prepareStatement(maxSql);
 			rs = pstmt.executeQuery();
@@ -43,12 +45,17 @@ public class RqnaDao {
 			pstmt.setString(6, vo.getRqfilepath());
 
 			result = pstmt.executeUpdate();
+			
+			pstmt = con.prepareStatement(replycnt);
+			pstmt.setInt(1, vo.getQno());
+			result2 = pstmt.executeUpdate();
+			
 		} finally {
 			close(pstmt);
 
 		}
 
-		return result;
+		return result2;
 	}
 
 	public int RqnaCnt(Connection con, int qno) throws SQLException {
@@ -106,17 +113,26 @@ public class RqnaDao {
 
 	}
 	
-	public int Rqnadelete(Connection con, int rqno) throws SQLException {
+	public int Rqnadelete(Connection con, int rqno, int qno) throws SQLException {
 		int result = 0;
+		int result2 = 0;
 		String sql = "delete from rqna where rqno = ?";
+		String replycnt = "update qna set rqnacnt = rqnacnt-1 where qno = ?";
+		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rqno);
 			result = pstmt.executeUpdate();
+			close(pstmt);
+			
+			pstmt = con.prepareStatement(replycnt);
+			pstmt.setInt(1, qno);
+			result2 = pstmt.executeUpdate();
+			
 		} finally {
 			close(pstmt);
 		}
-		return result;
+		return result2;
 
 	}
 	

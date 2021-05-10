@@ -58,7 +58,7 @@ public class MemberInsert extends HttpServlet {
 			out.println("<script>alert('회원가입에 성공하였습니다');</script>");
 			out.println("<script>location.href='index.jsp';</script>");
 		} else {
-			out.println("<script>alert('아이디 중복으로 회원가입에 실패하였습니다.');</script>");
+			out.println("<script>alert('회원가입에 실패하였습니다. 관리자에게 문의하세요');</script>");
 			out.println("<script>location.href='index.jsp';</script>");
 		}
 		

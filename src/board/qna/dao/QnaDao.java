@@ -33,6 +33,7 @@ public class QnaDao {
 			}
 
 		}
+		
 		String sql2 = "select rownum r, d.* from (" + sql + ") d";
 		String sql3 = "select * from (" + sql2 + ") where r between ? and ?";
 
@@ -56,6 +57,7 @@ public class QnaDao {
 					vo.setQviewcnt(rs.getInt("qviewcnt"));
 					vo.setQlikecnt(rs.getInt("qlikecnt"));
 					vo.setQtag(rs.getInt("qtag"));
+					vo.setRqnacnt(rs.getInt("rqnacnt"));
 					list.add(vo);
 				}
 			}
@@ -123,6 +125,7 @@ public class QnaDao {
 					vo.setQviewcnt(rs.getInt("qviewcnt"));
 					vo.setQlikecnt(rs.getInt("qlikecnt"));
 					vo.setQtag(rs.getInt("qtag"));
+					vo.setRqnacnt(rs.getInt("rqnacnt"));
 				}
 			}
 		} finally {
@@ -138,7 +141,7 @@ public class QnaDao {
 		int max = 0;
 
 		String maxSql = "select nvl(max(qno),0)+1 from qna";
-		String sql = "insert into qna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),    ?, ?, 0, 0, ?)";
+		String sql = "insert into qna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),    ?, ?, 0, 0, ?, 0)";
 
 		try {
 			pstmt = con.prepareStatement(maxSql);
@@ -201,7 +204,6 @@ public class QnaDao {
 
 	public int viewInt(Connection con, int qno) throws SQLException {
 		int result = 0;
-		// 지금은 제목이랑 내용만 바꿀 수 있게 한다
 		String sql = "update qna set qviewcnt = qviewcnt+1 where qno = ?";
 		try {
 			pstmt = con.prepareStatement(sql);

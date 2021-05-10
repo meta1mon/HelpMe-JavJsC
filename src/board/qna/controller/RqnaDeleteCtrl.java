@@ -46,9 +46,10 @@ public class RqnaDeleteCtrl extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("들어는 옴");
 		int rqno = Integer.parseInt(request.getParameter("rqno"));
+		int qno = Integer.parseInt(request.getParameter("qno"));
 		int result = 0;
 		try {
-			result = new RqnaService().Rqnadelete(rqno);
+			result = new RqnaService().Rqnadelete(rqno, qno);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -61,10 +61,17 @@ public class MemberDao {
 		return list;
 	}
 
-// 아이디로 회원 검색 조회
-	public Member selectSearch(Connection conn, String id) {
+// 아이디나 닉네임으로 회원 검색 조회
+	public Member selectSearch(Connection conn, String str, int tag) {
 		Member vo = null;
-		String sql = "select * from member where id like '%" + id + "%'";
+		String sql = "";
+		if(tag == 1) { // 회원 검색 기준이 아이디
+			sql = "select * from member where id like '%" + str + "%'";
+		} else if(tag == 2) { // 회원 검색 기준이 닉네임
+			sql = "select * from member where nickname like '%" + str + "%'";			
+		} else {
+			System.out.println("회원 검색 시, 문제 발생함");
+		}
 
 		try {
 			pstmt = conn.prepareStatement(sql);

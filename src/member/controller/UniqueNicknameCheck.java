@@ -11,23 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 
-import member.dao.MemberDao;
 import member.service.MemberService;
 import member.vo.Member;
 
 /**
- * Servlet implementation class UniqueIdCheck
+ * Servlet implementation class UniqueNicknameCheck
  */
-@WebServlet("/uniqueid")
-public class UniqueIdCheck extends HttpServlet {
+@WebServlet("/uniquenickname")
+public class UniqueNicknameCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UniqueIdCheck() {
+    public UniqueNicknameCheck() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,7 +40,7 @@ public class UniqueIdCheck extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String str = request.getParameter("id");
+		String str = request.getParameter("nickname");
 		int tag = Integer.parseInt(request.getParameter("tag"));
 		Member result = new MemberService().selectSearch(str, tag);
 		
@@ -58,9 +56,6 @@ public class UniqueIdCheck extends HttpServlet {
 		out.println(msg);
 		out.flush();
 		out.close();
-		
-		
-		
 	}
 
 }

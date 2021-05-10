@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.qna.service.QnaService;
+import board.qna.service.RqnaService;
 import board.qna.vo.Qna;
 
 /**
@@ -104,7 +105,7 @@ public class QnaListCtrl extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
 		request.setAttribute("qlist", list);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
