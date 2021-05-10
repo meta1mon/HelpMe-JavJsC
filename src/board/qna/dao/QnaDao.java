@@ -17,7 +17,7 @@ public class QnaDao {
 		String sql = "select * from qna order by qno desc";
 		if (search != null) {
 			sql = "select * from qna where (qsubject like '%" + search + "%' or qcontent like '%" + search
-					+ "%') order by qno desc";
+					+ "%' or qwriter like '%" + search + "%') order by qno desc";
 		}
 		String sql2 = "select rownum r, d.* from (" + sql + ") d";
 		String sql3 = "select * from (" + sql2 + ") where r between ? and ?";
@@ -58,7 +58,7 @@ public class QnaDao {
 		int cnt = 0;
 		String sql = "select count(*) from qna";
 		if (search != null) {
-			sql += " where qsubject like '%" + search + "%' or qcontent like '%" + search + "%'";
+			sql += " where qsubject like '%" + search + "%' or qcontent like '%" + search + "%' or qwriter like '%" + search + "%'";
 		}
 
 		try {

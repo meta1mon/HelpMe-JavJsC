@@ -18,6 +18,7 @@ import javax.servlet.http.Part;
 
 import board.qna.service.QnaService;
 import board.qna.vo.Qna;
+import member.vo.Member;
 
 @MultipartConfig(
 		fileSizeThreshold=1024*1024,
@@ -84,11 +85,8 @@ public class QnaWriteCtrl extends HttpServlet {
 		
 		builder.delete(builder.length()-1,builder.length());
 			
-// 닉네임 불러와야되는데 아직 설정 안함
-
-//		Member me = (Member) request.getSession().getAttribute("loginMember");
-//		String qwriter = me.getNickname();
-		String qwriter = "eeee";
+		Member me = (Member) request.getSession().getAttribute("loginMember");
+		String qwriter = me.getNickname();
 
 		Qna vo = new Qna();
 		String qtag = request.getParameter("qtag");

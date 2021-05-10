@@ -1,46 +1,61 @@
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="board.qna.dao.QnaDao" %> <!-- write.jsp 일부 수정해 만듦 -->
+<%@ page import="java.io.PrintWriter"%>
+<%@ page import="board.qna.dao.QnaDao"%>
+<!-- write.jsp 일부 수정해 만듦 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 웹으로 설정 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 반응형 웹으로 설정 -->
 <title>JSP 게시판 웹 사이트</title>
-	<!-- CSS(부트스트랩 사용) -->
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- CSS(부트스트랩 사용) -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
 
-	
-	<style>
+
+<style>
 	<%@include file="../../style/common.css" %>
 	<%@include file="../../style/header.css" %>
 	<%@include file="../../style/footer.css"%>
-	
-	table {
-	width:70%;
-	margin-right:auto;
-	margin-left:auto;
+table {
+	width: 70%;
+	margin-right: auto;
+	margin-left: auto;
 	text-align: center;
-	}
-	
-	tr {
-  border-style: groove;
-  border-width: 1px;
-  border-color: #FEFEFE;
-	}
+}
+
+tr {
+	border-style: groove;
+	border-width: 1px;
+	border-color: #FEFEFE;
+}
 </style>
 <script>
 	function open_win(url, name){
 		window.open(url, name, "width=1000px, height=500px, resizable = no, left= 100, top=100");
 	}
 	
-	function like() {
-		console.log("좋아요 들어왕");
-		
-		
+	function qlike() {
+		$.ajax({
+			url : "<%=request.getContextPath()%>/qlike",
+			type : "post",
+			data : {
+				id : "${loginMember.id}",
+				qno : "${qna.qno}"
+			},
+			datatype : "json",
+			success : function(data) {
+				alert(data);
+	            window.location.reload();
+			}
+		});
+	};
+
+	function rqnaLike() {
+
 	}
 </script>
 </head>
@@ -49,7 +64,7 @@
 	<!-- 게시글 내용 표시 -->
 	<table class="1" border="2">
 		<tr>
-			<td style=text-align:center;"><h3>글쓴이 ${qna.qwriter }</h3></td>
+			<td style="text-align: center;""><h3>글쓴이 ${qna.qwriter }</h3></td>
 			<td>조회수 ${qna.qviewcnt } 추천수 ${qna.qlikecnt }</td>
 		</tr>
 		<tr>
@@ -125,7 +140,8 @@
 		onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'">수정</button>
 	<button type="button"
 		onclick="location.href='<%=request.getContextPath()%>/qnadelete?qno=${qna.qno }'">삭제</button>
-	<button type="button" onclick="like();">추천</button>
+	<button type="button" onclick="qlike()">추천</button>
+	<span id="like"></span>
 	<script>
 		CKEDITOR.replace('editor');
 	</script>

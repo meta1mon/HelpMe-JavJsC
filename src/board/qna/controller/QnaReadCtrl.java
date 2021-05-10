@@ -50,24 +50,22 @@ public class QnaReadCtrl extends HttpServlet {
 
 	private void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-// 글 목록에서 넘겨 받은 것
+// 글 목록에서 들어갈 때,
 		int qno = Integer.parseInt(request.getParameter("qno"));
-		
+
 		// 조회수 증가
 		try {
-		int viewcnt =new QnaService().viewInt(qno);
-		if(viewcnt > 0) {
-			System.out.println("조회수 증가");
-		} else {
-			System.out.println("문제 생김");
-		}
+			int viewcnt = new QnaService().viewInt(qno);
+			if (viewcnt > 0) {
+				System.out.println("조회수 증가");
+			} else {
+				System.out.println("문제 생김");
+			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
-		
+
 // 글 가져오기
 		Qna qvo = null;
 		try {
@@ -79,7 +77,6 @@ public class QnaReadCtrl extends HttpServlet {
 // 댓글 세팅
 		final int PAGE_SIZE = 3;
 		final int PAGE_BOX = 3;
-
 
 		int allPages = 0;
 		try {
@@ -99,7 +96,7 @@ public class QnaReadCtrl extends HttpServlet {
 		int currentPage = 1;
 		// 리스트에서 누른 번호로 현재 페이지를 넘김
 		String pageNum = request.getParameter("pageNum");
-		if (pageNum != null) {   // 이거 안해주면, 제일 처음 리스트 보려고 할 때 에러 걸림, 페이지 클릭이 없기 때문
+		if (pageNum != null) { // 이거 안해주면, 제일 처음 리스트 보려고 할 때 에러 걸림, 페이지 클릭이 없기 때문
 			currentPage = Integer.parseInt(pageNum);
 		}
 		// 현재 페이지를 기준으로 글 몇 번부터 몇 번까지 보여줄지 결정
@@ -119,7 +116,7 @@ public class QnaReadCtrl extends HttpServlet {
 		if (endPage > pageBoxCnt) {
 			endPage = pageBoxCnt;
 		}
-		
+
 // 댓글 가져오기
 		ArrayList<Rqna> list = null;
 		try {
@@ -127,12 +124,11 @@ public class QnaReadCtrl extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 // 읽어온 글이 있다면! 실행할 부분
 		if (qvo != null) {
 			request.setAttribute("qna", qvo);
-			if(list != null) {
+			if (list != null) {
 				request.setAttribute("reply", list);
 				request.setAttribute("startPage", startPage);
 				request.setAttribute("endPage", endPage);
