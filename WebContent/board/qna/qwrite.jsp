@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JSP 게시판 웹 사이트</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 	<style>
 	<%@include file="../../style/common.css" %>
 	<%@include file="../../style/header.css" %>
@@ -54,9 +54,18 @@
 							<td colspan="2"><textarea placeholder="글 내용" id="editor"
 									name="qcontent" maxlength="2048"></textarea></td>
 
-							<script>
-								CKEDITOR.replace('editor');
-							</script>
+						<script>
+						    ClassicEditor
+						        .create( document.querySelector( '#editor' ), {
+						            cloudServices: {
+						                tokenUrl: 'https://80479.cke-cs.com/token/dev/7ac95c09e51707fa1d95f2ea91d9a83fcb6e5bc7fc5a60c689f1f30dfb21',
+						                uploadUrl: 'https://80479.cke-cs.com/easyimage/upload/'
+						            }
+						        } )
+						        .catch( error => {
+						            console.error( error );
+						        } );
+						</script>
 
 						</tr>
 					</tbody>
