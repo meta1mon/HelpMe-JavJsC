@@ -11,7 +11,7 @@
 <!-- 반응형 웹으로 설정 -->
 <title>JSP 게시판 웹 사이트</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
@@ -42,9 +42,18 @@
 									id="editor1" name="qcontent" maxlength="2048"
 									style="height: 350px;">${qna.qcontent }</textarea></td>
 
-							<script>
-								CKEDITOR.replace('editor1');
-							</script>
+						<script>
+						    ClassicEditor
+						        .create( document.querySelector( '#editor' ), {
+						            cloudServices: {
+						                tokenUrl: 'https://80479.cke-cs.com/token/dev/7ac95c09e51707fa1d95f2ea91d9a83fcb6e5bc7fc5a60c689f1f30dfb21',
+						                uploadUrl: 'https://80479.cke-cs.com/easyimage/upload/'
+						            }
+						        } )
+						        .catch( error => {
+						            console.error( error );
+						        } );
+						</script>
 						</tr>
 					</tbody>
 				</table>

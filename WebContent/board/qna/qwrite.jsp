@@ -85,12 +85,17 @@
 	</div>
 	<script type="text/javascript">
 		var gfv_count = 1;
-
 		$(document).ready(function() {
 
 			$("#addFile").on("click", function(e) { //파일 추가 버튼
+				if(gfv_count==10) {
+					alert(gfv_count+"개까지만 첨부 가능합니다.");
+					return false;
+				} else {
+				gfv_count++;
 				e.preventDefault();
 				fn_addFile();
+				}
 			});
 
 			$("a[name='delete']").on("click", function(e) { //삭제 버튼
@@ -107,9 +112,11 @@
 				fn_deleteFile($(this));
 			});
 		}
+		
 
 		function fn_deleteFile(obj) {
 			obj.parent().remove();
+			gfv_count--;
 		}
 	</script>
 

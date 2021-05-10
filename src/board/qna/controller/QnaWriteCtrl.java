@@ -21,9 +21,9 @@ import board.qna.vo.Qna;
 import member.vo.Member;
 
 @MultipartConfig(
-		fileSizeThreshold=1024*1024,
-		maxFileSize=1024*1024*50,
-		maxRequestSize=1024*1024*50*5
+		fileSizeThreshold=1024*1024*10,	//10 MB / 업로드한 파일의 크기가 태그 값보다 크면 디렉토리에 임시 저장, 작다면 메모리에 파일 저장.
+		maxFileSize=1024*1024*10,		//10 MB / 파일 1개당 최대 파일 크기
+		maxRequestSize=1024*1024*50		//50 MB / 전체 요청의 크기
 		)
 @WebServlet("/qnawrite")
 public class QnaWriteCtrl extends HttpServlet {
