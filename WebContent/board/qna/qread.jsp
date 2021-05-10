@@ -97,8 +97,7 @@ tr {
 			<td>첨부파일</td>
 			<td style="text-align: left; text-indent: 10px;"><c:forTokens
 					var="fileName" items="${qna.qfilepath}" delims="," varStatus="st">
-					<a download
-						href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
+					<a download="${fileName}" href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
 					<c:if test="${!st.last }">
 				/
 				</c:if>

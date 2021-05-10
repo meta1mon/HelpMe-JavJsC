@@ -51,11 +51,17 @@ public class QnaWriteCtrl extends HttpServlet {
 		
 		Collection<Part> parts = request.getParts();
 		StringBuilder builder = new StringBuilder();
+		System.out.println("parts:" + parts);
 		for(Part p : parts) {
 			if(!p.getName().equals("file")) continue;
+			System.out.println("p.getName():" + p.getName());
 			
 			Part filePart = p;
 			String fileName = filePart.getSubmittedFileName();
+			System.out.println("fileName:"+ fileName);
+			if(fileName==null || fileName.equals("")) 
+				continue;
+		
 			builder.append(fileName);
 			builder.append(",");		//다중 파일들을 db에 넣을 때 뒤에 쉼표를 찍어서 넣는다.
 			
@@ -80,10 +86,14 @@ public class QnaWriteCtrl extends HttpServlet {
 				
 			fos.close();   
 			fis.close();
-				
 		}
-		
-		builder.delete(builder.length()-1,builder.length());
+		System.out.println("builder.length():" + builder.length());
+		if(builder.length() > 0) {
+			builder.delete(builder.length()-1,builder.length()); 
+		}
+		if(builder.length()> 1800) {
+			System.out.println("DBfilename 크기보다 큽니다.");
+		}
 			
 		Member me = (Member) request.getSession().getAttribute("loginMember");
 		String qwriter = me.getNickname();
