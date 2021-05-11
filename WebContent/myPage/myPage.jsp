@@ -1,10 +1,7 @@
-<%@page import="java.util.List"%>
 <%@page import="member.vo.Member"%>
-<%@page import="bookshop.DAO.BuyDAO"%>
-<%@page import="bookshop.VO.BuyVO"%>
+<%@page import="board.qna.dao.QnaDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.text.NumberFormat"%>
 <%@include file="../view/header.jsp"%>
 <style>
 /*profile*/
@@ -116,7 +113,7 @@ a {
 
 .tab-sub>.tab .title {
 	display: block;
-	height: 20px;
+	height: 30px;
 	padding: 5px 20px;
 	font-weight: bold;
 	color: white;
@@ -132,7 +129,7 @@ a {
 }
 
 .tab-sub>.tab .on .title {
-	height: 20px;
+	height: 30px;
 	background-color: #2c3e50;
 	color: #1abc9c;
 }
@@ -183,7 +180,7 @@ a {
 					});
 
 </script>
-</head>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
 function showPopup(url, name) { 
 	window.open(url, name, "width=1000px, height=500px resizable=no");
@@ -195,6 +192,7 @@ $(document).ready(function(){
     $("select option[value='${loginMember.passquestion}']").attr("selected", true);
 });
 </script>
+</head>
 <body class="content">
 	<div class="profile">
 		<img alt="profilePic" src="http://ipsumimage.appspot.com/50x50?l=이미지">
@@ -287,13 +285,47 @@ $(document).ready(function(){
 			<div class="cont">
 				<div class="onoff tab-sub">
 					<ul class="tab">
-						<li><a href="#" class="title">나의 게시글</a></li>
-						<li><a href="#" class="title">나의 답글</a></li>
+						<li><button type="submit" class="title" id="myPost">나의 게시글</button></li>
+						<li><button type="submit" class="title" id="myReply">나의 답글</button></li>
 					</ul>
 					<div class="tab-cont">
 						<!-- //탭3-1 -->
 						<div class="cont">
-							<!-- 내 글 목록 -->
+							<table border=1 style="border-collapse: collapse">
+								<c:if test="${q.writer == loginMember.nickname }">
+									<c:forEach items="${qlist }" var='q'>
+										<tr>
+											<th>번호</th>
+											<th>조회수</th>
+											<th>추천수</th>
+											<th>댓글수</th>
+											<th>카테고리</th>
+											<th>제목</th>
+											<th>작성자</th>
+											<th>작성일</th>
+										</tr>
+										<tr>
+											<td>${q.qno }</td>
+											<td>${q.qviewcnt }</td>
+											<td>${q.qlikecnt }</td>
+											<td>${q.rqnacnt }</td>
+											<td><c:choose>
+													<c:when test="${q.qtag ==1}">Java</c:when>
+													<c:when test="${q.qtag ==2}">C</c:when>
+													<c:when test="${q.qtag ==3}">Python</c:when>
+												</c:choose></td>
+											<td><a href="qnaread?qno=${q.qno}">${q.qsubject }</a></td>
+											<td>${q.qwriter }</td>
+											<td>${q.qdate }</td>
+										</tr>
+									</c:forEach>
+								</c:if>
+								<c:if test="${q.writer != loginMember.nickname }">
+									<p>작성된 글이 없습니다.</p>
+								</c:if>
+								<tr>
+								</tr>
+							</table>
 						</div>
 
 						<!-- //탭3-2 -->
@@ -305,72 +337,8 @@ $(document).ready(function(){
 			</div>
 
 			<!-- 탭4// -->
-			<!-- 탭4// -->
 			<div class="cont">
-				<%
-					Member vo = (Member) request.getSession().getAttribute("loginMember");
-					String id = vo.getId();
-				%>
-				<%
-					List<BuyVO> buyLists = null;
-					BuyVO buyList = null;
-					int count = 0;
-					int number = 0;
-					int number2 = 0;
-					int total = 0;
-		
-					if (session.getAttribute("loginMember") == null) {
-						response.sendRedirect("#");
-					} else {
-					BuyDAO buyProcess = BuyDAO.getinstance();
-					count = buyProcess.getListCount(id);
-		
-					if (count == 0) {
-				%>
-				<h3>구매목록</h3>
-				<table>
-					<tr>
-						<td>구매 목록이 없습니다.</td>
-					</tr>
-				</table>
-				<%
-					} else {
-					buyLists = buyProcess.getBuyList_id(id);
-				%>
-				<table border="1">
-					<p>영상 구매목록</p>
-					<tr>
-						<th>번호</td>
-						<th>책 이름</td>
-						<th>판매가격</td>
-					</tr>
-					<td>
-						<%
-					for (int i = 0; i < buyLists.size(); i++) {
-							buyList = buyLists.get(i);
-
-				%>
-					
-					<tr>
-						<td align="center"><%=++number2%></td>
-						<td align="left"><img
-							src="../imageFile/<%=buyList.getVimage()%>" width="30"
-							height="50" align="middle"> <%=buyList.getVtitle()%></td>
-						<td>
-							<%
-								total += 1 * buyList.getBuyprice();
-							%> \ <%=NumberFormat.getInstance().format(buyList.getVprice())%>
-						</td>
-					</tr>
-
-					<%
-						}
-					%>
-				</table>
-				<%
-					}
-				}
-				%>
+				<%@include file="myVideo.jsp" %>
 			</div>
 		</div>
 	</div>
