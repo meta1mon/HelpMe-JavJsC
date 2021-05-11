@@ -20,18 +20,7 @@
 	<%@include file="../../style/common.css" %>
 	<%@include file="../../style/header.css" %>
 	<%@include file="../../style/footer.css"%>
-table {
-	width: 70%;
-	margin-right: auto;
-	margin-left: auto;
-	text-align: center;
-}
 
-tr {
-	border-style: groove;
-	border-width: 1px;
-	border-color: #FEFEFE;
-}
 </style>
 <script>
 	function open_win(url, name){
@@ -49,7 +38,12 @@ tr {
 			datatype : "json",
 			success : function(data) {
 				alert(data);
-	            window.location.reload();
+				if(data == "추천 성공") {					
+				$("#qlikeid").attr("src", "images/doLike.png");
+				} else {
+				$("#qlikeid").attr("src", "images/undoLike.png");					
+				}
+				window.location.reload();
 			}
 		});
 	};
@@ -73,87 +67,83 @@ tr {
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
-	<!-- 게시글 내용 표시 -->
-	<table class="1" border="2">
-		<tr>
-			<td style="text-align: center;""><h3>글쓴이 ${qna.qwriter }</h3></td>
-			<td>조회수 ${qna.qviewcnt } 추천수 ${qna.qlikecnt }</td>
-		</tr>
-		<tr>
-			<td>카테고리</td>
-			<td><c:choose>
-					<c:when test="${qna.qtag ==1}">Java</c:when>
-					<c:when test="${qna.qtag ==2}">C</c:when>
-					<c:when test="${qna.qtag ==3}">Python</c:when>
-				</c:choose></td>
-		</tr>
-		<tr>
-			<td><h4>
-					글 제목 <br> ${qna.qsubject }
-				</h4></td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr style="border-bottom: hidden;">
-			<td>첨부파일</td>
-			<td style="text-align: left; text-indent: 10px;"><c:forTokens
-					var="fileName" items="${qna.qfilepath}" delims="," varStatus="st">
-					<a download="${fileName}" href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
+	<div style="width: 800px; margin: 0 auto 0 auto;">
+		<h1 style="text-align: justify;">${qna.qsubject }</h1>
+		<h4 style="width: 400px; float: left; text-align: left;">조회수
+			${qna.qviewcnt }</h4>
+		<h4 style="width: 400px; float: right; text-align: right; color: #546E7A">${qna.qwriter }</h4>
+		<h4 style="clear: both; width: 800px; text-align: left;">
+			<c:choose>
+				<c:when test="${qna.qtag ==1}">Java</c:when>
+				<c:when test="${qna.qtag ==2}">C</c:when>
+				<c:when test="${qna.qtag ==3}">Python</c:when>
+			</c:choose>
+		</h4>
+		<hr>
+		<div id="question">
+			<div style="width: 80px; float: left;">
+<!--  추천수~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+				<img src="images/like.png" onclick="qlike()" style="cursor:pointer;" id="qlikeid"> <br>
+				추천수 ${qna.qlikecnt }
+			</div>
+			<div style="width: 720px; float: left; background-color: lightgray; word-wrap:break-word">
+				${qna.qcontent }</div>
+			<div style="clear: both; padding: 10px 0; text-align: left;">
+				첨부파일 :
+				<c:forTokens var="fileName" items="${qna.qfilepath}" delims=","
+					varStatus="st">
+					<a download="${fileName}"
+						href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
 					<c:if test="${!st.last }">
-				/
-				</c:if>
-				</c:forTokens></td>
-		</tr>
-		<tr>
-			<td>글 내용 ${qna.qcontent }</td>
-			<td>&nbsp;</td>
-		</tr>
-	</table>
+                        /
+                    </c:if>
+				</c:forTokens>
+			</div>
+			<hr>
+			<form action="<%=request.getContextPath()%>/rqnawrite" method="post">
+				<div style="float: right; margin-top: 10px; width: 720px;">
+					<input type="hidden" name="qno" value="${qna.qno }">
+					<textarea placeholder="댓글 쓰기" id="editor" name="rqcontent"
+						maxlength="2048"></textarea>
+				</div>
+				<div style="clear: both; float: right; padding-top: 10px;">
+					<button type="submit">등록</button>
+				</div>
+			</form>
+		</div>
 
-	<br>
-
-	<form action="<%=request.getContextPath()%>/rqnawrite" method="post">
-		<table border="2">
-			<tr>
-				<td colspan="3"
-					style="background-color: #F0F0F0; text-align: center;">댓글</td>
-			</tr>
-			<!-- 댓글이 있으면 댓글 내용 표시 -->
-			<c:if test="${reply != null}">
-				<c:forEach items="${reply }" var="r">
-					<tr>
-						<td>추천수 ${r.rqlikecnt }</td>
-						<td>${r.rqcontent }</td>
-						<td><button type="button"
-								onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }&qno=${r.qno }'">삭제</button>
-							<button type="button"
-								onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', '_blank')">수정</button>
-							<button type="button" onclick="rqlike(${r.rqno})">추천</button></td>
-					</tr>
-				</c:forEach>
-			</c:if>
-			<!-- 댓글 유무에 상관없이 댓글 작성 부분은 표시 -->
-			<tr>
-				<td colspan="2"><input type="hidden" name="qno"
-					value="${qna.qno }"></td>
-			</tr>
-			<tr>
-				<td><textarea placeholder="댓글 쓰기" id="editor" name="rqcontent"
-						maxlength="2048" style="height: 350px;"></textarea></td>
-				<td><button type="submit">등록</button></td>
-			</tr>
-		</table>
-	</form>
-
-	<button type="button"
-		onclick="location.href='<%=request.getContextPath()%>/qnalist'">목록으로
-		돌아가기</button>
-	<button type="button"
-		onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'">수정</button>
-	<button type="button"
-		onclick="location.href='<%=request.getContextPath()%>/qnadelete?qno=${qna.qno }'">삭제</button>
-	<button type="button" onclick="qlike()">추천</button>
-	<span id="like"></span>
-<script>
+		<h3 style="clear: both; text-align: left;">답변 수 ${qna.rqnacnt }</h3>
+		<hr>
+		<c:if test="${reply != null}">
+			<c:forEach items="${reply }" var="r">
+				<div id="answer">
+					<div style="width: 80px; float: left;">
+						<img src="images/like.png" onclick="rqlike(${r.rqno})"> <br>
+						추천수 ${r.rqlikecnt }
+					</div>
+					<div style="width: 720px; float: left; background-color: lightgray; word-wrap:break-word">
+						${r.rqcontent }</div>
+					<div style="float: right; margin: 10px 0;">
+						<button type="button"
+							onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', '_blank')">수정</button>
+						<button type="button"
+							onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }&qno=${r.qno }'">삭제</button>
+					</div>
+					<hr style="clear: both;">
+				</div>
+			</c:forEach>
+		</c:if>
+		<div>
+			<button type="button"
+				onclick="location.href='<%=request.getContextPath()%>/qnalist'">목록으로
+				돌아가기</button>
+			<button type="button"
+				onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'">수정</button>
+			<button type="button"
+				onclick="location.href='<%=request.getContextPath()%>/qnadelete?qno=${qna.qno }'">삭제</button>
+		</div>
+	</div>
+	<script>
     ClassicEditor
         .create( document.querySelector( '#editor' ), {
             cloudServices: {
@@ -165,7 +155,6 @@ tr {
             console.error( error );
         } );
 </script>
-
 </body>
 <%@include file="../../view/footer.jsp"%>
 </html>
