@@ -100,7 +100,6 @@ public class QnaWriteCtrl extends HttpServlet {
 
 		Qna vo = new Qna();
 		String qtag = request.getParameter("qtag");
-		System.out.println(qtag + ": 태그 밸류");
 		
 		vo.setQsubject(request.getParameter("qsubject"));
 		vo.setQcontent(request.getParameter("qcontent"));

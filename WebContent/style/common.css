@@ -26,6 +26,12 @@ html, body {
 	
 }
 
+button, input[type="button"], input[type="submit"], input[type="reset"], input[type="file"] {
+	cursor: pointer;
+}
+
+
+
 /*bootstrap box와 footer에만 적용되는 사항*/
 .container {
 	width: 100%;

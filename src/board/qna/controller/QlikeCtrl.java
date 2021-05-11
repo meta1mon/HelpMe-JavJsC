@@ -66,12 +66,12 @@ public class QlikeCtrl extends HttpServlet {
 			if (isLike == 1) { // 이미 추천했음 => 추천 취소
 				result = new QlikeService().deleteLike(id, qno);
 				if (result > 0) {
-					like = "추천 취소";
+					like = "안좋아졌어요";
 				}
 			} else if (isLike == 0) { // 추천 안했음 => 추천 실행
 				result = new QlikeService().insertLike(id, qno);
 				if (result > 0) {
-					like = "추천 성공";
+					like = "좋아요";
 				}
 
 			} else {
@@ -87,7 +87,7 @@ public class QlikeCtrl extends HttpServlet {
 		if(!like.equals(null)) {
 			out.print(like);
 		} else {
-			System.out.println("추천 삽입 | 삭제 메서드에서 문제 발생");
+			System.out.println("좋아요 기능에서 문제 발생");
 		}
 		out.flush();
 		out.close();
