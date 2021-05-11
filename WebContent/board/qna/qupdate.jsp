@@ -12,6 +12,14 @@
 <title>JSP 게시판 웹 사이트</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<style>
+.ck.ck-editor {
+	max-width:800px;
+}
+.ck-editor__editable {
+	min-height: 400px;
+}
+</style>
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
@@ -39,7 +47,7 @@
 						</tr>
 						<tr>
 							<td><textarea
-									id="editor1" name="qcontent" maxlength="2048"
+									id="editor" name="qcontent" maxlength="2048"
 									style="height: 350px;">${qna.qcontent }</textarea></td>
 
 						<script>
@@ -57,14 +65,54 @@
 						</tr>
 					</tbody>
 				</table>
-
-				<br/><br/> 
+				<div id="fileDiv">
+					<p>
+						첨부파일<br> <input type="file" id="file" name="file"> <a
+							href="#this" class="btn" id="delete" name="delete">삭제</a>
+					</p>
+				</div>
+				<br /> <br /> <a href="#this" class="btn" id="addFile">파일 추가</a> 
 				<input type="button" value="취소" onclick="location.href = '<%=request.getContextPath()%>/qnalist'">
 				<input type="submit" value="수정">
 			</form>
 		</div>
 	</div>
+<script type="text/javascript">
+		var gfv_count = 1;
+		$(document).ready(function() {
 
+			$("#addFile").on("click", function(e) { //파일 추가 버튼
+				if(gfv_count==10) {
+					alert(gfv_count+"개까지만 첨부 가능합니다.");
+					return false;
+				} else {
+				gfv_count++;
+				e.preventDefault();
+				fn_addFile();
+				}
+			});
+
+			$("a[name='delete']").on("click", function(e) { //삭제 버튼
+				e.preventDefault();
+				fn_deleteFile($(this));
+			});
+		});
+
+		function fn_addFile() {
+			var str = "<p><input type='file' name='file'><a href='#this' class='btn' name='delete'>삭제</a></p>";
+			$("#fileDiv").append(str);
+			$("a[name='delete']").on("click", function(e) { //삭제 버튼
+				e.preventDefault();
+				fn_deleteFile($(this));
+			});
+		}
+		
+
+		function fn_deleteFile(obj) {
+			obj.parent().remove();
+			gfv_count--;
+		}
+	</script>
 </body>
 <%@include file="../../view/footer.jsp"%>
 </html>

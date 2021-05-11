@@ -44,7 +44,7 @@ public class QnaListCtrl extends HttpServlet {
 	}
 	
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		final int PAGE_SIZE = 5;
+		final int PAGE_SIZE = 15;
 		final int PAGE_BOX = 3;
 
 		// 검색 시의 컨트롤 처리
