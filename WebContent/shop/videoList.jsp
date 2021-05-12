@@ -112,5 +112,5 @@ if (count > 0) {
 	<%
 		}
 	%>
-</body>
+<%@include file="../view/footer.jsp" %></section>
 </html>

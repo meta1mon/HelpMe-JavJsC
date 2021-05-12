@@ -48,7 +48,7 @@ try {
 			}
 	%>
 
-</body>
+<%@include file="../view/footer.jsp" %></section>
 <form name="inform" action="<%=request.getContextPath() %>/shop/videocartInsert.jsp" method="post">
 	<table border="1">
 		<tr>

@@ -76,6 +76,6 @@
 	e.printStackTrace();
 	}
 	%>
-</body>
+<%@include file="../view/footer.jsp" %></section>
 </html>
 </form>

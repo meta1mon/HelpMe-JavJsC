@@ -183,5 +183,5 @@ String id = vo.getId();
 		}
 		%>
 	
-</body>
+<%@include file="../view/footer.jsp" %></section>
 </html>

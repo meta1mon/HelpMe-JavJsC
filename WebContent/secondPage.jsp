@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-.footer {
-	position: relative !important;
-	bottom: 0 !important;
-	margin-top: -600px;
-}
-</style>
 <%@include file="../view/header.jsp"%>
-<body class="content">
+<section class="content">
 	<div class="container">
 	<img alt="배너 이미지 입니다."
 		src="http://ipsumimage.appspot.com/1062x400?l=배너" id="bannerImg">
@@ -52,5 +45,5 @@
 			</div>
 		</div>
 	</div>
-</body>
-<%@include file="../view/footer.jsp"%>
+	<%@include file="../view/footer.jsp" %>
+</section>

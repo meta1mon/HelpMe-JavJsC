@@ -17,5 +17,5 @@
 		<button type="button" onclick="location.href='<%=request.getContextPath()%>/memberlist'">회원
 			리스트로 이동</button>
 	</c:if>
-</body>
+<%@include file="../view/footer.jsp" %></section>
 </html>

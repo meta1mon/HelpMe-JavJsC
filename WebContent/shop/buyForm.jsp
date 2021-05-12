@@ -264,5 +264,5 @@ function sample6_execDaumPostcode() {
          <input type="hidden" name="vid" value="<%=videocartList.getVid() %>">
          <input type="hidden" name="buycount" value="<%=bookcartList.getBuycount()%>">
       </form>
-</body>
+<%@include file="../view/footer.jsp" %></section>
 </html>

@@ -19,7 +19,7 @@
 
 </style>
 <%@include file="../view/header.jsp"%>
-<body class="content">
+<section class="content">
 	<div id="display">
 		<h1>비밀번호 확인</h1>
 		<form action="<%=request.getContextPath() %>/mypageenter" method="post">
@@ -33,5 +33,5 @@
 		</table>
 		</form>
 	</div>
-</body>
+<%@include file="../view/footer.jsp" %></section>
 <%@include file="../view/footer.jsp"%>

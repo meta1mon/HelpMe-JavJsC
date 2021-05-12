@@ -29,7 +29,7 @@
         </script>
 </head>
 <%@include file="../view/header.jsp"%>
-<body class="content">
+<section class="content">
     <div id="display">
             <h1>비밀번호 찾기</h1>
             <table>
@@ -47,6 +47,6 @@
             	</tr>
             </table>
     </div>
-</body>
-<%@include file="../view/footer.jsp"%>
+<%@include file="../view/footer.jsp" %>
+</section>
 </html>

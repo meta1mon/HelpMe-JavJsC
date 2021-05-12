@@ -141,5 +141,5 @@ String id = vo.getId();
 	<input type="button" value="메인으로" onclick="javascript:window.location"='#'">
 	
 
-</body>
+<%@include file="../view/footer.jsp" %></section>
 </html>

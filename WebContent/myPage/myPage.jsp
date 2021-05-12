@@ -201,7 +201,7 @@ function test(){
 }
 </script>
 </head>
-<body class="content">
+<section class="content">
 	<div class="profile">
 		<img alt="profilePic" src="http://ipsumimage.appspot.com/50x50?l=이미지">
 		<span class="welcome">${loginMember.nickname}님</span>
@@ -367,6 +367,6 @@ function test(){
 			</div>
 		</div>
 	</div>
-</body>
-</html>
 <%@include file="../view/footer.jsp"%>
+</section>
+</html>

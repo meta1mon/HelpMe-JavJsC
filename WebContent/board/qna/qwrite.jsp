@@ -23,7 +23,7 @@
 </style>
 </head>
 	<%@include file="../../view/header.jsp"%>
-<body class="content">
+<section class="content">
 	<div style="width: 800px; margin: 0 auto 0 auto;">
 		<h1>글쓰기</h1>
 		<form action="<%=request.getContextPath()%>/qnawrite" method="post"
@@ -109,6 +109,6 @@
 			gfv_count--;
 		}
 	</script>
-</body>
 <%@include file="../../view/footer.jsp"%>
+</section>
 </html>

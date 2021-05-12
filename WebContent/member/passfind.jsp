@@ -87,7 +87,7 @@ span {
 </script>
 </head>
 <%@include file="../view/header.jsp"%>
-<body class="content">
+<section class="content">
 	<div id="passform">
 		<h1>비밀번호 찾기</h1>
 		<form action="<%=request.getContextPath()%>/findpassword" method="post">
@@ -116,6 +116,6 @@ span {
 		</table>
 		</form>
 	</div>
-</body>
-<%@include file="../view/footer.jsp"%>
+<%@include file="../view/footer.jsp" %>
+</section>
 </html>

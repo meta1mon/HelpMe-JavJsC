@@ -78,5 +78,5 @@
 			<input type="reset" value="다시작성">
 		</table>
 	</form>
-</body>
+<%@include file="../view/footer.jsp" %></section>
 </html>

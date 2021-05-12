@@ -6,13 +6,13 @@
 <%@include file="../style/header.css" %>
 </style>
 <title>
-	구해줘! 잡스
+	도와줘 잡스씨
 </title>
-<body>
+<header>
 <div class="header">
 	<div class="header-content">
 		<a href="<%=request.getContextPath()%>/index.jsp"> 
-		<img alt="logo" src="../logo.png" id="logo" width="128" height="80">
+		<img alt="logo" src="<%=request.getContextPath() %>/logo.png" id="logo" width="128" height="80">
 		</a>
 		<div class="nav">
 			<a href="<%=request.getContextPath()%>/qnalist" id="qnaBtn">질문방</a> 
@@ -47,4 +47,4 @@
 		</c:choose>
 	</div>
 </div>
-</body>
+</header>

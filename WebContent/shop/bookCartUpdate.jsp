@@ -18,5 +18,5 @@
       response.sendRedirect("cartList.jsp?bkind="+bkind+"&vkind="+vkind);
       System.out.println("ddd");
    %>
-</body>
+<%@include file="../view/footer.jsp" %></section>
 </html>
