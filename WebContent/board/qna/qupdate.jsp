@@ -23,64 +23,76 @@
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
-	<!-- 게시판(게시글 목록) 영역 -->
-	<div class="container">
-		<div class="row">
-			<form action="<%=request.getContextPath()%>/qnaupdate" method="post">
-				<table style="text-align: center; border: 1px solid #dddddd">
-					<thead>
-						<tr>
-							<!-- 양식 -->
-							<th colspan="2"
-								style="background-color: #eeeeee; text-align: center;">글쓰기</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><input type="hidden" name="qno" value="${qna.qno }">
-							<td>
-						</tr>
-						<tr>
-							<!-- 내용 -->
-							<td><input type="text" class="form-control"
-								name="qsubject" maxlength="50" value="${qna.qsubject }"></td>
-						</tr>
-						<tr>
-							<td><textarea
-									id="editor" name="qcontent" maxlength="2048"
-									style="height: 350px;">${qna.qcontent }</textarea></td>
-
-						<script>
-						    ClassicEditor
-						        .create( document.querySelector( '#editor' ), {
-						            cloudServices: {
-						                tokenUrl: 'https://80479.cke-cs.com/token/dev/7ac95c09e51707fa1d95f2ea91d9a83fcb6e5bc7fc5a60c689f1f30dfb21',
-						                uploadUrl: 'https://80479.cke-cs.com/easyimage/upload/'
-						            }
-						        } )
-						        .catch( error => {
-						            console.error( error );
-						        } );
-						</script>
-						</tr>
-					</tbody>
-				</table>
-				<div id="fileDiv">
-					<p>
-						첨부파일<br> <input type="file" id="file" name="file"> <a
-							href="#this" class="btn" id="delete" name="delete">삭제</a>
-					</p>
-				</div>
-				<br /> <br /> <a href="#this" class="btn" id="addFile">파일 추가</a> 
-				<input type="button" value="취소" onclick="location.href = '<%=request.getContextPath()%>/qnalist'">
-				<input type="submit" value="수정">
-			</form>
-		</div>
+	<div style="width: 800px; margin: 0 auto 0 auto;">
+		<h1>글수정</h1>
+		<form action="<%=request.getContextPath()%>/qnaupdate" method="post"
+			enctype="multipart/form-data">
+			<div style="margin-bottom:10px;">
+				<input style="width: 800px; height: 40px; font-size: 15px; box-sizing: border-box;"
+					type="text" placeholder="글 제목" name="qsubject" maxlength="150" value="${qna.qsubject }">
+			</div>
+			<div style="margin-bottom:10px;">
+				<select name="qtag" style="width: 800px; height: 40px; font-size: 15px;">
+					<option value="1">JAVA</option>
+					<option value="2">C</option>
+					<option value="3">Python</option>
+				</select>
+			</div>
+			<div style="margin-bottom:10px;">
+				<textarea placeholder="글 내용" id="editor" name="qcontent"
+					maxlength="2048">${qna.qcontent }</textarea>
+			</div>
+			<div id= "file" style="width: 150px; float:left;">첨부파일 :
+				<c:forTokens var="fileName" items="${qna.qfilepath}" delims=","
+					varStatus="st">
+					<a download="${fileName}"
+						href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
+					<c:if test="${!st.last }">
+                        /
+                    </c:if>
+				</c:forTokens></div>
+			<div id="file2">
+			<div id="fileDiv" style="width: 650px; float:left;">
+			
+			<br>
+				<p>
+					<input type="file" name="file" style="margin-top: 5px;">
+					<a href="#this" class="btn" id="delete" name="delete"
+						style="margin-left: -5px;">삭제</a>
+				</p>
+			</div>
+			<div style="margin-bottom: 10px; clear:both;">
+				<a href="#this" class="btn" id="addFile">파일 추가</a>
+			</div>	</div>
+			<div>
+				<input type="submit" value="수정"> <input type="button"
+					value="취소"
+					onclick="location.href = '<%=request.getContextPath()%>/qnalist'">
+			</div>
+		</form>
 	</div>
-<script type="text/javascript">
+	<script>
+	    ClassicEditor
+	        .create( document.querySelector( '#editor' ), {
+	            cloudServices: {
+	                tokenUrl: 'https://80479.cke-cs.com/token/dev/7ac95c09e51707fa1d95f2ea91d9a83fcb6e5bc7fc5a60c689f1f30dfb21',
+	                uploadUrl: 'https://80479.cke-cs.com/easyimage/upload/'
+	            }
+	        } )
+	        .catch( error => {
+	            console.error( error );
+	        } );
+	</script>
+	<script type="text/javascript">
 		var gfv_count = 1;
 		$(document).ready(function() {
-
+			
+			if ($("${qna.qfilepath}")==null || $("${qna.qfilepath}")==("")) {
+			$("#file").hide();
+			$("#file2").hide();
+			}
+				
+			
 			$("#addFile").on("click", function(e) { //파일 추가 버튼
 				if(gfv_count==10) {
 					alert(gfv_count+"개까지만 첨부 가능합니다.");
@@ -99,7 +111,7 @@
 		});
 
 		function fn_addFile() {
-			var str = "<p><input type='file' name='file'><a href='#this' class='btn' name='delete'>삭제</a></p>";
+			var str = "<p><input type='file' name='file_"+(gfv_count++)+"'><a href='#this' class='btn' name='delete'>삭제</a></p>";
 			$("#fileDiv").append(str);
 			$("a[name='delete']").on("click", function(e) { //삭제 버튼
 				e.preventDefault();

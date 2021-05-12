@@ -14,6 +14,9 @@
 
 
 <style>
+	<%@include file="../../style/common.css" %>
+	<%@include file="../../style/header.css" %>
+	<%@include file="../../style/footer.css"%>
 	.ck.ck-editor {
    max-width:800px;
 }
@@ -99,8 +102,7 @@
 				첨부파일 :
 				<c:forTokens var="fileName" items="${qna.qfilepath}" delims=","
 					varStatus="st">
-					<a download="${fileName}"
-						href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
+					<a download="${fileName}" href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
 					<c:if test="${!st.last }">
                         /
                     </c:if>
@@ -154,7 +156,7 @@
 			<button type="button"
 				onclick="location.href='<%=request.getContextPath()%>/qnalist'">목록으로
 				돌아가기</button>
-				<c:if test="${loginMember.id == qna.qwriter}">
+				<c:if test="${loginMember.nickname == qna.qwriter}">
 			<button type="button"
 				onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'">수정</button>
 			<button type="button"
