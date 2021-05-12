@@ -36,5 +36,5 @@
 			response.sendRedirect("cartList.jsp?vkind=" + vkind);
 	%>
 		
-<%@include file="../view/footer.jsp" %></section>
+</body>
 </html>

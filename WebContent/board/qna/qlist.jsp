@@ -15,6 +15,8 @@
 
 <style>
 	<%@include file="../../style/common.css" %>
+	<%@include file="../../style/header.css" %>
+	<%@include file="../../style/footer.css"%>
 
 	.qna {
 	margin : 40px 0 20px 10px;
@@ -106,7 +108,7 @@
 
 </head>
 <%@include file="../../view/header.jsp"%>
-<section class="content">
+<body class="content">
 <div style="width: 800px; margin: 0 auto 0 auto; color:#aca4ae;">
 
 	<div class="qna">Q&A 게시판</div>
@@ -159,10 +161,10 @@
 
 
 	<c:if test="${endPage < pageBoxCnt }">
-		<a href="qnalist?pageNum=${ensdPage +1 }&search=${search }&searchType=${searchType}">&#62;&#62;</a>
+		<a href="qnalist?pageNum=${endPage +1 }&search=${search }&searchType=${searchType}">&#62;&#62;</a>
 	</c:if>
 	</div>
 </div>
+</body>
 <%@include file="../../view/footer.jsp"%>
-</section>
 </html>

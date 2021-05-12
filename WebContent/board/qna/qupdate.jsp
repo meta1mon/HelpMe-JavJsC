@@ -22,7 +22,7 @@
 </style>
 </head>
 <%@include file="../../view/header.jsp"%>
-<section class="content">
+<body class="content">
 	<!-- 게시판(게시글 목록) 영역 -->
 	<div class="container">
 		<div class="row">
@@ -113,6 +113,6 @@
 			gfv_count--;
 		}
 	</script>
+</body>
 <%@include file="../../view/footer.jsp"%>
-</section>
 </html>

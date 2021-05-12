@@ -32,5 +32,5 @@
 	
 	</form>
 	
-<%@include file="../view/footer.jsp" %></section>
+</body>
 </html>

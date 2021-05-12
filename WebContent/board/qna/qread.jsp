@@ -14,7 +14,10 @@
 
 
 <style>
-.ck.ck-editor {
+	<%@include file="../../style/common.css" %>
+	<%@include file="../../style/header.css" %>
+	<%@include file="../../style/footer.css"%>
+	.ck.ck-editor {
    max-width:800px;
 }
 .ck-editor__editable {
@@ -74,7 +77,7 @@
 </script>
 </head>
 <%@include file="../../view/header.jsp"%>
-<section class="content">
+<body class="content">
 	<div style="width: 800px; margin: 0 auto 0 auto;">
 		<h1 style="text-align: justify;">${qna.qsubject }</h1>
 		<h4 style="width: 400px; float: left; text-align: left;">조회수
@@ -174,6 +177,6 @@
             console.error( error );
         } );
 </script>
+</body>
 <%@include file="../../view/footer.jsp"%>
-</section>
 </html>

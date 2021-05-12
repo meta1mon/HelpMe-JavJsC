@@ -267,5 +267,5 @@
 			</tr>
 		</table>
 	</form>
-<%@include file="../view/footer.jsp" %></section>
+</body>
 </html>

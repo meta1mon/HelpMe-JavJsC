@@ -325,7 +325,7 @@ table {
 </script>
 </head>
 <%@include file="../view/header.jsp"%>
-<section class="content">
+<body class="content">
 	<div class="enrollFrm">
 		<h1>회원가입</h1>
 		<form action="<%=request.getContextPath()%>/memberinsert"
@@ -410,6 +410,6 @@ table {
 			</table>
 		</form>
 	</div>
-<%@include file="../view/footer.jsp" %></section>
+</body>
 <%@include file="../view/footer.jsp"%>
 </html>

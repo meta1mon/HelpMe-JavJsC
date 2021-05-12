@@ -70,5 +70,5 @@
 전체 회원 수 : ${membercnt }
 	<br>
 	<button type="button" onclick="location.href='admin/admin_index.jsp'">관리자 페이지로 이동</button>
-<%@include file="../view/footer.jsp" %></section>
+</body>
 </html>

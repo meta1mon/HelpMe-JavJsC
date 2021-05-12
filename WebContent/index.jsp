@@ -12,13 +12,12 @@
 <meta charset="UTF-8">
 </head>
 <%@include file="../view/header.jsp"%>
-<section class="content">
+<body class="content">
 	<div class="index-content">
 		<img alt="메인 이미지 입니다."
 			src="http://ipsumimage.appspot.com/500x500?l=멋진 이미지" id="mainImg"><br>
 		<button onclick="location.href='secondPage.jsp'" class="start">코딩공부
 			시작하기</button>
 	</div>
-<%@include file="../view/footer.jsp" %>
-</section>
+</body>
 </html>

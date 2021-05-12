@@ -114,7 +114,7 @@ input {
 </script>
 </head>
 <%@include file="../view/header.jsp"%>
-<section class="content">
+<body class="content">
 <div id="loginbody">
 	<div class="loginFrm">
 		<form action="<%=request.getContextPath()%>/memberlogin" method="post">
@@ -133,6 +133,6 @@ input {
 		</form>
 	</div>
 </div>
+</body>
 <%@include file="../view/footer.jsp"%>
-</section>
 </html>

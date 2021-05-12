@@ -26,7 +26,7 @@
 	 	<input type="submit" value="변경하기">
 	 </form>
 	
-<%@include file="../view/footer.jsp" %></section>
+</body>
 </html>
 <%
 		}

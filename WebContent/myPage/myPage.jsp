@@ -196,12 +196,13 @@ $(document).ready(function(){
 });
 </script>
 <script>
-function test(){
-	
-}
+$(document).ready(function () {
+
+
+});
 </script>
 </head>
-<section class="content">
+<body class="content">
 	<div class="profile">
 		<img alt="profilePic" src="http://ipsumimage.appspot.com/50x50?l=이미지">
 		<span class="welcome">${loginMember.nickname}님</span>
@@ -210,7 +211,7 @@ function test(){
 		<ul class="tab">
 			<li><a href="#" class="title">나의 프로필</a></li>
 			<li><a href="#" class="title">일정관리</a></li>
-			<li><button type="button" class="title" onclick="test();">내가쓴글</button></li>
+			<li><a href="#" class="title">내가쓴글</a></li>
 			<li><a href="#" class="title">내영상보기</a></li>
 		</ul>
 		<div class="tab-cont">
@@ -367,6 +368,6 @@ function test(){
 			</div>
 		</div>
 	</div>
-<%@include file="../view/footer.jsp"%>
-</section>
+</body>
 </html>
+<%@include file="../view/footer.jsp"%>

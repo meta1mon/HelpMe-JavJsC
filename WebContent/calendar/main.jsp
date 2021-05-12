@@ -300,7 +300,7 @@
 </script>
 <title>달력</title>
 </head>
-<section class="content">
+<body class="content">
 	
 	<div id="calendar"></div>
 <!-- 일정 추가 modal -->
@@ -379,6 +379,6 @@
 <!-- scheModal 끝 -->
 	
 	
-<%@include file="../view/footer.jsp" %>
-</section>
+	
+</body>
 </html>
