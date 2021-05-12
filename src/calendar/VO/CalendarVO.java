@@ -2,18 +2,26 @@ package calendar.VO;
 
 public class CalendarVO {
 	
-	private String scheNum;
+	private int scheNum;
+	private String id;
 	private String scheName;
 	private String scheStart;
 	private String scheEnd;
 	private int scheCode;
 	private String scheContent;
 	
-	public String getScheNum() {
+	public int getScheNum() {
 		return scheNum;
 	}
-	public void setScheNum(String scheNum) {
+	public void setScheNum(int scheNum) {
 		this.scheNum = scheNum;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getScheName() {
 		return scheName;
@@ -48,9 +56,10 @@ public class CalendarVO {
 	
 	@Override
 	public String toString() {
-		return "CalendarVO [scheNum=" + scheNum + ", scheName=" + scheName + ", scheStart=" + scheStart + ", scheEnd="
-				+ scheEnd + ", scheCode=" + scheCode + ", scheContent=" + scheContent + "]";
+		return "CalendarVO [scheNum=" + scheNum + ", id=" + id + ", scheName=" + scheName + ", scheStart=" + scheStart
+				+ ", scheEnd=" + scheEnd + ", scheCode=" + scheCode + ", scheContent=" + scheContent + "]";
 	}
+	
 	
 	
 	
