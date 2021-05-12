@@ -1,8 +1,11 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="board.qna.vo.Qna"%>
 <%@page import="member.vo.Member"%>
 <%@page import="board.qna.dao.QnaDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../view/header.jsp"%>
+
 <style>
 /*profile*/
 .profile{
@@ -192,6 +195,11 @@ $(document).ready(function(){
     $("select option[value='${loginMember.passquestion}']").attr("selected", true);
 });
 </script>
+<script>
+function test(){
+	
+}
+</script>
 </head>
 <body class="content">
 	<div class="profile">
@@ -202,7 +210,7 @@ $(document).ready(function(){
 		<ul class="tab">
 			<li><a href="#" class="title">나의 프로필</a></li>
 			<li><a href="#" class="title">일정관리</a></li>
-			<li><a href="#" class="title">내가쓴글</a></li>
+			<li><button type="button" class="title" onclick="test();">내가쓴글</button></li>
 			<li><a href="#" class="title">내영상보기</a></li>
 		</ul>
 		<div class="tab-cont">
@@ -251,7 +259,6 @@ $(document).ready(function(){
 					<td colspan="2"><input type="text" id="sample6_postcode" name="postcode" readonly style="margin-bottom:5px" value="${loginMember.postcode}"><br>
 						<input type="text" id="sample6_address" name="address1" readonly  style="margin-bottom:5px" value="${loginMember.address1}"><br>
 						<input type="text" id="sample6_detailAddress" name="address2" style="margin-bottom:5px" value="${loginMember.address2}"><br>
-				<!-- 참고항목은 도로명 주소 클릭 시, 동을 표시한다 -->
 						<input type="text" id="sample6_extraAddress" name="address3" readonly style="margin-bottom:5px" value="${loginMember.address3}"></td>
 				</tr>
 				<tr>
@@ -285,50 +292,68 @@ $(document).ready(function(){
 			<div class="cont">
 				<div class="onoff tab-sub">
 					<ul class="tab">
-						<li><button type="submit" class="title" id="myPost">나의 게시글</button></li>
-						<li><button type="submit" class="title" id="myReply">나의 답글</button></li>
+						<li>
+						<button type="button" class="title" id="myPost">나의 게시글</button></li>
+						<li><button type="button" class="title" id="myReply">나의 답글</button></li>
 					</ul>
 					<div class="tab-cont">
 						<!-- //탭3-1 -->
 						<div class="cont">
-							<table border=1 style="border-collapse: collapse">
-								<c:if test="${q.writer == loginMember.nickname }">
-									<c:forEach items="${qlist }" var='q'>
-										<tr>
-											<th>번호</th>
-											<th>조회수</th>
-											<th>추천수</th>
-											<th>댓글수</th>
-											<th>카테고리</th>
-											<th>제목</th>
-											<th>작성자</th>
-											<th>작성일</th>
-										</tr>
-										<tr>
-											<td>${q.qno }</td>
-											<td>${q.qviewcnt }</td>
-											<td>${q.qlikecnt }</td>
-											<td>${q.rqnacnt }</td>
-											<td><c:choose>
-													<c:when test="${q.qtag ==1}">Java</c:when>
-													<c:when test="${q.qtag ==2}">C</c:when>
-													<c:when test="${q.qtag ==3}">Python</c:when>
-												</c:choose></td>
-											<td><a href="qnaread?qno=${q.qno}">${q.qsubject }</a></td>
-											<td>${q.qwriter }</td>
-											<td>${q.qdate }</td>
-										</tr>
-									</c:forEach>
-								</c:if>
-								<c:if test="${q.writer != loginMember.nickname }">
-									<p>작성된 글이 없습니다.</p>
-								</c:if>
+							<!-- 내 글 목록 -->
+							<table style="text-align: center; border: 1px solid #dddddd">
+								<tr>
+									<th style="background-color: #eeeeee; text-align: center;">번호</th>
+									<th style="background-color: #eeeeee; text-align: center;">조회수</th>
+									<th style="background-color: #eeeeee; text-align: center;">추천수</th>
+									<th style="background-color: #eeeeee; text-align: center;">댓글
+										수</th>
+									<th style="background-color: #eeeeee; text-align: center;">카테고리</th>
+									<th style="background-color: #eeeeee; text-align: center;">제목</th>
+									<th style="background-color: #eeeeee; text-align: center;">작성자</th>
+									<th style="background-color: #eeeeee; text-align: center;">작성일</th>
+								</tr>
+								<c:forEach items="${qlist }" var='q'>
+									<tr>
+										<td>${q.qno }</td>
+										<td>${q.qviewcnt }</td>
+										<td>${q.qlikecnt }</td>
+										<td>${q.rqnacnt }</td>
+										<td><c:choose>
+												<c:when test="${q.qtag ==1}">Java</c:when>
+												<c:when test="${q.qtag ==2}">C</c:when>
+												<c:when test="${q.qtag ==3}">Python</c:when>
+											</c:choose></td>
+										<td><a href="qnaread?qno=${q.qno}">${q.qsubject }</a></td>
+										<td>${q.qwriter }</td>
+										<td>${q.qdate }</td>
+									</tr>
+								</c:forEach>
 								<tr>
 								</tr>
 							</table>
-						</div>
+							<div id="page">
+								<c:if test="${startPage !=1 }">
+									<a
+										href="qnalist?pageNum=${startPage -1 }&search=${search }&searchType=${searchType}">&#60;&#60;</a>
+								</c:if>
 
-						<!-- //탭3-2 -->
+								<c:forEach begin="${startPage }" end="${endPage }" var="s"
+									step="1">
+									<a
+										href="qnalist?pageNum=${s }&search=${search }&searchType=${searchType}">${s }</a>
+								</c:forEach>
+
+
+
+								<c:if test="${endPage < pageBoxCnt }">
+									<a
+										href="qnalist?pageNum=${endPage +1 }&search=${search }&searchType=${searchType}">&#62;&#62;</a>
+								</c:if>
+								</div>
+
+							</div>
+
+							<!-- //탭3-2 -->
 						<div class="cont">
 							<!-- 내 댓글 목록 -->
 						</div>
