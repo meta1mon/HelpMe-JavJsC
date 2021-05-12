@@ -8,11 +8,30 @@
 <title>
 	구해줘! 잡스
 </title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	  $("#show").click(function(){
+		  if($("#dropdown").css("display", "none")){
+			  $("#dropdown").css("display", "block")
+	    	$("#show").attr("src", '<%=request.getContextPath()%>/images/userhover.png');
+		  } else {
+			$("#dropdown").css("display", "none")
+	    	$("#show").attr("src", '<%=request.getContextPath()%>/images/user.png');
+			}
+		});
+	});
+</script>
+<script>
+$(document).ready(function(){
+	zzzz
+})
+</script>
 <header>
 <div class="header">
 	<div class="header-content">
 		<a href="<%=request.getContextPath()%>/index.jsp"> 
-		<img alt="logo" src="<%=request.getContextPath() %>/logo.png" width="128" height="80" id="logo">
+		<img alt="logo" src="<%=request.getContextPath() %>/images/logo.png" width="128" height="80" id="logo">
 		</a>
 		<div class="nav">
 			<a href="<%=request.getContextPath()%>/qnalist" id="qnaBtn">질문방</a> 
@@ -34,10 +53,9 @@
 				<div class="afterLogin">
 					<div class="dropdown">
 						<div class="picBtn">
-							<img alt="profilePic"
-								src="http://ipsumimage.appspot.com/50x50?l=이미지" class="pic">
-						</div>
-						<div class="dropdown-content">
+								<input type="image" src="<%=request.getContextPath() %>/images/user.png" class="pic" width="50" height="50" style="background-color: white" value="show" id="show">
+							</div>
+						<div class="dropdown-content" style="border: 1px solid #1abc9c; display:none" id="dropdown">
 							<a href="<%=request.getContextPath()%>/myPage/myPageEnter.jsp">마이페이지</a>
 							<a href="<%=request.getContextPath()%>/memberlogout">로그아웃</a> 
 						</div>

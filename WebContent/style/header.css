@@ -28,18 +28,19 @@
 }
 
 .nav {
-	width: 400px;
+	width: 600px;
 	float: left;
 	margin-top: 40px;
 }
 
 .nav a {
+	padding: 10px;
 	color: white;
 	text-decoration: none;
 }
 
 a:viseted {
-	color: black;
+	color: white;
 }
 
 a:hover {
@@ -79,20 +80,26 @@ a:hover {
 .dropdown-content {
 	display: none;
 	position: absolute;
-	min-width: 100px;
+	width: 120px;
+	right: 5px;
+	border-radius: 5px;
+	background-color: white;
 }
 
 .dropdown-content a {
 	display: block;
 	margin: 10px;
 	line-height: 1;
+	text-decoration: none;
+}
+.dropdown-content a:visited {
+	color: black;
+}
+.dropdown-content a:hover {
+	color: #1abc9c;
 }
 
 .dropdown:hover .picBtn {
 	border: 1px solid #1abc9c;
 }
 
-.dropdown:hover .dropdown-content {
-	background-color: #ddd;
-	display: block;
-}

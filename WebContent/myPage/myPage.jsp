@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../view/header.jsp"%>
-
+<!-- tab 버튼 디자인 -->
 <style>
 /*profile*/
 .profile{
@@ -381,7 +381,7 @@ $(document).ready(function () {
 					</tr>
 					<tr>
 						<td colspan="3"><input type="button" value="수정"
-							onclick="showPopup('myPageProfileUpdate.jsp', 'popup');"></td>
+							onclick="showPopup('<%=request.getContextPath()%>/myPage/myPageProfileUpdate.jsp', 'popup');"></td>
 					</tr>
 				</table>
 			</div>
@@ -406,7 +406,9 @@ $(document).ready(function () {
 						<div class="cont">
 							<!-- 내 글 목록 -->
 							<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
-								<div class="qna">Q&A 게시판 <a onclick="myqlist();">더보기</a></div>
+								<div class="qna">
+									Q&A 게시판 <a onclick="myqlist();">더보기</a>
+								</div>
 								<table id="table" style="border: 1;">
 									<c:forEach items="${qlist }" var='q'>
 										<tr style="border-bottom: 1px solid #eeeeee;">
@@ -427,21 +429,20 @@ $(document).ready(function () {
 									</c:forEach>
 								</table>
 							</div>
-
-							<!-- //탭3-2 -->
-							<div class="cont">
-								<!-- 내 댓글 목록 -->
-							</div>
+						</div>
+						<!-- //탭3-2 -->
+						<div class="cont">
+							<!-- 내 댓글 목록 -->
 						</div>
 					</div>
 				</div>
-
-				<!-- 탭4// -->
+			</div>
+			<!-- 탭4// -->
 				<div class="cont">
 					<%@include file="myVideo.jsp"%>
 				</div>
-			</div>
 		</div>
+	</div>
 		<script>
 			function myqlist() {
 				window.open("<%=request.getContextPath()%>/myqlist", "myQna", "width=1000px, height=500px, resizable = no, left= 100, top=100");

@@ -7,43 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <%@include file="../view/header.jsp"%>
-<body>
-	<div class="content">
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
-		<p>test</p>
+<body class="content">
+	<div>
+
 	</div>
 </body>
 <%@include file="../view/footer.jsp"%>
