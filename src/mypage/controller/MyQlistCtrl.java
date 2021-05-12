@@ -1,4 +1,4 @@
-package board.qna.controller;
+package mypage.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.qna.service.QnaService;
-import board.qna.service.RqnaService;
 import board.qna.vo.Qna;
+import member.vo.Member;
 
 /**
- * Servlet implementation class QnaListCtrl
+ * Servlet implementation class MyQlistCtrl
  */
-@WebServlet("/qnalist")
-public class QnaListCtrl extends HttpServlet {
+@WebServlet("/myqlist")
+public class MyQlistCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaListCtrl() {
+    public MyQlistCtrl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,20 +44,15 @@ public class QnaListCtrl extends HttpServlet {
 	}
 	
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Member vo = (Member) request.getSession().getAttribute("loginMember");
+		String search = vo.getNickname();
+
+		// 글쓴이 기준으로 찾을 것이기 때문에 2로 고정
+		int searchType = 2;
+		
 		final int PAGE_SIZE = 15;
 		final int PAGE_BOX = 3;
 
-		// 검색 시의 컨트롤 처리
-		int searchType = 0; 
-		String search = request.getParameter("search");
-		if (search != null && !search.equals("")) {
-			// searchType이 1 - 글 제목, 2- 글쓴이, 3- 내용
-			searchType = Integer.parseInt(request.getParameter("searchType"));
-			// 즉 검색 내용이 있다면
-		} else {
-			// 검색 내용이 없다면
-			search = null;
-		}
 
 		// search가 있든 없든 갖고 들어가서 전체 글 개수를 반환함
 		int allPages = 0;
@@ -114,8 +109,7 @@ public class QnaListCtrl extends HttpServlet {
 		request.setAttribute("pageBoxCnt", pageBoxCnt);
 		request.setAttribute("search", search);
 		request.setAttribute("searchType", searchType);
-		request.getRequestDispatcher("board/qna/qlist.jsp").forward(request, response);
-
+		request.getRequestDispatcher("myPage/myQnaPopup.jsp").forward(request, response);
 	}
 
 }
