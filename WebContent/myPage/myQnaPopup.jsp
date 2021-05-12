@@ -1,19 +1,16 @@
-<%@page import="member.vo.Member"%>
-<%@page import="board.qna.dao.QnaDao"%>
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 웹으로 설정 -->
-<title>JSP 게시판 웹 사이트</title>
+<meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
 <style>
+	<%@include file="../../style/common.css" %>
+	<%@include file="../../style/header.css" %>
+	<%@include file="../../style/footer.css"%>
+
 	.qna {
 	margin : 40px 0 20px 10px;
 	text-align:left;
@@ -101,26 +98,10 @@
     text-decoration: none;
 	}
 </style>
-
+<title>Insert title here</title>
 </head>
-<%@include file="../../view/header.jsp"%>
-<body class="content">
-<div style="width: 800px; margin: 0 auto 0 auto; color:#aca4ae;">
-
-	<div class="qna">Q&A 게시판</div>
-	<form action="qnalist" method="get">
-		<select id="searchType" name="searchType">
-			<option value="1">글제목</option>
-			<option value="2">작성자</option>
-			<option value="3">글내용</option>
-		</select>
-		<input type='search' id="search" placeholder="&nbsp;&nbsp;질문을 검색하세요.">
-	<input id="write" type="button" value="새 글 쓰기" onclick="location.href = 'board/qna/qwrite.jsp'">
-	<button type=submit style="display:none;">검색</button>
-	</form>
-	<i class="bi bi-search"></i>
-	
-	<table id="table" style="border:1;">
+<body>
+		<table id="table" style="border:1;">
 		<c:forEach items="${qlist }" var='q'>
 			<tr style="border-bottom: 1px solid #eeeeee;">
 				<td style="width:50px; font-size:14px;"><a style="font-size:18px;">${q.qviewcnt }</a><br>조회</td>
@@ -154,7 +135,5 @@
 		<a href="qnalist?pageNum=${endPage +1 }&search=${search }&searchType=${searchType}">&#62;&#62;</a>
 	</c:if>
 	</div>
-</div>
 </body>
-<%@include file="../../view/footer.jsp"%>
 </html>

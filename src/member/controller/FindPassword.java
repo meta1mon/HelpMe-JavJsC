@@ -43,7 +43,8 @@ public class FindPassword extends HttpServlet {
 		String passquestion = request.getParameter("passquestion");
 		String passanswer = request.getParameter("passanswer");
 
-		Member result = new MemberService().selectSearch(id);
+// 아이디를 보내서 비밀번호를 찾아옴
+		Member result = new MemberService().selectSearch(id, 1);
 		
 		PrintWriter out = response.getWriter();
 		
