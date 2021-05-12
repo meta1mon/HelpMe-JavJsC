@@ -14,10 +14,6 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 <style>
-	<%@include file="../../style/common.css" %>
-	<%@include file="../../style/header.css" %>
-	<%@include file="../../style/footer.css"%>
-
 	.qna {
 	margin : 40px 0 20px 10px;
 	text-align:left;

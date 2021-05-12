@@ -8,18 +8,18 @@
 <title>
 	구해줘! 잡스
 </title>
-<body>
+<header>
 <div class="header">
 	<div class="header-content">
 		<a href="<%=request.getContextPath()%>/index.jsp"> 
-		<img alt="logo" src="http://ipsumimage.appspot.com/80x80?l=로고" id="logo">
+		<img alt="logo" src="<%=request.getContextPath() %>/logo.png" width="128" height="80" id="logo">
 		</a>
 		<div class="nav">
 			<a href="<%=request.getContextPath()%>/qnalist" id="qnaBtn">질문방</a> 
 			<a href="" id="studyBtn">스터디방</a> 
 			<a href="" id="reviewBtn">리뷰방</a> 
 			<a href="" id="shopBtn">쇼핑방</a> 
-			<a href="<%=request.getContextPath()%>/calendar/start.jsp" id="recruitBtn">공채캘린더</a>
+			<a href="<%=request.getContextPath()%>/calendar/main.jsp" id="recruitBtn">공채캘린더</a>
 			<a href="" id="aboutusBtn">자사소개</a>
 		</div>
 
@@ -47,4 +47,4 @@
 		</c:choose>
 	</div>
 </div>
-</body>
+</header>
