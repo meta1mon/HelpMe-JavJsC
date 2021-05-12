@@ -463,13 +463,11 @@ $(document).ready(function () {
 									</table>
 								</div>
 							</div>
->>>>>>> f29b2ff031b17c0d665d89ff2a3eed70b89635e8
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- 탭4// -->
-<<<<<<< HEAD
 				<div class="cont">
 					<%@include file="myVideo.jsp"%>
 				</div>
