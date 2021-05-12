@@ -87,10 +87,14 @@ public class MyPageEnter extends HttpServlet {
 			ArrayList<Integer> qnolist = null;
 			ArrayList<Qna> list2 = new ArrayList<Qna>();
 			
+			int cnt = 3;
 			try {
 				qnolist = new RqnaService().myRqna(rqwriter);
 				// 댓글 수 3개임
-				for(int i = 0; i <3; i++) {
+				if(qnolist.size() < cnt) {
+					cnt=qnolist.size();
+				}
+				for(int i = 0; i < cnt; i++) {
 					list2.add(new QnaService().QnaRead(qnolist.get(i)));
 				}
 				

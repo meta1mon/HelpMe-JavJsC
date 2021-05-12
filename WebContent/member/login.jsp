@@ -10,7 +10,7 @@
 <style>
 #loginbody {
 	width: 400px;
-	margin: 200px auto 0 auto;
+	margin: 0 auto 0 auto;
 }
 
 #btnLogin {
@@ -124,7 +124,7 @@ input {
 			<div><span id="passcheck">&nbsp;</span></div>
 			<input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요"> <br>
 			<span id="misspass">비밀번호를 잊으셨나요?</span>
-			<span id="showpass">비밀번호 보기</span>
+			<span id="showpass">비밀번호 보기<img src="<%=request.getContextPath() %>/images/lightOn.png" width="16" height="16"></span>
 			<a href="passfind.jsp" id="findpass">비밀번호 찾기</a>
 			<div id="buttonbox">
 				<button type="submit" onclick="return login();">로그인하기</button>
