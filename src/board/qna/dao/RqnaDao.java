@@ -181,7 +181,7 @@ public class RqnaDao {
 	}
 
 	public ArrayList<Integer> myRqna(Connection con, String rqwriter) throws SQLException {
-		String sql = "select qno from rqna where rqwriter = ? order by rqno";
+		String sql = "select qno from rqna where rqwriter = ? order by rqno desc";
 		ArrayList<Integer> list = new ArrayList<Integer>();
 
 		try {

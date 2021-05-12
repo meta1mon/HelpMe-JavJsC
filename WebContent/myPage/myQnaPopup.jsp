@@ -9,7 +9,6 @@
 <style>
 	<%@include file="../../style/common.css" %>
 	<%@include file="../../style/header.css" %>
-	<%@include file="../../style/footer.css"%>
 
 	.qna {
 	margin : 40px 0 20px 10px;
@@ -72,7 +71,6 @@
 	width:800px;
 	margin-right:auto;
 	margin-left:auto;
-	height:2000px;
 	}
 	
 	table > tr > td:first-child                {width:5%;} /*No 열 크기*/

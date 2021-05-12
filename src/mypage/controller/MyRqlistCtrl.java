@@ -63,5 +63,6 @@ public class MyRqlistCtrl extends HttpServlet {
 		}
 		
 		request.setAttribute("rqlist", list2);
+		request.getRequestDispatcher("myPage/myRqnaPopup.jsp").forward(request, response);
 	}
 }

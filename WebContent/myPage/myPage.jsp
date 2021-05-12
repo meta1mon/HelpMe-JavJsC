@@ -220,7 +220,7 @@ a {
 	width:800px;
 	margin-right:auto;
 	margin-left:auto;
-	height:2000px;
+<!-- height: 2000px;  이거 지움 -->
 	}
 	
 	table > tr > td:first-child                {width:5%;} /*No 열 크기*/
@@ -398,8 +398,7 @@ $(document).ready(function () {
 						<li>
 							<button type="button" class="title" id="myPost">나의 게시글</button>
 						</li>
-						<li><button type="button" class="title" id="myReply">나의
-								답글</button></li>
+						<li><button type="button" class="title" id="myReply">댓글 단 글</button></li>
 					</ul>
 					<div class="tab-cont">
 						<!-- //탭3-1 -->

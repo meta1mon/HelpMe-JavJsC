@@ -89,9 +89,9 @@ public class MyPageEnter extends HttpServlet {
 			
 			try {
 				qnolist = new RqnaService().myRqna(rqwriter);
-				
-				for (int qno : qnolist) {
-					list2.add(new QnaService().QnaRead(qno));
+				// 댓글 수 3개임
+				for(int i = 0; i <3; i++) {
+					list2.add(new QnaService().QnaRead(qnolist.get(i)));
 				}
 				
 			} catch (SQLException e) {

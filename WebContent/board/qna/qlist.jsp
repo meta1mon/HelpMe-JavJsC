@@ -114,7 +114,7 @@
 			<option value="2">작성자</option>
 			<option value="3">글내용</option>
 		</select>
-		<input type='search' id="search" placeholder="&nbsp;&nbsp;질문을 검색하세요.">
+		<input type='search' id="search" name="search" placeholder="&nbsp;&nbsp;질문을 검색하세요.">
 	<input id="write" type="button" value="새 글 쓰기" onclick="location.href = 'board/qna/qwrite.jsp'">
 	<button type=submit style="display:none;">검색</button>
 	</form>
