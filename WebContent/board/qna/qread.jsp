@@ -14,6 +14,8 @@
 
 
 <style>
+	<%@include file="../../style/common.css" %>
+	<%@include file="../../style/header.css" %>
 	.ck.ck-editor {
    max-width:800px;
 }
@@ -41,9 +43,9 @@
 			success : function(data) {
 				alert(data);
 				if(data == "좋아요") {					
-				$("#qlikeid").attr("src", "images/doLike.png");
+				$("#qlikeid").attr("src", "<%=request.getContextPath() %>/images/doLike.png");
 				} else {
-				$("#qlikeid").attr("src", "images/undoLike.png");					
+				$("#qlikeid").attr("src", "<%=request.getContextPath() %>/images/undoLike.png");					
 				}
 				window.location.reload();
 			}
@@ -90,7 +92,7 @@
 		<hr>
 		<div id="question">
 			<div style="width: 80px; float: left;">
-				<img src="images/like.png" onclick="qlike()" style="cursor:pointer;" id="qlikeid"> <br>
+				<img src="<%=request.getContextPath() %>/images/like.png" onclick="qlike()" style="cursor:pointer;" id="qlikeid"> <br>
 				추천수 ${qna.qlikecnt }
 			</div>
 			<div style="width: 720px; float: left; background-color: lightgray; word-wrap:break-word">
@@ -99,8 +101,7 @@
 				첨부파일 :
 				<c:forTokens var="fileName" items="${qna.qfilepath}" delims=","
 					varStatus="st">
-					<a download="${fileName}"
-						href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
+					<a download="${fileName}" href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
 					<c:if test="${!st.last }">
                         /
                     </c:if>
@@ -132,7 +133,7 @@
 			<c:forEach items="${reply }" var="r">
 				<div id="answer">
 					<div style="width: 80px; float: left;">
-						<img src="images/like.png" onclick="rqlike(${r.rqno})" style="cursor:pointer;"> <br>
+						<img src="<%=request.getContextPath() %>/images/like.png" onclick="rqlike(${r.rqno})" style="cursor:pointer;"> <br>
 						추천수 ${r.rqlikecnt }
 					</div>
 					<div style="width: 720px; float: left; background-color: lightgray; word-wrap:break-word">
@@ -154,7 +155,7 @@
 			<button type="button"
 				onclick="location.href='<%=request.getContextPath()%>/qnalist'">목록으로
 				돌아가기</button>
-				<c:if test="${loginMember.id == qna.qwriter}">
+				<c:if test="${loginMember.nickname == qna.qwriter}">
 			<button type="button"
 				onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'">수정</button>
 			<button type="button"

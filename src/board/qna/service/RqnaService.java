@@ -72,4 +72,11 @@ public class RqnaService {
 		close(con);
 		return result;
 	}
+	
+	public ArrayList<Integer> myRqna(String rqwriter) throws SQLException {
+		Connection con = getConnection();
+		ArrayList<Integer> list = new RqnaDao().myRqna(con, rqwriter);
+		close(con);
+		return list;
+	}
 }

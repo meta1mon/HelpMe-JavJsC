@@ -1,18 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<title>Insert title here</title>
 <style>
-<<<<<<< HEAD
-=======
-	<%@include file="../../style/common.css" %>
-	<%@include file="../../style/header.css" %>
 
->>>>>>> f29b2ff031b17c0d665d89ff2a3eed70b89635e8
 	.qna {
 	margin : 40px 0 20px 10px;
 	text-align:left;
@@ -99,42 +95,26 @@
     text-decoration: none;
 	}
 </style>
-<title>Insert title here</title>
 </head>
 <body>
-		<table id="table" style="border:1;">
-		<c:forEach items="${qlist }" var='q'>
+	<table id="table" style="border: 1;">
+		<c:forEach items="${rqlist }" var='r'>
 			<tr style="border-bottom: 1px solid #eeeeee;">
-				<td style="width:50px; font-size:14px;"><a style="font-size:18px;">${q.qviewcnt }</a><br>조회</td>
-				<td style="width:50px;"><a style="font-size:18px;">${q.qlikecnt }</a><br>좋아요</td>
-				<td style="width:50px;"><a style="font-size:18px;">${q.rqnacnt }</a><br>답변</td>
-				<td style="text-align: left; width:450px;">
-					<a href="qnaread?qno=${q.qno}" id="subject">${q.qsubject }</a> 
-						<br> 
-								<c:choose>
-									<c:when test="${q.qtag ==1}">Java</c:when>
-									<c:when test="${q.qtag ==2}">C</c:when>
-									<c:when test="${q.qtag ==3}">Python</c:when>
-								</c:choose>
-				</td>
-				<td><a style="color:#0054FF; text-align: left;">${q.qwriter }</a> <br> <a style="font-size:13px;">${q.qdate }</a></td>
+				<td style="width: 50px; font-size: 14px;"><a
+					style="font-size: 18px;">${r.qviewcnt }</a><br>조회</td>
+				<td style="width: 50px;"><a style="font-size: 18px;">${r.qlikecnt }</a><br>좋아요</td>
+				<td style="width: 50px;"><a style="font-size: 18px;">${r.rqnacnt }</a><br>답변</td>
+				<td style="text-align: left; width: 450px;"><a
+					href="qnaread?qno=${r.qno}" id="subject">${r.qsubject }</a> <br>
+					<c:choose>
+						<c:when test="${r.qtag ==1}">Java</c:when>
+						<c:when test="${r.qtag ==2}">C</c:when>
+						<c:when test="${r.qtag ==3}">Python</c:when>
+					</c:choose></td>
+				<td><a style="color: #0054FF; text-align: left;">${r.qwriter }</a>
+					<br> <a style="font-size: 13px;">${r.qdate }</a></td>
 			</tr>
 		</c:forEach>
 	</table>
-	<div id="page">
-	<c:if test="${startPage !=1 }">
-		<a href="qnalist?pageNum=${startPage -1 }&search=${search }&searchType=${searchType}">&#60;&#60;</a>
-	</c:if>
-
-	<c:forEach begin="${startPage }" end="${endPage }" var="s" step="1">
-		<a href="qnalist?pageNum=${s }&search=${search }&searchType=${searchType}">${s }</a>
-	</c:forEach>
-
-
-
-	<c:if test="${endPage < pageBoxCnt }">
-		<a href="qnalist?pageNum=${endPage +1 }&search=${search }&searchType=${searchType}">&#62;&#62;</a>
-	</c:if>
-	</div>
 </body>
 </html>

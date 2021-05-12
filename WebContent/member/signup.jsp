@@ -58,7 +58,7 @@ table {
 
 #passquestion {
 	box-sizing: border-box;
-	width: 408px;
+	width: 400px;
 	height: 40px;
 }
 

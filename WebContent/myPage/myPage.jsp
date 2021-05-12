@@ -220,7 +220,7 @@ a {
 	width:800px;
 	margin-right:auto;
 	margin-left:auto;
-	height:2000px;
+<!-- height: 2000px;  이거 지움 -->
 	}
 	
 	table > tr > td:first-child                {width:5%;} /*No 열 크기*/
@@ -398,8 +398,7 @@ $(document).ready(function () {
 						<li>
 							<button type="button" class="title" id="myPost">나의 게시글</button>
 						</li>
-						<li><button type="button" class="title" id="myReply">나의
-								답글</button></li>
+						<li><button type="button" class="title" id="myReply">댓글 단 글</button></li>
 					</ul>
 					<div class="tab-cont">
 						<!-- //탭3-1 -->
@@ -430,23 +429,69 @@ $(document).ready(function () {
 								</table>
 							</div>
 						</div>
+<<<<<<< HEAD
 						<!-- //탭3-2 -->
 						<div class="cont">
 							<!-- 내 댓글 목록 -->
+=======
+							<!-- //탭3-2 -->
+							<div class="cont">
+								<!-- 댓글단 글 목록 -->
+								<div
+									style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
+									<div class="qna">
+										Q&A 게시판 <a onclick="myrqlist();">더보기</a>
+									</div>
+									<table id="table" style="border: 1;">
+										<c:forEach items="${rqlist }" var='r'>
+											<tr style="border-bottom: 1px solid #eeeeee;">
+												<td style="width: 50px; font-size: 14px;"><a
+													style="font-size: 18px;">${r.qviewcnt }</a><br>조회</td>
+												<td style="width: 50px;"><a style="font-size: 18px;">${r.qlikecnt }</a><br>좋아요</td>
+												<td style="width: 50px;"><a style="font-size: 18px;">${r.rqnacnt }</a><br>답변</td>
+												<td style="text-align: left; width: 450px;"><a
+													href="qnaread?qno=${r.qno}" id="subject">${r.qsubject }</a>
+													<br> <c:choose>
+														<c:when test="${r.qtag ==1}">Java</c:when>
+														<c:when test="${r.qtag ==2}">C</c:when>
+														<c:when test="${r.qtag ==3}">Python</c:when>
+													</c:choose></td>
+												<td><a style="color: #0054FF; text-align: left;">${r.qwriter }</a>
+													<br> <a style="font-size: 13px;">${r.qdate }</a></td>
+											</tr>
+										</c:forEach>
+									</table>
+								</div>
+							</div>
+>>>>>>> f29b2ff031b17c0d665d89ff2a3eed70b89635e8
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- 탭4// -->
+<<<<<<< HEAD
 				<div class="cont">
 					<%@include file="myVideo.jsp"%>
 				</div>
 		</div>
 	</div>
 		<script>
+=======
+			<div class="cont">
+				<%@include file="myVideo.jsp"%>
+			</div>
+		</div>
+	</div>
+	<script>
+>>>>>>> f29b2ff031b17c0d665d89ff2a3eed70b89635e8
 			function myqlist() {
 				window.open("<%=request.getContextPath()%>/myqlist", "myQna", "width=1000px, height=500px, resizable = no, left= 100, top=100");
 				
+			};
+			
+			function myrqlist() {
+				window.open("<%=request.getContextPath()%>/myrqlist", "myRqna",	"width=1000px, height=500px, resizable = no, left= 100, top=100");
+
 			};
 		</script>
 </body>

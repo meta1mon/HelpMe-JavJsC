@@ -44,6 +44,7 @@ public class QnaListCtrl extends HttpServlet {
 	}
 	
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("리스트 검색하러 들어옴");
 		final int PAGE_SIZE = 15;
 		final int PAGE_BOX = 3;
 
@@ -51,7 +52,6 @@ public class QnaListCtrl extends HttpServlet {
 		int searchType = 0; 
 		String search = request.getParameter("search");
 		if (search != null && !search.equals("")) {
-			// searchType이 1 - 글 제목, 2- 글쓴이, 3- 내용
 			searchType = Integer.parseInt(request.getParameter("searchType"));
 			// 즉 검색 내용이 있다면
 		} else {

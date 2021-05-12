@@ -1,12 +1,10 @@
 package board.qna.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Collection;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,7 +12,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import board.qna.service.QnaService;
 import board.qna.vo.Qna;
@@ -48,50 +50,53 @@ public class QnaWriteCtrl extends HttpServlet {
 // 파일 첨부 기능
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		 
+		int maxSize = 10*1024*1024; // 파일 크기 10M 제한
+		String encType = "UTF-8";
+
+		String saveDirectory = getServletContext().getRealPath("/board/files"); // 파일 저장 경로
+		System.out.println(saveDirectory);
 		
-		Collection<Part> parts = request.getParts();
-		StringBuilder builder = new StringBuilder();
-		System.out.println("parts:" + parts);
-		for(Part p : parts) {
-			if(!p.getName().equals("file")) continue;
-			System.out.println("p.getName():" + p.getName());
+		if(!ServletFileUpload.isMultipartContent(request))
+		response.sendRedirect("view/error/Error.jsp");
 			
-			Part filePart = p;
-			String fileName = filePart.getSubmittedFileName();
-			System.out.println("fileName:"+ fileName);
-			if(fileName==null || fileName.equals("")) 
-				continue;
+		File path = new File(saveDirectory);
+		String root = getServletContext().getRealPath("/");
+		if(!path.exists()) {
+			path.mkdirs();	// 해당 경로에 파일을 저장하는 폴더가 없으면 생성해줌.
+		}
 		
-			builder.append(fileName);
-			builder.append(",");		//다중 파일들을 db에 넣을 때 뒤에 쉼표를 찍어서 넣는다.
+		MultipartRequest mReq = new MultipartRequest(request, // request 객체
+				saveDirectory, // 서버 상 업로드 될 디렉토리
+				maxSize, // 업로드 파일 크기 제한
+				encType, // 인코딩 방법
+				new DefaultFileRenamePolicy() // 동일 이름 존재 시 새로운 이름 부여 방식
+				);
+		
+		String fileName = "";
+		Enumeration files = mReq.getFileNames(); // 업로드 된 파일 이름 얻어오기
+		String fileNames = "";
+		while(files.hasMoreElements()) {
+			// 업로드된 파일 이름 얻어오기
+			String file = (String) files.nextElement();
+			fileName = mReq.getFilesystemName(file);
 			
-			InputStream fis = filePart.getInputStream();
-			
-			String saveDirectory = getServletContext().getRealPath("/board/files"); // 파일 저장 경로
-			System.out.println(saveDirectory);
-			
-			File path = new File(saveDirectory);
-			String root = getServletContext().getRealPath("/");
-			if(!path.exists()) {
-				path.mkdirs();
+			File f1 = mReq.getFile(file);
+			if(f1 == null) { // 업로드 실패 시
+				System.out.println("파일 업로드 실패");
+			} else { // 업로드 성공 시
+				System.out.println("파일 업로드 성공");
 			}
 			
-			String filePath = saveDirectory + File.separator+ fileName;
-			FileOutputStream fos = new FileOutputStream(filePath);
-			
-			byte[] buf = new byte[1024];
-			int size = 0;
-			while((size=fis.read(buf)) != -1)
-				fos.write(buf,0,size);
-				
-			fos.close();   
-			fis.close();
+			fileNames += fileName + ",";
+//			fileNames.append(fileName);
+//			fileNames.append(",");		//다중 파일들을 db에 넣을 때 뒤에 쉼표를 찍어서 넣는다.
 		}
-		System.out.println("builder.length():" + builder.length());
-		if(builder.length() > 0) {
-			builder.delete(builder.length()-1,builder.length()); 
-		}
-		if(builder.length()> 1800) {
+		
+//		if(fileNames.length() > 0) {
+//			fileNames.delete(fileNames.length()-1,fileNames.length()); 
+//		}
+		if(fileNames.length()> 1800) {
 			System.out.println("DBfilename 크기보다 큽니다.");
 		}
 			
@@ -99,13 +104,14 @@ public class QnaWriteCtrl extends HttpServlet {
 		String qwriter = me.getNickname();
 
 		Qna vo = new Qna();
-		String qtag = request.getParameter("qtag");
+		String qtag = mReq.getParameter("qtag");
 		
-		vo.setQsubject(request.getParameter("qsubject"));
-		vo.setQcontent(request.getParameter("qcontent"));
+		vo.setQsubject(mReq.getParameter("qsubject"));
+		vo.setQcontent(mReq.getParameter("qcontent"));
 		vo.setQtag(Integer.parseInt(qtag));
 		vo.setQwriter(qwriter);
-		vo.setQfilepath(builder.toString()); //build가 갖고있는 문자열을 세팅
+		//vo.setQfilepath(builder.toString()); //build가 갖고있는 문자열을 세팅
+		vo.setQfilepath(fileNames);
 		
 		int result = 0;
 		try {
