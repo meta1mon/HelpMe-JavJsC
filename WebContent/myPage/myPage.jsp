@@ -406,7 +406,9 @@ $(document).ready(function () {
 						<div class="cont">
 							<!-- 내 글 목록 -->
 							<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
-								<div class="qna">Q&A 게시판 <a onclick="myqlist();">더보기</a></div>
+								<div class="qna">
+									Q&A 게시판 <a onclick="myqlist();">더보기</a>
+								</div>
 								<table id="table" style="border: 1;">
 									<c:forEach items="${qlist }" var='q'>
 										<tr style="border-bottom: 1px solid #eeeeee;">
@@ -427,25 +429,55 @@ $(document).ready(function () {
 									</c:forEach>
 								</table>
 							</div>
-
+						</div>
 							<!-- //탭3-2 -->
 							<div class="cont">
-								<!-- 내 댓글 목록 -->
+								<!-- 댓글단 글 목록 -->
+								<div
+									style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
+									<div class="qna">
+										Q&A 게시판 <a onclick="myrqlist();">더보기</a>
+									</div>
+									<table id="table" style="border: 1;">
+										<c:forEach items="${rqlist }" var='r'>
+											<tr style="border-bottom: 1px solid #eeeeee;">
+												<td style="width: 50px; font-size: 14px;"><a
+													style="font-size: 18px;">${r.qviewcnt }</a><br>조회</td>
+												<td style="width: 50px;"><a style="font-size: 18px;">${r.qlikecnt }</a><br>좋아요</td>
+												<td style="width: 50px;"><a style="font-size: 18px;">${r.rqnacnt }</a><br>답변</td>
+												<td style="text-align: left; width: 450px;"><a
+													href="qnaread?qno=${r.qno}" id="subject">${r.qsubject }</a>
+													<br> <c:choose>
+														<c:when test="${r.qtag ==1}">Java</c:when>
+														<c:when test="${r.qtag ==2}">C</c:when>
+														<c:when test="${r.qtag ==3}">Python</c:when>
+													</c:choose></td>
+												<td><a style="color: #0054FF; text-align: left;">${r.qwriter }</a>
+													<br> <a style="font-size: 13px;">${r.qdate }</a></td>
+											</tr>
+										</c:forEach>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<!-- 탭4// -->
-				<div class="cont">
-					<%@include file="myVideo.jsp"%>
-				</div>
+			</div>
+			<!-- 탭4// -->
+			<div class="cont">
+				<%@include file="myVideo.jsp"%>
 			</div>
 		</div>
-		<script>
+	</div>
+	<script>
 			function myqlist() {
 				window.open("<%=request.getContextPath()%>/myqlist", "myQna", "width=1000px, height=500px, resizable = no, left= 100, top=100");
 				
+			};
+			
+			function myrqlist() {
+				window.open("<%=request.getContextPath()%>/myrqlist", "myRqna",	"width=1000px, height=500px, resizable = no, left= 100, top=100");
+
 			};
 		</script>
 </body>

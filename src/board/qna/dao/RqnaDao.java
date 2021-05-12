@@ -20,11 +20,11 @@ public class RqnaDao {
 		int result = 0;
 		int max = 0;
 		int result2 = 0;
-		
+
 		String maxSql = "select nvl(max(rqno),0)+1 from rqna";
 		String sql = "insert into rqna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),    ?, ?, 0)";
 		String replycnt = "update qna set rqnacnt = rqnacnt+1 where qno = ?";
-		
+
 		try {
 			pstmt = con.prepareStatement(maxSql);
 			rs = pstmt.executeQuery();
@@ -45,11 +45,11 @@ public class RqnaDao {
 			pstmt.setString(6, vo.getRqfilepath());
 
 			result = pstmt.executeUpdate();
-			
+
 			pstmt = con.prepareStatement(replycnt);
 			pstmt.setInt(1, vo.getQno());
 			result2 = pstmt.executeUpdate();
-			
+
 		} finally {
 			close(pstmt);
 
@@ -112,30 +112,30 @@ public class RqnaDao {
 		return list;
 
 	}
-	
+
 	public int Rqnadelete(Connection con, int rqno, int qno) throws SQLException {
 		int result = 0;
 		int result2 = 0;
 		String sql = "delete from rqna where rqno = ?";
 		String replycnt = "update qna set rqnacnt = rqnacnt-1 where qno = ?";
-		
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, rqno);
 			result = pstmt.executeUpdate();
 			close(pstmt);
-			
+
 			pstmt = con.prepareStatement(replycnt);
 			pstmt.setInt(1, qno);
 			result2 = pstmt.executeUpdate();
-			
+
 		} finally {
 			close(pstmt);
 		}
 		return result2;
 
 	}
-	
+
 	public Rqna RqnaRead(Connection con, int rqno) throws SQLException {
 		String sql = "select * from rqna where rqno = ?";
 		Rqna vo = null;
@@ -163,7 +163,7 @@ public class RqnaDao {
 		}
 		return vo;
 	}
-	
+
 	public int Rqnaupdate(Connection con, Rqna vo) throws SQLException {
 		int result = 0;
 // 지금은 내용만 바꿀 수 있게 한다
@@ -178,5 +178,24 @@ public class RqnaDao {
 		}
 		return result;
 
+	}
+
+	public ArrayList<Integer> myRqna(Connection con, String rqwriter) throws SQLException {
+		String sql = "select qno from rqna where rqwriter = ? order by rqno";
+		ArrayList<Integer> list = new ArrayList<Integer>();
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rqwriter);
+			rs = pstmt.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					list.add(rs.getInt(1));
+				}
+			}
+		} finally {
+			close(pstmt);
+		}
+		return list;
 	}
 }

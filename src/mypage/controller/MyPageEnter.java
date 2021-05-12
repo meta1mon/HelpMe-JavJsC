@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.qna.service.QnaService;
+import board.qna.service.RqnaService;
 import board.qna.vo.Qna;
 import member.vo.Member;
 
@@ -70,16 +71,36 @@ public class MyPageEnter extends HttpServlet {
 			int startRnum = 1;
 			int endRnum = 3;
 			
-			ArrayList<Qna> list = null;
+			ArrayList<Qna> list1 = null;
 			try {
-				list = new QnaService().getQnaBoard(startRnum, endRnum, search, searchType);
+				list1 = new QnaService().getQnaBoard(startRnum, endRnum, search, searchType);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 
-			request.setAttribute("qlist", list);
+			request.setAttribute("qlist", list1);
 
-
+// 내가 댓글쓴 글 불러오기. MyRqlistCtrl.java 참고
+			// 댓글쓴 글 3개
+			String rqwriter = vo.getNickname();
+			
+			ArrayList<Integer> qnolist = null;
+			ArrayList<Qna> list2 = new ArrayList<Qna>();
+			
+			try {
+				qnolist = new RqnaService().myRqna(rqwriter);
+				
+				for (int qno : qnolist) {
+					list2.add(new QnaService().QnaRead(qno));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			request.setAttribute("rqlist", list2);
+			
+			
 			request.getRequestDispatcher("myPage/myPage.jsp").forward(request, response);
 		} else {
 			out.print("<script>alert('비밀번호가 일치하지 않습니다.');</script>");
