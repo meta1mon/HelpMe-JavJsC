@@ -11,9 +11,6 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 	<style>
-	<%@include file="../../style/common.css" %>
-	<%@include file="../../style/header.css" %>
-	<%@include file="../../style/footer.css"%>
 .ck.ck-editor {
    max-width:800px;
 }

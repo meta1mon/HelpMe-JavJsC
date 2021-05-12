@@ -20,4 +20,6 @@
 			시작하기</button>
 	</div>
 </body>
+<%@include file="../view/footer.jsp"%>
+
 </html>

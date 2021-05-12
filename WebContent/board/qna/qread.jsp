@@ -14,9 +14,6 @@
 
 
 <style>
-	<%@include file="../../style/common.css" %>
-	<%@include file="../../style/header.css" %>
-	<%@include file="../../style/footer.css"%>
 	.ck.ck-editor {
    max-width:800px;
 }
