@@ -12,7 +12,7 @@
 <div class="header">
 	<div class="header-content">
 		<a href="<%=request.getContextPath()%>/index.jsp"> 
-		<img alt="logo" src="../logo.png" id="logo" width="128" height="80">
+		<img alt="logo" src="http://ipsumimage.appspot.com/80x80?l=로고" id="logo">
 		</a>
 		<div class="nav">
 			<a href="<%=request.getContextPath()%>/qnalist" id="qnaBtn">질문방</a> 

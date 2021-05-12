@@ -287,9 +287,10 @@ $(document).ready(function(){
 });
 </script>
 <script>
-function test(){
-	
-}
+$(document).ready(function () {
+
+
+});
 </script>
 </head>
 <body class="content">
@@ -301,7 +302,7 @@ function test(){
 		<ul class="tab">
 			<li><a href="#" class="title">나의 프로필</a></li>
 			<li><a href="#" class="title">일정관리</a></li>
-			<li><button type="button" class="title" onclick="test();">내가쓴글</button></li>
+			<li><a href="#" class="title">내가쓴글</a></li>
 			<li><a href="#" class="title">내영상보기</a></li>
 		</ul>
 		<div class="tab-cont">
