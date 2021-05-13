@@ -10,23 +10,24 @@
 </title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
-window.onload = function () {
-	document.getElementById("show").addEventListener("click", showHide);
-	function showHide() {
-	    if (document.getElementById("show").value == "SHOW") {
-	        this.value = "HIDE";
-	        document.getElementById("dropdown-content").style.display = "block";
-	        document.getElementById("show").src = "<%=request.getContextPath()%>/images/userhover.png";
-	        document.getElementById("picBtn").style.border = "1px solid #1abc9c";
-	
+$(document).ready(function(){
+	$("#show").val("SHOW");
+	$("#show").click(function(){
+		console.log("이벤트 시작");
+		console.log($(this).val());
+	    if ($(this).val() == "SHOW") {
+	        $(this).val("HIDE");
+	        $("#dropdown-content").css("display", "block");
+	        $("#show").attr("src", "<%=request.getContextPath()%>/images/userhover.png");
+	        $("#picBtn").css("border", "1px solid #1abc9c");
 	    } else {
-	        this.value = "SHOW";
-	        document.getElementById("dropdown-content").style.display = "none";
-	        document.getElementById("show").src = "<%=request.getContextPath()%>/images/user.png";
-	        document.getElementById("picBtn").style.border = "1px solid white";
+	    	$(this).val("SHOW");
+	        $("#dropdown-content").css("display", "none");
+	        $("#show").attr("src", "<%=request.getContextPath()%>/images/user.png");
+	        $("#picBtn").css("border", "1px solid white");
 	    }
-	}
-}
+	})
+});
 </script>
 <header>
 <div class="header">
@@ -54,7 +55,7 @@ window.onload = function () {
 				<div class="afterLogin">
 					<div class="dropdown">
 						<div class="picBtn" id="picBtn">
-								<input type="image" src="<%=request.getContextPath() %>/images/user.png" class="pic" width="50" height="50" style="background-color: white" id="show" onclick="showHide();">
+								<input type="image" src="<%=request.getContextPath() %>/images/user.png" class="pic" width="50" height="50" style="background-color: white" id="show">
 							</div>
 						<div class="dropdown-content" style="border: 1px solid #1abc9c; display:none" id="dropdown-content">
 							<a href="<%=request.getContextPath()%>/myPage/myPageEnter.jsp">마이페이지</a>

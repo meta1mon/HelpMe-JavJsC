@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 946b0bebdab086daac3529910c0f5eb52a1a737a
 #calendar {
 	clear: both;
 	width: 800px;
@@ -62,7 +58,7 @@
 	border: var(- -fc-button-active-border-color, #3d665f);
 }
 
-.fc .fc-button-primary:not(:disabled):active:focus, .fc .
+.fc .fc-button-primary:not(:disabled):active:focus, .fc
 	.fc-button-primary:not(:disabled).fc-button-active:focus {
 	box-shadow: 0 0 0 0;
 }
