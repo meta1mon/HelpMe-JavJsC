@@ -73,7 +73,7 @@ public class CalendarDAO {
 	}
 	
 	
-	// 일정 수정 - 우선 일정명 기준으로 ㅠ 마이페이지 넣고나서 수정 / 모든 조항 수정? or 일정 코드 및 내용만 수정?
+	// 일정 수정 - resize -> end 날짜만 바뀌게  / drop start, end 날짜 둘 다 바껴야함
 	public int updateSchedule(Connection conn, CalendarVO vo) throws SQLException {
 		int result = 0;
 		String sql = "UPDATE schedule SET schestart = ?, scheend = ?, schecode = ?, schecont = ? where schename = ?";
@@ -92,14 +92,18 @@ public class CalendarDAO {
 		return result;
 	}
 	
-	public int deleteSchedule(Connection conn, String scheName) throws SQLException {
+	// 일정 삭제
+	public int deleteSchedule(Connection conn, String scheName, String id) throws SQLException {
 		int result = 0;
 		
-		String sql = "DELETE FROM schedule WHERE schename = ?";
+		String sql = "DELETE FROM schedule WHERE schename = ? and id = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, scheName);
+			pstmt.setString(2, id);
+			
+			result = pstmt.executeUpdate();
 		}finally {
 			close(pstmt);
 		}

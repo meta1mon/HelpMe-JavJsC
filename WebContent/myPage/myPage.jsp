@@ -422,13 +422,11 @@ $(document).ready(function(){
 			}, //select 
 			
 			editable : true,
+			droppable: true,
 			
-				
-			events : function (start, end, successCallback) {
-				console.log(start);
-				console.log(end);
-				console.log(successCallback);
-				
+			
+			events : function (info, successCallback, failureCallback) {
+				console.log(info);
 		   		  $.ajax({
 		 				url:"<%=request.getContextPath()%>/scheduleview",
 		 				type:"post",
@@ -436,45 +434,47 @@ $(document).ready(function(){
 		 				
 		 				success:function(data){	
 		 					var events = [];
-		 					$.each(data,function(index,e) {
-								console.log(data);
-		 						console.log(e);
-								console.log(e.scheName);
-
-								var title = e.scheName;
-								console.log(title);
-								
-								var startDay = e.scheStart;
-								console.log(startDay);
-								
-								var endDay = e.scheEnd;
-								console.log(endDay);
-								
-								var type = e.scheCode;
-								console.log(type);
-								
-								var content = e.scheContent;
-								console.log(content);
-								
-								events.push({
-									scheName : title,
-									scheStart : startDay , 
-									scheEnd : endDay ,
-									scheCode : type,
-									scheContent : content
-								});
-								
-							});
-							console.log("events : " + events); 
+		 					if(data != null){
+			 					$.each(data,function(index,e) {
+									console.log(data);
+			 						console.log(e);
+									console.log(e.scheName);
+	
+									var title = e.scheName;
+									console.log(title);
+									
+									var startDay = e.scheStart;
+									console.log(startDay);
+									
+									var endDay = e.scheEnd;
+									console.log(endDay);
+									
+									var type = e.scheCode;
+									console.log(type);
+									
+									var content = e.scheContent;
+									console.log(content);
+									
+									events.push({
+										title : title,
+										start : startDay, 
+										end : endDay,
+										
+									}); // push
+									console.log(events);
+								}); // each 끝
+		 						
+		 					} // if 끝
+							console.log(events); 
 							successCallback(events); 
-		 				},
+		 				}, // success 끝
 		 				error: function(request, status, error ){
-			        		console.log("일정 수정 실패");
+			        		console.log("일정 load 실패");
 							alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
 						} 
-		 				});
+		 				}); // ajax 끝
 		 				
-		   		  },
+		   		  }, // events 끝
 			
 			
 			eventClick : function(info) {
@@ -482,116 +482,11 @@ $(document).ready(function(){
 				
 				editSchedule(info.event);
 				
-				function editSchedule(event){
-					console.log("event : " + event);
-					
-					modalTitle.html('일정 수정');
-				    editTitle.val(event.title);
-				    editStart.val(moment(event.start).format('YYYY-MM-DD HH:mm'));
-				    editType.val(event.type);
-				    editCont.val(event.content);
-				    editColor.val(event.backgroundColor).css('color', event.backgroundColor);
-
-				    
-				    if(modifyBtnContainer.css("display") == "none"){
-				    	addBtnContainer.hide();
-				    	modifyBtnContainer.show();
-					} 
-					
-
-					$("#scheModal").css("display", "block");
-
-
-					$(".close").on("click", function() {
-						$("#scheModal").css("display", "none");
-					});
-					
-					$(".btn-default").on("click", function() {
-						$("#scheModal").css("display", "none");
-					});
-					
-					 // 수정 버튼 클릭 시
-				    $("#updateSchedule").on('click', function(){
-				    	
-					console.log("update 수행!!!!");
-				    	if(editStart.val() > editEnd.val()){
-				    		alert('끝나는 날짜가 앞설 수 없습니다.');
-				    		return false;
-				    	}
-				    	
-				    	if(editTitle.val() === '') {
-				    		alert('일정명은 필수입니다.');
-				    		return false;
-				    	}
-				    	
-				    	var statusAllDay;
-				        var startDate;
-				        var endDate;
-				        var displayDate;
-				    	
-				    	if(editAllDay.is(':checked')){
-				    		statusAllDay = true;
-				    		startDate = editStart.val();
-				    		endDate = editEnd.val();
-				    		displayDate = endDate;
-				    	}
-							
-				    	console.log(statusAllDay);
-				    	console.log(startDate);
-				    	console.log(endDate);
-				    	console.log(displayDate);
-				    	
-				    	event.remove();
-				    	var modifyData = {
-				          allDay : statusAllDay,
-				          title : editTitle.val(),
-				          start : startDate,
-				          end : displayDate,
-				          type : editType.val(),
-				          backgroundColor : editColor.val(),
-				          content : editCont.val()
-				    			
-				    	}
-					      console.log(event);
-					      
-					      calendar.addEvent(modifyData);
-					      console.log(modifyData);
-					      $.ajax({
-					            type: "post",
-					            url: "<%=request.getContextPath()%>/scheduleupdate",
-					            data: modifyData,
-					            
-					            success: function (response) {
-					                alert('수정되었습니다.');
-					            },
-					     		error: function(request, status, error ){
-				        		console.log("일정 수정 실패");
-								alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
-							} 
-					        });
-					      
-				    }) // 수정 버튼 클릭 끝
-				    
-				    // 삭제 버튼 클릭 시
-				    $("#deleteSchedule").on('click', function(){
-				    	event.remove();
-				    	$("#scheModal").css("display", "none");
-				    	
-				    	 $.ajax({
-				    	        type: "post",
-				    	        url: "<%=request.getContextPath()%>/scheduledelete",
-				    	      
-				    	        success: function (response) {
-				    	            alert('삭제되었습니다.');
-				    	        },
-				    	        error: function(request, status, error ){
-					        		console.log("일정 삭제 실패");
-									alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
-								} 
-				    	  })
-				    }) // 삭제 버튼 클릭 끝
-				    
-				} // editSchedule 끝
+				deleteSchedule(info);
+			
+			   	info.event.remove();
+				
+				
 				} /* eventClick 끝*/
 				
 			
@@ -624,21 +519,30 @@ $(document).ready(function(){
 				alert('일정명은 필수입니다.')
 				return false;
 			}
+			
+			if(scheduleData.type === ''){
+				alert('일정 종류를 선택해주세요.')
+				return false;
+			}
+			
 			// 하루종일 체크박스가 체크되었을 경우
 			if(editAllDay.is(':checked')){
 				console.log("editAllDay.is 호출");
 				scheduleData.start = moment(scheduleData.start).format('YYYY-MM-DD');
 				// 달력 render 시 날짜 표기 수정
 				scheduleData.end = moment(scheduleData.end).format('YYYY-MM-DD');
-				// db에 넣을 때
-				var realEndDay = moment(scheduleData.end).format('YYYY-MM-DD');
 				
 				scheduleData.allDay = true;
 				
 			} 
+			
+			
 			console.log("calendar.addEvent(scheduleData) 호출"+ scheduleData);
+			
 			calendar.addEvent(scheduleData);
-			//console.log(eventData);
+			
+			$("#scheModal").css("display", "none");
+			//console.log(scheduleData);
 			
 	        // 입력한 새로운 일정 저장
 	        var querystring = $("#frm").serialize();
@@ -655,9 +559,40 @@ $(document).ready(function(){
 	        		console.log("일정 등록 실패");
 					alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
 				} 
-
+	        	
 	        })
-		}) // 저장버튼 클릭
+		}) // 저장버튼 클릭 끝
+		
+		function deleteSchedule(arg){
+			console.log("deleteSchedule 함수 호출");
+			console.log("deleteSchedule arg : " + arg);
+			console.log(arg);
+			
+		// 삭제 버튼 클릭 시
+	    $("#deleteSchedule").on('click', function(){
+	    	var title = arg.event.title;
+	    	console.log(title);
+	    	
+	    	$("#scheModal").css("display", "none");
+	    	 $.ajax({
+	    	        type: "post",
+	    	        url: "<%=request.getContextPath()%>/scheduledelete",
+					data:{
+						title : title
+						
+					},
+						
+	    	        success: function (response) {
+	    	        	console.log(response);
+	    	            alert('삭제되었습니다.');
+	    	        },
+	    	        error: function(request, status, error ){
+		        		console.log("일정 삭제 실패");
+						alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
+					} 
+	    	  })
+	    }) // 삭제 버튼 클릭 끝
+		} //deleteSchedule 끝
 		
 		function newSchedule (start, end) {
 			
@@ -665,8 +600,8 @@ $(document).ready(function(){
 			modalTitle.text('새로운 일정 등록');
 			$('#edit-start').val(start);
 			$('#edit-end').val(end);
-			// 모달창 초기화 - 위치 수정 필요	   		
-	       	editAllDay.prop('checked', false);
+			// 모달창 초기화	   		
+	       	editAllDay.prop('checked', true);
 		    editTitle.val('');
 			editType.val('');
 			editCont.val(''); 
@@ -689,6 +624,47 @@ $(document).ready(function(){
 			});
 			
 		} //newSchedule
+		
+		function editSchedule(event){
+			console.log("event : " + event);
+			
+			// 모달창 setting
+			modalTitle.html('일정 수정');
+		    editTitle.val(event.title);
+		    editStart.val(moment(event.start).format('YYYY-MM-DD HH:mm'));
+		    editEnd.val(moment(event.end).format('YYYY-MM-DD HH:mm'));
+		    editType.val(event.type);
+		    editCont.val(event.content);
+		    editColor.val(event.backgroundColor).css('color', event.backgroundColor);
+		    if(editAllDay.is(':checked')){
+			    editAllDay.prop('checked', true);
+		    } else {
+			    editAllDay.prop('checked', false);
+		    }
+
+		    
+		    if(modifyBtnContainer.css("display") == "none"){
+		    	addBtnContainer.hide();
+		    	modifyBtnContainer.show();
+			} 
+			
+			// 모달창 display
+			$("#scheModal").css("display", "block");
+
+
+			$(".close").on("click", function() {
+				$("#scheModal").css("display", "none");
+			});
+			
+			$(".btn-default").on("click", function() {
+				$("#scheModal").css("display", "none");
+			});
+			
+			
+			
+		} // editSchedule 끝
+	 // 삭제 버튼 클릭 끝
+		
 	}); //$(document)
 
 	

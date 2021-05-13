@@ -55,12 +55,12 @@ public class CalendarService {
 	}
 	
 	//delete
-		public int deleteSchedule(String scheName) throws SQLException {
+		public int deleteSchedule(String scheName, String id) throws SQLException {
 			int result = 0;
 			
 			Connection conn = getConnection();
 			CalendarDAO dao = new CalendarDAO();
-			result = dao.deleteSchedule(conn, scheName);
+			result = dao.deleteSchedule(conn, scheName, id);
 			if (result != 0) {
 				commit(conn);
 			} else {

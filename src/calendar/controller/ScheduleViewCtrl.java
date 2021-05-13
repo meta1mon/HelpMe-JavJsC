@@ -45,6 +45,7 @@ public class ScheduleViewCtrl extends HttpServlet {
 	}
 	
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("서블릿 진입함");
 		PrintWriter out = response.getWriter();
 		
 		CalendarVO vo = new CalendarVO();
@@ -69,6 +70,7 @@ public class ScheduleViewCtrl extends HttpServlet {
 		out.print(jsonlist);
 		out.flush();
 		out.close();
+		
 		
 	}
 	
