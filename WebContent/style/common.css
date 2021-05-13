@@ -56,25 +56,6 @@ button, input[type="button"], input[type="submit"], input[type="reset"], input[t
 	cursor: pointer;
 }
 
-
-
-/*bootstrap box와 footer에만 적용되는 사항*/
-/*.container {
-	width: 100%;
-	max-width: 1240px;
-	padding-right: 1.5rem;
-	padding-left: 1.5rem;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-.row {
-	display: flex;
-	flex-wrap: wrap;
-	margin-right: -1.5rem;
-	margin-left: -1.5rem;
-}*/
-
 .justify-content-center {
 	justify-content: center !important;
 	margin-top: 3rem !important;

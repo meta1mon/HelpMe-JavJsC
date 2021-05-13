@@ -31,6 +31,7 @@
 	width: 600px;
 	float: left;
 	margin-top: 40px;
+	margin-left: -40px;
 }
 
 .nav a {
@@ -53,6 +54,43 @@ a:hover {
 	margin-right: 10px;
 	float: right;
 	position: relative;
+}
+
+#btnLogin {
+	width: 80px;
+	border: none;
+	padding: 5px;
+	outline: none;
+	border-radius: 5px;
+	color: white;
+	background-color: transparent;
+	border: 1px solid #1abc9c;
+}
+
+#btnLogin:hover{
+	background-color: #1abc9c;
+}
+
+
+#btnEnroll {
+	width: 80px;
+	border: none;
+	padding: 5px;
+	outline: none;
+	border-radius: 5px;
+	color: white;
+	background-color: transparent;
+	border: 1px solid #1abc9c;
+	
+}
+
+#btnEnroll:hover{
+	background-color: #1abc9c;
+}
+
+.selected {
+	color: #1abc9c;
+	
 }
 
 /*로그인 후*/
@@ -97,9 +135,5 @@ a:hover {
 }
 .dropdown-content a:hover {
 	color: #1abc9c;
-}
-
-.dropdown:hover .picBtn {
-	border: 1px solid #1abc9c;
 }
 

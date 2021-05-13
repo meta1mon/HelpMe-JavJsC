@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>도와줘 잡스씨</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- 비밀번호 질문 선택 -->
 <script>
 	//select 선택되어있던 값 불러오기
 	$(document).ready(
@@ -17,9 +18,40 @@
 						"selected", true);
 			});
 </script>
+<!-- 폼 체크 -->
 <script>
-	// 비밀번호 일치 체크
-	$(document).ready(function() {
+	var nicknamecheck = false;
+	// 닉네임 중복 체크
+	$(function(){
+		$("#nicknamecheck").click(function() {
+			var nickname = $("#nickname").val().trim();
+			if(nickname == "") {
+				alert("닉네임을 입력하고 중복확인을 눌러주세요");
+				$("nickname").focus();
+				return;
+			}
+			$.ajax({
+				url : "<%=request.getContextPath()%>/uniquenickname",
+				type : "post",
+				data : {
+					"nickname" : nickname,
+					"tag" : 2
+				},
+				dataType : "json",
+				success : function(data) {
+					if (data == "사용가능") {
+						alert("사용 가능한 닉네임입니다");
+						nicknamecheck = true;
+					} else {
+						alert("이미 존재하는 닉네임입니다. 다른 닉네임을 사용해주세요");
+						nicknamecheck = false;
+					}
+				}
+			});
+
+		});
+
+		// 비밀번호 일치 체크
 		$("#password2").keyup(function() {
 			var pass1 = $("#password1").val();
 			var pass2 = $("#password2").val();
@@ -65,10 +97,9 @@
 			$("#passanswer").focus();
 			return false;
 		}
+	}
 
-	};
-
-	// 회원가입 입력칸 형식 체크
+	//입력칸 형식 체크
 	function regCheck() {
 		var nickname = $("#nickname").val().trim();
 		var reg2 = /^[가-힣A-Za-z0-9]{1,8}$/g;
@@ -85,6 +116,11 @@
 		var email = $("#email").val().trim();
 		var reg6 = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/g;
 
+		if (!reg1.test(id)) {
+			alert("아이디 형식이 잘못되었습니다");
+			$("#id").focus();
+			return false;
+		}
 		if (!reg2.test(nickname)) {
 			alert("닉네임 형식이 잘못되었습니다");
 			$("#nickname").focus();
@@ -113,7 +149,7 @@
 			return false;
 		}
 
-	};
+	}
 
 	// 비밀번호 일치 체크
 	function passequal() {
@@ -124,8 +160,8 @@
 			$("#password1").focus();
 			return false;
 		}
-	};
-	// 수정 완료 버튼 눌렀을 때,
+	}
+	// 수정 버튼 눌렀을 때,
 	function modify() {
 		if (required() == false) {
 			return false;
@@ -136,6 +172,16 @@
 		}
 
 		if (passequal() == false) {
+			return false;
+		}
+
+		if (idcheck == false) {
+			alert("아이디 중복확인이 필요합니다");
+			return false;
+		}
+
+		if (nicknamecheck == false) {
+			alert("닉네임 중복확인이 필요합니다");
 			return false;
 		}
 
@@ -182,8 +228,96 @@
 								.focus();
 					}
 				}).open();
-	};
+	}
 </script>
+<!-- 수정 폼 스타일 -->
+<style>
+#nicknamecheck {
+	cursor: pointer;
+	color: blue;
+}
+
+[type='text'], [type='password'], select, option {
+	width: 400px;
+	height: 40px;
+	font-size: 17px;
+}
+
+.desc {
+	font-size: 13px;
+}
+
+.profileFrm {
+	font-size: 17px;
+}
+
+td {
+	padding: 5px 5px;
+}
+
+tr td:first-child {
+	text-align: center;
+}
+
+.required {
+	color: green;
+	font-size: 1px;
+}
+
+.optional {
+	color: brown;
+	font-size: 1px;
+}
+
+.modify {
+	width: 100px;
+	border: none;
+	padding: 5px;
+	outline: none;
+	border-radius: 5px;
+	color: white;
+	background-color: #2c3e50;
+	border: 1px solid #2c3e50;
+	font-size: 17px;
+}
+
+.modify:hover {
+	color: #1abc9c;
+}
+
+.cancel {
+	width: 100px;
+	border: none;
+	padding: 5px;
+	outline: none;
+	border-radius: 5px;
+	color: white;
+	background-color: #2c3e50;
+	border: 1px solid #2c3e50;
+	font-size: 17px;
+}
+
+.cancel:hover {
+	color: #1abc9c;
+}
+
+.findPostCode {
+	width: 80px;
+	height: 40px;
+	border: none;
+	padding: 5px;
+	outline: none;
+	border-radius: 5px;
+	color: white;
+	background-color: #2c3e50;
+	border: 1px solid #2c3e50;
+	font-size: 17px;
+}
+
+.findPostCode:hover {
+	color: #1abc9c;
+}
+</style>
 </head>
 <body>
 	<form action="<%=request.getContextPath()%>/myprofileupdate"
@@ -262,8 +396,8 @@
 			</tr>
 			<tr>
 				<td colspan="3"><button type="submit"
-						onclick="return modify();">수정 완료</button>
-						<button type="button" onclick="window.close();">취소</button></td>
+						onclick="return modify();" class="modify">수정 완료</button>
+						<button type="button" onclick="window.close();" class="cancel">취소</button></td>
 			</tr>
 		</table>
 	</form>

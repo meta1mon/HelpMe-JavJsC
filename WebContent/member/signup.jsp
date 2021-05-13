@@ -8,9 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원가입</title>
 <style>
-.enrollFrm {
-	text-align: center;
-}
 
 [type='text'], [type='password'] {
 	width: 400px;
@@ -26,7 +23,7 @@ tr td:nth-of-type(3) {
 }
 
 tr:nth-of-type(1) td:nth-of-type(3) div, tr:nth-of-type(2) td:nth-of-type(3) div {
-		float:left;
+	float:left;
 }
 
 table {
@@ -50,6 +47,7 @@ table {
 
 .desc {
 	font-size: 13px;
+	text-align:left;
 }
 
 #btnEnroll {
@@ -60,6 +58,23 @@ table {
 	box-sizing: border-box;
 	width: 400px;
 	height: 40px;
+}
+
+.findPostCode {
+	width: 80px;
+	height: 40px;
+	border: none;
+	padding: 5px;
+	outline: none;
+	border-radius: 5px;
+	color: white;
+	background-color: #2c3e50;
+	border: 1px solid #2c3e50;
+	font-size: 17px;
+}
+
+.findPostCode:hover {
+	color: #1abc9c;
 }
 
 </style>
@@ -372,12 +387,33 @@ table {
 				</tr>
 				<tr>
 					<td>주소<span class="optional">(선택)</span></td>
-					<td><input type="text" id="sample6_postcode" placeholder="우편번호" name="postcode" readonly style="margin-bottom:5px"><br>
-						<input type="text" id="sample6_address" placeholder="주소" name="address1" readonly  style="margin-bottom:5px"><br>
-						<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="address2" style="margin-bottom:5px"><br>
-				<!-- 참고항목은 도로명 주소 클릭 시, 동을 표시한다 -->
-						<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="address3" readonly style="margin-bottom:5px"></td>
-					<td><input type="button" onclick="sample6_execDaumPostcode()"	value="우편번호 찾기"></td>
+					<td><input type="text" id="sample6_postcode" name="postcode"
+						readonly style="margin-bottom: 5px"
+						value="${loginMember.postcode}"></td>
+					<td style="padding-top: 3px; text-align: left;"><input type="button"
+						onclick="sample6_execDaumPostcode()" value="우편번호"
+						class="findPostCode"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="text" id="sample6_address" name="address1"
+						readonly style="margin-bottom: 5px"
+						value="${loginMember.address1}"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="text" id="sample6_detailAddress"
+						name="address2" style="margin-bottom: 5px"
+						value="${loginMember.address2}"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="text" id="sample6_extraAddress"
+						name="address3" readonly style="margin-bottom: 5px"
+						value="${loginMember.address3}"></td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>전화번호<span class="optional">(선택)</span></td>
@@ -391,13 +427,15 @@ table {
 							특수문자(@)만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>
-					<td colspan="3"><label><input type="checkbox"
+					<td colspan="2" style="text-align:left"><label><input type="checkbox"
 							name="agree" value="1" id="agelimit"> 만 14세 이상 회원가입에
 							동의합니다(필수)</label></td>
+					<td></td>
 				</tr>
 				<tr>
-					<td colspan="3"><label><input type="checkbox"
-							name="agree" value="2"> 도와줘~ 잡스!의 다양한 소식을 받아보겠습니다(선택)</label></td>
+					<td colspan="2"  style="text-align:left"><label><input type="checkbox"
+							name="agree" value="2"> 도와줘 잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
+					<td></td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="회원가입"

@@ -6,25 +6,27 @@
 <%@include file="../style/header.css" %>
 </style>
 <title>
-	구해줘! 잡스
+	도와줘 잡스씨
 </title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
-$(document).ready(function(){
-	  $("#show").click(function(){
-		  if($("#dropdown").css("display", "none")){
-			  $("#dropdown").css("display", "block")
-	    	$("#show").attr("src", '<%=request.getContextPath()%>/images/userhover.png');
-		  } else {
-			$("#dropdown").css("display", "none")
-	    	$("#show").attr("src", '<%=request.getContextPath()%>/images/user.png');
-			}
-		});
-	});
-</script>
-<script>
-$(document).ready(function(){
-})
+window.onload = function () {
+	document.getElementById("show").addEventListener("click", showHide);
+	function showHide() {
+	    if (document.getElementById("show").value == "SHOW") {
+	        this.value = "HIDE";
+	        document.getElementById("dropdown-content").style.display = "block";
+	        document.getElementById("show").src = "<%=request.getContextPath()%>/images/userhover.png";
+	        document.getElementById("picBtn").style.border = "1px solid #1abc9c";
+	
+	    } else {
+	        this.value = "SHOW";
+	        document.getElementById("dropdown-content").style.display = "none";
+	        document.getElementById("show").src = "<%=request.getContextPath()%>/images/user.png";
+	        document.getElementById("picBtn").style.border = "1px solid white";
+	    }
+	}
+}
 </script>
 <header>
 <div class="header">
@@ -33,7 +35,7 @@ $(document).ready(function(){
 		<img alt="logo" src="<%=request.getContextPath() %>/images/logo.png" width="128" height="80" id="logo">
 		</a>
 		<div class="nav">
-			<a href="<%=request.getContextPath()%>/qnalist" id="qnaBtn">질문방</a> 
+			<a href="<%=request.getContextPath()%>/qnalist">질문방</a> 
 			<a href="<%=request.getContextPath()%>/studylist" id="studyBtn">스터디방</a> 
 			<a href="" id="reviewBtn">리뷰방</a> 
 			 <a href="<%=request.getContextPath()%>/shop/shopIntro.jsp" id="shopBtn">쇼핑방</a> 
@@ -51,10 +53,10 @@ $(document).ready(function(){
 			<c:when test="${loginMember != null }">
 				<div class="afterLogin">
 					<div class="dropdown">
-						<div class="picBtn">
-								<input type="image" src="<%=request.getContextPath() %>/images/user.png" class="pic" width="50" height="50" style="background-color: white" value="show" id="show">
+						<div class="picBtn" id="picBtn">
+								<input type="image" src="<%=request.getContextPath() %>/images/user.png" class="pic" width="50" height="50" style="background-color: white" id="show" onclick="showHide();">
 							</div>
-						<div class="dropdown-content" style="border: 1px solid #1abc9c; display:none" id="dropdown">
+						<div class="dropdown-content" style="border: 1px solid #1abc9c; display:none" id="dropdown-content">
 							<a href="<%=request.getContextPath()%>/myPage/myPageEnter.jsp">마이페이지</a>
 							<a href="<%=request.getContextPath()%>/memberlogout">로그아웃</a> 
 						</div>
