@@ -18,57 +18,85 @@
 	margin : 40px 0 20px 10px;
 	text-align:left;
 	font-size:17px;
+	float:left;
 	}
+	
+	#write {
+	margin : 20px 0 0 0;
+	width:100px;
+	height:65px;
+	padding:0;
+	border:none;
+	border-radius: 4px;
+	text-align: center;
+	color:#ffffff;
+	background-color:#1abc9c;
+	float: right; 
+	font-size:18px;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	}
+	#write:hover, #write:focus {
+	color:#2c3e50;
+	background-color: #ffffff;
+	box-shadow: 10px 10px 10px #eeeeee;
+	
+	}
+	
 	#searchType {
 	width:80px;
 	height:65px;
 	border: none;
 	font-size:18px;
 	color:#aca4ae;
-	margin:0;
+	margin-top:20px;
 	padding:0;
+	float: left; 
+	text-align: left;
+	clear:both;
 	}
-	#searchType:hover {
+	#searchType:hover, #searchType:focus {
 	color:black;
 	transition: color 0.15s ease-in-out;
 	}
 	
 	#search {
-	width: 590px;
+	width: 650px;
 	height:65px;
 	top: 0;
 	background-color: #efeff3;
 	border: none;  
 	font-size:18px;
-	margin:0;
+	margin-top:20px;
 	padding:0;
+	float: left; 
 	}
-	#search:hover {
+	#search:hover, #search:focus {
 	color: black;
 	background-color: #ffffff;
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	box-shadow: 10px 10px 10px #eeeeee;
 	}
-	
-	#write {
-	width:100px;
+	#btnsearch{
+	width:70px;
 	height:65px;
-	background-color:#1abc9c;
-	border:none;
-	color:#ffffff;
-	border-radius: 4px;
-	float:right;
-	font-size:18px;
-	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-	margin-left:10px;
+		argin-top:20px;
 	padding:0;
+	border-style: hidden hidden hidden solid;
+	border-color:#E6E6E6;
+	font-size:18px;
+	color:#aca4ae;
+	margin-top:20px;
+	background-color:#efeff3;
+	float:left;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	}
-	#write:hover {
-	color:#2c3e50;
+	#btnsearch:hover, #btnsearch:focus {
+	color: black;
 	background-color: #ffffff;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	box-shadow: 10px 10px 10px #eeeeee;
-	
 	}
+
 	
 	#table {
 	clear:both;
@@ -76,6 +104,10 @@
 	margin-right:auto;
 	margin-left:auto;
 	height:2000px;
+	border-collapse:collapse;
+	}
+	#table tr {
+	border-bottom: 1px solid #eeeeee;
 	}
 	
 	table > tr > td:first-child                {width:5%;} /*No 열 크기*/
@@ -90,7 +122,7 @@
 	text-decoration:none;
 	}
 	
-	#subject:hover {
+	#subject:hover, #subject:active {
 	color:#0100FF;
 	}
 
@@ -100,6 +132,14 @@
     color: #337ab7;
     text-decoration: none;
 	}
+	
+	#search::-webkit-input-placeholder{
+  background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png) ;
+  background-size: contain;
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  text-indent: 0;
+}
 </style>
 
 </head>
@@ -108,25 +148,25 @@
 <div style="width: 800px; margin: 0 auto 0 auto; color:#aca4ae;">
 
 	<div class="qna">Q&A 게시판</div>
+	<input id="write" type="button" value="새 글 쓰기" onclick="location.href = 'board/qna/qwrite.jsp'">
+	
 	<form action="qnalist" method="get">
 		<select id="searchType" name="searchType">
 			<option value="1">글제목</option>
 			<option value="2">작성자</option>
 			<option value="3">글내용</option>
 		</select>
-		<input type='search' id="search" name="search" placeholder="&nbsp;&nbsp;질문을 검색하세요.">
-	<input id="write" type="button" value="새 글 쓰기" onclick="location.href = 'board/qna/qwrite.jsp'">
-	<button type=submit style="display:none;">검색</button>
+		<input type='search' id="search" name="search" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp질문을 검색하세요.">
+	<button type=submit id="btnsearch">검색</button>
 	</form>
-	<i class="bi bi-search"></i>
 	
-	<table id="table" style="border:1;">
+	<table id="table">
 		<c:forEach items="${qlist }" var='q'>
 			<tr style="border-bottom: 1px solid #eeeeee;">
 				<td style="width:50px; font-size:14px;"><a style="font-size:18px;">${q.qviewcnt }</a><br>조회</td>
-				<td style="width:50px;"><a style="font-size:18px;">${q.qlikecnt }</a><br>좋아요</td>
-				<td style="width:50px;"><a style="font-size:18px;">${q.rqnacnt }</a><br>답변</td>
-				<td style="text-align: left; width:450px;">
+				<td style="width:50px; font-size:14px;"><a style="font-size:18px;">${q.qlikecnt }</a><br>좋아요</td>
+				<td style="width:50px; font-size:14px;"><a style="font-size:18px;">${q.rqnacnt }</a><br>답변</td>
+				<td style="text-align: left; width:500px;">
 					<a href="qnaread?qno=${q.qno}" id="subject">${q.qsubject }</a> 
 						<br> 
 								<c:choose>
@@ -135,7 +175,7 @@
 									<c:when test="${q.qtag ==3}">Python</c:when>
 								</c:choose>
 				</td>
-				<td><a style="color:#0054FF; text-align: left;">${q.qwriter }</a> <br> <a style="font-size:13px;">${q.qdate }</a></td>
+				<td style="text-align: left;"><a style="color:#0054FF;">${q.qwriter }</a> <br> <a style="font-size:13px;">${q.qdate }</a></td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -22,11 +22,6 @@ import board.qna.service.QnaService;
 import board.qna.vo.Qna;
 import member.vo.Member;
 
-@MultipartConfig(
-		fileSizeThreshold=1024*1024*10,	//10 MB / 업로드한 파일의 크기가 태그 값보다 크면 디렉토리에 임시 저장, 작다면 메모리에 파일 저장.
-		maxFileSize=1024*1024*10,		//10 MB / 파일 1개당 최대 파일 크기
-		maxRequestSize=1024*1024*50		//50 MB / 전체 요청의 크기
-		)
 @WebServlet("/qnawrite")
 public class QnaWriteCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -88,14 +83,9 @@ public class QnaWriteCtrl extends HttpServlet {
 				System.out.println("파일 업로드 성공");
 			}
 			
-			fileNames += fileName + ",";
-//			fileNames.append(fileName);
-//			fileNames.append(",");		//다중 파일들을 db에 넣을 때 뒤에 쉼표를 찍어서 넣는다.
+			fileNames += fileName + ",";//다중 파일들을 db에 넣을 때 뒤에 쉼표를 찍어서 넣는다.
 		}
 		
-//		if(fileNames.length() > 0) {
-//			fileNames.delete(fileNames.length()-1,fileNames.length()); 
-//		}
 		if(fileNames.length()> 1800) {
 			System.out.println("DBfilename 크기보다 큽니다.");
 		}
@@ -110,7 +100,6 @@ public class QnaWriteCtrl extends HttpServlet {
 		vo.setQcontent(mReq.getParameter("qcontent"));
 		vo.setQtag(Integer.parseInt(qtag));
 		vo.setQwriter(qwriter);
-		//vo.setQfilepath(builder.toString()); //build가 갖고있는 문자열을 세팅
 		vo.setQfilepath(fileNames);
 		
 		int result = 0;

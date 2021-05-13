@@ -106,6 +106,13 @@
                         /
                     </c:if>
 				</c:forTokens>
+				<c:forTokens var="fileName" items="${qna.qimage}" delims=","
+					varStatus="st">
+					<a download="${fileName}" href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
+					<c:if test="${!st.last }">
+                        /
+                    </c:if>
+				</c:forTokens>
 			</div>
 			<hr>
 			<c:if test="${loginMember != null }">
@@ -164,6 +171,13 @@
 		</div>
 	</div>
 	<script>
+	function show()
+	{
+		var pmt = ('수정 시 첨부한 파일은 삭제됩니다.');
+	var inputString = prompt(); 
+	alert(inputString);
+	}
+
     ClassicEditor
         .create( document.querySelector( '#editor' ), {
             cloudServices: {

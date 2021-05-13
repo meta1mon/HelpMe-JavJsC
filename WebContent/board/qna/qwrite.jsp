@@ -13,7 +13,6 @@
 	<style>
 	<%@include file="../../style/common.css" %>
 	<%@include file="../../style/header.css" %>
-	<%@include file="../../style/footer.css"%>
 .ck.ck-editor {
    max-width:800px;
 }
@@ -30,7 +29,7 @@
 			enctype="multipart/form-data">
 			<div style="margin-bottom:10px;">
 				<input style="width: 800px; height: 40px; font-size: 15px; box-sizing: border-box;"
-					type="text" placeholder="글 제목" name="qsubject" maxlength="150">
+					type="text" placeholder="글 제목" name="qsubject" maxlength="100">
 			</div>
 			<div style="margin-bottom:10px;">
 				<select name="qtag" style="width: 800px; height: 40px; font-size: 15px;">
@@ -41,7 +40,7 @@
 			</div>
 			<div style="margin-bottom:10px;">
 				<textarea placeholder="글 내용" id="editor" name="qcontent"
-					maxlength="2048"></textarea>
+					maxlength="4000"></textarea>
 			</div>
 			<div style="width: 150px; float:left;">첨부파일</div>
 			<div id="fileDiv" style="width: 650px; float:left;">
@@ -61,19 +60,18 @@
 			</div>
 		</form>
 	</div>
-	<script>
-	    ClassicEditor
-	        .create( document.querySelector( '#editor' ), {
-	            cloudServices: {
-	                tokenUrl: 'https://80479.cke-cs.com/token/dev/7ac95c09e51707fa1d95f2ea91d9a83fcb6e5bc7fc5a60c689f1f30dfb21',
-	                uploadUrl: 'https://80479.cke-cs.com/easyimage/upload/'
-	            }
-	        } )
-	        .catch( error => {
-	            console.error( error );
-	        } );
-	</script>
 	<script type="text/javascript">
+    ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        cloudServices: {
+            tokenUrl: 'https://80479.cke-cs.com/token/dev/7ac95c09e51707fa1d95f2ea91d9a83fcb6e5bc7fc5a60c689f1f30dfb21',
+            uploadUrl: 'https://80479.cke-cs.com/easyimage/upload/'
+        }
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+    
 		var gfv_count = 1;
 		$(document).ready(function() {
 
