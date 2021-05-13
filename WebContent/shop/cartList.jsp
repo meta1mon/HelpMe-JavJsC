@@ -8,7 +8,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+ <%@include file="../view/shopheader.jsp"%>
 <%
 	Member vo = (Member) request.getSession().getAttribute("loginMember");
 String bkind = request.getParameter("bkind");
@@ -19,8 +19,12 @@ String id = vo.getId();
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+<%@include file="../style/shop2.css"%>
+
+</style>
 </head>
-<body>
+<body class="content">
 	<%
 		List<BookcartVO> bookcartLists = null;
 			BookcartVO bookcartList = null;
@@ -48,14 +52,16 @@ String id = vo.getId();
 		if (count == 0 && count2 ==0) {
 	%>
 	<h3>장바구니</h3>
+	<div class="">
 	<table>
 		<tr>
 			<td>장바구니에 담긴 물품이 없습니다.</td>
 		</tr>
 	</table>
-	<input type="button" value="책쇼핑 계속"
+	</div>
+	<input type="button" value="책쇼핑 계속" id="backbtn"
 		onclick="javascript:window.location='introList.jsp?bkind=<%=bkind%>'">
-	<input type="button" value="영상쇼핑 계속"
+	<input type="button" value="영상쇼핑 계속" id="mainbtn"
 		onclick="javascript:window.location='videoIntroList.jsp?vkind=<%=vkind%>'">
 
 	<%
@@ -65,109 +71,161 @@ String id = vo.getId();
 		System.out.println("리스트로 다시들어옴22");
 	%>
 	<h3>장바구니</h3>
-	<form name="cartform">
+		<div style="width: 800px; margin: 0 auto 0 auto;">
+	<form name="orderform" id="orderform" method="post" class="orderform" >
+		
 		<p>책 장바구니 목록</p>
-		<table border="1px">
-			<tr>
-				<td width="50">번호</td>
-				<td width="300">책이름</td>
-				<td width="100">판매가격</td>
-				<td width="150">수량</td>
-				<td width="150">금액</td>
-			</tr>
+		
+	  <div class="basketdiv" id="basket">
+                <div class="row head">
+                    <div class="subdiv">
+                        <div class="check"></div>
+                        <div class="img">이미지</div>
+                        <div class="pname">상품명</div>
+                    </div>
+                    <div class="subdiv">
+                        <div class="basketprice">가격</div>
+                        <div class="num">수량</div>
+                        <div class="sum">합계</div>
+                    </div>
+                    <div class="subdiv">
+    
+                        <div class="basketcmd">삭제</div>
+                    </div>
+                    <div class="split"></div>
+                </div>
+        
 			<%
 				for (int i = 0; i < bookcartLists.size(); i++) {
 						bookcartList = (BookcartVO) bookcartLists.get(i);
 			%>
-			<tr>
-				<td width="50"><%=++number%></td>
-				<td width="300" align="left"><img
-					src="../imageFile/<%=bookcartList.getBimage()%>" border="0" width="30"
-					height="50" align="middle"> <%=bookcartList.getBtitle()%></td>
-				<td width="100"><%=NumberFormat.getInstance().format(bookcartList.getBprice())%></td>
-
-				<td width="150" align="center"><input type="text"
-					name="buycount" size="5" value="<%=bookcartList.getBuycount()%>">
-					<%
-						String url = "../bookupdateCartForm?bcid=" + bookcartList.getBcid() + "&bkind=" + bkind + "&buycount="
-										+ bookcartList.getBuycount();
-					%> <input type="button" value="수정"
-					onclick="javascript:window.location='<%=url%>'"></td>
-
-				<td align="center" width="150">
+			 <div class="row data">
+                    <div class="subdiv">
+                        <div class="check"><input type="hidden" name="buy" value="260" checked="">&nbsp;</div>
+                        <div class="img"><img src="../imageFile/<%=bookcartList.getBimage()%>" width="60"></div>
+                        <div class="pname">
+                            <span><%=bookcartList.getBtitle()%></span>
+                        </div>
+                    </div>
+                    <div class="subdiv">
+                        <div class="basketprice"><input type="hidden" name="p_price" id="p_price2" class="p_price" >
+                        <p class="price2">
+                    <%=NumberFormat.getInstance().format(bookcartList.getBprice())%>원</div>
+                        </p>
+                        <div class="num">
+                            <div class="updown">
+                                <input type="text" name="p_num1" id="buycount" size="2" maxlength="4" class="p_num" value="<%=bookcartList.getBuycount()%>">
+                                <%
+                  String url = "../bookupdateCartForm?bcid=" + bookcartList.getBcid() + "&bkind=" + bkind + "&buycount="
+                              + bookcartList.getBuycount();
+               %>  
+                               
+                                <a href="javascript:void(0)" id="abutton" onclick="javascript:window.location='<%=url%>'">수정</a>
+                            </div>
+                        </div>
+                        <div class="sum"><%=NumberFormat.getInstance().format(bookcartList.getBuycount() * bookcartList.getBprice())%></div>
+                    </div>
+                    <div class="subdiv1">
+                        <%
+                  String url2 = "../bookcartListDel?list=" + bookcartList.getBcid() + "&bkind=" + bkind;
+              			 %> 
+                        <div class="basketcmd"><a class="abutton" onclick="javascript:window.location='<%=url2%>'">삭제</a></div>
+                    </div>
+                </div>
+				
 					<%
 						total += bookcartList.getBuycount() * bookcartList.getBprice();
-					%> <%=NumberFormat.getInstance().format(bookcartList.getBuycount() * bookcartList.getBprice())%>
-					<%
-						String url2 = "../bookcartListDel?list=" + bookcartList.getBcid() + "&bkind=" + bkind;
-					%> <input type="button" value="삭제"
-					onclick="javascript:window.location='<%=url2%>'">
-				</td>
-			</tr>
-		
+					%> 
+				
 			<%
 						}
 					%>
-			</table>
 			</form>
 				
-			<div>
+			  <div class="right-align basketrowcmd">
 			<%
 				String url3 = "../bookcartListDel?list=all&bkind=" + bkind;
-			%> <input type="button" value="책 모두 비우기"
-						onclick="javascript:window.location='<%=url3%>'">
-		</div>			
-		<form name="cartform2">
-		<p>영상 장바구니 목록</p>
-		<table border="1px">
-			<tr>
-				<td width="50">번호</td>
-				<td width="300">영상이름</td>
-				<td width="100">판매가격</td>
-				<td width="150">수량</td>
-				<td width="150">금액</td>
-			</tr>
+			%>  <a class="abutton" onclick="javascript:window.location='<%=url3%>'">책비우기</a>
+			
+		</div>	
+		
+			<form name="orderform" id="orderform" method="post" class="orderform" >
+		
+			<p>영상 장바구니 목록</p>
+		
+	  <div class="basketdiv" id="basket">
+                <div class="row head">
+                    <div class="subdiv">
+                        <div class="check">수량</div>
+                        <div class="img">이미지</div>
+                        <div class="pname">상품명</div>
+                    </div>
+                    <div class="subdiv">
+                        <div class="basketprice">가격</div>
+                        <div class="num">수량</div>
+                        <div class="sum">합계</div>
+                    </div>
+                    <div class="subdiv">
+    
+                        <div class="basketcmd">삭제</div>
+                    </div>
+                    <div class="split"></div>
+                </div>
+				
+		
 
 			<%
 				for (int i = 0; i < videocartLists.size(); i++) {
 					videocartList = (VideocartVO) videocartLists.get(i);
 			%>
-			<tr>
-				<td width="50"><%=++number2%></td>
-				<td width="300" align="left"><img
-					src="../imageFile/<%=videocartList.getVimage()%>" border="0" width="30"
-					height="50" align="middle"> <%=videocartList.getVtitle()%></td>
-				<td width="100"><%=NumberFormat.getInstance().format(videocartList.getVprice())%></td>
-
-				<td width="150" align="center"><input type="text"
-					name="buycount" size="5" value="1">
-
-				<td align="center" width="150">
+			
+			 <div class="row data">
+                    <div class="subdiv">
+                        <div class="check"><input type="hidden" name="buy" value="260" checked="">&nbsp;</div>
+                        <div class="img"><img src="../imageFile/<%=videocartList.getVimage()%>" width="60"></div>
+                        <div class="pname">
+                            <span><%=videocartList.getVtitle()%></span>
+                        </div>
+                    </div>
+                    <div class="subdiv">
+                        <div class="basketprice"><input type="hidden" name="p_price" id="p_price2" class="p_price" >
+                        <p class="price2">
+                    <%=NumberFormat.getInstance().format(videocartList.getVprice())%>원</div>
+                        </p>
+                        <div class="num">
+                            <div class="updown">
+                                <input type="text" name="p_num1" id="buycount" size="2" maxlength="4" class="p_num" value="1">
+                            </div>
+                        </div>
+                          <%
+                  vtotal += videocartList.getBuycount() * videocartList.getVprice();
+             			  %> 
+                        <div class="sum"><%=NumberFormat.getInstance().format(videocartList.getVprice())%></div>
+                    </div>
+                    <div class="subdiv1">
+                       <%
+                  String url2 = "../videocartListDel?list=" + videocartList.getVcid() + "&vkind=" + vkind;
+            		   %>
+                        <div class="basketcmd"><a class="abutton" onclick="javascript:window.location='<%=url2%>'">삭제</a></div>
+                    </div>
+                </div></div>
+				
+				
 					<%
-						vtotal += videocartList.getBuycount() * videocartList.getVprice();
-					%> <%=NumberFormat.getInstance().format(videocartList.getBuycount() * videocartList.getVprice())%>
-					<%
-						String url2 = "../videocartListDel?list=" + videocartList.getVcid() + "&vkind=" + vkind;
-					%> <input type="button" value="삭제"
-					onclick="javascript:window.location='<%=url2%>'">
-				</td>
-			</tr>
-			<%	
-			}
-			%>
-			</table>
-			</form>
-			<div>
+						}
+					%>
+					<br>
+					</form>
+				
+			  <div class="right-align basketrowcmd">
 			<%
 							String url4 = "../videocartListDel?list=all&vkind=" + vkind;
-			%> <input type="button" value="영상 모두 비우기"
-						onclick="javascript:window.location='<%=url4%>'">
-						</div>
+			%>
+			 <a class="abutton" onclick="javascript:window.location='<%=url4%>'">영상비우기</a>
+			</div>	
 			
-			<tr>
-					<td colspan="5" align="right"><b>총 금액 :<%=NumberFormat.getInstance().format(total + vtotal)%></b></td>
-				</tr>
-				<tr>
+            <div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액:<%=NumberFormat.getInstance().format(total + vtotal)%>원</div>
+    
 				<%
 							String url5 = "../buyForm";
 				%>
@@ -176,12 +234,13 @@ String id = vo.getId();
 						type="button" value="쇼핑 계속하기"
 						onclick="javascript:window.location='introList.jsp?bkind=<%=bkind%>'"></td>
 						
-										</tr>
-		
-		<%
+										
+		<% 
 			}
 		}
 		%>
-	
+		</div>
+		
 </body>
 </html>
+<%@include file="../view/footer.jsp"%>

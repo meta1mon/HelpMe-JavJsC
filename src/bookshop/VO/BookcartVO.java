@@ -2,7 +2,7 @@ package bookshop.VO;
 
 public class BookcartVO {
 	private int bcid;
-	private int bid;
+	private String bid;
 	private String btitle;
 	private String bimage;
 	private int bprice;
@@ -17,10 +17,10 @@ public class BookcartVO {
 	public void setBcid(int bcid) {
 		this.bcid = bcid;
 	}
-	public int getBid() {
+	public String getBid() {
 		return bid;
 	}
-	public void setBid(int bid) {
+	public void setBid(String bid) {
 		this.bid = bid;
 	}
 	public String getBtitle() {

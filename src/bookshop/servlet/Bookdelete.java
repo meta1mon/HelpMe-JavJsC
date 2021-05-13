@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bookshop.DAO.ShopBookDAO;
 import bookshop.VO.ShopBookVo;
+import bookshop.service.Bookservice;
 
 /**
  * Servlet implementation class bookdelete
@@ -41,10 +42,9 @@ public class Bookdelete extends HttpServlet {
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		String bkind = request.getParameter("bkind");
 			
-		
+		Bookservice sv = new Bookservice();
 		try {
-			ShopBookDAO bookprocess = ShopBookDAO.getinstance();
-			bookprocess.deleteBook(bid);
+			sv.deleteBook(bid);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

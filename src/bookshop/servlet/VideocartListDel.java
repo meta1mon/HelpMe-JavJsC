@@ -1,6 +1,7 @@
 package bookshop.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import bookshop.DAO.BookcartDAO;
 import bookshop.DAO.VideocartDAO;
+import bookshop.service.Cartservice;
 import member.vo.Member;
 
 /**
@@ -53,21 +55,21 @@ public class VideocartListDel extends HttpServlet {
 		String list = request.getParameter("list");
 		String vkind = request.getParameter("vkind");
 		String buyer = vo.getId();
-
+		Cartservice sv = new Cartservice();
 		if (session.getAttribute("loginMember") == null) {
 			response.sendRedirect("#");
 		} else {
 			VideocartDAO videoprocess = VideocartDAO.getInstance();
 			if (list.equals("all")) {
 				try {
-					videoprocess.deleteVideoAll(buyer);
+					sv.deleteVideoAll(buyer);
 					response.sendRedirect("./shop/cartList.jsp?vkind=" + vkind);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			} else if (!vkind.equals("0")) {
 				try {
-					videoprocess.deleteVideoList(Integer.parseInt(list));
+					sv.deleteVideoList(Integer.parseInt(list));
 					response.sendRedirect("./shop/cartList.jsp?vkind=" + vkind);
 				} catch (Exception e) {
 					e.printStackTrace();

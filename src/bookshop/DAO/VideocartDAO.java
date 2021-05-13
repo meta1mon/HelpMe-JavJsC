@@ -103,29 +103,28 @@ public void insertVideoCart(VideocartVO videocart) throws Exception{
 	}
 	
 	//장바구니 수량 수정 
-	public void updateVideoCount(int vcid, int count) throws Exception{
-		Connection conn = JDBCConnectionPool.getConnection();
+	public int updateVideoCount(Connection conn, int vcid, int count) throws Exception{
 		pstmt = null;
-	
+		int result = 0;
+		
 		String sql = "update videocart set buycount=? where vcid=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, count);
 			pstmt.setInt(2, vcid);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			if(pstmt!=null) pstmt.close();
-			if(conn != null) conn.close();
 			//close 안해주면 sendredirect 무한로딩 
 		}
+		return result;
 		
 	}
 	
 	//장바구니에서 cart_id에 대한 레코드 삭제하는 메소드
-	public void deleteVideoList(int vcid) throws Exception {
-		Connection conn = JDBCConnectionPool.getConnection();
+	public void deleteVideoList(Connection conn, int vcid) throws Exception {
 		rs = null; pstmt = null;
 		String sql = "delete from videocart where vcid=?";
 		try {
@@ -142,8 +141,7 @@ public void insertVideoCart(VideocartVO videocart) throws Exception{
 	}
 	
 	//장바구니 모두 비우기 메소드
-	public void deleteVideoAll(String id)throws Exception {
-		Connection conn = JDBCConnectionPool.getConnection();
+	public void deleteVideoAll(Connection conn, String id)throws Exception {
 		rs = null;  pstmt = null;
 		String sql = "delete from videocart where id=?";
 		try {
@@ -154,7 +152,6 @@ public void insertVideoCart(VideocartVO videocart) throws Exception{
 			e.printStackTrace();
 		}finally {
 			if(pstmt!=null) pstmt.close();
-			if(conn != null) conn.close();
 		}
 	}
 	

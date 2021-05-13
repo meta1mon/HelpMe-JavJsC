@@ -1,13 +1,14 @@
 <%@page import="member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="../view/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>책 장바구니 수정</title>
 </head>
-<body>
+<body class="content">
 	<%
 		Member vo = (Member) request.getSession().getAttribute("loginMember");
 		String bcid = request.getParameter("bcid");
@@ -31,3 +32,4 @@
 <%
 		}
 %>
+<%@include file="../view/footer.jsp"%>

@@ -1,6 +1,7 @@
 package bookshop.DAO;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -24,11 +25,12 @@ public class BookcartDAO {
 public void insertBookCart(BookcartVO bookcart) throws Exception{
 	Connection conn = JDBCConnectionPool.getConnection();
 	rs = null; pstmt = null;
+	int result = 0;
 	String sql = " insert into bookcart (bcid, bid, id, buycount)" +
 				 " values(bcid_seq.nextval,?,?,?)";
 	try {
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, bookcart.getBid());
+		pstmt.setString(1, bookcart.getBid());
 		pstmt.setString(2, bookcart.getId());
 		pstmt.setInt(3, bookcart.getBuycount());
 		pstmt.executeUpdate();
@@ -38,6 +40,7 @@ public void insertBookCart(BookcartVO bookcart) throws Exception{
 		if(pstmt != null) pstmt.close();
 		if(conn != null) conn.close();
 	}
+	
 }
 	//id에 해당하는 레코드의 수를 얻어내는 메소드
 	public int getBookListCount(String id) throws Exception {
@@ -85,7 +88,7 @@ public void insertBookCart(BookcartVO bookcart) throws Exception{
 					vo.setBtitle(rs.getString("btitle"));
 					vo.setBimage(rs.getString("bimage"));
 					vo.setBuycount(rs.getInt("buycount"));
-					vo.setBid(rs.getInt("bid"));
+					vo.setBid(rs.getString("bid"));
 					vo.setBcid(rs.getInt("bcid"));
 					
 					list.add(vo);
@@ -104,16 +107,16 @@ public void insertBookCart(BookcartVO bookcart) throws Exception{
 	}
 	
 	//장바구니 수량 수정 
-	public void updateBookCount(int bcid, int count) throws Exception{
-		Connection conn = JDBCConnectionPool.getConnection();
+	public int updateBookCount(Connection conn,int bcid, int count) throws Exception{
 		pstmt = null;
+		int result = 0;
 	
 		String sql = "update bookcart set buycount=? where bcid=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, count);
 			pstmt.setInt(2, bcid);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -121,12 +124,11 @@ public void insertBookCart(BookcartVO bookcart) throws Exception{
 			if(conn != null) conn.close();
 			//close 안해주면 sendredirect 무한로딩 
 		}
-		
+		return result;
 	}
 	
 	//장바구니에서 cart_id에 대한 레코드 삭제하는 메소드
-	public void deleteBookList(int bcid) throws Exception {
-		Connection conn = JDBCConnectionPool.getConnection();
+	public void deleteBookList(Connection conn, int bcid) throws Exception {
 		rs = null; pstmt = null;
 		String sql = "delete from bookcart where bcid=?";
 		try {
@@ -143,8 +145,7 @@ public void insertBookCart(BookcartVO bookcart) throws Exception{
 	}
 	
 	//장바구니 모두 비우기 메소드
-	public void deleteBookAll(String id)throws Exception {
-		Connection conn = JDBCConnectionPool.getConnection();
+	public void deleteBookAll(Connection conn, String id)throws Exception {
 		rs = null;  pstmt = null;
 		String sql = "delete from bookcart where id =?";
 		try {

@@ -16,10 +16,10 @@ public class ShopBookDAO {
 	
 	private void close() {
 		try {
-			if(pstmt != null)
-				pstmt.close();
 			if(rs != null)
 				rs.close();
+			if(pstmt != null)
+				pstmt.close();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -63,34 +63,34 @@ public class ShopBookDAO {
 	}
 	
 	//책 등록 
-	public void insertBook(ShopBookVo book)throws Exception {
-		Connection conn = JDBCConnectionPool.getConnection();
+	public void insertBook(Connection conn,ShopBookVo book)throws Exception {
 		PreparedStatement pstmt = null;
 	
 		
-		String sql = "insert into book values (book_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into book values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		
 			
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-//			.shopBookDAOpstmt.setInt(1, );
-			pstmt.setString(1, book.getBkind());
-			pstmt.setString(2, book.getBtitle());
-			pstmt.setInt(3, book.getBprice());
-			pstmt.setInt(4, book.getBcount());
-			pstmt.setString(5, book.getAuthor());
-			pstmt.setString(6, book.getPublishing_com());
-			pstmt.setString(7, book.getBimage());
-			pstmt.setInt(8, book.getDiscountRate());
-			pstmt.setTimestamp(9, book.getRegdate());
+			
+			pstmt.setString(1, book.getBid());
+			pstmt.setString(2, book.getBkind());
+			pstmt.setString(3, book.getBtitle());
+			pstmt.setInt(4, book.getBprice());
+			pstmt.setInt(5, book.getBcount());
+			pstmt.setString(6, book.getAuthor());
+			pstmt.setString(7, book.getPublishing_com());
+			pstmt.setString(8, book.getBimage());
+			pstmt.setInt(9, book.getDiscountRate());
+			pstmt.setTimestamp(10, book.getRegdate());
 			pstmt.executeUpdate();
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close();
+			pstmt.close();
 		}
 	}
 	
@@ -136,7 +136,7 @@ public class ShopBookDAO {
 			bookList = new ArrayList<ShopBookVo>();
 			do {
 				ShopBookVo book = new ShopBookVo();
-				book.setBid(rs.getInt("bid"));
+				book.setBid(rs.getString("bid"));
 				book.setBkind(rs.getString("bkind"));
 				book.setBtitle(rs.getString("btitle"));
 				book.setBprice(rs.getInt("bprice"));
@@ -159,7 +159,7 @@ public class ShopBookDAO {
 	}
 	//bid에 해당하는 책의 정보를 얻어내는 메소드로 
 	//등록된 책을 수정하기 위해 수정폼으로 읽어들이기 위한 메소드 
-	public ShopBookVo getBook(int bid) throws Exception {
+	public ShopBookVo getBook(String bid) throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		pstmt = null; rs = null;
 		ShopBookVo book = null;
@@ -167,11 +167,12 @@ public class ShopBookDAO {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bid);
+			pstmt.setString(1, bid);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				book = new ShopBookVo();
+				book.setBid(rs.getString("bid"));
 				book.setBkind(rs.getString("bkind"));
 				book.setBtitle(rs.getString("btitle"));
 				book.setBprice(rs.getInt("bprice"));
@@ -189,8 +190,7 @@ public class ShopBookDAO {
 		return book;
 	}
 	//책 정보 수정 
-	public void updateBook(ShopBookVo book, int bid) throws Exception{
-		Connection conn = JDBCConnectionPool.getConnection();
+	public void updateBook(Connection conn,ShopBookVo book, String bid) throws Exception{
 		pstmt = null; rs = null;
 		String sql = " update book set bkind=?, btitle=?, bprice=?";
 		sql += " ,bcount=?, author=?, publishing_com=? ";
@@ -209,7 +209,7 @@ public class ShopBookDAO {
 			pstmt.setString(6, book.getPublishing_com());
 			pstmt.setString(7, book.getBimage());
 			pstmt.setInt(8, book.getDiscountRate());
-			pstmt.setInt(9, book.getBid());
+			pstmt.setString(9, book.getBid());
 			
 			pstmt.executeUpdate();
 			System.out.println("업데이트 들어옴.다오");
@@ -221,8 +221,7 @@ public class ShopBookDAO {
 				
 	}
 	//책 삭제
-	public void deleteBook(int bid) throws Exception {
-		Connection conn = JDBCConnectionPool.getConnection();
+	public void deleteBook(Connection conn, int bid) throws Exception {
 		pstmt = null; rs = null;
 		String sql = "delete from book where bid=? ";
 		try {
@@ -236,5 +235,55 @@ public class ShopBookDAO {
 			close();
 		}
 	}
+	//shop main에 신간책 목록 얻어내기 위한 메소드
+	//아직 기능구현 안됨 ㅜ 
+	public ShopBookVo[] getBooks(String bkind,int count) throws SQLException {
+		Connection conn = JDBCConnectionPool.getConnection();
+		pstmt = null; rs = null;
+		ShopBookVo bookList[] = null;
+		String sql = " select * from (" ;
+			   sql += " select * from book where bkind=?";
+			   sql += " order by regdate desc) where rownum < ?";
+		int i =0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bkind);
+			pstmt.setInt(2, count);
+			System.out.println("????");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				bookList = new ShopBookVo[count];
+				do {
+					ShopBookVo book = new ShopBookVo();
+					book.setBid(rs.getString("bid"));
+					book.setBkind(rs.getString("bkind"));
+					book.setBtitle(rs.getString("btitle"));
+					book.setBprice(rs.getInt("bprice"));
+					book.setBcount(rs.getInt("bcount"));
+					book.setAuthor(rs.getString("author"));
+					book.setPublishing_com(rs.getString("publishing_com"));
+					book.setBimage(rs.getString("bimage"));
+					book.setDiscountRate(rs.getInt("discountRate"));
+					book.setRegdate(rs.getTimestamp("regdate"));
+					
+					bookList[i]=book;
+					i++;
+				}while(rs.next());
+				
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(rs!=null)
+				try {rs.close();} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		}
+		return bookList;
+	}
 }
+
 	

@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="bookshop.DAO.BuyDAO"%>
 <%@page import="bookshop.VO.BuyVO"%>
@@ -5,9 +7,13 @@
 <%@page import="member.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@include file="../view/header.jsp"%>
 <%
 	Member vo = (Member) request.getSession().getAttribute("loginMember");
 String id = vo.getId();
+Timestamp currentTime = null;
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+currentTime = new Timestamp(System.currentTimeMillis());
 %>
 
 <html>
@@ -15,7 +21,7 @@ String id = vo.getId();
 <meta charset="UTF-8">
 <title>구매완료페이지</title>
 </head>
-<body>
+<body class="content">
 	<%
 		List<BuyVO> buyLists = null;
 			BuyVO buyList = null;
@@ -27,7 +33,7 @@ String id = vo.getId();
 			if (session.getAttribute("loginMember") == null) {
 		response.sendRedirect("#");
 			} else {
-		BuyDAO buyProcess = BuyDAO.getinstance();
+		BuyDAO buyProcess = new BuyDAO();
 		count = buyProcess.getListCount(id);
 
 		if (count == 0) {
@@ -64,9 +70,10 @@ String id = vo.getId();
 							buyList = buyLists.get(i);
 
 				%>
+				<% if(buyList.getVid()==null){%>
 				
 					<tr>
-						<td align="center" width="150"><%=++number%></td>
+						<td align="center" width="150"><%=buyList.getBid()%></td>
 					</tr>
 					<tr>
 						<td width="300" align="left"><img
@@ -81,14 +88,15 @@ String id = vo.getId();
 								total += buyList.getBuycount() * buyList.getBuyprice();
 							%> \ <%=NumberFormat.getInstance().format(buyList.getBuycount() * buyList.getBprice())%>
 						</td>
+					
 					</tr>
 					
 					<%
-					}
+					}}
 					%>
 				</table>
 					<table border="1">
-		<p>영상 구매목록</p>
+				<p>영상 구매목록</p>
 					<tr>
 						<td width="150">번호</td>
 						<td width="300">책 이름</td>
@@ -102,9 +110,10 @@ String id = vo.getId();
 							buyList = buyLists.get(i);
 
 				%>
+				<%if(buyList.getBid()==null){ %>
 				
 					<tr>
-						<td align="center" width="150"><%=++number2%></td>
+						<td align="center" width="150"><%=buyList.getVid()%></td>
 					</tr>
 					<tr>
 						<td width="300" align="left"><img
@@ -122,7 +131,7 @@ String id = vo.getId();
 					</tr>
 					
 					<%
-					}
+					}}
 					%>
 				</table>
 					<tr>
@@ -143,3 +152,4 @@ String id = vo.getId();
 
 </body>
 </html>
+<%@include file="../view/footer.jsp"%>

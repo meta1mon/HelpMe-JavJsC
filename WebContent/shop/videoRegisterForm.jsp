@@ -45,6 +45,10 @@
 				</select></td>
 			</tr>
 			<tr>
+			<td>영상번호</td>
+			<td><input type="text" name="vid" placeholder="v00001 양식으로 맞춰주세요"></td>
+			</tr>
+			<tr>
 				<td>영상제목</td>
 				<td><input type="text" name="vtitle"></td>
 			</tr>

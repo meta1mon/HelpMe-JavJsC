@@ -1,6 +1,9 @@
 package bookshop.servlet;
 
 import java.io.IOException;
+
+
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,11 +15,12 @@ import javax.servlet.http.HttpSession;
 
 import bookshop.DAO.BookcartDAO;
 import bookshop.DAO.BuyDAO;
-import bookshop.DAO.cartDAO;
 import bookshop.DAO.VideocartDAO;
 import bookshop.VO.BookcartVO;
 import bookshop.VO.BuyVO;
 import bookshop.VO.VideocartVO;
+import bookshop.service.Buyservice;
+import bookshop.service.Cartservice;
 import member.vo.Member;
 
 /**
@@ -49,42 +53,62 @@ public class Bookbuy extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Member vo = (Member) request.getSession().getAttribute("loginMember");
-		String buyprice = request.getParameter("buyprice");
-		String vid = request.getParameter("vid");
-		String bid = request.getParameter("bid");
+		String id = vo.getId();
 		String account = request.getParameter("account");
 		String deliveryname = request.getParameter("deliveryname");
 		String deliverytel = request.getParameter("deliverytel");
 		String deliveryadd1 = request.getParameter("deliveryadd1");
 		String deliveryadd2 = request.getParameter("deliveryadd2");
-		String buycount = request.getParameter("buycount");
-		String id = vo.getId();
+		
+		BookcartDAO book = BookcartDAO.getInstance();
+		
+		VideocartDAO video = VideocartDAO.getInstance();
+		
 				
 		BuyVO buy = new BuyVO();
 		
-		
-		buy.setId(id);
-		buy.setBid(Integer.parseInt(bid));
-		buy.setVid(Integer.parseInt(vid));
 		buy.setAccount(account);
 		buy.setDeliveryname(deliveryname);
 		buy.setDeliverytel(deliverytel);
 		buy.setDeliveryadd1(deliveryadd1);
 		buy.setDeliveryadd2(deliveryadd2);
-		buy.setBuyprice(Integer.parseInt(buyprice));
-		buy.setBuycount(Integer.parseInt(buycount));
-		System.out.println(buycount);
-		
-		BuyDAO buyprocess = BuyDAO.getinstance();
+			Buyservice sv = new Buyservice();
+			
+			List<BookcartVO> lists = null;	
+			int result = 0;
+			List<VideocartVO> vlists = null;
+			int result1 = 0;
 		try {
-			buyprocess.insertBuy(Integer.parseInt(vid), Integer.parseInt(bid), id, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2,
-					Integer.parseInt(buyprice),Integer.parseInt(buycount));
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
+			
+			if(book.getBookCart(id) == null) {
+				System.out.println("책 구매 안함");
+
+			} else {
+				lists = book.getBookCart(id);
+				result = sv.insertBuy1(lists,id, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2);
+				if(result > 0) {
+				} else {
+				System.out.println("책카트 처리중 오류 발생");
+				}
+			}
+			
+			
+			if(video.getVideoCart(id) == null) {
+				System.out.println("비디오 구매 안함");
+			} else {
+				vlists = video.getVideoCart(id);
+				result1 = sv.insertBuy2(vlists, id, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2);	
+				if(result1 > 0) {
+					
+				} else {
+					System.out.println("비디오카트 처리중 오류 발생");
+				}
+			}
+			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		
 		System.out.println();
 		response.sendRedirect("./shop/buyList.jsp");

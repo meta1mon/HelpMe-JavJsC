@@ -5,9 +5,18 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@include file="../view/header.jsp"%>
+
+	
 <%
 	String bkind = request.getParameter("bkind");
 %>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<style>
+	<%@include file="../style/shop.css" %>
+
+</style>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,11 +24,12 @@
 
 <title>Book Shopping Mall</title>
 </head>
-<body>
+<body class="content">
 	<%
 		List<ShopBookVo> bookLists = null;
 			ShopBookVo bookList = null;
 			String book_kindName = "";
+			int number = 0;
 
 			ShopBookDAO bookprocess = ShopBookDAO.getinstance();
 
@@ -35,48 +45,63 @@
 			}
 	%>
 	<h3>
-		<b><%=book_kindName%>분류의 목록</b>
+		<b><%=book_kindName%></b>
 	</h3>
 	<%
 		for (int i = 0; i < bookLists.size(); i++) {
 			bookList = (ShopBookVo) bookLists.get(i);
 	%>
-	<table border="1px solid white">
-		<tr height="40">
-			<td rowspan="4" width="100"><a href="<%=request.getContextPath() %>/shop/bookContent.jsp?bid=<%=bookList.getBid()%>&bkind=<%=bookList.getBkind()%>">
-					<img src="../imageFile/<%=bookList.getBimage()%>" border="0" width="100" height="120">
-			</a></td>
-			<td width="350"><font size="+1">
-			<b>
-			<a href="bookContent.jsp?bid=<%=bookList.getBid()%>&bkind=<%=bookList.getBkind()%>">
-			<%=bookList.getBtitle() %></a></b></font></td>
-			<td rowspan="4" width="50" align="center" valign="middle">
-			<%
-			if(bookList.getBcount() ==0){
-			%>
-			<font color="red"><b>일시품절</b></font>
-			<%}else{%>
-				&nbsp;
-			<%} %>
-			</td>
-			</tr>
-			<tr height="30">
-			<td width="350"> 출판사 : <%=bookList.getPublishing_com() %></td>
-			</tr>
-			<tr height="30">
-			<td width="350"> 저자 : <%=bookList.getAuthor() %></td>
-			</tr>
-			<tr height = "30">
-			<td width="350"> 정가 <%=NumberFormat.getInstance().format(bookList.getBprice()) %><br>
-			판매가 : <b><font color="red">
-			<%=NumberFormat.getInstance().format(bookList.getBprice()*(double)(100-bookList.getDiscountRate()/100)) %>
-			</font></b> 
-			</td>
-			</tr>
-	</table>
+	<center>
+	<div id="contents" class="seller_contents">
+		<form name="smartForm" method="post">
+		<ul class="list_type01">
+					<li>
+						<!--스마트 상품 담을때 쓸 변수들 -->
+                        <input type="hidden" name="ortxBrcd" value="9780689878572" />
+    	                <input type="hidden" name="ortxDvcd" value="ENG" />
+						<div class="cover">
+                                <a href="<%=request.getContextPath() %>/shop/bookContent.jsp?bid=<%=bookList.getBid()%>&bkind=<%=bookList.getBkind()%>">
+								<strong class="rank"><%= ++number %></strong>
+                                        <img src="../imageFile/<%=bookList.getBimage()%>" alt="book image"/>
+								
+							</a>
+							<div class="button">
+		                        	<a href="<%=request.getContextPath() %>/shop/bookContent.jsp?bid=<%=bookList.getBid()%>&bkind=<%=bookList.getBkind()%>" class="btn_small btn_blue4">
+									자세히보기<span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+		                        </a>
+							</div>
+						</div>
+						<div class="detail">
+							<div class="title">
+                                    <a href="<%=request.getContextPath() %>/shop/bookContent.jsp?bid=<%=bookList.getBid()%>&bkind=<%=bookList.getBkind()%>">
+                                        <strong><%=bookList.getBtitle() %></strong>                                            
+                                    </a>
+							</div>
+	                            <div class="author">
+	                             작가 | <%=bookList.getAuthor() %>
+	                            </div>
+
+							<div class="info">
+								<strike class="org_price"><%=NumberFormat.getInstance().format(bookList.getBprice()) %>원</strike> → 
+									<strong class="sell_price"><%=NumberFormat.getInstance().format(bookList.getBprice()*(double)(100-bookList.getDiscountRate()/100)) %>원</strong>
+									<span class="dc_rate">[<strong><%=bookList.getDiscountRate() %></strong>%↓]</span>
+							</div>
+							
+								등록일 : <%=bookList.getRegdate() %>
+							</div>
+							
+						
+							<input type="hidden" name="bid" value="<%=bookList.getBid()%>">
+					</li>
+					</ul>
+					</form>
+					</div>
+					</center>
+	
 	<br>
 <%
 }
 %>
 </body>
 </html>
+<%@include file="../view/footer.jsp"%>

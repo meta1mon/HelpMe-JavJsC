@@ -18,7 +18,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import bookshop.DAO.ShopBookDAO;
 import bookshop.DAO.ShopvideoDAO;
 import bookshop.VO.VideoVO;
-import sun.awt.image.IntegerComponentRaster;
+import bookshop.service.Videoservice;
 
 /**
  * Servlet implementation class videoUpdate
@@ -81,7 +81,7 @@ public class VideoUpdate extends HttpServlet {
 		
 		VideoVO video = new VideoVO();
 		
-		int vid =  Integer.parseInt(imageUp.getParameter("vid"));
+		String vid = imageUp.getParameter("vid");
 		String vkind = imageUp.getParameter("vkind");
 		String vtitle = imageUp.getParameter("vtitle");
 		String vprice = imageUp.getParameter("vprice");
@@ -90,7 +90,7 @@ public class VideoUpdate extends HttpServlet {
 		String startDate = imageUp.getParameter("startDate");
 		String endDate = imageUp.getParameter("endDate");
 		
-		video.setVid(vid);
+		video.getVid();
 		video.setVkind(vkind);
 		video.setVtitle(vtitle);
 		video.setVprice(Integer.parseInt(vprice));
@@ -100,10 +100,9 @@ public class VideoUpdate extends HttpServlet {
 		video.setEndDate(Date.valueOf(endDate));
 		video.setRegdate(new Timestamp(System.currentTimeMillis()));
 		
-		
+		Videoservice sv = new Videoservice();
 	try {
-		ShopvideoDAO vprocess = ShopvideoDAO.getinstance();
-		vprocess.updateVideo(video, vid);
+		sv.updateVideo(video, vid);
 	}catch (Exception e) {
 		e.printStackTrace();
 	}

@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class VideoVO {
-	private int vid;
+	private String vid;
 	private String vkind;
 	private String vtitle;
 	private int vprice;
@@ -14,10 +14,10 @@ public class VideoVO {
 	private String vsize;
 	private Date startDate;
 	private Date endDate;
-	public int getVid() {
+	public String getVid() {
 		return vid;
 	}
-	public void setVid(int vid) {
+	public void setVid(String vid) {
 		this.vid = vid;
 	}
 	public String getVkind() {

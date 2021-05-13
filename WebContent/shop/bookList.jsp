@@ -88,7 +88,7 @@ if (count > 0) {
 					ShopBookVo book = (ShopBookVo) bookList.get(i);
 			%>
 			<tr height="30">
-			<td><%=++number%></td>
+			<td><%=book.getBid()%></td>
 			<td><%=book.getBkind()%></td>
 			<td><%=book.getBtitle()%></td>
 			<td><%=book.getBprice()%></td>

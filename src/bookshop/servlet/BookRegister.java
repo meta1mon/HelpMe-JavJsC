@@ -17,6 +17,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import bookshop.DAO.ShopBookDAO;
 import bookshop.VO.ShopBookVo;
+import bookshop.service.Bookservice;
 
 /**
  * Servlet implementation class bookRegister
@@ -77,6 +78,8 @@ public class BookRegister extends HttpServlet {
 		}
 		
 		ShopBookVo book = new ShopBookVo();
+		
+		String bid = imageUp.getParameter("bid");
 		String bkind = imageUp.getParameter("bkind");
 		String btitle = imageUp.getParameter("btitle");
 		String bprice = imageUp.getParameter("bprice");
@@ -85,6 +88,7 @@ public class BookRegister extends HttpServlet {
 		String publishing_com = imageUp.getParameter("publishing_com");
 		String discountRate = imageUp.getParameter("discountRate");
 		
+		book.setBid(bid);
 		book.setBkind(bkind);
 		book.setBtitle(btitle);
 		book.setBprice(Integer.parseInt(bprice));
@@ -95,16 +99,17 @@ public class BookRegister extends HttpServlet {
 		book.setDiscountRate(Integer.parseInt(discountRate));
 		book.setRegdate(new Timestamp(System.currentTimeMillis()));
 		
+		Bookservice sv = new Bookservice();
 		try {
-			ShopBookDAO bookprocess = ShopBookDAO.getinstance();
-			bookprocess.insertBook(book);
+			sv.insertBook(book);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("완료");
 		response.sendRedirect("./shop/bookList.jsp?bkind=" + bkind);
-		
+//		request.getRequestDispatcher("shop/bookList.jsp=" + bkind).forward(request, response);
 		
 		
 		

@@ -27,7 +27,7 @@
 	<%
 		BookcartVO bookcart = new BookcartVO();
 
-			bookcart.setBid(Integer.parseInt(bid));
+			bookcart.setBid(bid);
 			bookcart.setBuycount(Integer.parseInt(buycount));
 			bookcart.setId(id);
 

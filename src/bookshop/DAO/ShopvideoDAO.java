@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bookshop.VO.ShopBookVo;
 import bookshop.VO.VideoVO;
 import common.jdbc.JDBCConnectionPool;
 
@@ -64,27 +63,26 @@ public class ShopvideoDAO {
 	}
 	
 	//비디오등록 
-	public void insertVideo(VideoVO video)throws Exception {
-		Connection conn = JDBCConnectionPool.getConnection();
+	public void insertVideo(Connection conn,VideoVO video)throws Exception {
 		PreparedStatement pstmt = null;
 	
 		
-		String sql = "insert into video values (video_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into video values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-//			.shopBookDAOpstmt.setInt(1, );
-			pstmt.setString(1, video.getVkind());
-			pstmt.setString(2, video.getVtitle());
-			pstmt.setInt(3, video.getVprice());
-			pstmt.setString(4, video.getVimage());
-			pstmt.setInt(5, video.getDiscountRate());
-			pstmt.setTimestamp(6, video.getRegdate());
-			pstmt.setString(7, video.getVsize());
-			pstmt.setDate(8, video.getStartDate());
-			pstmt.setDate(9, video.getEndDate());
+			pstmt.setString(1, video.getVid());
+			pstmt.setString(2, video.getVkind());
+			pstmt.setString(3, video.getVtitle());
+			pstmt.setInt(4, video.getVprice());
+			pstmt.setString(5, video.getVimage());
+			pstmt.setInt(6, video.getDiscountRate());
+			pstmt.setTimestamp(7, video.getRegdate());
+			pstmt.setString(8, video.getVsize());
+			pstmt.setDate(9, video.getStartDate());
+			pstmt.setDate(10, video.getEndDate());
 			pstmt.executeUpdate();
 			
 		}catch (Exception e) {
@@ -136,7 +134,7 @@ public class ShopvideoDAO {
 				vList = new ArrayList<VideoVO>();
 				do {
 					VideoVO video = new VideoVO();
-					video.setVid(rs.getInt("vid"));
+					video.setVid(rs.getString("vid"));
 					video.setVkind(rs.getString("vkind"));
 					video.setVtitle(rs.getString("vtitle"));
 					video.setVprice(rs.getInt("vprice"));
@@ -153,13 +151,12 @@ public class ShopvideoDAO {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}finally {
-				close();
+				pstmt.close();
 			}
 			return vList;
 		}
 		//비디오 수장
-		public void updateVideo(VideoVO video, int vid) throws Exception{
-			Connection conn = JDBCConnectionPool.getConnection();
+		public void updateVideo(Connection conn, VideoVO video, String vid) throws Exception{
 			pstmt = null; rs = null;
 			String sql = " update video set vkind=?, vtitle=?, vprice=?";
 			sql += " ,vimage=?, discountRate=?, vsize=?, startDate=?";
@@ -175,7 +172,7 @@ public class ShopvideoDAO {
 				pstmt.setString(6, video.getVsize());
 				pstmt.setDate(7, video.getStartDate());
 				pstmt.setDate(8, video.getEndDate());
-				pstmt.setInt(9, video.getVid());
+				pstmt.setString(9, video.getVid());
 				
 				
 				pstmt.executeUpdate();
@@ -188,8 +185,7 @@ public class ShopvideoDAO {
 					
 		}
 		//비디오 삭제
-		public void deleteVideo(int vid) throws Exception {
-			Connection conn = JDBCConnectionPool.getConnection();
+		public void deleteVideo(Connection conn, int vid) throws Exception {
 			pstmt = null; rs = null;
 			String sql = "delete from video where vid=? ";
 	
@@ -206,7 +202,7 @@ public class ShopvideoDAO {
 			}
 		}
 		//수정폼으로 들이기 위한 메소드 
-		public VideoVO getVideo(int vid) throws Exception {
+		public VideoVO getVideo(String vid) throws Exception {
 			Connection conn = JDBCConnectionPool.getConnection();
 			pstmt = null; rs = null;
 			VideoVO video = null;
@@ -214,11 +210,12 @@ public class ShopvideoDAO {
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, vid);
+				pstmt.setString(1, vid);
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
 					video = new VideoVO();
+					video.setVid(rs.getString("vid"));
 					video.setVkind(rs.getString("vkind"));
 					video.setVtitle(rs.getString("vtitle"));
 					video.setVprice(rs.getInt("vprice"));
@@ -235,6 +232,55 @@ public class ShopvideoDAO {
 			}
 			return video;
 		}
+		//신간 
+		public VideoVO[] getVideos(String vkind,int count) throws SQLException {
+			Connection conn = JDBCConnectionPool.getConnection();
+			pstmt = null; rs = null;
+			VideoVO videoList[] = null;
+			String sql = " select * from (";
+				   sql += " select * from video where vkind=?";
+				   sql += " order by regdate desc) where rownum < ?";
+			int i =0;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, vkind);
+				pstmt.setInt(2, count);
+				System.out.println("????");
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					videoList = new VideoVO[count];
+					do {
+						VideoVO video = new VideoVO();
+						video.setVid(rs.getString("vid"));
+						video.setVkind(rs.getString("vkind"));
+						video.setVtitle(rs.getString("vtitle"));
+						video.setVprice(rs.getInt("vprice"));
+						video.setVimage(rs.getString("vimage"));
+						video.setDiscountRate(rs.getInt("discountRate"));
+						video.setStartDate(rs.getDate("startDate"));
+						video.setEndDate(rs.getDate("endDate"));
+						video.setVsize(rs.getString("vsize"));
+						
+						videoList[i]=video;
+						i++;
+					}while(rs.next());
+					
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(rs!=null)
+					try {rs.close();} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}
+			return videoList;
+		}
+	
+
 }
 
 

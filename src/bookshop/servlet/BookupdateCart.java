@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import bookshop.DAO.BookcartDAO;
 import bookshop.VO.ShopBookVo;
+import bookshop.service.Cartservice;
 import member.vo.Member;
 
 /**
@@ -59,13 +60,14 @@ public class BookupdateCart extends HttpServlet {
 			response.sendRedirect("#");
 			System.out.println("널 ");
 		}else {
+			try {
+				int result =  new Cartservice().updateBookCount(Integer.parseInt(bcid), Integer.parseInt(buycount));
+			} catch (NumberFormatException e1) {
+				e1.printStackTrace();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		
-			BookcartDAO bookprocess = BookcartDAO.getInstance();
-				try {
-					bookprocess.updateBookCount(Integer.parseInt(bcid), Integer.parseInt(buycount));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 				response.sendRedirect("./shop/cartList.jsp?bkind="+bkind);
 				System.out.println(bkind);
 				System.out.println(vo.getId());

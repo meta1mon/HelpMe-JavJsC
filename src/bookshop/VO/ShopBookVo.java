@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 
 public class ShopBookVo {
-	private int bid;
+	private String bid;
 	private String bkind;
 	private String btitle;
 	private int bprice;
@@ -15,11 +15,10 @@ public class ShopBookVo {
 	private String bimage;
 	private int discountRate;
 	private Timestamp regdate;
-	
-	public int getBid() {
+	public String getBid() {
 		return bid;
 	}
-	public void setBid(int bid) {
+	public void setBid(String bid) {
 		this.bid = bid;
 	}
 	public String getBkind() {
@@ -76,8 +75,6 @@ public class ShopBookVo {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	
-	
 	
 	
 	

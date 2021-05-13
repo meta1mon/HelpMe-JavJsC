@@ -6,6 +6,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@include file="../view/header.jsp"%>
 <%
 	String vkind = request.getParameter("vkind");
 %>
@@ -15,12 +16,16 @@
 <meta charset="UTF-8">
 
 <title>Video Shopping Mall</title>
+<style>
+	<%@include file="../style/shop.css" %>
+</style>
 </head>
-<body>
+<body class="content">
 	<%
 		List<VideoVO> vLists = null;
 			VideoVO vList = null;
 			String video_kindName = "";
+			int number=0;
 
 			ShopvideoDAO vprocess = ShopvideoDAO.getinstance();
 
@@ -42,32 +47,50 @@
 		for (int i = 0; i < vLists.size(); i++) {
 			vList = (VideoVO) vLists.get(i);
 	%>
-	<table border="1px solid white">
-		<tr height="40">
-			<td rowspan="4" width="100"><a href="<%=request.getContextPath() %>/shop/videoContent.jsp?vid=<%=vList.getVid()%>&vkind=<%=vList.getVkind()%>">
-					<img src="../imageFile/<%=vList.getVimage()%>" border="0" width="100" height="120">
-			</a></td>
-			<td width="350"><font size="+1">
-			<b>
-			<a href="<%=request.getContextPath() %>/shop/videoContent.jsp?vid=<%=vList.getVid()%>&vkind=<%=vList.getVkind()%>">
-			<%=vList.getVtitle() %></a></b></font></td>
-			<td rowspan="4" width="50" align="center" valign="middle">
-			</td>
-			</tr>
-			<tr>
-			<td width="350" >
-			영상길이 : <%=vList.getVsize() %>>
-			</td>
-			</tr>
-			<tr height="30">
-			<td width="350"> 정가 <%=NumberFormat.getInstance().format(vList.getVprice()) %><br>
-			판매가 : <b><font color="red">
-			<%=NumberFormat.getInstance().format(vList.getVprice()*(double)(100-vList.getDiscountRate()/100)) %>
-			</font></b> 
-			</td>
-			</tr>
-	</table>
-	<br>
+	<center>
+	<div id="contents" class="seller_contents">
+		<form name="smartForm" method="post">
+		<ul class="list_type01" style="list-style:none;">
+					<li>
+						<div class="cover">
+                                <a href="<%=request.getContextPath() %>/shop/videoContent.jsp?vid=<%=vList.getVid()%>&vkind=<%=vList.getVkind()%>">
+								<strong class="rank"><%= ++number %></strong>
+                                        <img src="../imageFile/<%=vList.getVimage()%>" alt="video image"/>
+								
+							</a>
+							<div class="button">
+		                        	<a href="<%=request.getContextPath() %>/shop/videoContent.jsp?vid=<%=vList.getVid()%>&vkind=<%=vList.getVkind()%>" class="btn_small btn_blue4">
+									자세히보기<span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+		                        </a>
+							</div>
+						</div>
+						<div class="detail">
+							<div class="title">
+                                    <a href="<%=request.getContextPath() %>/shop/videoContent.jsp?vid=<%=vList.getVid()%>&vkind=<%=vList.getVkind()%>">
+                                        <strong><%=vList.getVtitle() %></strong>                                            
+                                    </a>
+							</div>
+	                            <div class="author">
+	                             영상길이 | <%=vList.getVsize() %>
+	                            </div>
+
+							<div class="info">
+								<strike class="org_price"><%=NumberFormat.getInstance().format(vList.getVprice()) %>원</strike> → 
+									<strong class="sell_price"><%=NumberFormat.getInstance().format(vList.getVprice()*(double)(100-vList.getDiscountRate()/100)) %>원</strong>
+									<span class="dc_rate">[<strong><%=vList.getDiscountRate() %></strong>%↓]</span>
+							</div>
+							
+								등록일 : <%=vList.getRegdate() %>
+							</div>
+							
+						
+							
+					</li>
+					</ul>
+					</form>
+					</div>
+					</center>
+	
 <%
 }
 %>

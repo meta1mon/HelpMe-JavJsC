@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bookshop.DAO.ShopvideoDAO;
+import bookshop.service.Videoservice;
 
 
 /**
@@ -44,10 +45,9 @@ public class Videodelete extends HttpServlet {
 		System.out.println(vid);
 		System.out.println(vkind);
 			
-		
+		Videoservice sv = new Videoservice();
 		try {
-			ShopvideoDAO video = ShopvideoDAO.getinstance();
-			video.deleteVideo(vid);
+			sv.deleteVideo(vid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

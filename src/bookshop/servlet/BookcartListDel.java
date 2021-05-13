@@ -2,6 +2,7 @@ package bookshop.servlet;
 
 import java.io.IOException;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bookshop.DAO.BookcartDAO;
+import bookshop.service.Cartservice;
 import member.vo.Member;
 
 /**
@@ -54,20 +56,21 @@ public class BookcartListDel extends HttpServlet {
 		String bkind = request.getParameter("bkind");
 		String buyer = vo.getId();
 		System.out.println(bkind);
+		
+		Cartservice sv = new Cartservice();
 		if (session.getAttribute("loginMember") == null) {
 			response.sendRedirect("#");
 		} else {
-			BookcartDAO bookprocess = BookcartDAO.getInstance();
 			if (list.equals("all")) {
 				try {
-					bookprocess.deleteBookAll(buyer);
+					sv.deleteBookAll(buyer);
 					response.sendRedirect("./shop/cartList.jsp?bkind=" + bkind);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			} else if (!bkind.equals("0")) {
 				try {
-					bookprocess.deleteBookList(Integer.parseInt(list));
+					sv.deleteBookList(Integer.parseInt(list));
 					response.sendRedirect("./shop/cartList.jsp?bkind=" + bkind);
 				} catch (Exception e) {
 					e.printStackTrace();

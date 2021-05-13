@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.sun.media.jfxmedia.control.VideoDataBuffer;
 
 import bookshop.DAO.ShopBookDAO;
 import bookshop.DAO.ShopvideoDAO;
 import bookshop.VO.ShopBookVo;
 import bookshop.VO.VideoVO;
+import bookshop.service.Videoservice;
 
 /**
  * Servlet implementation class VideoInsert
@@ -80,6 +80,7 @@ public class VideoInsert extends HttpServlet {
 		}
 		
 		VideoVO video = new VideoVO();
+		String vid = imageUp.getParameter("vid");
 		String vkind = imageUp.getParameter("vkind");
 		String vtitle = imageUp.getParameter("vtitle");
 		String vprice = imageUp.getParameter("vprice");
@@ -90,6 +91,7 @@ public class VideoInsert extends HttpServlet {
 		System.out.println(startDate);
 		System.out.println(endDate);
 		
+		video.setVid(vid);
 		video.setVkind(vkind);
 		video.setVtitle(vtitle);
 		video.setVprice(Integer.parseInt(vprice));
@@ -100,9 +102,9 @@ public class VideoInsert extends HttpServlet {
 		video.setVsize(vsize);
 		video.setRegdate(new Timestamp(System.currentTimeMillis()));
 				
+		Videoservice sv = new Videoservice();
 		try {
-			ShopvideoDAO vprocess = ShopvideoDAO.getinstance();
-			vprocess.insertVideo(video);
+			sv.insertVideo(video);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
