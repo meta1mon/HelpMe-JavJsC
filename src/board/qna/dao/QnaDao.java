@@ -188,12 +188,13 @@ public class QnaDao {
 	public int Qnaupdate(Connection con, Qna vo) throws SQLException {
 		int result = 0;
 // 지금은 제목이랑 내용만 바꿀 수 있게 한다
-		String sql = "update qna set qsubject = ?, qcontent = ? where qno = ?";
+		String sql = "update qna set qsubject = ?, qcontent = ?, qfilepath = ? where qno = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getQsubject());
 			pstmt.setString(2, vo.getQcontent());
-			pstmt.setInt(3, vo.getQno());
+			pstmt.setString(3, vo.getQfilepath());
+			pstmt.setInt(4, vo.getQno());
 			result = pstmt.executeUpdate();
 		} finally {
 			close(pstmt);
