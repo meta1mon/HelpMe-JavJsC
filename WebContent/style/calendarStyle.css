@@ -1,21 +1,13 @@
 @charset "UTF-8";
 
-body {
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-    color: #fff;
-    background-color: #3D5A73;
-  }
-
-
 
 #calendar {
-	max-width: 800px;
+	clear: both;
+	width: 800px;
+	height: calc(100% - 120px);
 	margin: 40px auto;
 	padding: 0 10px;
 	color: #fff;
-	background-color: #3D5A73;
 }
 
 /* 토요일 - 파란색 */
@@ -29,7 +21,7 @@ body {
 }
 
 .fc .fc-toolbar-title {
-	color: #add9d4;
+	color: #3D5A73;
 	font-size: 30px;
 }
 
@@ -73,6 +65,15 @@ body {
 }
 
 
+.fc-event{
+	border-color: none;
+}
+.fc-event-title.fc-sticky{
+    white-space: normal;
+}
+
+
+
 
 .modal {
 	display: none;
@@ -108,10 +109,10 @@ body {
 	color: #1e1e1e;
 }
 
-/*.inputModal {
+.inputModal {
 	width: 65%;
 	margin-bottom: 10px;
-}*/
+}
 
 .modal-footer {
 	padding: 2px 16px;
@@ -119,6 +120,9 @@ body {
 	color: white;
 }
 
+.modalBtnContainer-addSchedule, .modalBtnContainer-modifySchedule{
+	display: none;
+}
 
 /* 모달창 닫기 버튼*/
 .close {
