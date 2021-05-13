@@ -2,32 +2,32 @@ package bookshop.DAO;
 
 import java.sql.Connection;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import bookshop.VO.BookcartVO;
 import bookshop.VO.BuyVO;
 import bookshop.VO.VideocartVO;
-import bookshop.service.Cartservice;
-import bookshop.servlet.Bookbuy;
 import common.jdbc.JDBCConnectionPool;
 
 public class BuyDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-
-//	private static BuyDAO instance = new BuyDAO();
 //
-//	
-//	public static BuyDAO getinstance() {
-//		return instance;
-//	}
+////	private static BuyDAO instance = new BuyDAO();
+////
+////	
+////	public static BuyDAO getinstance() {
+////		return instance;
+////	}
 
-	public BuyDAO() {
-	}
+//	public BuyDAO() {
+//	}
 
 	// bank테이블에 있는 전체 레코드 얻어내는 메소드
 	public List<String> getAccount() throws Exception {
@@ -322,7 +322,7 @@ public class BuyDAO {
 		pstmt = null;
 		int tot1 = 0;
 
-		String sql = "select buycount from buy where bid=?";// id직접 써줘야함
+		String sql = "select buycount from buy where pid = 'b00001'";// id직접 써줘야함
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -342,20 +342,18 @@ public class BuyDAO {
 		return tot1;
 	}
 
-	// 비디오 id에 해당하는 전체수량 가져오기 (통계 시 사용)
-
-	public int getBuyVideoCount1() throws Exception {
+	public int getBuyBookCount2() throws Exception {
 		Connection conn = JDBCConnectionPool.getConnection();
 		rs = null;
 		pstmt = null;
-		int tot1 = 0;
+		int tot2 = 0;
 
-		String sql = "select buycount from buy where bid=?";// id직접 써줘야함
+		String sql = "select buycount from buy where pid = 'b00002'";// id직접 써줘야함
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				tot1 += rs.getInt("buycount");
+				tot2 += rs.getInt("buycount");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -367,7 +365,341 @@ public class BuyDAO {
 			if (conn != null)
 				conn.close();
 		}
-		return tot1;
+		return tot2;
 	}
 
+	public int getBuyBookCount3() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot3 = 0;
+
+		String sql = "select buycount from buy where pid = 'b00003'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot3 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot3;
+	}
+
+	public int getBuyBookCount4() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot4 = 0;
+
+		String sql = "select buycount from buy where pid = 'b00004'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot4 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot4;
+	}
+
+	public int getBuyBookCount5() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot5 = 0;
+
+		String sql = "select buycount from buy where pid = 'b00005'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot5 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot5;
+	}
+	
+
+	public int getBuyBookCount6() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot6 = 0;
+
+		String sql = "select buycount from buy where pid = 'b00006'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot6 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot6;
+	}
+	
+
+	public int getBuyBookCount7() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot7 = 0;
+
+		String sql = "select buycount from buy where pid = 'b00007'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot7 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot7;
+	}
+	public int getBuyBookCount8() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot8 = 0;
+
+		String sql = " select buycount from buy where pid = 'b00008' ";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot8 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot8;
+	}
+	
+	public int getBuyBookCount9() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot9 = 0;
+
+		String sql = "select buycount from buy where pid = 'b00009'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot9 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot9;
+	}
+	public int getBuyBookCount10() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot10 = 0;
+
+		String sql = "select buycount from buy where pid = 'b00010'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot10 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot10;
+	}
+	
+	public int getBuyBookCount11() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot11 = 0;
+
+		String sql = "select buycount from buy where pid = 'b00011'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot11 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot11;
+	}
+	
+	public int getBuyBookCount12() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot12 = 0;
+
+		String sql = "select buycount from buy where pid = 'b00012'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot12 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot12;
+	}
+	public int getBuyBookCount13() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot13 = 0;
+		String sql = "select buycount from buy where pid = 'b00013'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot13 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot13;
+	}
+	public int getBuyBookCount14() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot14 = 0;
+
+		String sql = "select buycount from buy where pid = 'b00014'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot14 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot14;
+	}
+	public int getBuyBookCount15() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot15 = 0;
+		System.out.println("33333333");
+
+		String sql = "select buycount from buy where pid = 'b00015'";// id직접 써줘야함
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot15 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot15;
+	}
 }

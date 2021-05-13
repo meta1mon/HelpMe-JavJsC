@@ -83,7 +83,7 @@
 
 							<div class="info">
 								<strike class="org_price"><%=NumberFormat.getInstance().format(bookList.getBprice()) %>원</strike> → 
-									<strong class="sell_price"><%=NumberFormat.getInstance().format(bookList.getBprice()*(double)(100-bookList.getDiscountRate()/100)) %>원</strong>
+									<strong class="sell_price"><%=NumberFormat.getInstance().format((int)(bookList.getBprice() * ((double)(100-bookList.getDiscountRate())/100))) %>원</strong>
 									<span class="dc_rate">[<strong><%=bookList.getDiscountRate() %></strong>%↓]</span>
 							</div>
 							

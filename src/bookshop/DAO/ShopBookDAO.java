@@ -30,37 +30,6 @@ public class ShopBookDAO {
 	public static ShopBookDAO getinstance() {
 		return instance;
 	}
-	//관리자 인증 
-	public int managerCheck(String id, String passwd) throws Exception {
-		Connection conn = JDBCConnectionPool.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "select managerPasswd from manager where managerId = ? ";
-		String dbpasswd = "";
-		int x = -1;
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				dbpasswd = rs.getString("managerPasswd");
-				if(dbpasswd.equals(passwd)) 
-					x =1; //비밀번호 일치
-				else 
-					x = 0; //비밀번호 틀림
-				}else 
-					x = -1; //해당 잉;ㄷ; 앖ㅇ,ㅁ 
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			if(rs != null) rs.close();
-			if(pstmt != null ) pstmt.close();
-			if(conn != null) conn.close();
-		}
-		return x;	
-	}
 	
 	//책 등록 
 	public void insertBook(Connection conn,ShopBookVo book)throws Exception {
@@ -116,8 +85,7 @@ public class ShopBookDAO {
 			return x;	
 	}
 	//분류별 또는 전체 등록된 책의 정보를 얻어냄 
-	public List<ShopBookVo> getBooks(String bkind) throws SQLException{
-		Connection conn = JDBCConnectionPool.getConnection();
+	public List<ShopBookVo> getBooks(Connection conn,String bkind) throws SQLException{
 		pstmt = null; rs = null;
 		List<ShopBookVo> bookList = null;
 		String sql1 = "select * from book";
@@ -221,12 +189,12 @@ public class ShopBookDAO {
 				
 	}
 	//책 삭제
-	public void deleteBook(Connection conn, int bid) throws Exception {
+	public void deleteBook(Connection conn, String bid) throws Exception {
 		pstmt = null; rs = null;
 		String sql = "delete from book where bid=? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, bid);
+			pstmt.setString(1, bid);
 			pstmt.executeUpdate();
 			
 		}catch (Exception e) {
