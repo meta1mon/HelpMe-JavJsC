@@ -1,5 +1,4 @@
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="board.qna.dao.QnaDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -28,24 +27,24 @@
 		window.open(url, name, "width=1000px, height=500px, resizable = no, left= 100, top=100");
 	};
 	
-	function qlike() {
+	function slike() {
 		if(${loginMember == null}) {
 			alert("로그인이 필요합니다");			
 		} else {
 		$.ajax({
-			url : "<%=request.getContextPath()%>/qlike",
+			url : "<%=request.getContextPath()%>/slike",
 			type : "post",
 			data : {
 				id : "${loginMember.id}",
-				qno : "${qna.qno}"
+				sno : "${study.sno}"
 			},
 			datatype : "json",
 			success : function(data) {
 				alert(data);
 				if(data == "좋아요") {					
-				$("#qlikeid").attr("src", "<%=request.getContextPath() %>/images/doLike.png");
+				$("#slikeid").attr("src", "<%=request.getContextPath() %>/images/doLike.png");
 				} else {
-				$("#qlikeid").attr("src", "<%=request.getContextPath() %>/images/undoLike.png");					
+				$("#slikeid").attr("src", "<%=request.getContextPath() %>/images/undoLike.png");					
 				}
 				window.location.reload();
 			}
@@ -54,16 +53,16 @@
 	};
 
 // rqlike는 몇 번째 댓글인지 알아와야 되는데, 어떻게 할지 모르겠어서 그냥 하트 이펙트 뺐음...
-	function rqlike(rqno) {
+	function rslike(rsno) {
 		if(${loginMember == null}) {
 			alert("로그인이 필요합니다");			
 		} else {
 			$.ajax({
-				url : "<%=request.getContextPath()%>/rqlike",
+				url : "<%=request.getContextPath()%>/rslike",
 				type : "post",
 				data : {
 					id : "${loginMember.id}",
-					rqno : rqno
+					rsno : rsno
 				},
 				datatype : "json",
 				success : function(data) {
@@ -78,32 +77,32 @@
 <%@include file="../../view/header.jsp"%>
 <body class="content">
 	<div style="width: 800px; margin: 0 auto 0 auto;">
-		<h1 style="text-align: justify;">${qna.qsubject }</h1>
-		<div style="float: right;">${qna.qdate}</div>
+		<h1 style="text-align: justify;">${study.ssubject }</h1>
+		<div style="float: right;">${study.sdate}</div>
 		<h4 style="width: 400px; float: left; text-align: left;">조회수
-			${qna.qviewcnt }</h4>
+			${study.sviewcnt }</h4>
 		<h4
-			style="width: 400px; float: right; text-align: right; color: #546E7A">${qna.qwriter }</h4>
+			style="width: 400px; float: right; text-align: right; color: #546E7A">${study.swriter }</h4>
 		<h4 style="clear: both; width: 800px; text-align: left;">
 			<c:choose>
-				<c:when test="${qna.qtag ==1}">Java</c:when>
-				<c:when test="${qna.qtag ==2}">C</c:when>
-				<c:when test="${qna.qtag ==3}">Python</c:when>
+				<c:when test="${study.stag ==1}">Java</c:when>
+				<c:when test="${study.stag ==2}">C</c:when>
+				<c:when test="${study.stag ==3}">Python</c:when>
 			</c:choose>
 		</h4>
 		<hr>
 		<div id="question">
 			<div style="width: 80px; float: left;">
 				<img src="<%=request.getContextPath()%>/images/like.png"
-					onclick="qlike()" style="cursor: pointer;" id="qlikeid"> <br>
-				추천수 ${qna.qlikecnt }
+					onclick="slike()" style="cursor: pointer;" id="slikeid"> <br>
+				추천수 ${study.slikecnt }
 			</div>
 			<div
 				style="width: 720px; float: left; background-color: lightgray; word-wrap: break-word">
-				${qna.qcontent }</div>
+				${study.scontent }</div>
 			<div style="clear: both; padding: 10px 0; text-align: left;">
 				첨부파일 :
-				<c:forTokens var="fileName" items="${qna.qfilepath}" delims=","
+				<c:forTokens var="fileName" items="${study.sfilepath}" delims=","
 					varStatus="st">
 					<a download="${fileName}"
 						href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
@@ -114,10 +113,10 @@
 			</div>
 			<hr>
 			<c:if test="${loginMember != null }">
-				<form action="<%=request.getContextPath()%>/rqnawrite" method="post">
+				<form action="<%=request.getContextPath()%>/rstudywrite" method="post">
 					<div style="float: right; margin-top: 10px; width: 720px;">
-						<input type="hidden" name="qno" value="${qna.qno }">
-						<textarea placeholder="댓글 쓰기" id="editor" name="rqcontent"
+						<input type="hidden" name="sno" value="${study.sno }">
+						<textarea placeholder="댓글 쓰기" id="editor" name="rscontent"
 							maxlength="2048"></textarea>
 					</div>
 					<div style="clear: both; float: right; padding-top: 10px;">
@@ -132,28 +131,28 @@
 			</c:if>
 		</div>
 
-		<h3 style="clear: both; text-align: left;">답변 수 ${qna.rqnacnt }</h3>
+		<h3 style="clear: both; text-align: left;">답변 수 ${study.rstudycnt }</h3>
 		<hr>
 		<c:if test="${reply != null}">
 			<c:forEach items="${reply }" var="r">
 				<div id="answer">
 					<div style="width: 80px; float: left;">
 						<img src="<%=request.getContextPath() %>/images/like.png"
-							onclick="rqlike(${r.rqno})" style="cursor: pointer;"> <br>
-						추천수 ${r.rqlikecnt }
+							onclick="rslike(${r.rsno})" style="cursor: pointer;"> <br>
+						추천수 ${r.rslikecnt }
 					</div>
 					<div
 						style="width: 720px; float: left; background-color: lightgray; word-wrap: break-word">
-						${r.rqcontent }</div>
-					<div style="float:right;">${r.rqdate }
+						${r.rscontent }</div>
+					<div style="float:right;">${r.rsdate }
 					</div>
 
-					<c:if test="${loginMember.id == r.rqwriter}">
+					<c:if test="${loginMember.id == r.rswriter}">
 						<div style="float: right; margin: 10px 0;">
 							<button type="button"
-								onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', '_blank')">수정</button>
+								onclick="open_win('<%=request.getContextPath()%>/moverstudyupdate?rsno=${r.rsno }', '_blank')">수정</button>
 							<button type="button"
-								onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }&qno=${r.qno }'">삭제</button>
+								onclick="location.href='<%=request.getContextPath()%>/rstudydelete?rsno=${r.rsno }&sno=${r.sno }'">삭제</button>
 						</div>
 					</c:if>
 					<hr style="clear: both;">
@@ -162,13 +161,13 @@
 		</c:if>
 		<div>
 			<button type="button"
-				onclick="location.href='<%=request.getContextPath()%>/qnalist'">목록으로
+				onclick="location.href='<%=request.getContextPath()%>/studylist'">목록으로
 				돌아가기</button>
-			<c:if test="${loginMember.nickname == qna.qwriter}">
+			<c:if test="${loginMember.nickname == study.swriter}">
 				<button type="button"
-					onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'">수정</button>
+					onclick="location.href='<%=request.getContextPath()%>/movestudyupdate?sno=${study.sno }'">수정</button>
 				<button type="button"
-					onclick="location.href='<%=request.getContextPath()%>/qnadelete?qno=${qna.qno }'">삭제</button>
+					onclick="location.href='<%=request.getContextPath()%>/studydelete?sno=${study.sno }'">삭제</button>
 			</c:if>
 		</div>
 	</div>

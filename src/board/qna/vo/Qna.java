@@ -7,7 +7,6 @@ public class Qna {
 	private String qwriter;
 	private String qcontent;
 	private String qdate; 			 // to_char(sysdate, 'YYYY-MM-DD HH:MM:SS')
-	private String qimage;
 	private String qfilepath;
 	private int qviewcnt;			 // 처음 0
 	private int qlikecnt;			 // 처음 0
@@ -16,14 +15,13 @@ public class Qna {
 
 	public Qna() {}
 	
-	public Qna(int qno, String qsubject, String qwriter, String qcontent, String qdate, String qimage, String qfilepath, int qviewcnt, int qlikecnt, int qtag, int rqnacnt) {
+	public Qna(int qno, String qsubject, String qwriter, String qcontent, String qdate, String qfilepath, int qviewcnt, int qlikecnt, int qtag, int rqnacnt) {
 		super();
 		this.qno = qno;
 		this.qsubject = qsubject;
 		this.qwriter = qwriter;
 		this.qcontent = qcontent;
 		this.qdate = qdate;
-		this.qimage = qimage;
 		this.qfilepath = qfilepath;
 		this.qviewcnt = qviewcnt;
 		this.qlikecnt = qlikecnt;
@@ -69,14 +67,6 @@ public class Qna {
 
 	public void setQdate(String qdate) {
 		this.qdate = qdate;
-	}
-
-	public String getQimage() {
-		return qimage;
-	}
-
-	public void setQimage(String qimage) {
-		this.qimage = qimage;
 	}
 
 	public String getQfilepath() {

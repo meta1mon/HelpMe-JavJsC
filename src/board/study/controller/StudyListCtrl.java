@@ -1,4 +1,4 @@
-package board.qna.controller;
+package board.study.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.qna.service.QnaService;
-import board.qna.service.RqnaService;
-import board.qna.vo.Qna;
-import board.qna.vo.Rqna;
+import board.study.service.StudyService;
+import board.study.vo.Study;
+
 
 /**
- * Servlet implementation class RqnaReadCtrl
+ * Servlet implementation class QnaListCtrl
  */
-@WebServlet("/RqnaReadCtrl")
-public class RqnaReadCtrl extends HttpServlet {
+@WebServlet("/studylist")
+public class StudyListCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RqnaReadCtrl() {
+    public StudyListCtrl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,17 +42,26 @@ public class RqnaReadCtrl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);
 	}
-
+	
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int qno = Integer.parseInt(request.getParameter("qno"));
-
-		final int PAGE_SIZE = 3;
+		final int PAGE_SIZE = 15;
 		final int PAGE_BOX = 3;
 
+		// 검색 시의 컨트롤 처리
+		int searchType = 0; 
+		String search = request.getParameter("search");
+		if (search != null && !search.equals("")) {
+			searchType = Integer.parseInt(request.getParameter("searchType"));
+			// 즉 검색 내용이 있다면
+		} else {
+			// 검색 내용이 없다면
+			search = null;
+		}
 
+		// search가 있든 없든 갖고 들어가서 전체 글 개수를 반환함
 		int allPages = 0;
 		try {
-			allPages = new RqnaService().RqnaCnt(qno);
+			allPages = new StudyService().studyCnt(search, searchType);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -91,20 +99,22 @@ public class RqnaReadCtrl extends HttpServlet {
 		}
 
 		// 리스트 가져오기
-		ArrayList<Rqna> list = null;
+		ArrayList<Study> list = null;
 		try {
-			list = new RqnaService().getRqna(startRnum, endRnum, qno);
+			list = new StudyService().getStudyBoard(startRnum, endRnum, search, searchType);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		request.setAttribute("reply", list);
+		
+		request.setAttribute("slist", list);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pageBoxCnt", pageBoxCnt);
-		request.getRequestDispatcher("board/qna/qlist.jsp").forward(request, response);
+		request.setAttribute("search", search);
+		request.setAttribute("searchType", searchType);
+		request.getRequestDispatcher("board/study/slist.jsp").forward(request, response);
 
 	}
-	
+
 }

@@ -24,7 +24,6 @@ $(document).ready(function(){
 </script>
 <script>
 $(document).ready(function(){
-	zzzz
 })
 </script>
 <header>
@@ -35,7 +34,7 @@ $(document).ready(function(){
 		</a>
 		<div class="nav">
 			<a href="<%=request.getContextPath()%>/qnalist" id="qnaBtn">질문방</a> 
-			<a href="" id="studyBtn">스터디방</a> 
+			<a href="<%=request.getContextPath()%>/studylist" id="studyBtn">스터디방</a> 
 			<a href="" id="reviewBtn">리뷰방</a> 
 			 <a href="<%=request.getContextPath()%>/shop/shopIntro.jsp" id="shopBtn">쇼핑방</a> 
 			<a href="<%=request.getContextPath()%>/calendar/main.jsp" id="recruitBtn">공채캘린더</a>
