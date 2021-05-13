@@ -61,7 +61,7 @@ table {
 }
 
 .findPostCode {
-	width: 80px;
+	width: 85px;
 	height: 40px;
 	border: none;
 	padding: 5px;
@@ -70,13 +70,12 @@ table {
 	color: white;
 	background-color: #2c3e50;
 	border: 1px solid #2c3e50;
-	font-size: 17px;
+	font-size: 15px;
 }
 
-.findPostCode:hover {
+.findPostCode:hover{
 	color: #1abc9c;
 }
-
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script
@@ -344,7 +343,7 @@ table {
 	<div class="enrollFrm">
 		<h1>회원가입</h1>
 		<form action="<%=request.getContextPath()%>/memberinsert"
-			method="post">
+			method="post" style="margin-bottom:20px">
 			<table>
 				<tr>
 					<td>아이디<span class="required">(필수)</span></td>
@@ -360,7 +359,7 @@ table {
 				</tr>
 				<tr>
 					<td>비밀번호<span class="required">(필수)</span></td>
-					<td><input type="password" name="password1" id="password1"></td>
+					<td><input type="password" name="password1" id="password1" ></td>
 					<td><span class="desc"> 8~15자의 영문자, 숫자,
 							특수문자(!, @, #, $, %, ^, &, *)만 사용 가능합니다.</span></td>
 				</tr>
@@ -389,30 +388,30 @@ table {
 					<td>주소<span class="optional">(선택)</span></td>
 					<td><input type="text" id="sample6_postcode" name="postcode"
 						readonly style="margin-bottom: 5px"
-						value="${loginMember.postcode}"></td>
-					<td style="padding-top: 3px; text-align: left;"><input type="button"
-						onclick="sample6_execDaumPostcode()" value="우편번호"
+						 ></td>
+					<td style="padding-top: 0px; text-align: left;"><input type="button"
+						onclick="sample6_execDaumPostcode()" value="주소 검색"
 						class="findPostCode"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><input type="text" id="sample6_address" name="address1"
 						readonly style="margin-bottom: 5px"
-						value="${loginMember.address1}"></td>
+						></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><input type="text" id="sample6_detailAddress"
 						name="address2" style="margin-bottom: 5px"
-						value="${loginMember.address2}"></td>
+						></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><input type="text" id="sample6_extraAddress"
 						name="address3" readonly style="margin-bottom: 5px"
-						value="${loginMember.address3}"></td>
+						></td>
 					<td></td>
 				</tr>
 				<tr>
@@ -439,11 +438,9 @@ table {
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="회원가입"
-						onclick="return admit();" id="btnSubmit"></td>
-				</tr>
-				<tr>
-					<td colspan="3"><input type="button" value="로그인으로 이동"
-						onclick="location.href='login.jsp'"></td>
+						onclick="return admit();" id="btnSubmit" class="darkbutton">
+						<input type="button" value="로그인으로"
+						onclick="location.href='login.jsp'" class="darkbutton"></td>
 				</tr>
 			</table>
 		</form>

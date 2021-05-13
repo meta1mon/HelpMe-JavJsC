@@ -93,9 +93,11 @@ input {
 		
 		$("#showpass").click(function() {
 			if($("#password").attr('type') == "password") {
-				$("#password").attr('type', 'text');	
+				$("#password").attr('type', 'text');
+				$("#bulb").attr('src', '<%=request.getContextPath() %>/images/big-lighton.png')
 			} else {
 				$("#password").attr('type', 'password');					
+				$("#bulb").attr('src', '<%=request.getContextPath() %>/images/big-light.png')
 			}
 			
 			
@@ -124,11 +126,11 @@ input {
 			<div><span id="passcheck">&nbsp;</span></div>
 			<input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요"> <br>
 			<span id="misspass">비밀번호를 잊으셨나요?</span>
-			<span id="showpass">비밀번호 보기<img src="<%=request.getContextPath() %>/images/lightOn.png" width="16" height="16"></span>
+			<span id="showpass">비밀번호 보기<img src="<%=request.getContextPath() %>/images/big-light.png" width="16" height="16" id="bulb"></span>
 			<a href="passfind.jsp" id="findpass">비밀번호 찾기</a>
 			<div id="buttonbox">
-				<button type="submit" onclick="return login();">로그인하기</button>
-				<button type="button" onclick="location.href='signup.jsp'">회원가입</button>
+				<button type="submit" onclick="return login();" class="darkbutton">로그인하기</button>
+				<button type="button" onclick="location.href='signup.jsp'" class="darkbutton">회원가입</button>
 			</div>
 		</form>
 	</div>
