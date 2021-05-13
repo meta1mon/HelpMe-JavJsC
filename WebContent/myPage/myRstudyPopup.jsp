@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<title>Insert title here</title>
 <style>
-	<%@include file="../../style/common.css" %>
-	<%@include file="../../style/header.css" %>
 
-	.qna {
+	.study {
 	margin : 40px 0 20px 10px;
 	text-align:left;
 	font-size:17px;
@@ -96,27 +95,26 @@
     text-decoration: none;
 	}
 </style>
-<title>Insert title here</title>
 </head>
 <body>
-		<table id="table" style="border:1;">
-		<c:forEach items="${qlist }" var='q'>
+	<table id="table" style="border: 1;">
+		<c:forEach items="${rslist }" var='r'>
 			<tr style="border-bottom: 1px solid #eeeeee;">
-				<td style="width:50px; font-size:14px;"><a style="font-size:18px;">${q.qviewcnt }</a><br>조회</td>
-				<td style="width:50px;"><a style="font-size:18px;">${q.qlikecnt }</a><br>좋아요</td>
-				<td style="width:50px;"><a style="font-size:18px;">${q.rqnacnt }</a><br>답변</td>
-				<td style="text-align: left; width:450px;">
-					<a href="qnaread?qno=${q.qno}" id="subject">${q.qsubject }</a> 
-						<br> 
-								<c:choose>
-									<c:when test="${q.qtag ==1}">Java</c:when>
-									<c:when test="${q.qtag ==2}">C</c:when>
-									<c:when test="${q.qtag ==3}">Python</c:when>
-								</c:choose>
-				</td>
-				<td><a style="color:#0054FF; text-align: left;">${q.qwriter }</a> <br> <a style="font-size:13px;">${q.qdate }</a></td>
+				<td style="width: 50px; font-size: 14px;"><a
+					style="font-size: 18px;">${r.sviewcnt }</a><br>조회</td>
+				<td style="width: 50px;"><a style="font-size: 18px;">${r.slikecnt }</a><br>좋아요</td>
+				<td style="width: 50px;"><a style="font-size: 18px;">${r.rstudycnt }</a><br>답변</td>
+				<td style="text-align: left; width: 450px;"><a
+					href="studyread?sno=${r.sno}" id="subject">${r.ssubject }</a> <br>
+					<c:choose>
+						<c:when test="${r.stag ==1}">Java</c:when>
+						<c:when test="${r.stag ==2}">C</c:when>
+						<c:when test="${r.stag ==3}">Python</c:when>
+					</c:choose></td>
+				<td><a style="color: #0054FF; text-align: left;">${r.swriter }</a>
+					<br> <a style="font-size: 13px;">${r.sdate }</a></td>
 			</tr>
 		</c:forEach>
-		</table>
+	</table>
 </body>
 </html>
