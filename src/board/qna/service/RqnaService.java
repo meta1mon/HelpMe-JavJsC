@@ -28,9 +28,9 @@ public class RqnaService {
 		return result;
 	}
 
-	public ArrayList<Rqna> getRqna(int start, int end, int qno) throws SQLException {
+	public ArrayList<Rqna> getRqna(int qno) throws SQLException {
 		Connection con = getConnection();
-		ArrayList<Rqna> list = new RqnaDao().getRqna(con, start, end, qno);
+		ArrayList<Rqna> list = new RqnaDao().getRqna(con, qno);
 		close(con);
 		return list;
 	}

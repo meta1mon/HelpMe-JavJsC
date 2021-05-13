@@ -44,9 +44,7 @@ public class MoveRqnaUpdate extends HttpServlet {
 	}
 
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("이동하러 넘어옴");
 		int rqno = Integer.parseInt(request.getParameter("rqno"));
-		System.out.println("rqno값 넘어옴" + rqno);
 		Rqna rqvo = null;
 		try {
 			rqvo = new RqnaService().RqnaRead(rqno);

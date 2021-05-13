@@ -14,6 +14,7 @@ import board.qna.service.QnaService;
 import board.qna.service.RqnaService;
 import board.qna.vo.Qna;
 import board.qna.vo.Rqna;
+import member.vo.Member;
 
 /**
  * Servlet implementation class RqnaUpdateCtrl
@@ -46,11 +47,6 @@ public class RqnaUpdateCtrl extends HttpServlet {
 	
 	private void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-// 닉네임 불러와야되는데 아직 설정 안함
-
-//		Member me = (Member) request.getSession().getAttribute("loginMember");
-//		String qwriter = me.getNickname();
-		System.out.println("서블릿 ㅡㄹ얼옹ㅁ");
 		Rqna vo = new Rqna();
 		String rqcontent = request.getParameter("rqcontent");
 		int rqno = Integer.parseInt(request.getParameter("rqno"));

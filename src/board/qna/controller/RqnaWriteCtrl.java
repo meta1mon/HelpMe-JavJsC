@@ -52,11 +52,8 @@ public class RqnaWriteCtrl extends HttpServlet {
 		
 		Rqna vo = new Rqna();
 		String a = request.getParameter("qno");
-		System.out.println("qno 있나" + a);
 		int qno = Integer.parseInt(request.getParameter("qno"));
 		String rqcontent = request.getParameter("rqcontent");
-		System.out.println(qno +" : qno 값 받은거 나오나? ");
-		System.out.println(rqcontent + " : rqcontent 값 받은거 나오나? ");
 
 		vo.setQno(qno);
 		vo.setRqcontent(rqcontent);

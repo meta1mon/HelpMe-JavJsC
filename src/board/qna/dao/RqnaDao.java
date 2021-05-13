@@ -22,7 +22,7 @@ public class RqnaDao {
 		int result2 = 0;
 
 		String maxSql = "select nvl(max(rqno),0)+1 from rqna";
-		String sql = "insert into rqna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),    ?, ?, 0)";
+		String sql = "insert into rqna values(?,?,?,?,    to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'),  0)";
 		String replycnt = "update qna set rqnacnt = rqnacnt+1 where qno = ?";
 
 		try {
@@ -41,8 +41,6 @@ public class RqnaDao {
 			pstmt.setInt(2, vo.getQno());
 			pstmt.setString(3, vo.getRqwriter());
 			pstmt.setString(4, vo.getRqcontent());
-			pstmt.setString(5, vo.getRqimage());
-			pstmt.setString(6, vo.getRqfilepath());
 
 			result = pstmt.executeUpdate();
 
@@ -77,16 +75,12 @@ public class RqnaDao {
 		return cnt;
 	}
 
-	public ArrayList<Rqna> getRqna(Connection con, int start, int end, int qno) throws SQLException {
+	public ArrayList<Rqna> getRqna(Connection con, int qno) throws SQLException {
 		ArrayList<Rqna> list = new ArrayList<Rqna>();
 		String sql = "select * from rqna where qno = " + qno + " order by rqno";
-		String sql2 = "select rownum r, d.* from (" + sql + ") d";
-		String sql3 = "select * from (" + sql2 + ") where r between ? and ?";
 
 		try {
-			pstmt = con.prepareStatement(sql3);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
+			pstmt = con.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
 
@@ -98,8 +92,6 @@ public class RqnaDao {
 					vo.setRqwriter(rs.getString("rqwriter"));
 					vo.setRqcontent(rs.getString("rqcontent"));
 					vo.setRqdate(rs.getString("rqdate"));
-					vo.setRqimage(rs.getString("rqimage"));
-					vo.setRqfilepath(rs.getString("rqfilepath"));
 					vo.setRqlikecnt(rs.getInt("rqlikecnt"));
 					list.add(vo);
 				}
@@ -152,8 +144,6 @@ public class RqnaDao {
 					vo.setRqwriter(rs.getString("rqwriter"));
 					vo.setRqcontent(rs.getString("rqcontent"));
 					vo.setRqdate(rs.getString("rqdate"));
-					vo.setRqimage(rs.getString("rqimage"));
-					vo.setRqfilepath(rs.getString("rqfilepath"));
 					vo.setRqlikecnt(rs.getInt("rqlikecnt"));
 				}
 			}
