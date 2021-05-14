@@ -9,7 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JSP 게시판 웹 사이트</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script
+	src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 <style>
 .ck.ck-editor {
 	max-width: 800px;
@@ -51,47 +52,57 @@
 #tag:hover, #tag:focus {
 	background-color: #ffffff;
 	color: black;
-	border: 1px solid #BDBDBD;	
+	border: 1px solid #BDBDBD;
 }
 
-.ck-content {
-	background-color: #FBFBFC;
-	border: 1px solid #D5D5D5;
-	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-		box-shadow 0.15s ease-in-out;
-}
-
-#editor:hover, #editor:focus {
-	background-color: #ffffff;
-	color: black;
+#folder {
+	float: right;
+	position: relative;
+	left: 83px;
+	bottom: 2px;
 }
 
 #file_text {
-	font-size:14px;
+	color: black;
+	font-size: 14px;
 	float: right;
 	width: 150px;
 	position: relative;
-	top: 0;
+	top: 2px;
 	left: 42px;
 }
 
 #file {
+	color: #76858C;
 	position: relative;
 	top: 6px;
-	left: 217px;
+	left: 276px;
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 #file2 {
+	color: #76858C;
 	position: relative;
 	top: 6px;
-	left: 184px;
+	left: 216px;
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 #delete {
 	position: relative;
 	font-size: 14px;
 	top: 6px;
-	left: 223px;
+	left: 198px;
 	color: #c0041f;
 	text-decoration: none;
 }
@@ -102,14 +113,14 @@
 	text-decoration: none;
 	position: relative;
 	top: 6px;
-	left: 196px;
+	left: 159px;
 }
 
 #submit {
 	width: 125px;
 	height: 35px;
 	padding: 5px;
-	margin: 30px 0 100px 0;
+	margin: 30px 0 350px 0;
 	border: none;
 	border-radius: 4px;
 	text-align: center;
@@ -119,6 +130,12 @@
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 		box-shadow 0.15s ease-in-out;
 	float: left;
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 #cancel {
@@ -136,6 +153,12 @@
 		box-shadow 0.15s ease-in-out;
 	float: left;
 	display: inline;
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 #submit:hover, #submit:active {
@@ -146,100 +169,54 @@
 #cancel:active, #cancel:hover {
 	box-shadow: 10px 10px 20px 5px #eeeeee;
 }
-
-input.upload_text { /*읽기전용 인풋텍스트*/
-	float: left;
-	width: 230px; /* 버튼 포함 전체 가로 길이*/
-	height: 21px;
-	line-height: 19px;
-	padding: 0 3px;
-	border: 1px solid #bbb;
-	border-radius: 4px;
-}
-
-div.upload-btn_wrap input.input_file { /*파일찾기 폼 투명하게*/
-	position: absolute;
-	top: 0;
-	right: 0;
-	cursor: pointer;
-	opacity: 0;
-	filter: alpha(opacity = 0);
-	-ms-filter: "alpha(opacity=0)";
-	-moz-opacity: 0;
-}
-
-div.upload-btn_wrap { /*버튼테두리 감싼 div*/
-	overflow: hidden;
-	position: relative;
-	float: left;
-	width: 70px; /*width, height 값은 button(찾아보기)값과 같아야함 */
-	height: 21px;
-	padding-left: 3px;
-}
-
-div.upload-btn_wrap button { /*버튼 div*/
-	width: 70px;
-	height: 21px;
-	color: #ffffff;
-	background-color: #1abc9c;
-	border: none;
-	border-radius: 4px;
-}
 </style>
 </head>
-	<%@include file="../../view/header.jsp"%>
+<%@include file="../../view/header.jsp"%>
 <body class="content">
-	<div style="width: 800px; margin: 0 auto 0 auto; color:#76858C;">
-		<div id="write">글쓰기</div>
+	<div style="width: 800px; margin: 0 auto 0 auto;">
+		<div id="write">글 쓰기</div>
 		<form action="<%=request.getContextPath()%>/qnawrite" method="post"
 			enctype="multipart/form-data">
-			<div style="margin-bottom:10px;">
-				<input id="subject" style="width: 800px; height: 40px; font-size: 15px; box-sizing: border-box;"
-					type="text" placeholder="제목을 입력해 주세요." name="qsubject" maxlength="100">
+			<div style="margin-bottom: 10px;">
+				<input id="subject"
+					style="width: 800px; height: 40px; font-size: 15px; box-sizing: border-box;"
+					type="text" placeholder="제목을 입력해 주세요." name="qsubject"
+					maxlength="100">
 			</div>
-			<div style="margin-bottom:10px;">
-				<select id="tag" name="qtag" style="width: 800px; height: 40px; font-size: 15px;">
+			<div style="margin-bottom: 10px;">
+				<select id="tag" name="qtag"
+					style="width: 800px; height: 40px; font-size: 15px;">
 					<option value="1">JAVA</option>
 					<option value="2">C</option>
 					<option value="3">Python</option>
 				</select>
 			</div>
-			<div style="margin-bottom:10px;">
-				<textarea id="editor" name="qcontent"
-					maxlength="4000"></textarea>
+			<div style="margin-bottom: 10px;">
+				<textarea id="editor" name="qcontent" maxlength="4000"></textarea>
 			</div>
 			<div>
-				<input type="submit" value="등록"  id = "submit"> 
-				<input type="button" value="취소"  id = "cancel" onclick="location.href = '<%=request.getContextPath()%>/qnalist'">
+				<input type="submit" value="등록" id="submit"> <input
+					type="button" value="취소" id="cancel"
+					onclick="location.href = '<%=request.getContextPath()%>/qnalist'">
 			</div>
-			<div id="file_text">첨부파일</div>
-				<p id="fileDiv">
-					<input type="file" id="file" name="file" onchange="fn_addFile();" style="margin-top: 25px;">
-					<a href="#this" class="btn" id="delete" name="delete">삭제</a>
-				</p>
-			<div style="margin-bottom: 10px; clear:both;">
-				<a href="#this" class="btn" id="addFile" style='display:none;'>파일 추가</a>
+
+
+			<div id="file_text">파일 첨부</div>
+			<img src="<%=request.getContextPath()%>/images/folder.png"
+				id="folder">
+			<p id="fileDiv">
+				<input type="file" id="file" name="file" onchange="fn_addFile();"
+					style="margin-top: 25px;"> <a href="#this" class="btn"
+					id="delete" name="delete">전체 삭제</a>
+			</p>
+			<div style="margin-bottom: 10px; clear: both;">
+				<a href="#this" class="btn" id="addFile" style='display: none;'>파일
+					추가</a>
 			</div>
-			
-			<!--input box-->
-<input type="text" class="upload_text" readonly="readonly">
-<!--button-->
-<div class="upload-btn_wrap">
-  <button type="button" title="파일찾기">
-   <span>파일찾기</span>  
-  </button>
-  <input type="file" class="input_file" title="파일찾기">
-</div>
+
 		</form>
 	</div>
 	<script type="text/javascript">
-	$(function(){
-		$('.upload_text').val('미리보여줄 텍스트.');
-		$('.input_file').change(function(){
-			var i = $(this).val();
-			$('.upload_text').val(i);
-		});
-	});
 	
 	
     ClassicEditor

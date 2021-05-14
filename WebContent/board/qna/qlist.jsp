@@ -1,5 +1,4 @@
 <%@page import="member.vo.Member"%>
-<%@page import="board.qna.dao.QnaDao"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -37,6 +36,12 @@
 	font-size: 18px;
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 		box-shadow 0.15s ease-in-out;
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 #write:hover {
@@ -56,6 +61,12 @@
 	float: left;
 	text-align: left;
 	clear: both;
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 #searchType:hover, #searchType:focus {
@@ -105,6 +116,12 @@
 	float: left;
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 		box-shadow 0.15s ease-in-out;
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 #btnsearch:hover, #btnsearch:focus {
@@ -128,38 +145,23 @@
 	height: 100px;
 }
 
-#table tr td {
-	height:
-}
-
-table>tr>td:first-child {
-	width: 5%;
-} /*No 열 크기*/
-table>tr>td:first-child+td {
-	width: 5%;
-} /*No 열 크기*/
-table>tr>td:first-child+td+td {
-	width: 5%;
-} /*No 열 크기*/
-table>tr>td:first-child+td+td+td {
-	width: 65%;
-} /*제목 열 크기*/
-table>tr>td:first-child+td+td+td+td {
-	width: 20%;
-} /*작성일 열 크기*/
 #tag {
 	border: 1px solid #eeeeee;
 	border-radius: 4px;
 	display: inline;
 	font-size: 15px;
 	padding: 0 2px 0 2px;
+	position:relative;
+	top:3px;
 }
 
 #subject {
 	color: #0054FF;
 	font-size: 18px;
 	text-decoration: none;
-	padding: 1px 2px 1px 2px;
+	padding: 0 2px 0 2px;
+	position:relative;
+	bottom:3px;
 }
 
 #subject:hover, #subject:active {
@@ -167,14 +169,60 @@ table>tr>td:first-child+td+td+td+td {
 }
 
 #page {
-	line-height: 200px;
+	line-height: 120px;
+}
+
+#leftpage {
+	font-size: 18px;
+	text-decoration: none;
+	color: #0054FF;
+	border: 1px solid #eeeeee;
+	padding: 10px 12px;
+	text-align: center;
+	background-color: #F8F8F8;
+	margin: -2px;
+	position: relative;
+	left: 20px;
+}
+
+#pageNum {
+	font-size: 18px;
+	text-decoration: none;
+	color: #0054FF;
+	border: 1px solid #eeeeee;
+	padding: 10px 7px;
+	text-align: center;
+	background-color: #F8F8F8;
+	margin: -3px;
+	position: relative;
+	left: 20px;
+}
+
+#rightpage {
+	font-size: 18px;
+	text-decoration: none;
+	color: #0054FF;
+	border: 1px solid #eeeeee;
+	padding: 10px 12px;
+	text-align: center;
+	background-color: #F8F8F8;
+	margin: -2px;
+	position: relative;
+	left: 20px;
+}
+
+#leftpage:hover, #leftpage:active, #pageNum:hover, #pageNum:active,
+	#rightpage:hover, #rightpage:active {
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+	background-color: #ffffff;
 }
 </style>
 
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
-	<div style="width: 800px; margin: 0 auto 0 auto; color: #99ADB6;">
+	<div
+		style="width: 800px; margin: 0 auto 0 auto; color: #99ADB6;">
 
 		<div class="qna">Q&A 게시판</div>
 		<input id="write" type="button" value="새 글 쓰기"
@@ -215,23 +263,15 @@ table>tr>td:first-child+td+td+td+td {
 		</table>
 		<div id="page">
 			<c:if test="${startPage !=1 }">
-				<a
-					href="qnalist?pageNum=${startPage -1 }&search=${search }&searchType=${searchType}"
-					style="text-decoration: none; color: #0054FF; margin: 5px;">&#60;&#60;</a>
+				<a href="qnalist?pageNum=${startPage -1 }&search=${search }&searchType=${searchType}" id="leftpage">&#60;&#60;</a>
 			</c:if>
 
 			<c:forEach begin="${startPage }" end="${endPage }" var="s" step="1">
-				<a
-					href="qnalist?pageNum=${s }&search=${search }&searchType=${searchType}"
-					style="font-size: 18px; text-decoration: none; color: #0054FF; margin: 5px;">${s }</a>
+				<a href="qnalist?pageNum=${s }&search=${search }&searchType=${searchType}" id="pageNum">&nbsp;${s }&nbsp;</a>
 			</c:forEach>
 
-
-
 			<c:if test="${endPage < pageBoxCnt }">
-				<a
-					href="qnalist?pageNum=${endPage +1 }&search=${search }&searchType=${searchType}"
-					style="text-decoration: none; color: #99ADB6; margin: 5px;">&#62;&#62;</a>
+				<a href="qnalist?pageNum=${endPage +1 }&search=${search }&searchType=${searchType}" id="rightpage">&#62;&#62;</a>
 			</c:if>
 		</div>
 	</div>

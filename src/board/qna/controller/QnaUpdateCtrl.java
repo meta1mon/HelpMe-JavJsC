@@ -57,8 +57,6 @@ public class QnaUpdateCtrl extends HttpServlet {
 	private void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-
-		Qna vo = new Qna();
 		// 파일 첨부 기능
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -73,7 +71,6 @@ public class QnaUpdateCtrl extends HttpServlet {
 			response.sendRedirect("view/error/Error.jsp");
 
 		File path = new File(saveDirectory);
-		String root = getServletContext().getRealPath("/");
 		if (!path.exists()) {
 			path.mkdirs(); // 해당 경로에 파일을 저장하는 폴더가 없으면 생성해줌.
 		}
@@ -85,6 +82,8 @@ public class QnaUpdateCtrl extends HttpServlet {
 				new DefaultFileRenamePolicy() // 동일 이름 존재 시 새로운 이름 부여 방식
 		);
 
+		Qna vo = new Qna();
+
 		String fileName = "";
 		Enumeration files = mReq.getFileNames(); // 업로드 된 파일 이름 얻어오기
 		String fileNames = "";
@@ -94,18 +93,17 @@ public class QnaUpdateCtrl extends HttpServlet {
 			fileName = mReq.getFilesystemName(file);
 
 			File f1 = mReq.getFile(file);
-			if (f1 == null) { // 업로드 실패 시
+			if (f1 == null || f1.equals("")) { // 업로드 실패 시
 				System.out.println("파일 업로드 실패");
+				continue;
 			} else { // 업로드 성공 시
 				System.out.println("파일 업로드 성공");
+				fileNames += fileName + ",";// 다중 파일들을 db에 넣을 때 뒤에 쉼표를 찍어서 넣는다.
+				vo.setQfilepath(fileNames);
 			}
-			fileNames += fileName + ",";// 다중 파일들을 db에 넣을 때 뒤에 쉼표를 찍어서 넣는다.
+
 		}
 
-		if (!fileNames.equals("")) {
-			System.out.println("fileNames: " + fileNames);
-			vo.setQfilepath(fileNames);
-		} // 초기화
 		if (fileNames.length() > 1800) {
 			System.out.println("DBfilename 크기보다 큽니다.");
 		}
@@ -117,7 +115,7 @@ public class QnaUpdateCtrl extends HttpServlet {
 		String qcontent = mReq.getParameter("qcontent");
 		int qno = Integer.parseInt(mReq.getParameter("qno"));
 		String qtag = mReq.getParameter("qtag");
-		
+
 		vo.setQsubject(qsubject);
 		vo.setQcontent(qcontent);
 		vo.setQwriter(qwriter);
