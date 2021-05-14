@@ -301,22 +301,6 @@ tr td:first-child {
 	color: #1abc9c;
 }
 
-.findPostCode {
-	width: 80px;
-	height: 40px;
-	border: none;
-	padding: 5px;
-	outline: none;
-	border-radius: 5px;
-	color: white;
-	background-color: #2c3e50;
-	border: 1px solid #2c3e50;
-	font-size: 17px;
-}
-
-.findPostCode:hover {
-	color: #1abc9c;
-}
 </style>
 </head>
 <body>

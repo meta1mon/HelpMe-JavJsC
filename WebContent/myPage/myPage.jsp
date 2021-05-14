@@ -57,7 +57,7 @@ a {
 }
 
 .tab-main>.tab .on .title {
-	color: #00e1d3;
+	background-color: #1abc9c;
 }
 
 .tab-main>.tab-cont {
@@ -130,8 +130,7 @@ a {
 
 .tab-sub>.tab .on .title {
 	height: 30px;
-	background-color: #2c3e50;
-	color: #1abc9c;
+	background-color: #1abc9c;
 }
 
 .tab-sub>.tab-cont {
@@ -141,7 +140,7 @@ a {
 }
 
 .tab-sub>.tab-cont .cont {
-	padding: 25px;
+	padding: 15px;
 	color: black;
 	background-color: white;
 	box-sizing: border-box;
@@ -182,16 +181,6 @@ tr td:first-child {
 	text-align: center;
 }
 
-.required {
-	color: green;
-	font-size: 1px;
-}
-
-.optional {
-	color: brown;
-	font-size: 1px;
-}
-
 .modify {
 	width: 80px;
 	border: none;
@@ -200,12 +189,11 @@ tr td:first-child {
 	border-radius: 5px;
 	color: white;
 	background-color: #2c3e50;
-	border: 1px solid #2c3e50;
 	font-size: 17px;
 }
 
 .modify:hover {
-	color: #1abc9c;
+	background-color: #1abc9c;
 }
 </style>
 <!-- qlist.jsp의 디자인 -->
@@ -763,7 +751,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body class="content">
-	<div style="width: 800px; margin: 20px auto 40px auto;">
+	<div style="width: 800px; margin-left:auto; margin-right: auto;">
 		<!-- 이미지 + 닉네임 표시 -->
 		<div class="welcome">
 			<div class="picBtn" style="margin-top: 20px; float: left;">
