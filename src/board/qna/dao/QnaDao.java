@@ -68,6 +68,59 @@ public class QnaDao {
 		return list;
 
 	}
+	
+	public ArrayList<Qna> getQnaBoard(Connection con, String search, int searchType)
+			throws SQLException {
+		ArrayList<Qna> list = new ArrayList<Qna>();
+		String sql = "select * from qna order by qno desc";
+		if (search != null) {
+			switch (searchType) {
+			case 1:
+				sql = "select * from qna where qsubject like '%" + search + "%' order by qno desc";
+				break;
+			case 2:
+				sql = "select * from qna where qwriter like '%" + search + "%' order by qno desc";
+				break;
+			case 3:
+				sql = "select * from qna where qcontent like '%" + search + "%' order by qno desc";
+				break;
+			default:
+				System.out.println("dao 오류");
+				break;
+			}
+
+		}
+		
+
+		try {
+			pstmt = con.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			if (rs != null) {
+				while (rs.next()) {
+					Qna vo = new Qna();
+					vo.setQno(rs.getInt("qno"));
+					vo.setQsubject(rs.getString("qsubject"));
+					vo.setQwriter(rs.getString("qwriter"));
+					vo.setQcontent(rs.getString("qcontent"));
+					vo.setQdate(rs.getString("qdate"));
+					vo.setQfilepath(rs.getString("qfilepath"));
+					vo.setQviewcnt(rs.getInt("qviewcnt"));
+					vo.setQlikecnt(rs.getInt("qlikecnt"));
+					vo.setQtag(rs.getInt("qtag"));
+					vo.setRqnacnt(rs.getInt("rqnacnt"));
+					list.add(vo);
+				}
+			}
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return list;
+
+	}
 
 	public int QnaCnt(Connection con, String search, int searchType) throws SQLException {
 		int cnt = 0;

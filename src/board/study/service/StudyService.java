@@ -19,6 +19,14 @@ public class StudyService {
 		close(con);
 		return list;
 	}
+
+// 마이페이지에서 게시글 볼 때, 페이지 구분 없게 볼 수 있도록 함
+	public ArrayList<Study> getStudyBoard(String search, int searchType) throws SQLException {
+		Connection con = getConnection();
+		ArrayList<Study> list = new StudyDao().getStudyBoard(con, search, searchType);
+		close(con);
+		return list;
+	}
 	
 	public int studyCnt(String search, int searchType ) throws SQLException {
 		Connection con = getConnection();

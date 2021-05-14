@@ -59,7 +59,7 @@ public class MyPageEnter extends HttpServlet {
 		Member vo = (Member) request.getSession().getAttribute("loginMember");
 
 		PrintWriter out = response.getWriter();
-		
+
 		if (vo.getPassword().equals(password)) {
 
 			// 로그인한 사람의 닉네임을 기준으로 내가 쓴 글을 불러옴
@@ -68,12 +68,11 @@ public class MyPageEnter extends HttpServlet {
 			// 글쓴이 기준으로 찾을 것이기 때문에 2로 고정
 			int searchType = 2;
 
-			
 // QnaListCtrl.java 참고
 			// 최근 3개의 글만 보여준다
 			int startRnum = 1;
 			int endRnum = 3;
-			
+
 			ArrayList<Qna> list1 = null;
 			try {
 				list1 = new QnaService().getQnaBoard(startRnum, endRnum, search, searchType);
@@ -86,28 +85,27 @@ public class MyPageEnter extends HttpServlet {
 // 내가 댓글쓴 글 불러오기. MyRqlistCtrl.java 참고
 			// 댓글쓴 글 3개
 			String rqwriter = search;
-			
+
 			ArrayList<Integer> qnolist = null;
 			ArrayList<Qna> list2 = new ArrayList<Qna>();
-			
+
 			int cnt1 = 3;
 			try {
 				qnolist = new RqnaService().myRqna(rqwriter);
 				// 댓글 수 3개임
-				if(qnolist.size() < cnt1) {
-					cnt1=qnolist.size();
+				if (qnolist.size() < cnt1) {
+					cnt1 = qnolist.size();
 				}
-				for(int i = 0; i < cnt1; i++) {
+				for (int i = 0; i < cnt1; i++) {
 					list2.add(new QnaService().QnaRead(qnolist.get(i)));
 				}
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+
 			request.setAttribute("rqlist", list2);
-			
-			
+
 // StudyListCtrl.java 참고
 			// 최근 3개의 글만 보여준다
 
@@ -143,7 +141,7 @@ public class MyPageEnter extends HttpServlet {
 			}
 
 			request.setAttribute("rslist", list4);
-			
+
 			request.getRequestDispatcher("myPage/myPage.jsp").forward(request, response);
 		} else {
 			out.print("<script>alert('비밀번호가 일치하지 않습니다.');</script>");

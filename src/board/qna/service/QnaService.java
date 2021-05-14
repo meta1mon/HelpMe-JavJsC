@@ -16,6 +16,14 @@ public class QnaService {
 		return list;
 	}
 	
+// 게시글을 페이지 구분 없이 한 번에 전체 보이기 위해 사용함
+	public ArrayList<Qna> getQnaBoard(String search, int searchType) throws SQLException {
+		Connection con = getConnection();
+		ArrayList<Qna> list = new QnaDao().getQnaBoard(con, search, searchType);
+		close(con);
+		return list;
+	}
+	
 	public int QnaCnt(String search, int searchType ) throws SQLException {
 		Connection con = getConnection();
 		int cnt = new QnaDao().QnaCnt(con, search, searchType);

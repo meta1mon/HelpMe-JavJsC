@@ -913,6 +913,12 @@ $(document).ready(function(){
 										Q&A 게시판 <a onclick="myqlist();">더보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
+										<c:if test="${qlist.size() == 0 }">
+											<tr>
+												<td>Q&A 게시판에 작성한 글이 없습니다</td>
+											</tr>
+										</c:if>
+										<c:if test="${qlist.size() != 0 }">
 										<c:forEach items="${qlist }" var='q'>
 											<tr style="border-bottom: 1px solid #eeeeee;">
 												<td style="width: 50px; font-size: 14px;"><a
@@ -930,6 +936,7 @@ $(document).ready(function(){
 													<br> <a style="font-size: 13px;">${q.qdate }</a></td>
 											</tr>
 										</c:forEach>
+										</c:if>
 									</table>
 								</div>
 								<div
@@ -938,6 +945,12 @@ $(document).ready(function(){
 										Study 게시판 <a onclick="myslist();">더보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
+										<c:if test="${slist.size() == 0 }">
+											<tr>
+												<td>Study 게시판에 작성한 글이 없습니다</td>
+											</tr>
+										</c:if>
+										<c:if test="${slist.size() != 0 }">
 										<c:forEach items="${slist }" var='s'>
 											<tr style="border-bottom: 1px solid #eeeeee;">
 												<td style="width: 50px; font-size: 14px;"><a
@@ -955,6 +968,7 @@ $(document).ready(function(){
 													<br> <a style="font-size: 13px;">${s.sdate }</a></td>
 											</tr>
 										</c:forEach>
+										</c:if>
 									</table>
 								</div>
 							</div>
@@ -966,6 +980,12 @@ $(document).ready(function(){
 										Q&A 게시판 <a onclick="myrqlist();">더보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
+										<c:if test="${rqlist.size() == 0 }">
+											<tr>
+												<td>Q&A 게시판에 작성한 댓글이 없습니다</td>
+											</tr>
+										</c:if>
+										<c:if test="${rqlist.size() != 0 }">
 										<c:forEach items="${rqlist }" var='r'>
 											<tr style="border-bottom: 1px solid #eeeeee;">
 												<td style="width: 50px; font-size: 14px;"><a
@@ -983,6 +1003,7 @@ $(document).ready(function(){
 													<br> <a style="font-size: 13px;">${r.qdate }</a></td>
 											</tr>
 										</c:forEach>
+										</c:if>
 									</table>
 								</div>
 								<div
@@ -991,6 +1012,12 @@ $(document).ready(function(){
 										Study 게시판 <a onclick="myrslist();">더보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
+										<c:if test="${rslist.size() == 0 }">
+											<tr>
+												<td>Study 게시판에 작성한 댓글이 없습니다</td>
+											</tr>
+										</c:if>
+										<c:if test="${rslist.size() != 0 }">
 										<c:forEach items="${rslist }" var='k'>
 											<tr style="border-bottom: 1px solid #eeeeee;">
 												<td style="width: 50px; font-size: 14px;"><a
@@ -1008,6 +1035,7 @@ $(document).ready(function(){
 													<br> <a style="font-size: 13px;">${k.sdate }</a></td>
 											</tr>
 										</c:forEach>
+										</c:if>
 									</table>
 								</div>
 							</div>

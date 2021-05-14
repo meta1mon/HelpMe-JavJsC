@@ -72,6 +72,58 @@ public class StudyDao {
 
 	}
 	
+	public ArrayList<Study> getStudyBoard(Connection con, String search, int searchType)
+			throws SQLException {
+		ArrayList<Study> list = new ArrayList<Study>();
+		String sql = "select * from study order by sno desc";
+		if (search != null) {
+			switch (searchType) {
+			case 1:
+				sql = "select * from study where ssubject like '%" + search + "%' order by sno desc";
+				break;
+			case 2:
+				sql = "select * from study where swriter like '%" + search + "%' order by sno desc";
+				break;
+			case 3:
+				sql = "select * from study where scontent like '%" + search + "%' order by sno desc";
+				break;
+			default:
+				System.out.println("dao 오류");
+				break;
+			}
+
+		}
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			if (rs != null) {
+				while (rs.next()) {
+					Study vo = new Study();
+					vo.setSno(rs.getInt("sno"));
+					vo.setSsubject(rs.getString("ssubject"));
+					vo.setSwriter(rs.getString("swriter"));
+					vo.setScontent(rs.getString("scontent"));
+					vo.setSdate(rs.getString("sdate"));
+					vo.setSfilepath(rs.getString("sfilepath"));
+					vo.setSviewcnt(rs.getInt("sviewcnt"));
+					vo.setSlikecnt(rs.getInt("slikecnt"));
+					vo.setStag(rs.getInt("stag"));
+					vo.setRstudycnt(rs.getInt("rstudycnt"));
+					list.add(vo);
+				}
+			}
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return list;
+
+	}
+	
 	public int studyCnt(Connection con, String search, int searchType) throws SQLException {
 		int cnt = 0;
 		String sql = "select count(*) from study ";
