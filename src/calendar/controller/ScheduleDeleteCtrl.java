@@ -1,6 +1,7 @@
 package calendar.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import calendar.Service.CalendarService;
+import member.vo.Member;
 
 /**
  * Servlet implementation class ScheduleDeleteCtrl
@@ -40,14 +42,27 @@ public class ScheduleDeleteCtrl extends HttpServlet {
 		execute(request, response);
 	}
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String dbScheName = request.getParameter("scheName");
+		System.out.println("서블릿 진입함");
+		String dbScheName = request.getParameter("title");
+		System.out.println("dbScheName : " + dbScheName);
+		Member memVo = (Member) request.getSession().getAttribute("loginMember"); 
+		
+		String dbId = memVo.getId();
+		System.out.println(dbId);
 		
 		int result = 0;
 		
 		try {
-			result = new CalendarService().deleteSchedule(dbScheName);
+			result = new CalendarService().deleteSchedule(dbScheName, dbId);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		
+		if (result > 0) {
+			System.out.println("일정 db 삭제 성공");
+		} else {
+			System.out.println("일정 db 삭제 실패");
+
 		}
 	}
 

@@ -8,7 +8,9 @@ public class CalendarVO {
 	private String scheStart;
 	private String scheEnd;
 	private int scheCode;
+	private String scheColor;
 	private String scheContent;
+	private String scheAllDay;
 	
 	public int getScheNum() {
 		return scheNum;
@@ -47,6 +49,13 @@ public class CalendarVO {
 	public void setScheCode(int scheCode) {
 		this.scheCode = scheCode;
 	}
+	
+	public String getScheColor() {
+		return scheColor;
+	}
+	public void setScheColor(String scheColor) {
+		this.scheColor = scheColor;
+	}
 	public String getScheContent() {
 		return scheContent;
 	}
@@ -54,14 +63,18 @@ public class CalendarVO {
 		this.scheContent = scheContent;
 	}
 	
+	public String getScheAllDay() {
+		return scheAllDay;
+	}
+	public void setScheAllDay(String scheAllDay) {
+		this.scheAllDay = scheAllDay;
+	}
 	@Override
 	public String toString() {
 		return "CalendarVO [scheNum=" + scheNum + ", id=" + id + ", scheName=" + scheName + ", scheStart=" + scheStart
-				+ ", scheEnd=" + scheEnd + ", scheCode=" + scheCode + ", scheContent=" + scheContent + "]";
+				+ ", scheEnd=" + scheEnd + ", scheCode=" + scheCode + ", scheColor=" + scheColor + ", scheContent="
+				+ scheContent + ", scheAllDay=" + scheAllDay + "]";
 	}
-	
-	
-	
 	
 
 }
