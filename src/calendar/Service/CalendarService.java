@@ -39,12 +39,12 @@ public class CalendarService {
 	}
 	
 	//update
-	public int updateSchedule(CalendarVO vo) throws SQLException {
+	public int resizeSchedule(String scheStart, String scheEnd, String scheName, String id) throws SQLException {
 		int result = 0;
 		
 		Connection conn = getConnection();
 		CalendarDAO dao = new CalendarDAO();
-		result = dao.insertSchedule(conn, vo);
+		result = dao.resizeSchedule(conn, scheStart, scheEnd, scheName, id);
 		if (result != 0) {
 			commit(conn);
 		} else {
