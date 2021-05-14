@@ -1,5 +1,4 @@
 <%@page import="bookshop.DAO.ShopvideoDAO"%>
-<%@page import="com.sun.media.jfxmedia.control.VideoDataBuffer"%>
 <%@page import="bookshop.VO.VideoVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
