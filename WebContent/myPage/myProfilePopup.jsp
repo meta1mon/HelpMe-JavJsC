@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>도와줘 잡스씨</title>
+<style></style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -258,51 +259,14 @@ td {
 tr td:first-child {
 	text-align: center;
 }
-
-.required {
-	color: green;
-	font-size: 1px;
-}
-
-.optional {
-	color: brown;
-	font-size: 1px;
-}
-
-.modify {
-	width: 100px;
-	border: none;
-	padding: 5px;
-	outline: none;
-	border-radius: 5px;
-	color: white;
-	background-color: #2c3e50;
-	border: 1px solid #2c3e50;
-	font-size: 17px;
-}
-
-.modify:hover {
-	color: #1abc9c;
-}
-
-.cancel {
-	width: 100px;
-	border: none;
-	padding: 5px;
-	outline: none;
-	border-radius: 5px;
-	color: white;
-	background-color: #2c3e50;
-	border: 1px solid #2c3e50;
-	font-size: 17px;
-}
-
-.cancel:hover {
-	color: #1abc9c;
-}
-
+</style>
+<style>
+<%@ include file="../style/common.css" %>
 </style>
 </head>
+<header>
+<h2 style="text-align:center; background-color:#2c3e50; color: white; margin-top:0; margin-bottom:30px; padding-top: 5px; height: 50px">내 정보 수정하기</h2>
+</header>
 <body>
 	<form action="<%=request.getContextPath()%>/myprofileupdate"
 		method="post">
@@ -333,12 +297,12 @@ tr td:first-child {
 			</tr>
 			<tr>
 				<td>비밀번호 질문<span class="required">(필수)</span></td>
-				<td><select name="passquestion" id="passquestion">
-						<option value="0">비밀번호 질문을 선택해주세요</option>
-						<option value="1">첫 수학여행 장소는?</option>
-						<option value="2">가장 친한 친구의 이름은?</option>
-						<option value="3">첫 해외여행지는?</option>
-						<option value="4">어린시절 자신의 별명은?</option>
+				<td><select name="passquestion" id="passquestion" style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">
+						<option value="0" style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">비밀번호 질문을 선택해주세요</option>
+						<option value="1" style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">첫 수학여행 장소는?</option>
+						<option value="2" style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">가장 친한 친구의 이름은?</option>
+						<option value="3" style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">첫 해외여행지는?</option>
+						<option value="4" style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">어린시절 자신의 별명은?</option>
 				</select></td>
 			</tr>
 			<tr>
@@ -348,19 +312,34 @@ tr td:first-child {
 				<td><span class="desc"> 1~20자의 한글, 영문자, 숫자만 사용 가능합니다.</span></td>
 			</tr>
 			<tr>
-				<td>주소<span class="optional">(선택)</span></td>
-				<td><input type="text" id="sample6_postcode"
-					name="postcode" readonly style="margin-bottom: 5px"
-					value="${loginMember.postcode}"><br> <input
-					type="text" id="sample6_address" name="address1" readonly
-					style="margin-bottom: 5px" value="${loginMember.address1}"><br>
-					<input type="text" id="sample6_detailAddress" name="address2"
-					style="margin-bottom: 5px" value="${loginMember.address2}"><br>
-					<input type="text" id="sample6_extraAddress" name="address3"
-					readonly style="margin-bottom: 5px" value="${loginMember.address3}"></td>
-				<td><input type="button" onclick="sample6_execDaumPostcode()"
-					value="우편번호 찾기"></td>
-			</tr>
+					<td>주소<span class="optional">(선택)</span></td>
+					<td><input type="text" id="sample6_postcode" name="postcode"
+						readonly style="margin-bottom: 5px" value="${loginMember.postcode}"
+						 ></td>
+					<td style="padding-top: 0px; text-align: left;"><input type="button"
+						onclick="sample6_execDaumPostcode()" value="주소 검색"
+						class="findPostCode"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="text" id="sample6_address" name="address1"
+						readonly style="margin-bottom: 5px" value="${loginMember.address1}"
+						></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="text" id="sample6_detailAddress"
+						name="address2" style="margin-bottom: 5px" value="${loginMember.address2}"
+						></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="text" id="sample6_extraAddress"
+						name="address3" readonly style="margin-bottom: 5px" value="${loginMember.address3}"
+						></td>
+					<td></td>
 			<tr>
 				<td>전화번호<span class="optional">(선택)</span></td>
 				<td><input type="text" name="tel" id="tel"
@@ -380,8 +359,8 @@ tr td:first-child {
 			</tr>
 			<tr>
 				<td colspan="3"><button type="submit"
-						onclick="return modify();" class="modify">수정 완료</button>
-						<button type="button" onclick="window.close();" class="cancel">취소</button></td>
+						onclick="return modify();" class="darkbutton">수정 완료</button>
+					<button type="button" onclick="window.close();" class="darkbutton">취소</button></td>
 			</tr>
 		</table>
 	</form>

@@ -140,7 +140,7 @@ a {
 }
 
 .tab-sub>.tab-cont .cont {
-	padding: 15px;
+	padding: 15px 5px;
 	color: black;
 	background-color: white;
 	box-sizing: border-box;
@@ -345,6 +345,13 @@ function showPopup(url, name) {
 $(document).ready(function(){
     $("select option[value='${loginMember.passquestion}']").attr("selected", true);
 });
+</script>
+<!-- 마우스 클릭시 배경 회색으로 -->
+<script>
+$(document).ready(function(){
+	$("")
+	
+})
 </script>
 <!-- 캘린더 -->
 <script>
@@ -779,71 +786,84 @@ $(document).ready(function(){
 						<tr>
 							<td>아이디<span class="required">(필수)</span></td>
 							<td colspan="2"><input type="text" name="id" id="id"
-								readonly value="${loginMember.id}"></td>
+								readonly class="readonly" value="${loginMember.id}"></td>
 						</tr>
 						<tr>
 							<td>닉네임<span class="required">(필수)</span></td>
 							<td><input type="text" name="nickname" id="nickname"
-								value="${loginMember.nickname}"></td>
+								readonly class="readonly" value="${loginMember.nickname}"></td>
 						</tr>
 						<tr>
 							<td>비밀번호<span class="required">(필수)</span></td>
 							<td><input type="password" name="password1" id="password1"
-								value="${loginMember.password}"></td>
+								readonly class="readonly"value="${loginMember.password}"></td>
 						</tr>
 						<tr>
 							<td>비밀번호 확인<span class="required">(필수)</span></td>
 							<td><input type="password" name="password2" id="password2"
-								value="${loginMember.password}"></td>
+								readonly class="readonly" value="${loginMember.password}"></td>
 						</tr>
 						<tr>
 							<td>비밀번호 질문<span class="required">(필수)</span></td>
-							<td><select name="passquestion" id="passquestion">
-									<option value="0">비밀번호 질문을 선택해주세요</option>
-									<option value="1">첫 수학여행 장소는?</option>
-									<option value="2">가장 친한 친구의 이름은?</option>
-									<option value="3">첫 해외여행지는?</option>
-									<option value="4">어린시절 자신의 별명은?</option>
+							<td><select name="passquestion" id="passquestion"
+								style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif"
+								onFocus='this.initialSelect = this.selectedIndex;'
+								onChange='this.selectedIndex = this.initialSelect;'>
+									<option value="0"
+										style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">비밀번호
+										질문을 선택해주세요</option>
+									<option value="1"
+										style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">첫
+										수학여행 장소는?</option>
+									<option value="2"
+										style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">가장
+										친한 친구의 이름은?</option>
+									<option value="3"
+										style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">첫
+										해외여행지는?</option>
+									<option value="4"
+										style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">어린시절
+										자신의 별명은?</option>
 							</select></td>
 						</tr>
 						<tr>
 							<td>비밀번호 답변<span class="required">(필수)</span></td>
 							<td><input type="text" name="passanswer" id="passanswer"
-								value="${loginMember.passanswer}"></td>
+								readonly class="readonly" value="${loginMember.passanswer}"></td>
 						</tr>
 						<tr>
 							<td>주소<span class="optional">(선택)</span></td>
 							<td><input type="text" id="sample6_postcode" name="postcode"
-								readonly style="margin-bottom: 5px"
-								value="${loginMember.postcode}"></td>
+								style="margin-bottom: 5px"
+								readonly class="readonly" value="${loginMember.postcode}"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><input type="text" id="sample6_address" name="address1"
-								readonly style="margin-bottom: 5px"
-								value="${loginMember.address1}"></td>
+								style="margin-bottom: 5px"
+								readonly class="readonly" value="${loginMember.address1}"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><input type="text" id="sample6_detailAddress"
 								name="address2" style="margin-bottom: 5px"
-								value="${loginMember.address2}"></td>
+								readonly class="readonly" value="${loginMember.address2}"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><input type="text" id="sample6_extraAddress"
-								name="address3" readonly style="margin-bottom: 5px"
-								value="${loginMember.address3}"></td>
+								name="address3" style="margin-bottom: 5px"
+								readonly class="readonly" value="${loginMember.address3}"></td>
 						</tr>
 						<tr>
 							<td>전화번호<span class="optional">(선택)</span></td>
 							<td><input type="text" name="tel" id="tel"
-								value="${loginMember.tel}"></td>
+								readonly class="readonly" value="${loginMember.tel}"></td>
 						</tr>
 						<tr>
 							<td>이메일<span class="optional">(선택)</span></td>
 							<td><input type="text" name="email" id="email"
-								value="${loginMember.email}"></td>
+								readonly class="readonly" value="${loginMember.email}"></td>
 						</tr>
 						<tr>
 							<td colspan="2" style="text-align: left"><label><input
@@ -853,7 +873,7 @@ $(document).ready(function(){
 						<tr>
 							<td colspan="2"><input type="button" value="수정"
 								class="modify"
-								onclick="showPopup('<%=request.getContextPath()%>/myPage/myPageProfileUpdate.jsp', 'popup');"></td>
+								onclick="showPopup('<%=request.getContextPath()%>/myPage/myProfilePopup.jsp', 'popup');"></td>
 						</tr>
 					</table>
 				</div>
@@ -975,10 +995,10 @@ $(document).ready(function(){
 										<c:if test="${qlist.size() != 0 }">
 										<c:forEach items="${qlist }" var='q'>
 											<tr style="border-bottom: 1px solid #eeeeee;">
-												<td style="width: 50px; font-size: 14px;"><a
+												<td style="width: 60px; font-size: 14px;"><a
 													style="font-size: 18px;">${q.qviewcnt }</a><br>조회</td>
-												<td style="width: 50px;"><a style="font-size: 18px;">${q.qlikecnt }</a><br>좋아요</td>
-												<td style="width: 50px;"><a style="font-size: 18px;">${q.rqnacnt }</a><br>답변</td>
+												<td style="width: 60px;"><a style="font-size: 18px;">${q.qlikecnt }</a><br>좋아요</td>
+												<td style="width: 60px;"><a style="font-size: 18px;">${q.rqnacnt }</a><br>답변</td>
 												<td style="text-align: left; width: 450px;"><a
 													href="qnaread?qno=${q.qno}" id="subject">${q.qsubject }</a>
 													<br> <c:choose>
@@ -1007,10 +1027,10 @@ $(document).ready(function(){
 										<c:if test="${slist.size() != 0 }">
 										<c:forEach items="${slist }" var='s'>
 											<tr style="border-bottom: 1px solid #eeeeee;">
-												<td style="width: 50px; font-size: 14px;"><a
+												<td style="width: 60px; font-size: 14px;"><a
 													style="font-size: 18px;">${s.sviewcnt }</a><br>조회</td>
-												<td style="width: 50px;"><a style="font-size: 18px;">${s.slikecnt }</a><br>좋아요</td>
-												<td style="width: 50px;"><a style="font-size: 18px;">${s.rstudycnt }</a><br>답변</td>
+												<td style="width: 60px;"><a style="font-size: 18px;">${s.slikecnt }</a><br>좋아요</td>
+												<td style="width: 60px;"><a style="font-size: 18px;">${s.rstudycnt }</a><br>답변</td>
 												<td style="text-align: left; width: 450px;"><a
 													href="studyread?sno=${s.sno}" id="subject">${s.ssubject }</a>
 													<br> <c:choose>
@@ -1042,10 +1062,10 @@ $(document).ready(function(){
 										<c:if test="${rqlist.size() != 0 }">
 										<c:forEach items="${rqlist }" var='r'>
 											<tr style="border-bottom: 1px solid #eeeeee;">
-												<td style="width: 50px; font-size: 14px;"><a
+												<td style="width: 60px; font-size: 14px;"><a
 													style="font-size: 18px;">${r.qviewcnt }</a><br>조회</td>
-												<td style="width: 50px;"><a style="font-size: 18px;">${r.qlikecnt }</a><br>좋아요</td>
-												<td style="width: 50px;"><a style="font-size: 18px;">${r.rqnacnt }</a><br>답변</td>
+												<td style="width: 60px;"><a style="font-size: 18px;">${r.qlikecnt }</a><br>좋아요</td>
+												<td style="width: 60px;"><a style="font-size: 18px;">${r.rqnacnt }</a><br>답변</td>
 												<td style="text-align: left; width: 450px;"><a
 													href="qnaread?qno=${r.qno}" id="subject">${r.qsubject }</a>
 													<br> <c:choose>
@@ -1074,10 +1094,10 @@ $(document).ready(function(){
 										<c:if test="${rslist.size() != 0 }">
 										<c:forEach items="${rslist }" var='k'>
 											<tr style="border-bottom: 1px solid #eeeeee;">
-												<td style="width: 50px; font-size: 14px;"><a
+												<td style="width: 60px; font-size: 14px;"><a
 													style="font-size: 18px;">${k.sviewcnt }</a><br>조회</td>
-												<td style="width: 50px;"><a style="font-size: 18px;">${k.slikecnt }</a><br>좋아요</td>
-												<td style="width: 50px;"><a style="font-size: 18px;">${k.rstudycnt }</a><br>답변</td>
+												<td style="width: 60px;"><a style="font-size: 18px;">${k.slikecnt }</a><br>좋아요</td>
+												<td style="width: 60px;"><a style="font-size: 18px;">${k.rstudycnt }</a><br>답변</td>
 												<td style="text-align: left; width: 450px;"><a
 													href="studyread?sno=${k.sno}" id="subject">${k.ssubject }</a>
 													<br> <c:choose>

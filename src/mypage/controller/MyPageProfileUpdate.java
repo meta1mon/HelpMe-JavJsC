@@ -41,10 +41,7 @@ public class MyPageProfileUpdate extends HttpServlet {
 		execute(request, response);
 	}
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
-		System.out.println("서블릿에 들어왔다");
-		
 		Member vo = (Member) request.getSession().getAttribute("loginMember");
-		System.out.println("원래 값: " + vo);
 		
 		String id = request.getParameter("id");
 		String nickname = request.getParameter("nickname");
@@ -57,11 +54,9 @@ public class MyPageProfileUpdate extends HttpServlet {
 		String address3 = request.getParameter("address3");
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
-		System.out.println("변경 내용: " + id + "/" + nickname + "/" + password1 + "/" + passquestion + "/" + passanswer + "/" + postcode + "/" + address1 + "/" + address2 + "/" + address3 + "/" + tel + "/" + email);
 		
 		vo = new Member(id, nickname, password1, passquestion, passanswer, null, postcode, address1, address2, address3, tel, email);
 		int result = new MemberService().update(vo);
-		System.out.println("실제 반영 내용: " + vo.toString());
 		
 		PrintWriter out = response.getWriter();
 		if(result > 0) {

@@ -28,7 +28,7 @@
 				<td><input type="password" placeholder="비밀번호를 입력해주세요" id="password" name="password"></td>
 			</tr>
 			<tr>
-				<td><button type="submit">비밀번호 확인하기</button></td>
+				<td><button type="submit" class="darkbutton">ENTER</button></td>
 			</tr>
 		</table>
 		</form>
