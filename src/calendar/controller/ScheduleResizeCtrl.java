@@ -14,60 +14,56 @@ import calendar.VO.CalendarVO;
 import member.vo.Member;
 
 /**
- * Servlet implementation class ScheduleInsert
+ * Servlet implementation class ScheduleUpdateCtrl
  */
-@WebServlet("/scheduleinsert")
-public class ScheduleInsertCtrl extends HttpServlet {
+@WebServlet("/scheduleresize")
+public class ScheduleResizeCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ScheduleInsertCtrl() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ScheduleResizeCtrl() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	
+		execute(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);
 	}
 	
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("서블릿 들어 왔다");
+		System.out.println("resize 서블릿");
 		
+		String dbScheStart = request.getParameter("start");
+		System.out.println(dbScheStart);
+		String dbScheEnd = request.getParameter("end");
+		System.out.println(dbScheEnd);
 		
+		String dbScheName = request.getParameter("title");
+		System.out.println(dbScheName);
 		
-		CalendarVO vo = new CalendarVO();
 		Member memVo = (Member) request.getSession().getAttribute("loginMember"); 
-
-		String dbScheName = request.getParameter("scheName");
 		String dbId = memVo.getId();
-		String dbScheStart = request.getParameter("scheStart");
-		String dbScheEnd = request.getParameter("scheEnd");
-		int dbScheCode = Integer.parseInt(request.getParameter("scheCode"));
-		String dbScheColor = request.getParameter("scheColor");
-		String dbScheContent = request.getParameter("scheContent");
-		String dbScheAllDay = request.getParameter("scheAllDay");
-		System.out.println(dbScheAllDay);
 		
-		vo.setId(dbId);
-		vo.setScheName(dbScheName);
-		vo.setScheStart(dbScheStart);
-		vo.setScheEnd(dbScheEnd);
-		vo.setScheCode(dbScheCode);
-		vo.setScheColor(dbScheColor);
-		vo.setScheContent(dbScheContent);
-		vo.setScheAllDay(dbScheAllDay);
+		
 		
 		int result = 0;
 		
 		try {
-			result = new CalendarService().insertSchedule(vo);
+			result = new CalendarService().resizeSchedule(dbScheStart, dbScheEnd, dbScheName, dbId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
-
 }

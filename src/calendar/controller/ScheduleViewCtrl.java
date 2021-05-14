@@ -45,9 +45,9 @@ public class ScheduleViewCtrl extends HttpServlet {
 	}
 	
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("서블릿 진입함");
 		PrintWriter out = response.getWriter();
 		
-		CalendarVO vo = new CalendarVO();
 		Member memVo = (Member) request.getSession().getAttribute("loginMember"); 
 		
 		String id = memVo.getId();
@@ -70,6 +70,7 @@ public class ScheduleViewCtrl extends HttpServlet {
 		out.flush();
 		out.close();
 		
+		// TODO 여기 RESIZE DB연결 필요오오오 데이터 받아오기이이이 NULL 들어온다ㅏㅏㅏ
 	}
 	
 	
