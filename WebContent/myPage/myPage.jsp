@@ -210,7 +210,7 @@ tr td:first-child {
 </style>
 <!-- qlist.jsp의 디자인 -->
 <style>
-.qna {
+.board {
 	margin: 0 0 20px 10px;
 	text-align: left;
 	font-size: 17px;
@@ -885,7 +885,7 @@ $(document).ready(function(){
 							<div class="cont">
 								<div
 									style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
-									<div class="qna">
+									<div class="board">
 										Q&A 게시판 <a onclick="myqlist();">더보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
@@ -908,12 +908,37 @@ $(document).ready(function(){
 										</c:forEach>
 									</table>
 								</div>
+								<div
+									style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
+									<div class="board">
+										Study 게시판 <a onclick="myslist();">더보기</a>
+									</div>
+									<table id="table" style="border: 1; text-align: center;">
+										<c:forEach items="${slist }" var='s'>
+											<tr style="border-bottom: 1px solid #eeeeee;">
+												<td style="width: 50px; font-size: 14px;"><a
+													style="font-size: 18px;">${s.sviewcnt }</a><br>조회</td>
+												<td style="width: 50px;"><a style="font-size: 18px;">${s.slikecnt }</a><br>좋아요</td>
+												<td style="width: 50px;"><a style="font-size: 18px;">${s.rstudycnt }</a><br>답변</td>
+												<td style="text-align: left; width: 450px;"><a
+													href="studyread?sno=${s.sno}" id="subject">${s.ssubject }</a>
+													<br> <c:choose>
+														<c:when test="${s.stag ==1}">Java</c:when>
+														<c:when test="${s.stag ==2}">C</c:when>
+														<c:when test="${s.stag ==3}">Python</c:when>
+													</c:choose></td>
+												<td><a style="color: #0054FF; text-align: left;">${s.swriter }</a>
+													<br> <a style="font-size: 13px;">${s.sdate }</a></td>
+											</tr>
+										</c:forEach>
+									</table>
+								</div>
 							</div>
 							<!-- 탭3-2 내가 댓글 단 목록-->
 							<div class="cont">
 								<div
 									style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
-									<div class="qna">
+									<div class="board">
 										Q&A 게시판 <a onclick="myrqlist();">더보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
@@ -932,6 +957,31 @@ $(document).ready(function(){
 													</c:choose></td>
 												<td><a style="color: #0054FF; text-align: left;">${r.qwriter }</a>
 													<br> <a style="font-size: 13px;">${r.qdate }</a></td>
+											</tr>
+										</c:forEach>
+									</table>
+								</div>
+								<div
+									style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
+									<div class="board">
+										Study 게시판 <a onclick="myrslist();">더보기</a>
+									</div>
+									<table id="table" style="border: 1; text-align: center;">
+										<c:forEach items="${rslist }" var='k'>
+											<tr style="border-bottom: 1px solid #eeeeee;">
+												<td style="width: 50px; font-size: 14px;"><a
+													style="font-size: 18px;">${k.sviewcnt }</a><br>조회</td>
+												<td style="width: 50px;"><a style="font-size: 18px;">${k.slikecnt }</a><br>좋아요</td>
+												<td style="width: 50px;"><a style="font-size: 18px;">${k.rstudycnt }</a><br>답변</td>
+												<td style="text-align: left; width: 450px;"><a
+													href="studyread?sno=${k.sno}" id="subject">${k.ssubject }</a>
+													<br> <c:choose>
+														<c:when test="${k.stag ==1}">Java</c:when>
+														<c:when test="${k.stag ==2}">C</c:when>
+														<c:when test="${k.stag ==3}">Python</c:when>
+													</c:choose></td>
+												<td><a style="color: #0054FF; text-align: left;">${k.swriter }</a>
+													<br> <a style="font-size: 13px;">${k.sdate }</a></td>
 											</tr>
 										</c:forEach>
 									</table>
@@ -958,6 +1008,16 @@ $(document).ready(function(){
 			window.open("<%=request.getContextPath()%>/myrqlist", "myRqna", "width=1000px, height=500px, resizable = no, left= 100, top=100");
 
 		};
+		
+		function myslist() {
+			window.open("<%=request.getContextPath()%>/myslist", "myStudy","width=1000px, height=500px, resizable = no, left= 100, top=100");
+
+		};
+
+	function myrslist() {
+		window.open("<%=request.getContextPath()%>/myrslist", "myRstudy", "width=1000px, height=500px, resizable = no, left= 100, top=100");
+
+	};
 	</script>
 </body>
 </html>

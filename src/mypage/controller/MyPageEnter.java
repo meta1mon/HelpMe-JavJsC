@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import board.qna.service.QnaService;
 import board.qna.service.RqnaService;
 import board.qna.vo.Qna;
+import board.study.service.RstudyService;
+import board.study.service.StudyService;
+import board.study.vo.Study;
 import member.vo.Member;
 
 /**
@@ -82,19 +85,19 @@ public class MyPageEnter extends HttpServlet {
 
 // 내가 댓글쓴 글 불러오기. MyRqlistCtrl.java 참고
 			// 댓글쓴 글 3개
-			String rqwriter = vo.getNickname();
+			String rqwriter = search;
 			
 			ArrayList<Integer> qnolist = null;
 			ArrayList<Qna> list2 = new ArrayList<Qna>();
 			
-			int cnt = 3;
+			int cnt1 = 3;
 			try {
 				qnolist = new RqnaService().myRqna(rqwriter);
 				// 댓글 수 3개임
-				if(qnolist.size() < cnt) {
-					cnt=qnolist.size();
+				if(qnolist.size() < cnt1) {
+					cnt1=qnolist.size();
 				}
-				for(int i = 0; i < cnt; i++) {
+				for(int i = 0; i < cnt1; i++) {
 					list2.add(new QnaService().QnaRead(qnolist.get(i)));
 				}
 				
@@ -104,6 +107,42 @@ public class MyPageEnter extends HttpServlet {
 			
 			request.setAttribute("rqlist", list2);
 			
+			
+// StudyListCtrl.java 참고
+			// 최근 3개의 글만 보여준다
+
+			ArrayList<Study> list3 = null;
+			try {
+				list3 = new StudyService().getStudyBoard(startRnum, endRnum, search, searchType);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			request.setAttribute("slist", list3);
+
+// 내가 댓글쓴 글 불러오기. MyRslistCtrl.java 참고
+			// 댓글쓴 글 3개
+			String rswriter = search;
+
+			ArrayList<Integer> snolist = null;
+			ArrayList<Study> list4 = new ArrayList<Study>();
+
+			int cnt2 = 3;
+			try {
+				snolist = new RstudyService().myRstudy(rswriter);
+				// 댓글 수 3개임
+				if (snolist.size() < cnt2) {
+					cnt2 = snolist.size();
+				}
+				for (int i = 0; i < cnt2; i++) {
+					list4.add(new StudyService().studyRead(snolist.get(i)));
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			request.setAttribute("rslist", list4);
 			
 			request.getRequestDispatcher("myPage/myPage.jsp").forward(request, response);
 		} else {

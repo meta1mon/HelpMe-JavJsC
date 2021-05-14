@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <%
 
-	int bid = Integer.parseInt(request.getParameter("bid"));
+	String bid =request.getParameter("bid");
 	String bkind = request.getParameter("bkind");
 %>
 <html>

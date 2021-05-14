@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	int vid = Integer.parseInt(request.getParameter("vid"));
+	String vid = request.getParameter("vid");
 String vkind = request.getParameter("vkind");
 try {
 	ShopvideoDAO vProcess = ShopvideoDAO.getinstance();
