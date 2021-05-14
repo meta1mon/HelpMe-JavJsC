@@ -14,7 +14,6 @@
 
 
 <style>
-	<%@include file="../../style/common.css" %>
 	<%@include file="../../style/header.css" %>
 	.ck.ck-editor {
    max-width:800px;
@@ -106,7 +105,7 @@
 				<c:forTokens var="fileName" items="${qna.qfilepath}" delims=","
 					varStatus="st">
 					<a download="${fileName}"
-						href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
+						href="<%=request.getContextPath() %>/board/qna/files/${fileName }">${fileName}</a>
 					<c:if test="${!st.last }">
                         /
                     </c:if>
@@ -132,7 +131,7 @@
 			</c:if>
 		</div>
 
-		<h3 style="clear: both; text-align: left;">답변 수 ${qna.rqnacnt }</h3>
+		<h3 style="clear: both; text-align: left;">답변 ${qna.rqnacnt }</h3>
 		<hr>
 		<c:if test="${reply != null}">
 			<c:forEach items="${reply }" var="r">
@@ -144,7 +143,7 @@
 					</div>
 					<div
 						style="width: 720px; float: left; background-color: lightgray; word-wrap: break-word">
-						${r.rqcontent }</div>
+						${r.rqwriter}<br>${r.rqcontent }</div>
 					<div style="float:right;">${r.rqdate }
 					</div>
 

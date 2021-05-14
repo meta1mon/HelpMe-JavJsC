@@ -105,7 +105,7 @@
 				<c:forTokens var="fileName" items="${study.sfilepath}" delims=","
 					varStatus="st">
 					<a download="${fileName}"
-						href="<%=request.getContextPath() %>/board/files/${fileName }">${fileName}</a>
+						href="<%=request.getContextPath() %>/board/study/files/${fileName }">${fileName}</a>
 					<c:if test="${!st.last }">
                         /
                     </c:if>
