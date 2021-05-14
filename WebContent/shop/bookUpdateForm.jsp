@@ -30,10 +30,14 @@
 				</select></td>
 			</tr>
 			<tr>
+			<td>책번호</td>
+			<td><input type="text" name="bid" value="<%=bid%>"></td>
+			</tr>
+			<tr>
 				<td>제목</td>
 				<td><input type="text" name="btitle"
 					value="<%=book.getBtitle()%>"> 
-					<input type="hidden" name="bid" value="<%=bid%>"></td>
+					
 			</tr>
 			<tr>
 				<td>가격</td>

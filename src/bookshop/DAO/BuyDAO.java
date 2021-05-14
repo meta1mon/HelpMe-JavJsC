@@ -709,14 +709,14 @@ public class BuyDAO {
 		Connection conn = JDBCConnectionPool.getConnection();
 		rs = null;
 		pstmt = null;
-		int tot15 = 0;
+		int tot1 = 0;
 
-		String sql = "select buycount from buy where pid = 'v00001'";// id직접 써줘야함
+		String sql = "select buycount from buy where pid = 'v00001'";//
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				tot15 += rs.getInt("buycount");
+				tot1 += rs.getInt("buycount");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -728,6 +728,213 @@ public class BuyDAO {
 			if (conn != null)
 				conn.close();
 		}
-		return tot15;
+		return tot1;
 	}
+	public int getBuyVideoCount2() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot2 = 0;
+
+		String sql = "select buycount from buy where pid = 'v00002'";//
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot2 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot2;
+	}
+	public int getBuyVideoCount3() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot3 = 0;
+
+		String sql = "select buycount from buy where pid = 'v00003'";//
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot3 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot3;
+	}
+	public int getBuyVideoCount4() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot4 = 0;
+
+		String sql = "select buycount from buy where pid = 'v00004'";//
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot4 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot4;
+	}
+	public int getBuyVideoCount5() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot5 = 0;
+
+		String sql = "select buycount from buy where pid = 'v00005'";//
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot5 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot5;
+	}
+	public int getBuyVideoCount6() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot6 = 0;
+
+		String sql = "select buycount from buy where pid = 'v00006'";//
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot6 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot6;
+	}
+	public int getBuyVideoCount7() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot7 = 0;
+
+		String sql = "select buycount from buy where pid = 'v00007'";//
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot7 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot7;
+	}
+	public int getBuyVideoCount8() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot8 = 0;
+
+		String sql = "select buycount from buy where pid = 'v00008'";//
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot8 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot8;
+	}
+	public int getBuyVideoCount9() throws Exception {
+		Connection conn = JDBCConnectionPool.getConnection();
+		rs = null;
+		pstmt = null;
+		int tot9 = 0;
+
+		String sql = "select buycount from buy where pid = 'v00009'";//
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				tot9 += rs.getInt("buycount");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot9;
+	}
+
+
+
+
+
+
+
 }

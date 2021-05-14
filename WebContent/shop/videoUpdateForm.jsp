@@ -1,4 +1,5 @@
 <%@page import="bookshop.DAO.ShopvideoDAO"%>
+<%@page import="com.sun.media.jfxmedia.control.VideoDataBuffer"%>
 <%@page import="bookshop.VO.VideoVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -57,10 +58,14 @@ try {
 				</select></td>
 			</tr>
 			<tr>
+			<td>영상 번호</td>
+			<td><input type="text" name="vid" value="<%=vid%>"></td>
+			</tr>
+			<tr>
 				<td>영상 제목</td>
 				<td><input type="text" name="vtitle"
 					value="<%=video.getVtitle()%>"> 
-					<input type="hidden" name="vid" value="<%=vid%>"></td>
+					
 			</tr>
 			<tr>
 				<td>영상 가격</td>

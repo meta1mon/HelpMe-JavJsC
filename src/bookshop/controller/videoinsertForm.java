@@ -38,6 +38,7 @@ public class videoinsertForm extends HttpServlet {
 		execute(request, response);
 	}
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("viddd");
 		String url = "./shop/videoRegisterForm.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

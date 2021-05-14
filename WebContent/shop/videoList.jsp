@@ -88,7 +88,7 @@ if (count > 0) {
 					VideoVO video = (VideoVO)vList.get(i);
 			%>
 			<tr height="30">
-			<td><%=++number%></td>
+			<td><%=video.getVid()%></td>
 			<td><%=video.getVkind()%></td>
 			<td><%=video.getVtitle()%></td>
 			<td><%=video.getVprice()%></td>

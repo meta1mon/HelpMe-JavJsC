@@ -91,7 +91,8 @@ public class VideoUpdate extends HttpServlet {
 		String startDate = imageUp.getParameter("startDate");
 		String endDate = imageUp.getParameter("endDate");
 		
-		video.getVid();
+		
+		video.setVid(vid);
 		video.setVkind(vkind);
 		video.setVtitle(vtitle);
 		video.setVprice(Integer.parseInt(vprice));
@@ -102,6 +103,7 @@ public class VideoUpdate extends HttpServlet {
 		video.setRegdate(new Timestamp(System.currentTimeMillis()));
 		
 		Videoservice sv = new Videoservice();
+		System.out.println(vid);
 	try {
 		sv.updateVideo(video, vid);
 	}catch (Exception e) {

@@ -158,25 +158,25 @@ public class ShopvideoDAO {
 		//비디오 수장
 		public void updateVideo(Connection conn, VideoVO video, String vid) throws Exception{
 			pstmt = null; rs = null;
-			String sql = " update video set vkind=?, vtitle=?, vprice=?";
+			System.out.println(vid);
+			String sql = " update video set vid=?, vkind=?, vtitle=?, vprice=?";
 			sql += " ,vimage=?, discountRate=?, vsize=?, startDate=?";
 			sql += " ,endDate=? where vid=?";
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, video.getVkind());
-				pstmt.setString(2, video.getVtitle());
-				pstmt.setInt(3, video.getVprice());
-				pstmt.setString(4, video.getVimage());
-				pstmt.setInt(5, video.getDiscountRate());
-				pstmt.setString(6, video.getVsize());
-				pstmt.setDate(7, video.getStartDate());
-				pstmt.setDate(8, video.getEndDate());
-				pstmt.setString(9, video.getVid());
-				
-				
+				pstmt.setString(1, vid);
+				pstmt.setString(2, video.getVkind());
+				pstmt.setString(3, video.getVtitle());
+				pstmt.setInt(4, video.getVprice());
+				pstmt.setString(5, video.getVimage());
+				pstmt.setInt(6, video.getDiscountRate());
+				pstmt.setString(7, video.getVsize());
+				pstmt.setDate(8, video.getStartDate());
+				pstmt.setDate(9, video.getEndDate());
+				pstmt.setString(10, video.getVid());
 				pstmt.executeUpdate();
-				System.out.println("업데이트 들어옴.다오");
+				System.out.println("업데이트 들어옴!!!!!.다오");
 			}catch (Exception e) {
 				e.printStackTrace();
 			}finally {
