@@ -11,10 +11,6 @@
 </head>
 <body>
 	<%
-		request.setCharacterEncoding("utf-8");
-	%>
-
-	<%
 		System.out.println("bookcart 들어옴");
 			Member vo = (Member) request.getSession().getAttribute("loginMember");
 			String bkind = request.getParameter("bkind");

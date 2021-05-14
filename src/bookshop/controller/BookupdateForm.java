@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bookshop.VO.ShopBookVo;
+import bookshop.service.Bookservice;
+
 /**
  * Servlet implementation class bookupdateForm
  */
@@ -38,9 +41,22 @@ public class BookupdateForm extends HttpServlet {
 		execute(request, response);
 	}
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("폼 들어옴 ");
+		String bid = request.getParameter("bid");
+		ShopBookVo vo = null;
+		try {
+			vo = new Bookservice().getBook(bid);
+			
+			if(vo != null) {
+				System.out.println("수정할 책을 불러왔습니다.");
+			} else {
+				System.out.println("존재하지 않는 책입니다");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("book", vo);
 		String url = "./shop/bookUpdateForm.jsp";
-//		response.sendRedirect(url);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}

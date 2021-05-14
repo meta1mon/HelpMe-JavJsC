@@ -21,13 +21,13 @@ import bookshop.service.Bookservice;
  * Servlet implementation class bookList
  */
 @WebServlet("/booklist")
-public class bookList extends HttpServlet {
+public class BookList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public bookList() {
+    public BookList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,17 +46,21 @@ public class bookList extends HttpServlet {
 		execute(request, response);
 	}
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String bkind = request.getParameter("bkind");
+
+// 어딘지 모를 이전 페이지에서, 특정 버튼을 누르면 bkind를 받아온다 - 미구현
+//		String bkind = request.getParameter("bkind");
+		String bkind = "100";
+		
+		
 		List<ShopBookVo> bookList = null;
 		try {
-			bookList = new Bookservice().getBooks(bkind);
+			bookList = new Bookservice().getBooksList(bkind);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(bkind);
 		request.setAttribute("booklist", bookList);
 		request.setAttribute("bkind", bkind);
-		request.getRequestDispatcher("./shop/bookList.jsp"+bkind);
+		request.getRequestDispatcher("./shop/bookList.jsp").forward(request, response);
 		
 		
 	}

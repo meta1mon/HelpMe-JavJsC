@@ -33,7 +33,7 @@
 </head>
 <body>
 	<p>영상등록</p>
-	<form action="<%=request.getContextPath()%>/VideoInsert" method="post"
+	<form action="<%=request.getContextPath()%>/videoregister" method="post"
 		name="writeForm" enctype="multipart/form-data">
 		<table>
 			<tr>

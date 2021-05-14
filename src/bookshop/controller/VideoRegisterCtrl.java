@@ -1,7 +1,8 @@
 package bookshop.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Enumeration;
 
@@ -16,20 +17,22 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import bookshop.DAO.ShopBookDAO;
+import bookshop.DAO.ShopvideoDAO;
 import bookshop.VO.ShopBookVo;
-import bookshop.service.Bookservice;
+import bookshop.VO.VideoVO;
+import bookshop.service.Videoservice;
 
 /**
- * Servlet implementation class bookRegister
+ * Servlet implementation class VideoInsert
  */
-@WebServlet("/bookInsert")
-public class BookRegister extends HttpServlet {
+@WebServlet("/videoregister")
+public class VideoRegisterCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookRegister() {
+    public VideoRegisterCtrl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -77,45 +80,51 @@ public class BookRegister extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		ShopBookVo book = new ShopBookVo();
-		
-		String bid = imageUp.getParameter("bid");
-		String bkind = imageUp.getParameter("bkind");
-		String btitle = imageUp.getParameter("btitle");
-		String bprice = imageUp.getParameter("bprice");
-		String bcount = imageUp.getParameter("bcount");
-		String author = imageUp.getParameter("author");
-		String publishing_com = imageUp.getParameter("publishing_com");
+		VideoVO video = new VideoVO();
+		String vid = imageUp.getParameter("vid");
+		String vkind = imageUp.getParameter("vkind");
+		String vtitle = imageUp.getParameter("vtitle");
+		String vprice = imageUp.getParameter("vprice");
 		String discountRate = imageUp.getParameter("discountRate");
+		String startDate = imageUp.getParameter("startDate");
+		String endDate = imageUp.getParameter("endDate");
+		String vsize = imageUp.getParameter("vsize");
+		System.out.println(startDate);
+		System.out.println(endDate);
 		
-		book.setBid(bid);
-		book.setBkind(bkind);
-		book.setBtitle(btitle);
-		book.setBprice(Integer.parseInt(bprice));
-		book.setBcount(Integer.parseInt(bcount));
-		book.setAuthor(author);
-		book.setPublishing_com(publishing_com);
-		book.setBimage(filename);
-		book.setDiscountRate(Integer.parseInt(discountRate));
-		book.setRegdate(new Timestamp(System.currentTimeMillis()));
-		
-		Bookservice sv = new Bookservice();
-		PrintWriter out = response.getWriter();
+		video.setVid(vid);
+		video.setVkind(vkind);
+		video.setVtitle(vtitle);
+		video.setVprice(Integer.parseInt(vprice));
+		video.setDiscountRate(Integer.parseInt(discountRate));
+		video.setStartDate(Date.valueOf(startDate));
+		video.setEndDate(Date.valueOf(endDate));
+		video.setVimage(filename);
+		video.setVsize(vsize);
+		video.setRegdate(new Timestamp(System.currentTimeMillis()));
+				
+		int result = 0;
 		try {
-			sv.insertBook(book);
-			
+		 result = new Videoservice().insertVideo(video);
+		 
+		 if(result> 0) {
+			 System.out.println("영상 등록 성공");
+		 } else {
+			 System.out.println("영상 등록 실패");
+		 }
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("완료");
-//		response.sendRedirect("./shop/bookList.jsp?bkind=" + bkind);
-		request.getRequestDispatcher("").forward(request, response);
+
+// 삽입 성공 후 , 어디로 보낼지 추후 작성
+		//request.dispatcher
+		
 		
 		
 		
 		
 		
 	}
+	
+	}
 
-}

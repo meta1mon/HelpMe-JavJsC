@@ -13,9 +13,17 @@ import bookshop.VO.VideocartVO;
 import member.vo.Member;
 
 public class Buyservice {
-	
-	public int insertBuy1( List<BookcartVO>lists,String id, String account, String deliveryname, String deliverytel,
-			String deliveryadd1, String deliveryadd2) throws Exception{
+
+	public List<String> getAccount() throws Exception {
+		Connection conn = getConnection();
+		BuyDAO buy = new BuyDAO();
+		List<String> list = buy.getAccount(conn);
+		close(conn);
+		return list;
+	}
+
+	public int insertBuy1(List<BookcartVO> lists, String id, String account, String deliveryname, String deliverytel,
+			String deliveryadd1, String deliveryadd2) throws Exception {
 		Connection conn = getConnection();
 		int result = 0;
 		BuyDAO buy = new BuyDAO();
@@ -23,21 +31,47 @@ public class Buyservice {
 		close(conn);
 		return result;
 	}
-	public int insertBuy2(List<VideocartVO> vlists,String id, String account, String deliveryname, String deliverytel,
+
+	public int insertBuy2(List<VideocartVO> vlists, String id, String account, String deliveryname, String deliverytel,
 			String deliveryadd1, String deliveryadd2) throws Exception {
 		Connection conn = getConnection();
 		int result1 = 0;
 		BuyDAO buy = new BuyDAO();
-		result1 =  buy.insertBuy2(conn, vlists, id, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2);
-		if(result1 > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
+		result1 = buy.insertBuy2(conn, vlists, id, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2);
 		close(conn);
-		
 		return result1;
-		
+
+	}
+
+	public int getListCount(String id) throws Exception {
+		Connection conn = getConnection();
+		BuyDAO buy = new BuyDAO();
+		int result = buy.getListCount(conn, id);
+		close(conn);
+		return result;
+	}
+	
+	public int getListBCount() throws Exception {
+		Connection conn = getConnection();
+		BuyDAO buy = new BuyDAO();
+		int result = buy.getListBCount(conn);
+		close(conn);
+		return result;
+	}
+	
+	public List<BuyVO> getBuyBookList() throws Exception {
+		Connection conn = getConnection();
+		BuyDAO buy = new BuyDAO();
+		List<BuyVO> list = buy.getBuyBookList(conn);
+		close(conn);
+		return list;
+	}
+	
+	public List<BuyVO> getBuyList_id(String id) throws Exception {
+		Connection conn = getConnection();
+		BuyDAO buy = new BuyDAO();
+		List<BuyVO> list = buy.getBuyList_id(conn, id);
+		close(conn);
+		return list;
 	}
 }
-
