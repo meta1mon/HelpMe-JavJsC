@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+#mainImg {
+	text-align: center;
+}
+
+.start {
+	width: 300px;
+	height: 50px;
+	border-radius: 36px;
+	border: 1px #2c3e50 solid;
+	background-color: #2c3e50;
+	text-align: center;
+	color: white;
+}
+.start:hover{
+	background-color: #1abc9c;
+	border: 1px #1abc9c solid;
+}	
+
+.index-content{
+	margin-top: 70px;
+	position: relative;
+}

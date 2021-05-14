@@ -1,0 +1,229 @@
+#header.header-content {
+	position: center;
+}
+
+#contents {
+	position: relative;
+	z-index: 1;
+}
+
+#contents.seller_contents {
+	width: 800px;
+}
+
+#contents.seller_contents .list_type01>li {
+	padding: 30px 0;
+	border-bottom: 1px solid #d7d7d7;
+	*zoom: 1;
+}
+
+#contents.seller_contents .list_type01>li:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#contents.seller_contents .list_type01 .cover {
+	float: left;
+	position: relative;
+	width: 102px;
+	margin-right: 20px;
+	margin-left: 34px;
+}
+
+#contents.seller_contents .list_type01 .cover a img {
+	width: 100px;
+	border: 1px solid #888;
+	vertical-align: middle;
+	transition: all .3s;
+}
+
+#contents.seller_contents .list_type01 .cover a:hover img {
+	box-shadow: 2px 2px 6px rgba(0, 0, 0, .3);
+	border-color: #555;
+}
+
+#contents.seller_contents .list_type01 .cover a .rank {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 25px;
+	_width: 25px;
+	height: 25px;
+	background: #f04653;
+	text-align: center;
+	font-family: 'Tahoma', 'Malgun Gothic', 'Apple SD Neo Gothic', 'Dotum',
+		'Sans-Serif';
+	font-size: 11px;
+	color: #fff;
+	line-height: 25px;
+	transition: all .2s;
+	text-decoration: none;
+}
+
+#contents.seller_contents .list_type01 .cover a:hover .rank {
+	transform: translate(0, -3px);
+}
+
+#contents.seller_contents .list_type01 .cover .check {
+	position: absolute;
+	left: -32px;
+	top: 0;
+	width: 32px;
+	text-align: center;
+}
+
+#contents.seller_contents .list_type01 .cover .button {
+	text-align: center;
+	margin-top: 10px;
+	font-size: 3px;
+}
+
+#contents.seller_contents .list_type01 .cover .button a {
+	display: inline-block;
+	position: static;
+}
+
+#contents.seller_contents .list_type01 .detail {
+	float: left;
+	width: 440px;
+	padding-right: 15px;
+	border-right: 1px solid #dadada;
+}
+
+#contents.seller_contents .list_type01 .detail a:hover {
+	text-decoration: underline;
+}
+
+#contents.seller_contents .list_type01 .detail .title {
+	line-height: 16px;
+}
+
+#contents.seller_contents .list_type01 .detail .title a {
+	color: #00005B;
+	font-size: 18px;
+	line-height: 22px;
+	font-family: 'Malgun Gothic', 'Apple SD Neo Gothic', 'Dotum',
+		'Sans-Serif';
+	text-decoration: none;
+}
+
+#contents.seller_contents .list_type01 .detail .title a:hover {
+	text-decoration: underline;
+}
+
+#contents.seller_contents .list_type01 .detail .author {
+	margin-top: 6px;
+	font-size: 11px;
+	line-height: 20px;
+	color: #878787;
+}
+
+#contents.seller_contents .list_type01 .detail .seller {
+	color: #555;
+}
+
+#contents.seller_contents .list_type01 .detail .info {
+	margin-top: 12px;
+	color: #666;
+	line-height: 18px;
+}
+
+#contents.seller_contents .list_type01 .detail .info img {
+	vertical-align: middle;
+	margin-top: -2px;
+}
+
+#contents.seller_contents .list_type01 .detail .price {
+	margin-top: 15px;
+	color: #666;
+	line-height: 18px;
+	font-weight: bold;
+}
+
+
+
+#contents.seller_contents .list_type01 .detail .sell_price, #contents.seller_contents .list_type01 .detail .low_price
+	{
+	font-size: 14px;
+	color: #f64450;
+}
+
+#contents.seller_contents .list_type01 .detail .high_price {
+	font-size: 14px;
+	color: #8e69d6;
+}
+
+#contents.seller_contents .list_type01 .detail .total {
+	font-size: 14px;
+	color: #5e6b9f;
+}
+
+#contents.seller_contents .list_type01 .detail .line {
+	margin: 0 2px;
+	font-weight: normal;
+	color: #ccc;
+}
+
+#contents.seller_contents .list_type01 .book_add {
+	float: right;
+	width: 118px;
+	line-height: 18px;
+	text-align: center;
+	
+}
+
+#contents.seller_contents .list_type01 .book_add a {
+	display: block;
+	margin-bottom: 3px;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.btn_blue {
+	background-image: none;
+	background-color: #5e6b9f !important;
+	border: 1px solid #5e6b9f;
+	color: #fff !important;
+	box-shadow: none;
+}
+
+.btn_blue:hover {
+	border-color: #38405f;
+}
+
+.btn_blue2 {
+	background-image: none;
+	background-color: #7b8ed1 !important;
+	border: 1px solid #7b8ed1;
+	color: #fff !important;
+	box-shadow: none;
+}
+
+.btn_blue2:hover {
+	border-color: #485b9e;
+}
+
+.list_type01 .book_add {
+	float: right;
+	width: 118px;
+	line-height: 18px;
+	margin-bottom:100px;
+}
+
+div.product_detail div.detail_product div.detail_content div.product_detail_info div.button_buy
+	{
+	margin: 0 0 18px 30px;
+	padding: 33px 0 0 0;
+	width: 406px;
+	text-align: center;
+}
+
+div.product_detail div.detail_product div.detail_content div.product_detail_info div.button_buy .btn_medium
+	{
+	width: 110px;
+}
+
+
+
