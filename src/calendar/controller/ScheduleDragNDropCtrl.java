@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import calendar.Service.CalendarService;
-import calendar.VO.CalendarVO;
+import member.vo.Member;
 
 /**
  * Servlet implementation class ScheduleUpdateCtrl
  */
-@WebServlet("/scheduleupdate")
-public class ScheduleUpdateCtrl extends HttpServlet {
+@WebServlet("/scheduledrop")
+public class ScheduleDragNDropCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ScheduleUpdateCtrl() {
+    public ScheduleDragNDropCtrl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,24 +42,25 @@ public class ScheduleUpdateCtrl extends HttpServlet {
 	}
 	
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CalendarVO vo = new CalendarVO();
-
-		String dbScheStart = request.getParameter("scheStart");
-		String dbScheEnd = request.getParameter("scheEnd");
-		int dbScheCode = Integer.parseInt(request.getParameter("scheCode"));
-		String dbScheContent = request.getParameter("scheContent");
-		String dbScheName = request.getParameter("scheName");
+		System.out.println("resize 서블릿");
 		
-		vo.setScheStart(dbScheStart);
-		vo.setScheEnd(dbScheEnd);
-		vo.setScheCode(dbScheCode);
-		vo.setScheContent(dbScheContent);
-		vo.setScheName(dbScheName);
+		String dbScheStart = request.getParameter("start");
+		System.out.println(dbScheStart);
+		String dbScheEnd = request.getParameter("end");
+		System.out.println(dbScheEnd);
+		
+		String dbScheName = request.getParameter("title");
+		System.out.println(dbScheName);
+		
+		Member memVo = (Member) request.getSession().getAttribute("loginMember"); 
+		String dbId = memVo.getId();
+		
+		
 		
 		int result = 0;
 		
 		try {
-			result = new CalendarService().updateSchedule(vo);
+			result = new CalendarService().dropSchedule(dbScheStart, dbScheEnd, dbScheName, dbId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

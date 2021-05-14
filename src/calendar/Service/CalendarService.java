@@ -38,7 +38,7 @@ public class CalendarService {
 		return result;
 	}
 	
-	//update
+	//resize
 	public int resizeSchedule(String scheStart, String scheEnd, String scheName, String id) throws SQLException {
 		int result = 0;
 		
@@ -53,6 +53,22 @@ public class CalendarService {
 		close(conn);
 		return result;
 	}
+	
+	//drag&drop
+		public int dropSchedule(String scheStart, String scheEnd, String scheName, String id) throws SQLException {
+			int result = 0;
+			
+			Connection conn = getConnection();
+			CalendarDAO dao = new CalendarDAO();
+			result = dao.dropSchedule(conn, scheStart, scheEnd, scheName, id);
+			if (result != 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			close(conn);
+			return result;
+		}
 	
 	//delete
 		public int deleteSchedule(String scheName, String id) throws SQLException {

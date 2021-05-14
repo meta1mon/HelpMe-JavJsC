@@ -449,8 +449,11 @@ $(document).ready(function(){
 									var startDay = e.scheStart;
 									console.log(startDay);
 									
-									var endDay = e.scheEnd;
-									console.log(endDay);
+							
+									var endDay = moment(e.scheEnd).add(1, 'days').format('YYYY-MM-DD'); // 달력에 표기 시 db 날짜 보다 하루를 더해야 정상출력	
+									console.log("endDay : " + endDay);
+									console.log("e.scheEnd : " + e.scheEnd);
+									
 									
 									var type = e.scheCode;
 									console.log(type);
@@ -566,7 +569,47 @@ $(document).ready(function(){
 					      }
 					    });
 				
-				}
+				}, // eventResize 끝
+				
+				eventDrop: function(arg){
+					console.log(arg);
+					
+					var title = arg.event._def.title;
+					var start = arg.event._instance.range.start;
+					var end = arg.event._instance.range.end;
+					var allDay = arg.event.allDay
+					
+					console.log(title);
+					console.log(start);
+					console.log(end);
+					
+					
+					if (allDay == true) {
+					    var startRs = moment(start).format('YYYY-MM-DD');
+					    var endRs = moment(end).subtract(1, 'days').format('YYYY-MM-DD');
+					  } else {
+					    startRs = moment(start).format('YYYY-MM-DD HH:mm');
+					    endRs = moment(end).format('YYYY-MM-DD HH:mm');
+					  }
+					
+					
+					console.log(startRs);
+					console.log(endRs);
+					var data2 = {title : title, start : startRs, end : endRs} 
+					// var data = JSON.stringify();
+					
+					console.log(data2);
+					// console.log(data);
+					$.ajax({
+					      type: "get",
+					      url: "<%=request.getContextPath()%>/scheduledrop",
+					      data: data2,
+					      dataType: "text",
+					      success: function (response) {
+					        alert('수정: ' + start + ' ~ ' + end);
+					      }
+					    });
+				} // eventDrop 끝
 		}); // var calendar
 		calendar.render();
 		
@@ -606,7 +649,9 @@ $(document).ready(function(){
 			if(editAllDay.is(':checked')){
 				console.log("editAllDay.is 호출");
 				scheduleData.start = moment(scheduleData.start).format('YYYY-MM-DD');
+				
 				scheduleData.end = moment(scheduleData.end).format('YYYY-MM-DD');
+				
 				
 				scheduleData.allDay = true;
 				

@@ -77,7 +77,7 @@ public class CalendarDAO {
 	}
 	
 	
-	// 일정 수정 - resize -> end 날짜만 바뀌게  / drop start, end 날짜 둘 다 바껴야함
+	// 일정 수정 - resize
 	public int resizeSchedule(Connection conn, String scheStart, String scheEnd, String scheName, String id) throws SQLException {
 		int result = 0;
 		String sql = "UPDATE schedule SET schestart = ?, scheend = ? where schename = ? and id = ?";
@@ -97,6 +97,26 @@ public class CalendarDAO {
 		}
 		return result;
 	}
+	
+	
+	// 일정 수정 - drag&drop
+		public int dropSchedule(Connection conn, String scheStart, String scheEnd, String scheName, String id) throws SQLException {
+			int result = 0;
+			String sql = "UPDATE schedule SET schestart = ?, scheend = ? where schename = ? and id = ?";
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, scheStart);
+				pstmt.setString(2, scheEnd);
+				pstmt.setString(3, scheName);
+				pstmt.setString(4, id);
+				
+				result = pstmt.executeUpdate();
+			}finally {
+				close(pstmt);
+			}
+			return result;
+		}
 	
 	// 일정 삭제
 	public int deleteSchedule(Connection conn, String scheName, String id) throws SQLException {
