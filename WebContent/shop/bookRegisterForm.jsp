@@ -18,13 +18,17 @@
 	margin: 20px 20px 20px 40px;
 }
 
-.book {
+.table {
 	border-collapse: collapse;
 	width: 800px;
 	margin: 20px;
 }
 
-.book td{
+
+.table tr:nth-child(odd){background-color: #f2f2f2;}
+
+
+.table td{
 	padding: 8px;
 	line-height: 1.42857143;
 	border-top: 1px solid #ddd;
@@ -65,8 +69,6 @@ input[type=text], select {
 	background-color: #809bbf;
 	border-color: #809bbf;
 }
-
-
 
 
 input[type="file"] {
@@ -121,7 +123,7 @@ $(document).ready(function(){
            	<h1 class="page-header">책 등록</h1>
 			<form action="<%=request.getContextPath()%>/bookregister" method="post"
 				name="writeForm" enctype="multipart/form-data">
-				<table class="book">
+				<table class="table">
 					<tr>
 						<td style="border-right: 1px solid #ddd; text-align: center;">분류선택</td>
 						<td><select name="bkind">
