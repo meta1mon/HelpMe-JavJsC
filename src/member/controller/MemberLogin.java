@@ -48,7 +48,7 @@ public class MemberLogin extends HttpServlet {
 		
 		if (vo == null) {
 			System.out.println("존재하지 않는 아이디입니다");
-			response.sendRedirect("member/secondPage.jsp");
+			response.sendRedirect("member/user99");
 		} else {
 			if (vo.getPassword().equals(password)) {
 
@@ -56,16 +56,16 @@ public class MemberLogin extends HttpServlet {
 				if (vo.getId().equals("semi01")) {
 					System.out.println("관리자 로그인");
 					request.getSession().setAttribute("loginMember", vo);
-					response.sendRedirect("admin/admin_index.jsp");
+					response.sendRedirect("user99");
 				} else {
 					// 일반 회원 로그인 시
 					System.out.println("로그인에 성공하였습니다");
 					request.getSession().setAttribute("loginMember", vo);
-					response.sendRedirect("secondPage.jsp");
+					response.sendRedirect("javcsecond");
 				}
 			} else {
 				System.out.println("잘못된 비밀번호입니다");
-				response.sendRedirect("secondPage.jsp");
+				response.sendRedirect("user99");
 			}
 		}
 	}

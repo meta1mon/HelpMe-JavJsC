@@ -936,10 +936,10 @@ $(document).ready(function(){
 										</tr>
 
 										<tr>
-											<td><label for="edit-type">구분</label></td>
+											<td><label for="edit-type">일정 종류</label></td>
 											<td><select class="inputModal" name="scheCode"
 												id="edit-type">
-													<option value="1">공채 일정 - 신입</option>
+													<option value="1" selected>공채 일정 - 신입</option>
 													<option value="2">공채 일정 - 경력</option>
 													<option value="3">개인 일정</option>
 											</select></td>
