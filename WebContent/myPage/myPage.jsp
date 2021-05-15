@@ -365,14 +365,15 @@ $(document).ready(function(){
 	var calendarEl = document.getElementById("calendar");
 		calendar = new FullCalendar.Calendar(calendarEl, {
 			initialView: "dayGridMonth",
-			timeZone: "UTC",
+			timeZone: "local",
 			locale: "ko",
 			headerToolbar: {
 				left: "prevYear,prev,next,nextYear",
 				center: "title",
 				right: "today dayGridMonth,listMonth",
 			},
-			dayMaxEvents: true,
+			handleWindowResize: true,
+			dayMaxEvents: false,
 			displayEventTime: true,
 			displayEventEnd: false,
 			eventDisplay: 'block',
@@ -395,14 +396,15 @@ $(document).ready(function(){
 				var e = arg.jsEvent;
 				e.preventDefault();
 				
-				// start, end 날짜 포맷 정하기 -> 일단 자동으로 00:00으로 입력됨. (클릭했을 당시의 시간 입력되도록 수정 가능하면 하기...)
+				// start, end 날짜 포맷 정하기 -> 자동으로 00:00으로 입력됨. 
 				if (view.type == "dayGridMonth") {
 					start = moment(start).format('YYYY-MM-DD HH:mm');
-					end = moment(end).format('YYYY-MM-DD HH:mm');
+					end = moment(end).subtract(1, 'minutes').format('YYYY-MM-DD HH:mm');
 				} else {
-					alert("다시 시도해주세요");
+					start = moment(start).format('YYYY-MM-DD HH:mm');
+					end = moment(end).format('YYYY-MM-DD HH:mm');
 				}
-				
+
 				console.log("newSchedule 호출");
 				newSchedule(start, end);
 
@@ -410,7 +412,7 @@ $(document).ready(function(){
 			
 			editable : true,
 			droppable: true,
-			
+			eventBorderColor: '#fff',
 			
 			events : function (info, successCallback, failureCallback) {
 				console.log(info);
@@ -430,13 +432,33 @@ $(document).ready(function(){
 									var title = e.scheName;
 									console.log(title);
 									
-									var startDay = e.scheStart;
-									console.log(startDay);
+									var startDay = moment(e.scheStart).format('YYYY-MM-DD HH:mm');
+									console.log("startDay" + startDay);
 									
-							
-									var endDay = moment(e.scheEnd).add(1, 'days').format('YYYY-MM-DD'); // 달력에 표기 시 db 날짜 보다 하루를 더해야 정상출력	
+									var endDay = moment(e.scheEnd).format('YYYY-MM-DD HH:mm');
 									console.log("endDay : " + endDay);
 									console.log("e.scheEnd : " + e.scheEnd);
+
+									if(e.scheAllDay === 'on'){
+										console.log("if문 들어옴");
+										startDay = moment(e.scheStart);
+										endDay = moment(e.scheEnd);
+										var calcDay = moment(endDay.diff(startDay)).format('D');
+										
+										console.log("startDay: " + startDay);
+										console.log("endDay : " + endDay);
+										console.log("cacDay : " + calcDay);
+										
+										
+										if(calcDay >= 2){
+											// 하루종일 일정이 2일 이상일 경우 달력에 표기 시 db 날짜 보다 하루를 더해야 정상출력
+											startDay = moment(e.scheStart).format('YYYY-MM-DD');
+											endDay = moment(e.scheEnd).add(1, 'days').format('YYYY-MM-DD'); 	
+										}else{
+											startDay = moment(e.scheStart).format('YYYY-MM-DD');
+											endDay = moment(e.scheEnd).subtract(1, 'minutes').format('YYYY-MM-DD');
+										}
+									}
 									
 									
 									var type = e.scheCode;
@@ -456,13 +478,14 @@ $(document).ready(function(){
 									console.log(e.scheAllDay);
 									console.log(allDay);
 									
-									
 									events.push({
 										title : title,
 										start : startDay, 
 										end : endDay,
 										allDay : allDay,
-										backgroundColor : backgroundColor
+										backgroundColor : backgroundColor,
+										type: type,
+										content : content
 										
 									}); // push
 									console.log(events);
@@ -483,19 +506,13 @@ $(document).ready(function(){
 			
 			eventClick : function(arg) {
 				
-				// 모달창 open
-				editSchedule(arg.event);
-				
-				$('#deleteSchedule').click(function() {
-					arg.event.remove()
-			        var title = arg.event.title;
-			    	console.log(title);
-			//	});
-				
-			//	$('#deleteSchedule').click(function() {
-					
-			    	$("#scheModal").css("display", "none");
-			    	 $.ajax({
+				if(!confirm('일정을 지우시겠습니까?')){
+					//모달창 open
+					checkSchedule(arg.event);
+				}else{
+					arg.event.remove();
+					var title = arg.event.title;
+					$.ajax({
 			    	        type: "post",
 			    	        url: "<%=request.getContextPath()%>/scheduledelete",
 							data:{
@@ -510,7 +527,8 @@ $(document).ready(function(){
 								alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
 							} 
 			    	  })
-						}); // 삭제버튼 끝
+				}
+		
 				
 				}, /* eventClick 끝*/
 				
@@ -528,8 +546,8 @@ $(document).ready(function(){
 					
 					
 					if (allDay == true) {
-					    var startRs = moment(start).format('YYYY-MM-DD');
-					    var endRs = moment(end).subtract(1, 'days').format('YYYY-MM-DD');
+					    var startRs = moment(start).format('YYYY-MM-DD HH:mm');
+					    var endRs = moment(end).subtract(1, 'days').format('YYYY-MM-DD HH:mm');
 					  } else {
 					    startRs = moment(start).format('YYYY-MM-DD HH:mm');
 					    endRs = moment(end).format('YYYY-MM-DD HH:mm');
@@ -569,8 +587,8 @@ $(document).ready(function(){
 					
 					
 					if (allDay == true) {
-					    var startRs = moment(start).format('YYYY-MM-DD');
-					    var endRs = moment(end).subtract(1, 'days').format('YYYY-MM-DD');
+					    var startRs = moment(start).format('YYYY-MM-DD HH:mm');
+					    var endRs = moment(end).subtract(1, 'days').format('YYYY-MM-DD HH:mm');
 					  } else {
 					    startRs = moment(start).format('YYYY-MM-DD HH:mm');
 					    endRs = moment(end).format('YYYY-MM-DD HH:mm');
@@ -633,7 +651,7 @@ $(document).ready(function(){
 			if(editAllDay.is(':checked')){
 				console.log("editAllDay.is 호출");
 				scheduleData.start = moment(scheduleData.start).format('YYYY-MM-DD');
-				
+				// render 시 날짜표기 수정
 				scheduleData.end = moment(scheduleData.end).format('YYYY-MM-DD');
 				
 				
@@ -682,6 +700,10 @@ $(document).ready(function(){
 			editType.val('');
 			editCont.val(''); 
 			
+			//SELECT 색 변경
+			$('#edit-color').change(function () {
+			    $(this).css('color', $(this).val());
+			});
 			
 			if(addBtnContainer.css("display") == "none"){
 				modifyBtnContainer.hide();
@@ -701,18 +723,29 @@ $(document).ready(function(){
 			
 		} //newSchedule
 		
-		function editSchedule(event){
-			console.log("event : " + event);
+		function checkSchedule(event){
+			console.log(event);
 			
 			// 모달창 setting
-			modalTitle.html('일정 수정');
+			modalTitle.html('일정 확인');
 		    editTitle.val(event.title);
-		    editStart.val(moment(event.start).format('YYYY-MM-DD HH:mm'));
-		    editEnd.val(moment(event.end).format('YYYY-MM-DD HH:mm'));
-		    editType.val(event.type);
-		    editCont.val(event.content);
-		    editColor.val(event.backgroundColor).css('color', event.backgroundColor);
+		    
 		    if(editAllDay.is(':checked')){
+		    	editStart.val(moment(event.start).format('YYYY-MM-DD HH:mm'));
+		    	editEnd.val(moment(event.end).subtract(1, 'minutes').format('YYYY-MM-DD HH:mm'));
+		    }else{
+			    editStart.val(moment(event.start).format('YYYY-MM-DD HH:mm'));
+			    editEnd.val(moment(event.end).format('YYYY-MM-DD HH:mm'));
+		    }
+		    
+		    editType.val(event._def.extendedProps.type);
+		    console.log(event._def.extendedProps.type);
+		    
+		    editColor.val(event.backgroundColor).css('color', event.backgroundColor);
+		    editCont.val(event._def.extendedProps.content);
+		    console.log(event._def.extendedProps.content);
+		    
+		    if(event.allDay == true){
 			    editAllDay.prop('checked', true);
 		    } else {
 			    editAllDay.prop('checked', false);
@@ -738,8 +771,7 @@ $(document).ready(function(){
 			
 		
 			
-		} // editSchedule 끝
-	 // 삭제 버튼 클릭 끝
+		} // checkSchedule 끝
 		
 	}); //$(document)
 

@@ -35,7 +35,7 @@
 			function() {
 				console.log("animationed");
 				$("#animation").css("display", "none")
-				location.href="<%=request.getContextPath()%>/secondPage.jsp"
+				location.href="<%=request.getContextPath()%>/javcsecond"
 			});
 	})
 </script>

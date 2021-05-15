@@ -30,7 +30,7 @@ $(document).ready(function(){
 <header>
 <div class="header">
 	<div class="header-content">
-		<a href="<%=request.getContextPath()%>/index.jsp"> 
+		<a href="<%=request.getContextPath()%>/javcstart"> 
 		<img alt="logo" src="<%=request.getContextPath() %>/images/logo.png" width="128" height="80" id="logo">
 		</a>
 		<div class="nav">
@@ -38,14 +38,14 @@ $(document).ready(function(){
 			<a href="<%=request.getContextPath()%>/studylist">스터디방</a> 
 			<a href="" id="reviewBtn">리뷰방</a> 
 			 <a href="<%=request.getContextPath()%>/shop/shopIntro.jsp">쇼핑방</a> 
-			<a href="<%=request.getContextPath()%>/calendar/main.jsp">공채캘린더</a>
+			<a href="<%=request.getContextPath()%>/rccalendar">공채캘린더</a>
 			<a href="" id="aboutusBtn">자사소개</a>
 		</div>
 
 		<c:choose>
 			<c:when test="${loginMember == null }">
 				<div class="beforeLogin">
-					<button type="button" id="btnLogin" onclick="location.href='<%=request.getContextPath()%>/member/login.jsp'">로그인</button>
+					<button type="button" id="btnLogin" onclick="location.href='<%=request.getContextPath()%>/javclogin'">로그인</button>
 					<button type="button" id="btnEnroll" onclick="location.href='<%=request.getContextPath()%>/member/signup.jsp'">회원가입</button>
 				</div>
 			</c:when>

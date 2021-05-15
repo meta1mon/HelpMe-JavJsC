@@ -1,4 +1,4 @@
-package calendar.controller;
+package recruitcalendar.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,30 +14,30 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import calendar.Service.CalendarService;
-import calendar.VO.CalendarVO;
-import member.vo.Member;
+import recruitcalendar.Service.RecruitCalendarService;
+import recruitcalendar.VO.RecruitCalendarVO;
 
 /**
- * Servlet implementation class ScheduleViewCtrl
+ * Servlet implementation class RecruitCalendarViewCtrl
  */
-@WebServlet("/scheduleview")
-public class ScheduleViewCtrl extends HttpServlet {
+@WebServlet("/rcscheduleview")
+public class RecruitCalendarViewCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ScheduleViewCtrl() {
+    public RecruitCalendarViewCtrl() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	
+    	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,15 +48,10 @@ public class ScheduleViewCtrl extends HttpServlet {
 		System.out.println("서블릿 진입함");
 		PrintWriter out = response.getWriter();
 		
-		Member memVo = (Member) request.getSession().getAttribute("loginMember"); 
-		
-		String id = memVo.getId();
-		System.out.println(id);
-		
-		ArrayList<CalendarVO> list = null;
+		ArrayList<RecruitCalendarVO> list = null;
 		
 		try {
-			list = new CalendarService().viewSchedule(id);
+			list = new RecruitCalendarService().viewSchedule();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -71,6 +66,5 @@ public class ScheduleViewCtrl extends HttpServlet {
 		out.close();
 		
 	}
-	
-	
+
 }
