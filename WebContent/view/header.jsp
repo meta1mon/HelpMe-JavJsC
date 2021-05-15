@@ -62,7 +62,6 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</c:when>
-			
 			<c:when test="${loginMember.id == 'semi01' }">
 				<div class="afterLogin">
 					<div class="dropdown">
@@ -70,7 +69,7 @@ $(document).ready(function(){
 								<input type="image" src="<%=request.getContextPath() %>/images/user.png" class="pic" width="50" height="50" style="background-color: white" id="show">
 							</div>
 						<div class="dropdown-content" style="border: 1px solid #1abc9c; display:none" id="dropdown-content">
-							<a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자 페이지</a>
+							<a href="<%=request.getContextPath()%>/admin/adminAside.jsp">관리자 페이지</a>
 							<a href="<%=request.getContextPath()%>/memberlogout">로그아웃</a> 
 						</div>
 					</div>
