@@ -133,13 +133,61 @@ public class MemberDao {
 	}
 
 	// 회원 정보 변경
-	public int update(Connection conn, Member vo) {
-		conn = getConnection();
+	public int update(Connection conn, String originNick, Member vo) {
 		int result = 0;
+// 닉네임 바뀌면 자기가 썼던 게시글과 댓글의 작성자도 바뀌게 하기
+		String sql1 = "update qna set qwriter = ? where qwriter = ?";
+		String sql2 = "update rqna set rqwriter = ? where rqwriter = ?";
+		String sql3 = "update study set swriter = ? where swriter = ?";
+		String sql4 = "update rstudy set rswriter = ? where rswriter = ?";
+
 		String sql = "update member set nickname = ? , password = ? , passquestion = ? , passanswer = ? , postcode = ? , address1 = ? , address2 = ? , address3 = ? , tel = ? , email = ? where id = ?";
 
-		PreparedStatement pstmt = null;
 		try {
+			pstmt = conn.prepareStatement(sql1);
+			pstmt.setString(1, vo.getNickname());
+			pstmt.setString(2, originNick);
+			result = pstmt.executeUpdate();
+			if(result > 0) {
+				System.out.println("qna 글 작성자 변경 완료");
+			} else {
+				System.out.println("qna에 작성된 글이 없음 ");
+			}
+			close(pstmt);
+			
+			pstmt = conn.prepareStatement(sql2);
+			pstmt.setString(1, vo.getNickname());
+			pstmt.setString(2, originNick);
+			result = pstmt.executeUpdate();
+			if(result > 0) {
+				System.out.println("qna 댓글 작성자 변경 완료");
+			} else {
+				System.out.println("qna에 작성된 댓글이 없음 ");
+			}
+			close(pstmt);
+			
+			pstmt = conn.prepareStatement(sql3);
+			pstmt.setString(1, vo.getNickname());
+			pstmt.setString(2, originNick);
+			result = pstmt.executeUpdate();
+			if(result > 0) {
+				System.out.println("study 글 작성자 변경 완료");
+			} else {
+				System.out.println("study에 작성된 글이 없음 ");
+			}
+			close(pstmt);
+			
+			pstmt = conn.prepareStatement(sql4);
+			pstmt.setString(1, vo.getNickname());
+			pstmt.setString(2, originNick);
+			result = pstmt.executeUpdate();
+			if(result > 0) {
+				System.out.println("study 댓글 작성자 변경 완료");
+			} else {
+				System.out.println("study에 작성된 댓글이 없음 ");
+			}
+			close(pstmt);
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getNickname());
 			pstmt.setString(2, vo.getPassword());
@@ -157,7 +205,6 @@ public class MemberDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			close(conn);
 		}
 
 		return result;

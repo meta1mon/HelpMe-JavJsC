@@ -280,7 +280,8 @@ tr td:first-child {
 				<td>닉네임<span class="required">(필수)</span></td>
 				<td><input type="text" name="nickname" id="nickname"
 					value="${loginMember.nickname}"></td>
-				<td><span class="desc"> 1~8자의 한글, 영문자, 숫자만 사용 가능합니다.</span></td>
+					<td><div><span id="nicknamecheck">중복확인</span></div>
+					<div><span class="desc"> 1~8자의 한글, 영문자, 숫자만 사용 가능합니다.</span></div></td>
 			</tr>
 			<tr>
 				<td>비밀번호<span class="required">(필수)</span></td>

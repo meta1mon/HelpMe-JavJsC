@@ -35,11 +35,15 @@ public class MemberService {
 		return result;
 	}
 	
-	public int update(Member vo) {
+	public int update(String originNick, Member vo) {
 		Connection conn = getConnection();
-		int result = new MemberDao().update(conn, vo);
+		int result = new MemberDao().update(conn, originNick, vo);
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
-		
 		return result;
 	}
 

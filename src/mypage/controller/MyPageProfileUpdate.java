@@ -41,10 +41,12 @@ public class MyPageProfileUpdate extends HttpServlet {
 		execute(request, response);
 	}
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
-		Member vo = (Member) request.getSession().getAttribute("loginMember");
+		
+		Member vo1 = (Member) request.getSession().getAttribute("loginMember");
+		String originNick = vo1.getNickname();
 		
 		String id = request.getParameter("id");
-		String nickname = request.getParameter("nickname");
+		String newNick = request.getParameter("nickname");
 		String password1 = request.getParameter("password1");
 		String passquestion = request.getParameter("passquestion");
 		String passanswer = request.getParameter("passanswer");
@@ -55,13 +57,14 @@ public class MyPageProfileUpdate extends HttpServlet {
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
 		
-		vo = new Member(id, nickname, password1, passquestion, passanswer, null, postcode, address1, address2, address3, tel, email);
-		int result = new MemberService().update(vo);
+		Member vo2 = new Member(id, newNick, password1, passquestion, passanswer, null, postcode, address1, address2, address3, tel, email);
+		int result = new MemberService().update(originNick, vo2);
 		
 		PrintWriter out = response.getWriter();
 		if(result > 0) {
 			out.println("<script>alert('수정 완료!');</script>");
-			request.getSession().setAttribute("loginMember", vo);
+			request.getSession().removeAttribute("loginMember");
+			request.getSession().setAttribute("loginMember", vo2);
 		} else {
 			out.println("<script>alert('수정 실패!')</script>");
 		}
