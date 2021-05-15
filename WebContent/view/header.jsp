@@ -13,8 +13,6 @@
 $(document).ready(function(){
 	$("#show").val("SHOW");
 	$("#show").click(function(){
-		console.log("이벤트 시작");
-		console.log($(this).val());
 	    if ($(this).val() == "SHOW") {
 	        $(this).val("HIDE");
 	        $("#dropdown-content").css("display", "block");
@@ -37,10 +35,10 @@ $(document).ready(function(){
 		</a>
 		<div class="nav">
 			<a href="<%=request.getContextPath()%>/qnalist">질문방</a> 
-			<a href="<%=request.getContextPath()%>/studylist" id="studyBtn">스터디방</a> 
+			<a href="<%=request.getContextPath()%>/studylist">스터디방</a> 
 			<a href="" id="reviewBtn">리뷰방</a> 
-			 <a href="<%=request.getContextPath()%>/shop/shopIntro.jsp" id="shopBtn">쇼핑방</a> 
-			<a href="<%=request.getContextPath()%>/calendar/main.jsp" id="recruitBtn">공채캘린더</a>
+			 <a href="<%=request.getContextPath()%>/shop/shopIntro.jsp">쇼핑방</a> 
+			<a href="<%=request.getContextPath()%>/calendar/main.jsp">공채캘린더</a>
 			<a href="" id="aboutusBtn">자사소개</a>
 		</div>
 

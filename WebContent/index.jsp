@@ -8,34 +8,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+  <script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
-<%@include file="style/index.css" %>
+<%@include file ="style/index.css"%> 
 </style>
+
+
+<script>
+	$(document).ready(function(){
+		if($("#animation").css("display", "block")){
+		} 
+		$("#power").click(function(){
+			console.log("클릭했다")
+				$("#container").css("display", "block")
+				$("#power").css("display", "none")
+		})
+
+	$("#animation").one(
+			"transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
+			function() {
+				console.log("transitioned");
+						});
+	$("#animation").one(
+			"animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd",
+			function() {
+				console.log("animationed");
+				$("#animation").css("display", "none")
+				location.href="<%=request.getContextPath()%>/secondPage.jsp"
+			});
+	})
+</script>
 <meta charset="UTF-8">
 </head>
 <%@include file="../view/header.jsp"%>
 <body class="content">
-	<!--<div class="index-content">
-		<img alt="메인 이미지 입니다."
-			src="http://ipsumimage.appspot.com/500x500?l=멋진 이미지" id="mainImg"><br>
-		<button onclick="location.href='secondPage.jsp'" class="start">도와줘 잡스씨</button>
-	</div>-->
-	<div id="app-cover">
-		<div id="app">
-			<form method="get" action="">
-				<div id="f-element">
-					<div id="inp-cover">
-						<input type="text" name="query"
-							placeholder="도와줘 잡스씨" autocomplete="off">
-					</div>
-				</div>
-				<button type="submit" class="shadow">
-					<i class="fas fa-power-off"></i>
-				</button>
-			</form>
+	<div id="animation" style="display: block;">
+		<div class="power" id="power">
+			<span class="fas fa-power-off"
+				style="width: 1em; height: 1em; margin-top: 5px; position: relative"></span>
+				<span style="padding:0 5px 5px 5px; margin-top:2px;">도와줘 잡스씨</span>
 		</div>
-		<div id="layer"><i class="fas fa-power-off"></i></div>
-		<div id="init"></div>
+		<div class="container" style="display: none;" id="container">
+			<div id="progress" class="progress2 progress-moved">
+				<div class="progress-bar2"></div>
+			</div>
+		</div>
 	</div>
 </body>
 <%@include file="../view/footer.jsp"%>

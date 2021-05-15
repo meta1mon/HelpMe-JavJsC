@@ -67,6 +67,7 @@ a {
 	margin-top: 10px;
 	border-radius: 7px;
 	color: black;
+	background: transparent;
 }
 
 .tab-main>.tab-cont>.cont {
@@ -75,6 +76,7 @@ a {
 	border-top: 1px solid black;
 	box-sizing: border-box;
 	width: 800px;
+	background: transparent;
 }
 
 #profile {
@@ -142,7 +144,7 @@ a {
 .tab-sub>.tab-cont .cont {
 	padding: 15px 5px;
 	color: black;
-	background-color: white;
+	background: rgba(255, 255, 255, 0.5);
 	box-sizing: border-box;
 	width: 800px;
 	border: 1px solid black;
@@ -181,20 +183,6 @@ tr td:first-child {
 	text-align: center;
 }
 
-.modify {
-	width: 80px;
-	border: none;
-	padding: 5px;
-	outline: none;
-	border-radius: 5px;
-	color: white;
-	background-color: #2c3e50;
-	font-size: 17px;
-}
-
-.modify:hover {
-	background-color: #1abc9c;
-}
 </style>
 <!-- qlist.jsp의 디자인 -->
 <style>
@@ -340,6 +328,7 @@ function showPopup(url, name) {
 	
 }
 </script>
+
 <!-- 프로필 비밀번호 질문 선택 -->
 <script>
 $(document).ready(function(){
@@ -760,14 +749,13 @@ $(document).ready(function(){
 <body class="content">
 	<div style="width: 800px; margin-left:auto; margin-right: auto;">
 		<!-- 이미지 + 닉네임 표시 -->
-		<div class="welcome">
-			<div class="picBtn" style="margin-top: 20px; float: left;">
+		<div class="welcome" style="padding-bottom: 20px;">
+			<div class="picBtn" style="margin-top: 20px; float: left; background-color:white; border: 1px solid white;">
 				<img class="pic" alt="profilePic"
 					src="<%=request.getContextPath()%>/images/user.png" width="50"
-					height="50">
+					height="50" onmouseover="this.src='<%=request.getContextPath()%>/images/userhover2.png'">
 			</div>
-			<p style="text-align: left; padding-top: 35px; padding-left: 60px;">${loginMember.nickname}<span
-					style="font-weight: bold;">님의 마이페이지</span>
+			<p style="text-align: left; padding-top: 30px; padding-left: 60px; font-weight: bold;">${loginMember.nickname}님의 마이페이지
 			</p>
 		</div>
 		<!-- 마이 페이지 메인 탭메뉴 -->
@@ -872,7 +860,7 @@ $(document).ready(function(){
 						</tr>
 						<tr>
 							<td colspan="2"><input type="button" value="수정"
-								class="modify"
+								class="darkbutton"
 								onclick="showPopup('<%=request.getContextPath()%>/myPage/myProfilePopup.jsp', 'popup');"></td>
 						</tr>
 					</table>

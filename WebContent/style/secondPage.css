@@ -1,0 +1,102 @@
+@charset "UTF-8";
+/*flip-box*/
+.flip-box {
+	background-color: transparent;
+	height: 200px;
+	perspective: 1000px;
+}
+
+.flip-box-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.5s;
+	transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-inner {
+	transform: rotateY(180deg);
+}
+
+.flip-box-front, .flip-box-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.flip-box-front {
+	background-color: #2c3e50;
+	color: white;
+	border-radius: 5px;
+}
+
+h2 {
+	margin-top: 84px;
+}
+
+.flip-box-back {
+	background-color: #1abc9c;
+	color: white;
+	transform: rotateY(180deg);
+	border-radius: 5px;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+a:visited {
+	color: white;
+}
+
+/*heart*/
+body .particletext {
+    text-align: center;
+    position: relative;
+}
+
+body .particletext.hearts > .particle {
+    opacity: 0;
+    position: absolute;
+    background-color: white;
+    animation: hearts 3s ease-in infinite;
+}
+
+body .particletext.hearts > .particle:before, body .particletext.hearts > .particle:after {
+    position: absolute;
+    content: '';
+    border-radius: 100px;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+body .particletext.hearts > .particle:before {
+    transform: translateX(-50%);
+}
+
+body .particletext.hearts > .particle:after {
+    transform: translateY(-50%);
+}
+
+
+@keyframes hearts {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0%) rotate(45deg);
+    }
+    20% {
+        opacity: 0.8;
+        transform: translate(0, -20%) rotate(45deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0, -1000%) rotate(45deg);
+    }
+}
