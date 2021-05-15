@@ -4,20 +4,6 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-<%
-   BuyDAO buy = new BuyDAO();
-   int tot1 = buy.getBuyVideoCount1();
-   int tot2 = buy.getBuyVideoCount2();
-   int tot3 = buy.getBuyVideoCount3();
-   int tot4 = buy.getBuyVideoCount4();
-   int tot5 = buy.getBuyVideoCount5();
-   int tot6 = buy.getBuyVideoCount6();
-   int tot7 = buy.getBuyVideoCount7();
-   int tot8 = buy.getBuyVideoCount8();
-   int tot9 = buy.getBuyVideoCount9();
-         
-
-%>
 <hmtl>
 <style>
 .highcharts-figure, .highcharts-data-table table {
@@ -96,15 +82,15 @@ Highcharts.chart('container', {
     series: [{
        name : 'video',
        data : [
-          ['v00001', <%=tot1%>],
-          ['v00002', <%=tot2%>],
-          ['v00003', <%=tot3%>],
-          ['v00004', <%=tot4%>],
-          ['v00005', <%=tot5%>],
-          ['v00006', <%=tot6%>],
-          ['v00007', <%=tot7%>],
-          ['v00008', <%=tot8%>],
-          ['v00009', <%=tot9%>]
+          ['v00001', ${vCnt[0]}],
+          ['v00002', ${vCnt[1]}],
+          ['v00003', ${vCnt[2]}],
+          ['v00004', ${vCnt[3]}],
+          ['v00005', ${vCnt[4]}],
+          ['v00006', ${vCnt[5]}],
+          ['v00007', ${vCnt[6]}],
+          ['v00008', ${vCnt[7]}],
+          ['v00009', ${vCnt[8]}]
    
        ]
         

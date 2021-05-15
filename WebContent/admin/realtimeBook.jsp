@@ -4,26 +4,6 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-<%
-   BuyDAO buy = new BuyDAO();
-   int tot1 = buy.getBuyBookCount1();
-   int tot2 = buy.getBuyBookCount2();
-   int tot3 = buy.getBuyBookCount3();
-   int tot4 = buy.getBuyBookCount4();
-   int tot5 = buy.getBuyBookCount5();
-   int tot6 = buy.getBuyBookCount2();
-   int tot7 = buy.getBuyBookCount7();
-   int tot8 = buy.getBuyBookCount8();
-   int tot9 = buy.getBuyBookCount9();
-   int tot10 = buy.getBuyBookCount10();
-   int tot11 = buy.getBuyBookCount11();
-   int tot12 = buy.getBuyBookCount12();
-   int tot13 = buy.getBuyBookCount13();
-   int tot14 = buy.getBuyBookCount14();
-   int tot15 = buy.getBuyBookCount15();
-         
-
-%>
 <hmtl>
 <style>
 .highcharts-figure, .highcharts-data-table table {
@@ -102,22 +82,22 @@ Highcharts.chart('container', {
     series: [{
        name : 'book',
        data : [
-          ['b00001', <%=tot1%>],
-          ['b00002', <%=tot2%>],
-          ['b00003', <%=tot3%>],
-          ['b00004', <%=tot4%>],
-          ['b00005', <%=tot5%>],
-          ['b00006', <%=tot6%>],
-          ['b00007', <%=tot7%>],
-          ['b00008', <%=tot8%>],
-          ['b00009', <%=tot9%>],
-          ['b00010', <%=tot10%>],
-          ['b00011', <%=tot11%>],
-          ['b00012', <%=tot12%>],
-          ['b00013', <%=tot13%>],
-          ['b00014', <%=tot14%>],
-          ['b00015', <%=tot15%>],
-       ]
+           ['b00001', ${bCnt[0]}],
+           ['b00002', ${bCnt[1]}],
+           ['b00003', ${bCnt[2]}],
+           ['b00004', ${bCnt[3]}],
+           ['b00005', ${bCnt[4]}],
+           ['b00006', ${bCnt[5]}],
+           ['b00007', ${bCnt[6]}],
+           ['b00008', ${bCnt[7]}],
+           ['b00009', ${bCnt[8]}],
+           ['b00010', ${bCnt[9]}],
+           ['b00011', ${bCnt[10]}],
+           ['b00012', ${bCnt[11]}],
+           ['b00013', ${bCnt[12]}],
+           ['b00014', ${bCnt[13]}],
+           ['b00015', ${bCnt[14]}],
+        ]
         
     }],
 

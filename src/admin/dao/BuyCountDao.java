@@ -38,6 +38,7 @@ public class BuyCountDao {
 		String sql = "select buycount from buy where pid = ?";//
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pid);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				tot += rs.getInt("buycount");
