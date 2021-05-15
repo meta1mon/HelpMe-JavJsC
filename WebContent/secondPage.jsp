@@ -146,7 +146,7 @@ initparticles();
 								</div>
 							</div>
 						</div></a></td>
-				<td class="ink"><a href="<%=request.getContextPath()%>/calendar/main.jsp"><div class="flip-box">
+				<td class="ink"><a href="<%=request.getContextPath()%>/rccalendar"><div class="flip-box">
 							<div class="flip-box-inner">
 								<div class="flip-box-front">
 									<h2 style="margin-top: 68px !important;">RECRUIT<BR>CALENDAR</h2>
