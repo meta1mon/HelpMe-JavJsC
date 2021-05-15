@@ -15,6 +15,11 @@ public class Bookservice {
 		Connection conn = getConnection();
 		ShopBookDAO dao = ShopBookDAO.getinstance();
 		int result = dao.insertBook(conn, book);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 		
@@ -24,6 +29,11 @@ public class Bookservice {
 		Connection conn = getConnection();
 		ShopBookDAO dao = ShopBookDAO.getinstance();
 		int result = dao.getBookCount(conn);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -49,6 +59,11 @@ public class Bookservice {
 		Connection conn = getConnection();
 		ShopBookDAO dao = ShopBookDAO.getinstance();
 		int result = dao.updateBook(conn, book, bid);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -57,6 +72,11 @@ public class Bookservice {
 		Connection conn = getConnection();
 		ShopBookDAO dao = ShopBookDAO.getinstance();
 		int result = dao.deleteBook(conn, bid);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}

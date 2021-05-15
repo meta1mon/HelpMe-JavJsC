@@ -16,6 +16,11 @@ public class Cartservice {
 		Connection conn = getConnection();
 		BookcartDAO dao = BookcartDAO.getInstance();
 		int result = dao.insertBookCart(conn, bookcart);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -41,6 +46,11 @@ public class Cartservice {
 		int result = 0;
 		BookcartDAO dao = BookcartDAO.getInstance();
 		result = dao.updateBookCount(conn, bcid, count);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 
@@ -50,6 +60,11 @@ public class Cartservice {
 		Connection conn = getConnection();
 		BookcartDAO dao = BookcartDAO.getInstance();
 		int result = dao.deleteBookList(conn, bcid);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -58,6 +73,11 @@ public class Cartservice {
 		Connection conn = getConnection();
 		BookcartDAO dao = BookcartDAO.getInstance();
 		int result = dao.deleteBookAll(conn, id);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -67,6 +87,11 @@ public class Cartservice {
 		Connection conn = getConnection();
 		VideocartDAO dao = VideocartDAO.getInstance();
 		int result = dao.insertVideoCart(conn, videocart);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -91,6 +116,11 @@ public class Cartservice {
 		Connection conn = getConnection();
 		VideocartDAO dao = VideocartDAO.getInstance();
 		int result = dao.updateVideoCount(conn, vcid, count);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -99,6 +129,11 @@ public class Cartservice {
 		Connection conn = getConnection();
 		VideocartDAO dao = VideocartDAO.getInstance();
 		int result = dao.deleteVideoList(conn, vcid);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -107,6 +142,11 @@ public class Cartservice {
 		Connection conn = getConnection();
 		VideocartDAO dao = VideocartDAO.getInstance();
 		int result = dao.deleteVideoAll(conn, id);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 

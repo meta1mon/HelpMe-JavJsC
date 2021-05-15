@@ -23,6 +23,11 @@ public class Videoservice {
 		Connection conn = getConnection();
 		ShopvideoDAO dao = ShopvideoDAO.getinstance();
 		int result = dao.insertVideo(conn, video);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -47,6 +52,11 @@ public class Videoservice {
 		Connection conn = getConnection();
 		ShopvideoDAO dao = ShopvideoDAO.getinstance();
 		int result = dao.updateVideo(conn, video, vid);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -55,6 +65,11 @@ public class Videoservice {
 		Connection conn = getConnection();
 		ShopvideoDAO dao = ShopvideoDAO.getinstance();
 		int result = dao.deleteVideo(conn, vid);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
