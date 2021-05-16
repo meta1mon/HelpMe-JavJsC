@@ -909,7 +909,7 @@ $(document).ready(function(){
 					</table>
 				</div>
 
-				<!-- 탭2 마이 캘린더 -->
+					<!-- 탭2 마이 캘린더 -->
 				<div class="cont">
 					<div id="calendar"></div>
 					<!-- 일정 추가 modal -->
@@ -924,8 +924,8 @@ $(document).ready(function(){
 									<table class="modal-tbl">
 										<tr>
 											<td><label for="edit-allDay">하루종일</label></td>
-											<td><input class="allDayEvent" name="scheAllDay"
-												id="edit-allDay" type="checkbox"></td>
+											<td><input class="allDayEvent" name="scheAllDay" id="edit-allDay"
+												type="checkbox"></td>
 										</tr>
 
 										<tr>
@@ -985,9 +985,7 @@ $(document).ready(function(){
 								<button type="button" class="btn btn-primary" id="save-schedule">저장</button>
 							</div>
 							<div class="modal-footer modalBtnContainer-modifySchedule">
-								<button type="button" class="btn btn-default" id="cancel"
-									data-dismiss="modal">닫기</button>
-								<button type="button" class="btn btn-danger" id="deleteSchedule">삭제</button>
+								<button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">닫기</button>
 							</div>
 							<!-- modal-footer 끝 -->
 						</div>
@@ -996,7 +994,6 @@ $(document).ready(function(){
 					<!-- scheModal 끝 -->
 
 				</div>
-
 
 				<!-- 탭3 내 글 목록-->
 				<div class="cont">
