@@ -832,7 +832,7 @@ $(document).ready(function(){
 							<td><select name="passquestion" id="passquestion"
 								style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif"
 								onFocus='this.initialSelect = this.selectedIndex;'
-								onChange='this.selectedIndex = this.initialSelect;' readonly>
+								onChange='this.selectedIndex = this.initialSelect;'>
 									<option value="0"
 										style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">비밀번호
 										질문을 선택해주세요</option>
@@ -892,13 +892,13 @@ $(document).ready(function(){
 						<c:if test="${loginMember.rcvmail.equals('1') }">
 							<tr>
 								<td colspan="2" style="text-align: left"><label><input
-										type="checkbox" name="rcvmail" value="1" checked readonly> 도와줘
+										type="checkbox" name="rcvmail" value="1" checked disabled="disabled"> 도와줘
 										잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
 							</tr>
 						</c:if>
 						<c:if test="${!loginMember.rcvmail.equals('1') }">
 							<td colspan="2" style="text-align: left"><label><input
-									type="checkbox" name="rcvmail" value="1" readonly> 도와줘
+									type="checkbox" name="rcvmail" value="1"  disabled="disabled"> 도와줘
 									잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
 						</c:if>
 						<tr>

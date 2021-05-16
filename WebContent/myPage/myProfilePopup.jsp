@@ -181,6 +181,12 @@
 			alert("닉네임 중복확인이 필요합니다");
 			return false;
 		}
+		
+		if(($("[name='rcvmail']").val() == "1") && ($("#email").val().trim() == "")) {
+			alert("소식을 전달 받을 이메일 주소를 입력해주세요");
+			$("#email").focus();
+			return false;
+		}
 
 		// 다 충족 되었다면
 		return true;
