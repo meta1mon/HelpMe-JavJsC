@@ -265,7 +265,7 @@ hr {
 <%@include file="../../view/header.jsp"%>
 <body class="content">
 	<div style="width: 840px; margin: 0 auto 0 auto; color: #99ADB6; background:#ffffff; padding:20px; border-radius: 4px;">
-		<div class="study">Q&A 게시판</div><br>
+		<div class="study">Study 게시판</div><br>
 		<table id="table">
 			<tr>
 				<td>
@@ -312,12 +312,10 @@ hr {
                     </c:if>
 								<br>
 							</c:forTokens>
-							<c:if test="${(loginMember.nickname == study.swriter) || (loginMember.nickname == '관리자')}">
+							<c:if test="${loginMember.nickname == study.swriter}">
 								<button type="button" id="delete"
 									onclick="location.href='<%=request.getContextPath()%>/studydelete?sno=${study.sno }'"
 									style="float: right;">삭제</button>
-							</c:if>
-							<c:if test="${(loginMember.nickname == study.swriter)}">
 								<button type="button" id="update"
 									onclick="location.href='<%=request.getContextPath()%>/movestudyupdate?sno=${study.sno }'"
 									style="float: right;">수정</button>
@@ -340,8 +338,6 @@ hr {
  						<c:if test="${loginMember.nickname == r.rswriter}">
 							<button type="button" id="update"
 								onclick="open_win('<%=request.getContextPath()%>/moverstudyupdate?rsno=${r.rsno }', '_blank')">수정</button>
- 						</c:if>
- 						<c:if test="${(loginMember.nickname == r.rswriter) || (loginMember.nickname == '관리자')}">
 							<button type="button" id="delete"
 								onclick="location.href='<%=request.getContextPath()%>/rstudydelete?rsno=${r.rsno }&sno=${r.sno }'">삭제</button>
  						</c:if>
