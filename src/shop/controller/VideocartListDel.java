@@ -64,7 +64,7 @@ public class VideocartListDel extends HttpServlet {
 			if (list.equals("all")) {
 				try {
 					result = new Cartservice().deleteVideoAll(buyer);
-					request.getRequestDispatcher("vcartlist").forward(request, response);
+					request.getRequestDispatcher("cartlist").forward(request, response);
 					
 					if(result > 0) {
 						System.out.println("삭제 성공");
@@ -77,7 +77,7 @@ public class VideocartListDel extends HttpServlet {
 			} else if (!vkind.equals("0")) {
 				try {
 					result = new Cartservice().deleteVideoList(Integer.parseInt(list));
-					request.getRequestDispatcher("vcartlist").forward(request, response);
+					request.getRequestDispatcher("cartlist").forward(request, response);
 
 					if(result > 0) {
 						System.out.println("삭제 성공");

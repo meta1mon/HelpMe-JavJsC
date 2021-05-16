@@ -1,7 +1,12 @@
+<%@page import="shop.DAO.VideocartVO"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="common.jdbc.JDBCConnectionPool"%>
+<%@page import="shop.DAO.VideocartDAO"%>
 <%@page import="java.text.NumberFormat"%>
+<%@page import="shop.DAO.BuyDAO"%>
 <%@page import="member.dao.MemberDao"%>
+<%@page import="shop.DAO.BookcartDAO"%>
+<%@page import="shop.VO.BookcartVO"%>
 <%@page import="java.util.List"%>
 <%@page import="member.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -59,18 +64,22 @@ function sample6_execDaumPostcode() {
 <head>
 <meta charset="UTF-8">
 <title>구매창</title>
+<style>
+<%@include file="../style/shop3.css"%>
+</style>
 </head>
 <body class="content">
+<div style="width: 800px; margin: 0 auto 0 auto;">
 	<%
 	
 		int number = 0; int number2 = 0;
 		int total = 0; int total2=0;
 	%>
 		<p>구매 목록</p>
-		<form name="bookcart">
-		<table border="1px;">
+		<form name="bookcart" >
+		<table id="bcart">
 		<tr>
-			<td width="50">책 번호</td>
+			<td width="50">NO</td>
 			<td width="300">책이름</td>
 			<td width="100">판매가격</td>
 			<td width="150">수량</td>
@@ -85,24 +94,27 @@ function sample6_execDaumPostcode() {
 			${b.btitle}
 			</td>
 			<td width="100">
-			${b.bprice}
+			<fmt:formatNumber value="${b.bprice}" type="number" />
+			
 			</td>
 			<td width="150">
 			${b.buycount}
 			</td>
 			<td width="150">
-			<c:set var="bprice" value="${bprice+ (b.buycount * b.bprice)}"></c:set>
-			${(b.buycount * b.bprice)}
+			<c:set var="bprice" value="${bprice+ (b.bprice * (100- b.discountRate)/100)}"></c:set>
+			<fmt:formatNumber value="${b.bprice * (100- b.discountRate)/100}" type="number" />
 			</td>
 			</tr>
 			</c:forEach>
 			</table>		
 			<tr>
-			<td colspan="5" align="right">
-			<b>책 구매금액 : 
-			<c:out value="${bprice}"/>
+			<div class="buyprice">
+			<td colspan="5" align="right" style="color:red">
+			책 구매금액 :
+			<fmt:formatNumber value="${bprice}" type="number" />
 			</b>
 			</td>
+			</div>
 			</tr>
 	
 		</form>
@@ -111,7 +123,7 @@ function sample6_execDaumPostcode() {
 		<form>
 		<table border="1px;">
 		<tr>
-			<td width="50">영상 번호</td>
+			<td width="50">NO</td>
 			<td width="300">영상 이름</td>
 			<td width="100">판매가격</td>
 			<td width="150">수량</td>
@@ -126,14 +138,15 @@ function sample6_execDaumPostcode() {
 			${v.vtitle}
 			</td>
 			<td width="100">
-			${v.vprice}
+			<fmt:formatNumber value="${v.vprice}" type="number" />
 			</td>
 			<td width="150">
 			1
 			</td>
 			<td width="150">
-			${v.vprice}
-			<c:set var="vprice" value="${vprice + v.vprice}"></c:set>
+			<fmt:formatNumber value="${v.vprice * (100- v.discountRate)/100}" type="number" />
+			
+			<c:set var="vprice" value="${vprice +(v.vprice * (100- v.discountRate)/100)}"></c:set>
 			</td>
 			</tr>
 			</c:forEach>
@@ -141,6 +154,7 @@ function sample6_execDaumPostcode() {
 			<tr>
 			<td colspan="5" align="right">
 			<b>영상 구매금액 :
+			<fmt:formatNumber value="${vprice}" type="number" />
 			<c:out value="${vprice}"/>
 			 </b>
 			</td>
@@ -148,7 +162,8 @@ function sample6_execDaumPostcode() {
 			
 				
 		<div>
-		총금액 : <c:out value="${bprice+vprice}"/>
+		총금액 
+		<fmt:parseNumber value="${bprice+vprice}" type="number" integerOnly="true" />
 		</div>
 		</form>
 		<form method="post" action="<%=request.getContextPath() %>/bookbuy">
@@ -226,6 +241,7 @@ function sample6_execDaumPostcode() {
 			</table>
 			
 		</form>
+</div>		
 </body>
 <%@include file="../../view/footer.jsp"%>
 </html>

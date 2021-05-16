@@ -1,17 +1,18 @@
+<%@page import="shop.DAO.ShopBookDAO"%>
+<%@page import="shop.VO.ShopBookVo"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%!SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
-<%@include file="../admin/adminAside.jsp" %>
+
 <html>
 <head>
 <meta charset="UTF-8">
 <title>등록된 책 목록</title>
 </head>
-<main>
-	<div style="padding: 50px; margin-left: 200px;">
+<body>
 	<div>
 	<!-- 자바의 스위치문과 비슷 -->
 		<c:choose>
@@ -20,7 +21,7 @@
 			<c:when test="${bkind == 300}">HTML</c:when>
 		</c:choose>
 	</div>
-	<table border="1" style="border-collapse: collapse">
+	<table border="2">
 		<tr>
 			<td>번호</td>
 			<td>책분류</td>
@@ -61,6 +62,5 @@
 			</c:forEach>
 		</c:if>
 	</table>
-	</div>>
-</main>
+</body>
 </html>

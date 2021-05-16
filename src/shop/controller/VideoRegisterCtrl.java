@@ -119,6 +119,7 @@ public class VideoRegisterCtrl extends HttpServlet {
 
 // 삽입 성공 후 , 어디로 보낼지 추후 작성
 		//request.dispatcher
+		request.setAttribute("vkind", vkind);
 		request.getRequestDispatcher("videolist").forward(request, response);
 		
 		

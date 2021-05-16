@@ -45,7 +45,7 @@ public class BookcartInsert extends HttpServlet {
 		String bkind = request.getParameter("bkind");
 		String bid = request.getParameter("bid");
 		String buycount = request.getParameter("buycount");
-		
+		String buyprice = request.getParameter("buyprice");
 		String id = vo.getId();
 		
 		BookcartVO bookcart = new BookcartVO();

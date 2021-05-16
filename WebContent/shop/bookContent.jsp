@@ -1,9 +1,11 @@
 <%@page import="member.vo.Member"%>
 <%@page import="java.text.NumberFormat"%>
+<%@page import="shop.DAO.ShopBookDAO"%>
+<%@page import="shop.VO.ShopBookVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@include file="../view/header.jsp"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="../view/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%
@@ -32,12 +34,13 @@ try {
 
 </head>
 <body class="content">
+	<div style="width: 800px; margin: 0 auto 0 auto;">
+
 	
 
 
 <form action="<%=request.getContextPath()%>/bookcartInsert"
 	method="post" name="inform">
-	<div style="width: 800px; margin: 0 auto 0 auto;">
 	<div class="product_detail">
 	<div class="detail_product">
 		<div class="detail_content type_2">
@@ -66,17 +69,15 @@ try {
 					<dl class="basic">
 						<dt class="fixed_price">정가</dt>
 						<dd class="fixed_price">
-							<del>${b.bprice}원
-							</del>
+							<del>${b.bprice}원 </del>
 						</dd>
 			
 						<dt class="sales_price">판매가</dt>
 						<dd class="sales_price">
 						
-							<strong class="price">
-
-							
-							${b.bprice * (100- b.discountRate)/100}원</strong>
+						<strong class="price">
+						
+							<fmt:formatNumber value="${b.bprice * (100- b.discountRate)/100}" type="number" />원</strong>
 							<span>[<strong>${b.discountRate}</strong>%↓, 								할인]
 							</span>  
 							</dd>
@@ -100,21 +101,19 @@ try {
 						<label for="order-quantity">주문수량</label> <input type="number"
 							id="order-quantity" value="1" maxlength="3" name="buycount" />
 					</div>
+					
 				<c:if test="${b.bcount == 0}">
 					<font color="red">등록된 책 없음</font>
 				</c:if>
-					
+					<c:set var="vprice" value="$"/>
 					<input type="hidden" name="bid" value="${b.bid}"> <input
 						type="hidden" name="bimage" value="${b.bimage}">
 					<input type="hidden" name="btitle"
-						value="${b.btitle}"> <input type="hidden"
-						name="buyprice" value="(${b.bprice} * (100-${b.discountRate} / 100))"> <input
-						type="hidden" name="bkind" value="${b.bkind}"> <input
-						type="submit" value="장바구니 담기" id="cartbtn">
+						value="${b.btitle}">
+						 <input type="submit" value="장바구니 담기" id="cartbtn">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
   <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
 </svg>
-
 					<input type="button" value="목록으로" id="backbtn"
 						onclick="javascript:window.location='<%=request.getContextPath()%>/booklist';">
 					<input type="button" value="메인으로" id="mainbtn"
@@ -126,9 +125,9 @@ try {
 </div>
 </div>
 
+</form>
 
 </div>
-</form>
 </body>
-<%@include file="../../view/footer.jsp"%>
+<%@include file="../view/footer.jsp"%>
 </html>

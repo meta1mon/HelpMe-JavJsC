@@ -1,5 +1,7 @@
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.util.List"%>
+<%@page import="shop.DAO.ShopvideoDAO"%>
+<%@page import="shop.VO.VideoVO"%>
 <%@page import="member.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -68,7 +70,7 @@ try {
 						<dt class="sales_price">판매가</dt>
 						<dd class="sales_price">
 							<strong class="price">
-							<fmt:formatNumber value="${v.vprice * (100- v.discountRate)/100}" type="number" />
+							<fmt:formatNumber value="${v.vprice * (100- v.discountRate)/100}" type="number" />원</strong>
 							원</strong>
 							<span>[<strong>${v.discountRate}</strong>%↓,
 								할인]
@@ -76,7 +78,7 @@ try {
 						</dd>
 					</dl>
 					<div class="order_quantity">
-						<label for="order-quantity">주문수량</label> <input type="number"
+						<label for="order-quantity">주문수량</label> <input type="text"
 							id="order-quantity" value="1" maxlength="3" name="buycount" />
 					</div>
 

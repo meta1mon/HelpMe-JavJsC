@@ -1,3 +1,7 @@
+<%@page import="shop.VO.VideocartVO"%>
+<%@page import="shop.DAO.VideocartDAO"%>
+<%@page import="shop.VO.BookcartVO"%>
+<%@page import="shop.DAO.BookcartDAO"%>
 <%@page import="member.vo.Member"%>
 <%@page import="java.text.NumberFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,7 +10,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
- <%@include file="../view/shopheader.jsp"%>
+ <%@include file="../view/header.jsp"%>
 <%
 int total1=0;
 int total2 = 0;
@@ -33,12 +37,12 @@ int total2 = 0;
 		</tr>
 	</table>
 	
-	</div>
-	</c:if>
 	<input type="button" value="책쇼핑 계속" id="backbtn"
 		onclick="javascript:window.location='bookIntro'">
 	<input type="button" value="영상쇼핑 계속" id="mainbtn"
 		onclick="javascript:window.location='videoIntro'">
+	</div>
+	</c:if>
 	<h3>장바구니</h3>
 		<div style="width: 800px; margin: 0 auto 0 auto;">
 	<form name="orderform" id="orderform" method="post" class="orderform" >
@@ -76,7 +80,8 @@ int total2 = 0;
                     <div class="subdiv">
                         <div class="basketprice"><input type="hidden" name="p_price" id="p_price2" class="p_price" >
                         <p class="price2">
-                    	${b.bprice}원</div>
+                    	<fmt:parseNumber value="${b.bprice * (100- b.discountRate)/100}" integerOnly="true" type="number" />
+                    	원</div>
                         </p>
                         <div class="num">
                             <div class="updown">
@@ -114,7 +119,7 @@ int total2 = 0;
 	  <div class="basketdiv" id="basket">
                 <div class="row head">
                     <div class="subdiv">
-                        <div class="check">수량</div>
+                        <div class="check"></div>
                         <div class="img">이미지</div>
                         <div class="pname">상품명</div>
                     </div>
@@ -142,7 +147,7 @@ int total2 = 0;
                     <div class="subdiv">
                         <div class="basketprice"><input type="hidden" name="p_price" id="p_price2" class="p_price" >
                         <p class="price2">
-                    	<fmt:formatNumber value="${v.vprice}" type="number" />
+                    <fmt:parseNumber value="${v.vprice * (100- v.discountRate)/100}" integerOnly="true" type="number" />
                     	원</div>
                         </p>
                         <div class="num">
@@ -160,10 +165,11 @@ int total2 = 0;
                      
                         <div class="basketcmd">
                         <a class="abutton" href="
-                        <%=request.getContextPath()%>/videocartListDel?list=${v.vcid}&vkind=${v.vkind}" >삭제</a></div>
+                        <%=request.getContextPath()%>/videocartListDel?list=${v.vcid}&vkind=${v.vkind}">삭제</a></div>
                     </div>
                 </div>
-				</c:forEach>
+			</c:forEach>
+				
 				
 				
 					<br>
@@ -175,7 +181,6 @@ int total2 = 0;
 			 <a class="abutton" href="
 			 <%=request.getContextPath()%>/videocartListDel?list=all&vkind=${v.vkind}">영상비우기</a>
 			</div>	
-			
             <div class="bigtext right-align box blue summoney" id="sum_p_price">
             	합계금액:
 			<c:out value="${bprice+vprice}"/>            	
@@ -184,7 +189,7 @@ int total2 = 0;
 				<%
 							String url5 = "../../buyForm";
 				%>
-					<td colspan="5"><input type="button" value="구매하기"
+					<td colspan="5"><input type="button" value=" 구매하기  "
 						onclick="javascript:window.location='<<%=url5%>'"> <input
 						type="button" value="쇼핑 계속하기"
 						onclick="javascript:window.location='<%=request.getContextPath()%>/shopmain'"></td>

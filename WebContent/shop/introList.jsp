@@ -1,16 +1,15 @@
 <%@page import="java.text.NumberFormat"%>
+<%@page import="shop.DAO.ShopBookDAO"%>
+<%@page import="shop.VO.ShopBookVo"%>
+<%@page import="shop.VO.VideoVO"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@include file="../view/header.jsp"%>
-
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<%@include file="../view/header.jsp"%>
 <style>
-<%@include file="../style/shop.css" %>
-
+<%@include file="../style/shop3.css" %>
 </style>
 <!DOCTYPE html>
 <html>
@@ -20,19 +19,13 @@
 <title>Book Shopping Mall</title>
 </head>
 <body class="content">
+<div style="width: 800px; margin: 0 auto 0 auto;">
 <%
 int number=0;
 %>
-	<div>
-	<!-- 자바의 스위치문과 비슷 -->
-		<c:choose>
-			<c:when test="${bkind == 100}">Java</c:when>
-			<c:when test="${bkind == 200}">Jsp</c:when>
-			<c:when test="${bkind == 300}">HTML</c:when>
-		</c:choose>
-	</div>
+	
 	<h3>
-		<b>${b.bkind}</b>
+		<b>JAVA 관련 서적  </b>
 	</h3>
 	<c:forEach items="${booklist }" var="b">
 	<center>
@@ -84,12 +77,8 @@ int number=0;
 					</li>
 					</ul>
 					</c:forEach>
-					</form>
-					</div>
-					</center>
 	
-	<br>
-
+</div>
 </body>
 <%@include file="../view/footer.jsp"%>
 </html>
