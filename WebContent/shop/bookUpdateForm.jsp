@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
+<title>책 수정하기</title>
 </head>
 <body>
 	<p>책 수정</p>

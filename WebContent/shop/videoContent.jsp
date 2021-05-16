@@ -30,6 +30,7 @@ try {
 
 </style>
 
+<title>영상 상세 페이지</title>
 </head>
 <body class="content">
 <center>

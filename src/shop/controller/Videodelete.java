@@ -38,8 +38,9 @@ public class Videodelete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("영상 딜리트 들어옴");
-		
 		String vid = request.getParameter("vid");
+		String vkind = request.getParameter("vkind");
+		System.out.println(vkind);
 			
 		int result = 0;
 		try {
@@ -54,7 +55,9 @@ public class Videodelete extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect("videolist");
+		
+		request.setAttribute("vkind", vkind);
+		request.getRequestDispatcher("videolist").forward(request, response);
 	
 	}
 		

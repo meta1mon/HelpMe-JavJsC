@@ -51,9 +51,10 @@ public class VideoList extends HttpServlet {
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 // 어딘지 모를 이전 페이지에서, 특정 버튼을 누르면 bkind를 받아온다 - 미구현
-		String vkind = request.getParameter("vkind");
+		String vkind = (String)request.getAttribute("vkind");
 //		String vkind = "100";
-		
+		System.out.println("dsfdsfsdfdss");
+		System.out.println(vkind);
 		
 		List<VideoVO> videoList = null;
 		try {

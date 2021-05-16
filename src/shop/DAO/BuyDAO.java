@@ -180,6 +180,7 @@ public class BuyDAO {
 //		//buy테이블의 전체 목록을 얻어내는 메소드
 	public List<BuyVO> getBuyBookList(Connection conn) throws Exception {
 		List<BuyVO> lists = null;
+		BuyVO buybook = null;
 		String sql = "select bimage, btitle, bprice, vimage, vtitle, vprice ";
 		sql += " buy.* , book.bid, video.vid ";
 		sql += " from buy left join book";
@@ -274,90 +275,5 @@ public class BuyDAO {
 		}
 		return lists;
 	}
-	
-	public List<BuyVO> getMyBook(Connection conn, String id, boolean bigSize) throws Exception {
-		List<BuyVO> lists = null;
-		BuyVO buy = null;
-		String sql = "";
-		if(bigSize == true) { // 더보기로 들어온 경우,
-			System.out.println("더보기");
-			sql = "select null, buycount, bimage, btitle, bprice, buyprice, buydate, saction, book.bid FROM buy left join book on buy.pid = book.bid  where id = ? order by buydate desc";
-		} else { // 마이페이지에 출력하는 경우
-			System.out.println("마이페이지");
-			sql = "select rownum, e.* from (select buycount, bimage, btitle, bprice, buyprice, buydate, saction, book.bid FROM buy left join book on buy.pid = book.bid where id = ? order by buydate desc) e where rownum <= 4";
-		}
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
 
-			lists = new ArrayList<BuyVO>();
-
-			while (rs.next()) {
-				buy = new BuyVO();
-
-				buy.setBuycount(rs.getInt(2));
-				buy.setBimage(rs.getString(3));
-				buy.setBtitle(rs.getString(4));
-				buy.setBprice(rs.getInt(5));
-				buy.setBuyprice(rs.getInt(6));
-				buy.setBuydate(rs.getTimestamp(7));
-				buy.setSaction(rs.getString(8));
-				buy.setBid(rs.getString(9));
-				lists.add(buy);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null)
-				rs.close();
-			if (pstmt != null)
-				pstmt.close();
-		}
-		return lists;
-	}
-	
-	public List<BuyVO> getMyVideo(Connection conn, String id, Boolean bigSize) throws Exception {
-		List<BuyVO> lists = null;
-		BuyVO buy = null;
-		String sql = "";
-		if(bigSize == true) { // 더보기로 들어온 경우,
-			System.out.println("더보기");
-			sql = "select null, buycount, vimage, vtitle, vprice, buyprice, buydate, saction, video.vid FROM buy left join video on buy.pid = video.vid where id = ? order by buydate desc";
-		} else { // 마이페이지에 출력하는 경우
-			System.out.println("마이페이지");
-			sql = "select rownum, e.* from (select buycount, vimage, vtitle, vprice, buyprice, buydate, saction, video.vid FROM buy left join video on buy.pid = video.vid where id = ? order by buydate desc) e where rownum <= 4";
-		}
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-
-			lists = new ArrayList<BuyVO>();
-
-			while (rs.next()) {
-				buy = new BuyVO();
-
-				buy.setBuycount(rs.getInt(2));
-				buy.setVimage(rs.getString(3));
-				buy.setVtitle(rs.getString(4));
-				buy.setVprice(rs.getInt(5));
-				buy.setBuyprice(rs.getInt(6));
-				buy.setBuydate(rs.getTimestamp(7));
-				buy.setSaction(rs.getString(8));
-				buy.setVid(rs.getString(9));
-				lists.add(buy);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (rs != null)
-				rs.close();
-			if (pstmt != null)
-				pstmt.close();
-		}
-		return lists;
-	}
 }

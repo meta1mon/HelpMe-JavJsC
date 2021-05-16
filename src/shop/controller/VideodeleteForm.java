@@ -43,6 +43,7 @@ public class VideodeleteForm extends HttpServlet {
 	}
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String vid = request.getParameter("vid");
+		String vkind = request.getParameter("vkind");
 		VideoVO vo = null;
 		
 		try {
@@ -59,7 +60,9 @@ public class VideodeleteForm extends HttpServlet {
 		
 		
 		request.setAttribute("video", vo);
+		request.setAttribute("vkind", vkind);
 		String url = "./shop/videoDeleteForm.jsp";
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}

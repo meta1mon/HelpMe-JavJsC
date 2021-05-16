@@ -112,7 +112,8 @@ public class VideoUpdate extends HttpServlet {
 	}catch (Exception e) {
 		e.printStackTrace();
 	}
-	response.sendRedirect("videolist");
+	request.setAttribute("vkind", vkind);
+	request.getRequestDispatcher("videolist").forward(request, response);
 	}
 
 }

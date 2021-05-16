@@ -21,8 +21,13 @@ currentTime = new Timestamp(System.currentTimeMillis());
 <html>
 <head>
 <meta charset="UTF-8">
+<title>구매완료페이지</title>
+<style>
+<%@include file="../style/shop3.css"%>
+</style>
 </head>
 <body class="content">
+<div style="width: 800px; margin: 0 auto 0 auto;" class="buywrap">
 	<%
 			int count = 0;
 			int number = 0;
@@ -41,9 +46,9 @@ currentTime = new Timestamp(System.currentTimeMillis());
 		<b>결제가 완료되었습니다 ♥</b>
 	</h4>
 	<h3>
-		<b>구매목록</b>
+		<h1>구매목록</h1>
 	</h3>
-		<table border="1">
+		<table id="bcart">
 		<p>책 구매목록</p>
 					<tr>
 						<td width="150">번호</td>
@@ -79,7 +84,7 @@ currentTime = new Timestamp(System.currentTimeMillis());
 					</c:if>
 					</c:forEach>
 				</table>
-					<table border="1">
+					<table id="vcart">
 				<p>영상 구매목록</p>
 					<tr>
 						<td width="150">번호</td>
@@ -114,9 +119,10 @@ currentTime = new Timestamp(System.currentTimeMillis());
 			
 				</table>
 					<tr>
-						<td colspan="5" align="right"><b>총 금액: \ 
-						<c:out value="${bprice+vprice}"/>
-						</b>
+						<td colspan="5" align="right">
+						<h2>총 구매 금액: \
+						<fmt:formatNumber value="${bprice+vprice}" type="number" /> 
+						</h2>
 						</td>
 					</tr>
 					
@@ -125,9 +131,12 @@ currentTime = new Timestamp(System.currentTimeMillis());
 	</table>
 	<br>
 	
-	<input type="button" value="메인으로" onclick="javascript:window.location"='#'">
+	<button type="submit" id ="shopbtn">
+			<a href="<%=request.getContextPath()%>/shopmain">
+			쇼핑 계속 하러가기 </a>
+			</button>
 	
-
+</div>
 </body>
 </html>
 <%@include file="../view/footer.jsp"%>
