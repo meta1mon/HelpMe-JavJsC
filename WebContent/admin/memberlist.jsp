@@ -9,7 +9,8 @@
 <meta charset="UTF-8">
 <style>
 <%@include file="../style/common.css" %>
-
+</style>
+<style>
 .page-header {
 	font-weight: bold;
 	margin: 0 20px 20px 40px;

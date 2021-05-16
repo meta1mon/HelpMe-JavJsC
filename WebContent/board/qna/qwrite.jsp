@@ -7,7 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JSP 게시판 웹 사이트</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
@@ -83,6 +82,7 @@
 		format('woff');
 	font-weight: normal;
 	font-style: normal;
+	border: none;
 }
 
 #file2 {
@@ -96,6 +96,7 @@
 		format('woff');
 	font-weight: normal;
 	font-style: normal;
+	border: none;
 }
 
 #delete {
@@ -173,7 +174,7 @@
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
-	<div style="width: 800px; margin: 0 auto 0 auto;">
+	<div style="width: 840px; margin: 0 auto 0 auto; color: #99ADB6; background:#ffffff; padding:20px; border-radius: 4px;">
 		<div id="write">글 쓰기</div>
 		<form action="<%=request.getContextPath()%>/qnawrite" method="post"
 			enctype="multipart/form-data">

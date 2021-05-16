@@ -10,7 +10,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- 반응형 웹으로 설정 -->
-<title>JSP 게시판 웹 사이트</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 <style>
@@ -221,8 +220,7 @@
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
-	<div
-		style="width: 800px; margin: 0 auto 0 auto; color: #99ADB6;">
+	<div style="width: 840px; margin: 0 auto 0 auto; color: #99ADB6; background:#ffffff; padding:20px; border-radius: 4px;">
 
 		<div class="qna">Q&A 게시판</div>
 		<input id="write" type="button" value="새 글 쓰기"

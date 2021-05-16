@@ -114,13 +114,11 @@ public class QnaUpdateCtrl extends HttpServlet {
 		String qsubject = mReq.getParameter("qsubject");
 		String qcontent = mReq.getParameter("qcontent");
 		int qno = Integer.parseInt(mReq.getParameter("qno"));
-		String qtag = mReq.getParameter("qtag");
 
 		vo.setQsubject(qsubject);
 		vo.setQcontent(qcontent);
 		vo.setQwriter(qwriter);
 		vo.setQno(qno);
-		vo.setQtag(Integer.parseInt(qtag));
 
 		int result = 0;
 		try {

@@ -57,11 +57,12 @@ public class RqnaDeleteCtrl extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (result > 0) {
 			out.print("<script>alert('댓글 삭제 성공!')</script>");
-			out.print("<script>location.href='index.jsp'</script>");
 		} else {
 			out.print("<script>alert('댓글 삭제 실패...')</script>");
-			out.print("<script>location.href='index.jsp'</script>");
-
 		}
+		out.print("<script>location.href = document.referrer;</script>");
+		
+		out.flush();
+		out.close();
 	}
 }

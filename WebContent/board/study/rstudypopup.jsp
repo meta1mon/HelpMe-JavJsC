@@ -4,18 +4,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>도와줘 잡스씨</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 <style>
 .ck.ck-editor {
-	max-width: 800px;
-	min-width: 800px;
+	max-width: 500px;
+	min-width: 500px;
 }
 
 .ck-editor__editable {
 	min-height: 200px;
+}
+
+body {
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+#reply {
+	margin: 25px 0 20px 10px;
+	text-align: left;
+	font-size: 17px;
+	color: black;
 }
 
 #submit {
@@ -71,7 +87,8 @@
 }
 </style>
 </head>
-<body style="background-color:#FAFAFA; width:800px;">
+	<div style="width: 800px; margin: 0 auto 0 auto; color: #99ADB6; background:#ffffff; padding:20px; border-radius: 4px;">
+	<div id="reply">답변 수정</div>
 	<form id="frm" action="<%=request.getContextPath()%>/rstudyupdate"
 		method="post">
 		<td><input type="hidden" name="rsno" value="${rstudy.rsno }"></td>
