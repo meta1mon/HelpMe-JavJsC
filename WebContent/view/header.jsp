@@ -49,6 +49,32 @@ $(document).ready(function(){
 					<button type="button" id="btnEnroll" onclick="location.href='<%=request.getContextPath()%>/member/signup.jsp'">회원가입</button>
 				</div>
 			</c:when>
+			<c:when test="${loginMember == 'semi01' }">
+				<div class="afterLogin">
+					<div class="dropdown">
+						<div class="picBtn" id="picBtn">
+								<input type="image" src="<%=request.getContextPath() %>/images/user.png" class="pic" width="50" height="50" style="background-color: white" id="show">
+							</div>
+						<div class="dropdown-content" style="border: 1px solid #1abc9c; display:none" id="dropdown-content">
+							<a href="<%=request.getContextPath()%>/adminpage">관리자 페이지</a>
+							<a href="<%=request.getContextPath()%>/memberlogout">로그아웃</a> 
+						</div>
+					</div>
+				</div>
+			</c:when>
+			<c:when test="${loginMember.id == 'semi01' }">
+				<div class="afterLogin">
+					<div class="dropdown">
+						<div class="picBtn" id="picBtn">
+								<input type="image" src="<%=request.getContextPath() %>/images/user.png" class="pic" width="50" height="50" style="background-color: white" id="show">
+							</div>
+						<div class="dropdown-content" style="border: 1px solid #1abc9c; display:none" id="dropdown-content">
+							<a href="<%=request.getContextPath()%>/admin/adminAside.jsp">관리자 페이지</a>
+							<a href="<%=request.getContextPath()%>/memberlogout">로그아웃</a> 
+						</div>
+					</div>
+				</div>
+			</c:when>
 			<c:when test="${loginMember != null }">
 				<div class="afterLogin">
 					<div class="dropdown">

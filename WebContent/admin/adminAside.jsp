@@ -1,0 +1,149 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<!-- Font Awesome 4-->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+</head>
+<style>
+<%@include file="../style/common.css"%>
+</style>
+<style>
+* {
+font-size: 15px;
+}
+
+html{
+margin: 0;
+padding: 0;
+height: 100vh;
+}
+
+body{
+margin: 0 auto;
+padding: 0;
+}
+
+a {
+ text-decoration: none;
+}
+
+i .fa { float: right; }
+i .fas { float: right; }
+
+.menu {
+margin: 0;
+padding: 0;
+}
+
+.contenedor-menu {
+	width: 200px;
+	display:block;
+	line-height: 18px;
+}
+.contenedor-menu .menu { width: 100%; }
+.contenedor-menu ul { list-style: none; }
+.contenedor-menu .menu li a {
+	color: white;
+	display: block;
+	padding: 15px 20px;
+	background: #809bbf;
+}
+.contenedor-menu .menu li a:hover { background: #3d5a73; color: #fff; } 
+.contenedor-menu .menu i.fa { 
+	font-size: 12px; 
+	line-height: 18px; 
+	float: right; 
+}
+
+.contenedor-menu .menu ul {
+	padding: 0; 
+	display: none; 
+}
+.contenedor-menu .menu ul li a {
+	background: #424242;
+	color: #e9e9e9;
+}
+
+.contenedor-menu .menu .activado > a {
+	background: #3d5a73;
+	color: #fff;
+}
+
+</style>
+<script>
+$(document).ready(function() {
+	$('.menu li:has(ul)').click(function(e) {
+		e.preventDefault();
+
+		if($(this).hasClass('activado')) {
+			$(this).removeClass('activado');
+			$(this).children('ul').slideUp();
+		} else {
+			$('.menu li ul').slideUp();
+			$('.menu li').removeClass('activado');
+			$(this).addClass('activado');
+			$(this).children('ul').slideDown();
+		}
+
+		$('.menu li ul li a').click(function() {
+			window.location.href = $(this).attr('href');
+		})
+	});
+});
+</script>
+<script>
+ $(function(){
+	 $("#memberlist").click(function(){
+		 location.href="<%=request.getContextPath()%>/memberlist";
+	 })
+	 
+ })
+</script>
+<header>
+</header>
+<aside style="height:100vh; width: 200px; background-color:#809bbf; float: left;">
+<div class="contenedor-menu">
+		<ul class="menu">
+			<li class="activdao"><a href="#">HOME<i class="fa fa-home"></i></a></li>
+			<li><a href="#">BUY CHARTS<i class="fa fa-chevron-down"></i></a>
+				<ul>
+					<li><a href="#">책 실시간 구매 현황</a></li>
+					<li><a href="#">비디오 실시간 구매 현황</a></li>
+					<li><a href="#">책 구매 TOP5</a></li>
+					<li><a href="#">비디오 구매 TOP5</a></li>
+				</ul>
+			</li>
+			<li><a href="#">상품 관리<i class="fa fa-chevron-down"></i></a>
+				<ul>
+					<li><a href="#">판매 책 등록</a></li>
+					<li><a href="#">판매 책 리스트</a></li>
+					<li><a href="#">판매 영상 등록</a></li>
+					<li><a href="#">판매 영상 리스트</a></li>
+				</ul>
+			</li>
+			<li><a href="#">회원 관리<i class="fa fa-chevron-down"></i></a>
+				<ul>
+					<li id="memberlist"><a href="#">회원 리스트</a></li>
+				</ul>
+			</li>
+			<li><a href="#">게시글 관리<i class="fa fa-chevron-down"></i></a>
+				<ul>
+					<li><a href="#">질문 게시판</a></li>
+					<li><a href="#">스터디 게시판</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</aside>
+</html>
