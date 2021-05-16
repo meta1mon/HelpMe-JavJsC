@@ -11,7 +11,6 @@
 <%@include file="../view/header.jsp"%>
 <head>
 <meta charset="UTF-8">
-<title>shopping mall</title>
 <style>
 <%@include file="../style/shop3.css"%>
 </style>

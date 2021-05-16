@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<title>도와줘 잡스씨</title>
+
 <style>
 	<%@include file="../../style/common.css" %>
 	<%@include file="../../style/header.css" %>
@@ -96,7 +98,6 @@
     text-decoration: none;
 	}
 </style>
-<title>Insert title here</title>
 </head>
 <body>
 		<table id="table" style="border:1;">

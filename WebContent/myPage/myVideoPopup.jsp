@@ -10,7 +10,8 @@
 <%@include file="../../style/common.css"%>
 <%@include file="../../style/header.css"%>
 </style>
-<title>Insert title here</title>
+<title>도와줘 잡스씨</title>
+
 </head>
 <body>
 	<table id="table" style="border: 1; text-align: center;">

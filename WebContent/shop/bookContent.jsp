@@ -27,7 +27,6 @@ try {
 <head>
 <meta charset="UTF-8">
 
-<title>책 상세 페이지</title>
 <style>
 <%@ include file="../style/shop2.css"%>
 </style>

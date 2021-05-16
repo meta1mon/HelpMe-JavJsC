@@ -20,7 +20,6 @@ int total2 = 0;
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <style>
 <%@include file="../style/shop2.css"%>
 

@@ -21,7 +21,6 @@ currentTime = new Timestamp(System.currentTimeMillis());
 <html>
 <head>
 <meta charset="UTF-8">
-<title>구매완료페이지</title>
 </head>
 <body class="content">
 	<%

@@ -11,7 +11,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>등록된 영상 목록</title>
 <style>
 
 .page-header {
