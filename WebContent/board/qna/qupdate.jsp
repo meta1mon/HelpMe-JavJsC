@@ -9,7 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- 반응형 웹으로 설정 -->
-<title>JSP 게시판 웹 사이트</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
@@ -50,20 +49,6 @@
 	border: 1px solid #BDBDBD;
 }
 
-#tag {
-	color: #76858C;
-	background-color: #FBFBFC;
-	border: 1px solid #D5D5D5;
-	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-		box-shadow 0.15s ease-in-out;
-}
-
-#tag:hover, #tag:focus {
-	background-color: #ffffff;
-	color: black;
-	border: 1px solid #BDBDBD;
-}
-
 #folder {
 	float: right;
 	position: relative;
@@ -94,6 +79,7 @@
 		format('woff');
 	font-weight: normal;
 	font-style: normal;
+	border: none;
 }
 #file-upload-button {
 	border:none;
@@ -110,6 +96,7 @@
 		format('woff');
 	font-weight: normal;
 	font-style: normal;
+	border: none;
 }
 
 #delete {
@@ -189,7 +176,7 @@
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
-	<div style="width: 800px; margin: 0 auto 0 auto;">
+	<div style="width: 840px; margin: 0 auto 0 auto; color: #99ADB6; background:#ffffff; padding:20px; border-radius: 4px;">
 		<div id="write">글 수정</div>
 		<form action="<%=request.getContextPath()%>/qnaupdate" method="post"
 			enctype="multipart/form-data">
@@ -199,14 +186,6 @@
 					style="width: 800px; height: 40px; font-size: 15px; box-sizing: border-box;"
 					type="text" placeholder="제목을 입력해 주세요." name="qsubject"
 					maxlength="100" value="${qna.qsubject }">
-			</div>
-			<div style="margin-bottom: 10px;">
-				<select id="tag" name="qtag"
-					style="width: 800px; height: 40px; font-size: 15px;">
-					<option value="1">JAVA</option>
-					<option value="2">C</option>
-					<option value="3">Python</option>
-				</select>
 			</div>
 			<div style="margin-bottom: 10px;">
 				<textarea id="editor" name="qcontent" maxlength="4000">${qna.qcontent }</textarea>

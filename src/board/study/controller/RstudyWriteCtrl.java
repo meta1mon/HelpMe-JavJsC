@@ -65,11 +65,12 @@ public class RstudyWriteCtrl extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (result > 0) {
 			out.print("<script>alert('댓글 작성 성공!')</script>");
-			out.print("<script>location.href='studylist'</script>");
 		} else {
 			out.print("<script>alert('댓글 작성 실패...')</script>");
-			out.print("<script>location.href='studylist'</script>");
-			
 		}
+		out.print("<script>location.href = document.referrer;</script>");
+		
+		out.flush();
+		out.close();
 	}
 }

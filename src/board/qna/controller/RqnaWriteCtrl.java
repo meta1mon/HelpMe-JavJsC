@@ -54,7 +54,7 @@ public class RqnaWriteCtrl extends HttpServlet {
 		String a = request.getParameter("qno");
 		int qno = Integer.parseInt(request.getParameter("qno"));
 		String rqcontent = request.getParameter("rqcontent");
-
+		
 		vo.setQno(qno);
 		vo.setRqcontent(rqcontent);
 		vo.setRqwriter(rqwriter);
@@ -68,11 +68,12 @@ public class RqnaWriteCtrl extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (result > 0) {
 			out.print("<script>alert('댓글 작성 성공!')</script>");
-			out.print("<script>location.href='qnalist'</script>");
 		} else {
 			out.print("<script>alert('댓글 작성 실패...')</script>");
-			out.print("<script>location.href='qnalist'</script>");
-			
 		}
+		out.print("<script>location.href = document.referrer;</script>");
+		
+		out.flush();
+		out.close();
 	}
 }
