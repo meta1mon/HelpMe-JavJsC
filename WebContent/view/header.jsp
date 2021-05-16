@@ -46,7 +46,7 @@ $(document).ready(function(){
 			<c:when test="${loginMember == null }">
 				<div class="beforeLogin">
 					<button type="button" id="btnLogin" onclick="location.href='<%=request.getContextPath()%>/javclogin'">로그인</button>
-					<button type="button" id="btnEnroll" onclick="location.href='<%=request.getContextPath()%>/member/signup.jsp'">회원가입</button>
+					<button type="button" id="btnEnroll" onclick="location.href='<%=request.getContextPath()%>/signup'">회원가입</button>
 				</div>
 			</c:when>
 			<c:when test="${loginMember == 'semi01' }">
@@ -82,7 +82,7 @@ $(document).ready(function(){
 								<input type="image" src="<%=request.getContextPath() %>/images/user.png" class="pic" width="50" height="50" style="background-color: white" id="show">
 							</div>
 						<div class="dropdown-content" style="border: 1px solid #1abc9c; display:none" id="dropdown-content">
-							<a href="<%=request.getContextPath()%>/myPage/myPageEnter.jsp">마이페이지</a>
+							<a href="<%=request.getContextPath()%>/mypageentermove">마이페이지</a>
 							<a href="<%=request.getContextPath()%>/memberlogout">로그아웃</a> 
 						</div>
 					</div>
