@@ -116,6 +116,7 @@ Highcharts.chart('container', {
     }
 
 });
+
 </script>
 
 </div>
