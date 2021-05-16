@@ -84,4 +84,20 @@ public class Buyservice {
 		close(conn);
 		return list;
 	}
+	
+	public List<BuyVO> getMyBook(String id, boolean bigSize) throws Exception {
+		Connection conn = getConnection();
+		BuyDAO buy = new BuyDAO();
+		List<BuyVO> list = buy.getMyBook(conn, id, bigSize);
+		close(conn);
+		return list;
+	}
+	
+	public List<BuyVO> getMyVideo(String id, boolean bigSize) throws Exception {
+		Connection conn = getConnection();
+		BuyDAO buy = new BuyDAO();
+		List<BuyVO> list = buy.getMyVideo(conn, id, bigSize);
+		close(conn);
+		return list;
+	}
 }

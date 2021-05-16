@@ -2,6 +2,7 @@
 	href="<%=request.getContextPath()%>/style/main.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/style/calendarStyle.css" />
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="board.qna.vo.Qna"%>
 <%@page import="member.vo.Member"%>
@@ -1214,15 +1215,86 @@ $(document).ready(function(){
 				</div>
 				<!-- 탭4 구매한 영상 목록 -->
 				<div class="cont">
-					<p>수정중</p>
+					<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
+						<div class="board">
+							책 구매내역 <a onclick="myBookList();">더보기</a>
+						</div>
+						<table id="table" style="border: 1; text-align: center;">
+							<c:if test="${myBook.size() == 0 }">
+								<tr>
+									<td>구매한 책이 없습니다</td>
+								</tr>
+							</c:if>
+							<c:if test="${myBook.size() != 0 }">
+								<tr>
+									<td>책이름</td>
+									<td>판매가격</td>
+									<td>수량</td>
+									<td>총 금액</td>
+									<td>구매 날짜</td>
+									<td>배송 상태</td>
+								</tr>
+								<c:forEach items="${myBook }" var='b'>
+									<tr>
+										<td align="left" width="300"><img
+											src="imageFile/${b.bimage}" width="30" height="50"
+											align="middle"> ${b.btitle}</td>
+										<td>\ ${b.bprice}</td>
+										<td>${b.buycount}</td>
+										<td><c:set var="bprice"
+												value="${bprice+ (b.buycount * b.buyprice)}"></c:set>
+											${(b.buycount * b.buyprice)}</td>
+										<td>${b.buydate }</td>
+										<td>${b.saction }</td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</table>
+					</div>
+					<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
+						<div class="board">
+							영상 구매내역 <a onclick="myVideoList();">더보기</a>
+						</div>
+						<table id="table" style="border: 1; text-align: center;">
+							<c:if test="${myVideo.size() == 0 }">
+								<tr>
+									<td>구매한 영상이 없습니다</td>
+								</tr>
+							</c:if>
+							<c:if test="${myVideo.size() != 0 }">
+								<tr>
+									<td>영상 이름</td>
+									<td>판매가격</td>
+									<td>수량</td>
+									<td>총 금액</td>
+									<td>구매 날짜</td>
+									<td>배송 상태</td>
+								</tr>
+								<c:forEach items="${myVideo }" var='v'>
+									<tr>
+										<td align="left" width="300"><img
+											src="imageFile/${v.vimage}" width="30" height="50"
+											align="middle"> ${v.vtitle}</td>
+										<td>\ ${v.vprice}</td>
+										<td>${v.buycount}</td>
+										<td><c:set var="vprice"
+												value="${vprice+ (v.buycount * v.buyprice)}"></c:set>
+											${(v.buycount * v.buyprice)}</td>
+										<td>${v.buydate }</td>
+										<td>${v.saction }</td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	<!-- 탭3 내 글/댓글 목록 불러오기 -->
 	<script>
 		function myqlist() {
-				window.open("<%=request.getContextPath()%>/myqlist", "myQna","width=1000px, height=500px, resizable = no, left= 100, top=100");
+			window
+					.open("<%=request.getContextPath()%>/myqlist", "myQna","width=1000px, height=500px, resizable = no, left= 100, top=100");
 
 			};
 
@@ -1248,6 +1320,16 @@ $(document).ready(function(){
 
 		function myrrlist() {
 		window.open("<%=request.getContextPath()%>/myrrlist", "myRreview", "width=1000px, height=500px, resizable = no, left= 100, top=100");
+
+		};	
+		
+		function myBookList() {
+			window.open("<%=request.getContextPath()%>/mybooklist", "myBookList","width=1000px, height=500px, resizable = no, left= 100, top=100");
+
+		};
+
+		function myVideoList() {
+		window.open("<%=request.getContextPath()%>/myvideolist", "myVideoList", "width=1000px, height=500px, resizable = no, left= 100, top=100");
 
 		};	
 	</script>
