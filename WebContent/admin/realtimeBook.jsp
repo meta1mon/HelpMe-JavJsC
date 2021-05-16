@@ -4,7 +4,7 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-<hmtl>
+<html>
 <style>
 .highcharts-figure, .highcharts-data-table table {
     min-width: 360px; 
@@ -120,4 +120,4 @@ Highcharts.chart('container', {
 });
 </script>
 </body>
-</hmtl>
+</html>

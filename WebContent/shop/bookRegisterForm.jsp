@@ -1,21 +1,18 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-	
+<%@include file="../admin/adminAside.jsp" %>	
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상품 등록</title>
 <style>
 <%@include file="../style/common.css" %>
-
+</style>
+<style>
 .page-header {
 	font-weight: bold;
-	margin: 20px 20px 20px 40px;
+	margin: 0 20px 20px 40px;
 }
 
 .table {
@@ -109,6 +106,7 @@ input[type="file"] {
 
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.slim.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 $(document).ready(function(){ 
 	$("#file").on('change',function(){
@@ -118,9 +116,9 @@ $(document).ready(function(){
 	}); 
 </script>
 </head>
-<body>
-
-           	<h1 class="page-header">책 등록</h1>
+<main>
+<div style="padding: 50px; margin-left: 200px;">
+         	<h1 class="page-header">책 등록</h1>
 			<form action="<%=request.getContextPath()%>/bookregister" method="post"
 				name="writeForm" enctype="multipart/form-data">
 				<table class="table">
@@ -175,5 +173,6 @@ $(document).ready(function(){
 					</tr>
 			</table>
 		</form>
-</body>
+</div>
+</main>
 </html>

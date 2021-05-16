@@ -19,7 +19,7 @@
 <%@include file="../style/common.css"%>
 </style>
 <style>
-* {
+li a {
 font-size: 15px;
 }
 
@@ -46,6 +46,9 @@ margin: 0;
 padding: 0;
 }
 
+#index{
+	background: #3d5a73;
+}
 .contenedor-menu {
 	width: 200px;
 	display:block;
@@ -115,8 +118,9 @@ $(document).ready(function() {
 <aside style="height:100vh; width: 200px; background-color:#809bbf; float: left;">
 <div class="contenedor-menu">
 		<ul class="menu">
-			<li class="activdao"><a href="#">HOME<i class="fa fa-home"></i></a></li>
-			<li><a href="#">BUY CHARTS<i class="fa fa-chevron-down"></i></a>
+			<li id="index"><a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/images/logoA.png" width="160" height="100"></a></li>
+			<li id="home"><a href="<%=request.getContextPath()%>/admin/adminMain.jsp">HOME<i class="fa fa-home"></i></a></li>
+			<li id="buychart"><a href="#">BUY CHARTS<i class="fa fa-chevron-down"></i></a>
 				<ul>
 					<li><a href="#">책 실시간 구매 현황</a></li>
 					<li><a href="#">비디오 실시간 구매 현황</a></li>
@@ -124,20 +128,18 @@ $(document).ready(function() {
 					<li><a href="#">비디오 구매 TOP5</a></li>
 				</ul>
 			</li>
-			<li><a href="#">상품 관리<i class="fa fa-chevron-down"></i></a>
+			<li id="adminshop"><a href="#">상품 관리<i class="fa fa-chevron-down"></i></a>
 				<ul>
-					<li><a href="#">판매 책 등록</a></li>
-					<li><a href="#">판매 책 리스트</a></li>
-					<li><a href="#">판매 영상 등록</a></li>
-					<li><a href="#">판매 영상 리스트</a></li>
+					<li><a href="<%=request.getContextPath()%>/bookinsert">판매 책 등록</a></li>
+					<li><a href="<%=request.getContextPath()%>/videoinsert">판매 영상 등록</a></li>
 				</ul>
 			</li>
-			<li><a href="#">회원 관리<i class="fa fa-chevron-down"></i></a>
+			<li id="adminmember"><a href="#">회원 관리<i class="fa fa-chevron-down"></i></a>
 				<ul>
-					<li id="memberlist"><a href="#">회원 리스트</a></li>
+					<li><a href="<%=request.getContextPath()%>/memberlist">회원 리스트</a></li>
 				</ul>
 			</li>
-			<li><a href="#">게시글 관리<i class="fa fa-chevron-down"></i></a>
+			<li id="adminboard"><a href="#">게시글 관리<i class="fa fa-chevron-down"></i></a>
 				<ul>
 					<li><a href="#">질문 게시판</a></li>
 					<li><a href="#">스터디 게시판</a></li>
