@@ -9,6 +9,7 @@ public class VideocartVO {
 	private int buycount;
 	private String id;
 	private String vkind;
+	private int discountRate;
 	
 	public int getVcid() {
 		return vcid;
@@ -57,6 +58,12 @@ public class VideocartVO {
 	}
 	public void setVkind(String vkind) {
 		this.vkind = vkind;
+	}
+	public int getDiscountRate() {
+		return discountRate;
+	}
+	public void setDiscountRate(int discountRate) {
+		this.discountRate = discountRate;
 	}
 	
 		

@@ -133,7 +133,7 @@ $(document).ready(function(){
 					<tr>
 						<td style="border-right: 1px solid #ddd; text-align: center;">책번호</td>
 						<td><input type="text" name="bid"
-							placeholder="bid는 b00001 양식으로 입력해주세요"></td>
+							placeholder="bid는 b0001 양식으로 입력해주세요"></td>
 					</tr>
 					<tr>
 						<td style="border-right: 1px solid #ddd; text-align: center;">제목</td>

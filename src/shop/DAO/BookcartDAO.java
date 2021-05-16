@@ -64,7 +64,7 @@ public class BookcartDAO {
 	// id에 해당하는 레코드의 목록을 얻어내는 메소드
 	public List<BookcartVO> getBookCart(Connection conn, String id) throws Exception {
 		List<BookcartVO> list = null;
-		String sql = " select bcid, bimage,btitle,bprice,bkind,buycount, bookcart.bid" + " from bookcart left join book"
+		String sql = " select bcid, bimage,btitle,bprice,bkind,buycount,discountrate, bookcart.bid" + " from bookcart left join book"
 				+ " on bookcart.bid = book.bid";
 
 		try {
@@ -81,6 +81,7 @@ public class BookcartDAO {
 				vo.setBuycount(rs.getInt("buycount"));
 				vo.setBid(rs.getString("bid"));
 				vo.setBcid(rs.getInt("bcid"));
+				vo.setDiscountRate(rs.getInt("discountRate"));
 
 				list.add(vo);
 

@@ -66,7 +66,7 @@ public class VideocartDAO {
 	public List<VideocartVO> getVideoCart(Connection conn, String id) throws Exception {
 		List<VideocartVO> videolists = null;
 		VideocartVO videocart = null;
-		String sql = "select vcid, vimage, vkind, vtitle,vprice,buycount, videocart.vid" + " from videocart left join video"
+		String sql = "select vcid, vimage, vkind, vtitle,vprice,buycount, discountrate, videocart.vid" + " from videocart left join video"
 				+ " on videocart.vid = video.vid";
 
 		try {
@@ -84,6 +84,7 @@ public class VideocartDAO {
 				videocart.setBuycount(rs.getInt("buycount"));
 				videocart.setVprice(rs.getInt("vprice"));
 				videocart.setVkind(rs.getString("vkind"));
+				videocart.setDiscountRate(rs.getInt("discountRate"));
 				videolists.add(videocart);
 			}
 		} catch (Exception e) {

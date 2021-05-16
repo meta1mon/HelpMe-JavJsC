@@ -1,4 +1,8 @@
+<%@page import="shop.DAO.ShopvideoDAO"%>
 <%@page import="java.text.NumberFormat"%>
+<%@page import="shop.DAO.ShopBookDAO"%>
+<%@page import="shop.VO.ShopBookVo"%>
+<%@page import="shop.VO.VideoVO"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -61,11 +65,10 @@
 							<div class="info">
 								<strike class="org_price">${v.vprice}원</strike> → 
 									<strong class="sell_price">
-									<fmt:formatNumber value="${v.vprice * (100- v.discountRate)/100}" type="number" />원</strong>
+									<fmt:parseNumber value="${v.vprice * (100- v.discountRate)/100}" integerOnly="true" type="number" />원</strong>
 									<span class="dc_rate">[<strong>${v.discountRate}</strong>%↓]</span>
 							</div>
-							
-								등록일 : ${v.vsize}
+								등록일 : ${v.regdate}
 							</div>
 							
 						

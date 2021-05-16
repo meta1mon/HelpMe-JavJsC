@@ -1,6 +1,69 @@
-#header.header-content {
-	position: center;
+@charset "UTF-8";
+
+
+.button-1{
+  width:250px;
+  height:330px;
+  border:2px solid #34495e;
+  float:left;
+  text-align:center;
+  cursor:pointer;
+  position:relative;
+  box-sizing:border-box;
+  overflow:hidden;
+  margin:0 16px 50px 0;
+  background-repeat : no-repeat;
+  background-size : cover;
+  
 }
+
+.button-1 a{
+  font-size:12px;
+  color:#34495e;
+  font-weight:bold;
+  text-decoration:none;
+  line-height:350px;
+  transition:all .5s ease;
+  z-index:2;
+  position:relative;
+  display:none;
+  
+}
+.eff-1{
+  width:200px;
+  height:330px;
+  
+  top:-2px;
+  right:-140px;
+  position:absolute;
+  transition:all .5s ease;
+  z-index:1;
+}
+.button-1:hover .eff-1{
+	background:#fff;
+  color:#1AAB8A;
+	right:1;
+	opacity:0.7;
+}
+.button-1:hover a{
+  font-size : 13px;
+  color:black;
+  display: block;
+}
+
+h1{
+  font-weight:normal;
+  font-size:24px;
+  color:#34495e;
+  text-align:center;
+}
+h1:first-letter{
+  color:#e74c3c;
+  border-bottom:1px solid #e74c3c;
+}
+
+
+/*intro css**/
 
 #contents {
 	position: relative;
@@ -102,8 +165,6 @@
 	color: #00005B;
 	font-size: 18px;
 	line-height: 22px;
-	font-family: 'Malgun Gothic', 'Apple SD Neo Gothic', 'Dotum',
-		'Sans-Serif';
 	text-decoration: none;
 }
 
@@ -222,6 +283,30 @@ div.product_detail div.detail_product div.detail_content div.product_detail_info
 	{
 	width: 110px;
 }
+
+/*buyForm css**/
+
+#bcart td{
+	border:1px solid black;
+	text-align:center;
+	font-size:15px;
+}
+#bcart .buyprice p{
+	color:red;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

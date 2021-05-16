@@ -1,23 +1,67 @@
+<%@page import="shop.DAO.ShopvideoDAO"%>
+<%@page import="shop.VO.VideoVO"%>
+<%@page import="shop.DAO.BookcartDAO"%>
 <%@page import="java.text.NumberFormat"%>
+<%@page import="shop.DAO.ShopBookDAO"%>
+<%@page import="shop.VO.ShopBookVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>shopping mall</title>
+<style>
+<%@include file="../style/shop3.css"%>
+<%@include file="../view/header.jsp"%>
+</style>
 </head>
 <body class="content">
-<%@include file="../view/header.jsp"%>
-
-
-<h3>쇼핑몰 메이</h3>
-	<button><a href="<%=request.getContextPath()%>/bookIntro?bkind=${bkind1}">자바</a></button>
-	<button><a href="<%=request.getContextPath()%>/bookIntro?bkind=${bkind2}">자바</a></button>
-	<button><a href="<%=request.getContextPath()%>/bookIntro?bkind=${bkind3}">자바</a></button>
-	<button><a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind1}">자바</a></button>
-	<button><a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind2}">자바</a></button>
-	<button><a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind3}">자바</a></button>
+   <div style="width: 800px; margin: 0 auto 0 auto;">
+   
+  <h1> 오늘의 책 </h1>
+  
+  <div class="button-1" style="background-image:url('imageFile/java3.jpg');">
+    <div class="eff-1"></div>
+    <a href="<%=request.getContextPath()%>/bookIntro?bkind=${bkind1}">
+    		 #JAVA 분류 책 바로가기 <br>
+    		
+      </a>
+  </div>
+  <div class="button-1" style="background-image:url('imageFile/jsp4.jpg');">
+    <div class="eff-1"></div>
+    <a href="<%=request.getContextPath()%>/bookIntro?bkind=${bkind2}">
+    		 #JSP 분류 책 바로가기 <br>
+      </a>
+  </div>
+  <div class="button-1" style="background-image:url('imageFile/html2.jpg');">
+    <div class="eff-1"></div>
+    <a href="<%=request.getContextPath()%>/bookIntro?bkind=${bkind3}">
+    		 #HTML분류 책 바로가기 <br>
+      </a>
+  </div>
+  	<h1> 분류별 영상 바로가기  </h1>
+	<div class="button-1" style="background-image:url('imageFile/html2.jpg');">
+    <div class="eff-1"></div>
+    <a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind1}"">
+    		 분류 책 바로가기 <br>
+      </a>
+  </div>
+  <div class="button-1" style="background-image:url('imageFile/html2.jpg');">
+    <div class="eff-1"></div>
+    <a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind2}"">
+    		 분류 책 바로가기 <br>
+      </a>
+  </div>
+  <div class="button-1" style="background-image:url('imageFile/html2.jpg');">
+    <div class="eff-1"></div>
+    <a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind3}"">
+    		 분류 책 바로가기 <br>
+      </a>
+  </div>
+	</div>
+	
+	
 </body>
 <%@include file="../../view/footer.jsp"%>
 </html>

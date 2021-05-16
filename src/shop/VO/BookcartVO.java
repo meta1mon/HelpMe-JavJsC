@@ -9,6 +9,7 @@ public class BookcartVO {
 	private int buycount;
 	private String id;
 	private String bkind;
+	private int discountRate;
 	
 	
 	
@@ -59,6 +60,12 @@ public class BookcartVO {
 	}
 	public void setBkind(String bkind) {
 		this.bkind = bkind;
+	}
+	public int getDiscountRate() {
+		return discountRate;
+	}
+	public void setDiscountRate(int discountRate) {
+		this.discountRate = discountRate;
 	}
 
 	
