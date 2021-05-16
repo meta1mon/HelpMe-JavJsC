@@ -1,6 +1,6 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="../admin/adminAside.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,10 +11,11 @@
 <title>영상 등록</title>
 <style>
 <%@include file="../style/common.css" %>
-
+</style>
+<style>
 .page-header {
 	font-weight: bold;
-	margin: 20px 20px 20px 40px;
+	margin: 0 20px 20px 40px;
 }
 
 .table {
@@ -134,8 +135,8 @@ input[type="file"] {
 
 
 </head>
-<body>
-
+<main>
+	<div style="padding: 50px; margin-left: 200px;">
    	<h1 class="page-header">영상 등록</h1>
 	<form action="<%=request.getContextPath()%>/videoregister" method="post"
 		name="writeForm" enctype="multipart/form-data">
@@ -173,10 +174,9 @@ input[type="file"] {
 			<tr>
 				<td style="border-right: 1px solid #ddd; text-align: center;">영상유효기간</td>
 				<td>
-				<label>시작일<input type="text" id="startDate" name=startDate></label>
-				<img src="../images/calendar.gif"><br>
-				<label>종료일<input type="text" id="endDate" name="endDate"></label>
-				<img src="../images/calendar.gif">
+				<label>시작일&nbsp;<img src="<%=request.getContextPath() %>/images/calendar.gif"><input type="text" id="startDate" name=startDate></label>
+				<br>
+				<label>종료일&nbsp;<img src="<%=request.getContextPath() %>/images/calendar.gif"><input type="text" id="endDate" name="endDate"></label>
 				</td>
 			</tr>
 			<tr>
@@ -191,5 +191,6 @@ input[type="file"] {
 			</tr>
 		</table>
 	</form>
-</body>
+	</div>
+</main>
 </html>
