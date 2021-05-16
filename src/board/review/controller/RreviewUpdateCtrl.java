@@ -1,6 +1,7 @@
-package board.qna.controller;
+package board.review.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -9,20 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.qna.service.RqnaService;
-import board.qna.vo.Rqna;
+import board.review.service.RreviewService;
+import board.review.vo.Rreview;
+
 
 /**
- * Servlet implementation class MoveRqnaUpdate
+ * Servlet implementation class RreviewUpdateCtrl
  */
-@WebServlet("/moverqnaupdate")
-public class MoveRqnaUpdate extends HttpServlet {
+@WebServlet("/rreviewupdate")
+public class RreviewUpdateCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MoveRqnaUpdate() {
+    public RreviewUpdateCtrl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,21 +42,34 @@ public class MoveRqnaUpdate extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);
 	}
-
-	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int rqno = Integer.parseInt(request.getParameter("rqno"));
-		Rqna rqvo = null;
+	
+	private void execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Rreview vo = new Rreview();
+		String rrcontent = request.getParameter("rrcontent");
+		int rrno = Integer.parseInt(request.getParameter("rrno"));
+		
+		vo.setRrcontent(rrcontent);
+		vo.setRrno(rrno);
+		
+		int result = 0;
 		try {
-			rqvo = new RqnaService().RqnaRead(rqno);
+			result = new RreviewService().rreviewUpdate(vo);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		if (rqvo != null) {
-			request.setAttribute("rqna", rqvo);
-			request.getRequestDispatcher("/board/qna/rqnapopup.jsp").forward(request, response);
+		PrintWriter out = response.getWriter();
+		if (result > 0) {
+			out.print("<script>alert('댓글 수정 성공!')</script>");
 		} else {
-			System.out.println("해당 댓글을 불러오지 못했습니다.");
+			out.print("<script>alert('댓글 수정 실패...')</script>");
 		}
+		out.print("<script>window.opener.location.reload();</script>");
+		out.print("<script>window.close();</script>");
+		
+		out.flush();
+		out.close();
 	}
 }

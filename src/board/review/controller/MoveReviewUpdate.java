@@ -1,4 +1,4 @@
-package board.qna.controller;
+package board.review.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.qna.service.RqnaService;
-import board.qna.vo.Rqna;
+import board.review.service.ReviewService;
+import board.review.vo.Review;
 
 /**
- * Servlet implementation class MoveRqnaUpdate
+ * Servlet implementation class MoveReviewUpdate
  */
-@WebServlet("/moverqnaupdate")
-public class MoveRqnaUpdate extends HttpServlet {
+@WebServlet("/movereviewupdate")
+public class MoveReviewUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MoveRqnaUpdate() {
+    public MoveReviewUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,30 +31,30 @@ public class MoveRqnaUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		execute(request, response);
+		execute(request,response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		execute(request, response);
+		execute(request,response);
 	}
 
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int rqno = Integer.parseInt(request.getParameter("rqno"));
-		Rqna rqvo = null;
+		int rno = Integer.parseInt(request.getParameter("rno"));
+		Review rvo = null;
 		try {
-			rqvo = new RqnaService().RqnaRead(rqno);
+			rvo = new ReviewService().reviewRead(rno);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		if (rqvo != null) {
-			request.setAttribute("rqna", rqvo);
-			request.getRequestDispatcher("/board/qna/rqnapopup.jsp").forward(request, response);
+		if (rvo != null) {
+			request.setAttribute("review", rvo);
+			request.getRequestDispatcher("/board/review/rupdate.jsp").forward(request, response);
 		} else {
-			System.out.println("해당 댓글을 불러오지 못했습니다.");
+			System.out.println("해당 글을 불러오지 못했습니다.");
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package board.qna.controller;
+package board.review.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.qna.service.RqnaService;
-import board.qna.vo.Rqna;
+import board.review.service.RreviewService;
+import board.review.vo.Rreview;
+
 
 /**
- * Servlet implementation class MoveRqnaUpdate
+ * Servlet implementation class MoveRreviewUpdate
  */
-@WebServlet("/moverqnaupdate")
-public class MoveRqnaUpdate extends HttpServlet {
+@WebServlet("/moverreviewupdate")
+public class MoveRreviewUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MoveRqnaUpdate() {
+    public MoveRreviewUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,17 +43,18 @@ public class MoveRqnaUpdate extends HttpServlet {
 	}
 
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int rqno = Integer.parseInt(request.getParameter("rqno"));
-		Rqna rqvo = null;
+		int rrno = Integer.parseInt(request.getParameter("rrno"));
+		System.out.println(rrno);
+		Rreview rrvo = null;
 		try {
-			rqvo = new RqnaService().RqnaRead(rqno);
+			rrvo = new RreviewService().rreviewRead(rrno);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		if (rqvo != null) {
-			request.setAttribute("rqna", rqvo);
-			request.getRequestDispatcher("/board/qna/rqnapopup.jsp").forward(request, response);
+		if (rrvo != null) {
+			request.setAttribute("rreview", rrvo);
+			request.getRequestDispatcher("/board/review/rreviewpopup.jsp").forward(request, response);
 		} else {
 			System.out.println("해당 댓글을 불러오지 못했습니다.");
 		}
