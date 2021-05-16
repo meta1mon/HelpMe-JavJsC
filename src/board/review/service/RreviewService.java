@@ -72,7 +72,7 @@ public class RreviewService {
 		return result;
 	}
 	
-	public ArrayList<Integer> myrreview(String rrwriter) throws SQLException {
+	public ArrayList<Integer> myRreview(String rrwriter) throws SQLException {
 		Connection con = getConnection();
 		ArrayList<Integer> list = new RreviewDao().myRreview(con, rrwriter);
 		close(con);

@@ -806,7 +806,7 @@ $(document).ready(function(){
 			</ul>
 			<!-- 탭 컨텐츠 -->
 			<div class="tab-cont">
-				
+
 
 				<!-- 탭1 마이 캘린더 -->
 				<div class="cont">
@@ -823,8 +823,8 @@ $(document).ready(function(){
 									<table class="modal-tbl">
 										<tr>
 											<td><label for="edit-allDay">하루종일</label></td>
-											<td><input class="allDayEvent" name="scheAllDay" id="edit-allDay"
-												type="checkbox"></td>
+											<td><input class="allDayEvent" name="scheAllDay"
+												id="edit-allDay" type="checkbox"></td>
 										</tr>
 
 										<tr>
@@ -884,7 +884,8 @@ $(document).ready(function(){
 								<button type="button" class="btn btn-primary" id="save-schedule">저장</button>
 							</div>
 							<div class="modal-footer modalBtnContainer-modifySchedule">
-								<button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">닫기</button>
+								<button type="button" class="btn btn-default" id="cancel"
+									data-dismiss="modal">닫기</button>
 							</div>
 							<!-- modal-footer 끝 -->
 						</div>
@@ -893,7 +894,7 @@ $(document).ready(function(){
 					<!-- scheModal 끝 -->
 
 				</div>
-				
+
 				<!-- 탭2 내 정보 확인 -->
 				<div class="cont" id="profile">
 					<table class="profileFrm">
@@ -982,14 +983,14 @@ $(document).ready(function(){
 						<c:if test="${loginMember.rcvmail.equals('1') }">
 							<tr>
 								<td colspan="2" style="text-align: left"><label><input
-										type="checkbox" name="rcvmail" value="1" checked disabled="disabled"> 도와줘
-										잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
+										type="checkbox" name="rcvmail" value="1" checked
+										disabled="disabled"> 도와줘 잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
 							</tr>
 						</c:if>
 						<c:if test="${!loginMember.rcvmail.equals('1') }">
 							<td colspan="2" style="text-align: left"><label><input
-									type="checkbox" name="rcvmail" value="1"  disabled="disabled"> 도와줘
-									잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
+									type="checkbox" name="rcvmail" value="1" disabled="disabled">
+									도와줘 잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
 						</c:if>
 						<tr>
 							<td colspan="2"><input type="button" value="수정"
@@ -1077,6 +1078,37 @@ $(document).ready(function(){
 										</c:if>
 									</table>
 								</div>
+								<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
+									<div class="board">
+										Review 게시판 <a onclick="myrlist();">더보기</a>
+									</div>
+									<table id="table" style="border: 1; text-align: center;">
+										<c:if test="${rlist.size() == 0 }">
+											<tr>
+												<td>Review 게시판에 작성한 글이 없습니다</td>
+											</tr>
+										</c:if>
+										<c:if test="${rlist.size() != 0 }">
+											<c:forEach items="${rlist }" var='r'>
+												<tr style="border-bottom: 1px solid #eeeeee;">
+													<td style="width: 60px; font-size: 14px;"><a
+														style="font-size: 18px;">${r.rviewcnt }</a><br>조회</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${r.rlikecnt }</a><br>좋아요</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${r.rreviewcnt }</a><br>답변</td>
+													<td style="text-align: left; width: 450px;"><a
+														href="reviewread?rno=${r.rno}" id="subject">${r.rsubject }</a>
+														<br> <c:choose>
+															<c:when test="${r.rtag ==1}">Java</c:when>
+															<c:when test="${r.rtag ==2}">C</c:when>
+															<c:when test="${r.rtag ==3}">Python</c:when>
+														</c:choose></td>
+													<td><a style="color: #0054FF; text-align: left;">${r.rwriter }</a>
+														<br> <a style="font-size: 13px;">${r.rdate }</a></td>
+												</tr>
+											</c:forEach>
+										</c:if>
+									</table>
+								</div>
 							</div>
 							<!-- 탭3-2 내가 댓글 단 목록-->
 							<div class="cont">
@@ -1144,6 +1176,38 @@ $(document).ready(function(){
 										</c:if>
 									</table>
 								</div>
+								<div
+									style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
+									<div class="board">
+										Review 게시판 <a onclick="myrrlist();">더보기</a>
+									</div>
+									<table id="table" style="border: 1; text-align: center;">
+										<c:if test="${rrlist.size() == 0 }">
+											<tr>
+												<td>Review 게시판에 작성한 댓글이 없습니다</td>
+											</tr>
+										</c:if>
+										<c:if test="${rrlist.size() != 0 }">
+											<c:forEach items="${rrlist }" var='r'>
+												<tr style="border-bottom: 1px solid #eeeeee;">
+													<td style="width: 60px; font-size: 14px;"><a
+														style="font-size: 18px;">${r.rviewcnt }</a><br>조회</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${r.rlikecnt }</a><br>좋아요</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${r.rreviewcnt }</a><br>답변</td>
+													<td style="text-align: left; width: 450px;"><a
+														href="reviewread?rno=${r.rno}" id="subject">${r.rsubject }</a>
+														<br> <c:choose>
+															<c:when test="${r.rtag ==1}">Java</c:when>
+															<c:when test="${r.rtag ==2}">C</c:when>
+															<c:when test="${r.rtag ==3}">Python</c:when>
+														</c:choose></td>
+													<td><a style="color: #0054FF; text-align: left;">${r.rwriter }</a>
+														<br> <a style="font-size: 13px;">${r.rdate }</a></td>
+												</tr>
+											</c:forEach>
+										</c:if>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -1157,7 +1221,7 @@ $(document).ready(function(){
 	</div>
 	<!-- 탭3 내 글/댓글 목록 불러오기 -->
 	<script>
-			function myqlist() {
+		function myqlist() {
 				window.open("<%=request.getContextPath()%>/myqlist", "myQna","width=1000px, height=500px, resizable = no, left= 100, top=100");
 
 			};
@@ -1172,11 +1236,20 @@ $(document).ready(function(){
 
 		};
 
-	function myrslist() {
-		window.open("<%=request.getContextPath()%>/myrslist", "myRstudy",
-							"width=1000px, height=500px, resizable = no, left= 100, top=100");
+		function myrslist() {
+		window.open("<%=request.getContextPath()%>/myrslist", "myRstudy", "width=1000px, height=500px, resizable = no, left= 100, top=100");
+
+		};	
+		
+		function myrlist() {
+			window.open("<%=request.getContextPath()%>/myrlist", "myReview","width=1000px, height=500px, resizable = no, left= 100, top=100");
 
 		};
+
+		function myrrlist() {
+		window.open("<%=request.getContextPath()%>/myrrlist", "myRreview", "width=1000px, height=500px, resizable = no, left= 100, top=100");
+
+		};	
 	</script>
 </body>
 </html>

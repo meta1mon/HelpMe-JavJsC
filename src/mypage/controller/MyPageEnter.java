@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import board.qna.service.QnaService;
 import board.qna.service.RqnaService;
 import board.qna.vo.Qna;
+import board.review.service.ReviewService;
+import board.review.service.RreviewService;
+import board.review.vo.Review;
 import board.study.service.RstudyService;
 import board.study.service.StudyService;
 import board.study.vo.Study;
@@ -142,6 +145,41 @@ public class MyPageEnter extends HttpServlet {
 
 			request.setAttribute("rslist", list4);
 
+// ReviewListCtrl.java 참고
+			// 최근 3개의 글만 보여준다
+
+			ArrayList<Review> list5 = null;
+			try {
+				list5 = new ReviewService().getReviewBoard(startRnum, endRnum, search, searchType);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			request.setAttribute("rlist", list5);
+
+// 내가 댓글쓴 글 불러오기. MyRrlistCtrl.java 참고
+			// 댓글쓴 글 3개
+			String rrwriter = search;
+
+			ArrayList<Integer> rnolist = null;
+			ArrayList<Review> list6 = new ArrayList<Review>();
+
+			int cnt3 = 3;
+			try {
+				rnolist = new RreviewService().myRreview(rrwriter);
+				// 댓글 수 3개임
+				if (rnolist.size() < cnt3) {
+					cnt3 = rnolist.size();
+				}
+				for (int i = 0; i < cnt3; i++) {
+					list6.add(new ReviewService().reviewRead(rnolist.get(i)));
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			request.setAttribute("rrlist", list6);
 			request.getRequestDispatcher("myPage/myPage.jsp").forward(request, response);
 		} else {
 			out.print("<script>alert('비밀번호가 일치하지 않습니다.');</script>");
