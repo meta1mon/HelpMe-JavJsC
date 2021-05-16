@@ -1,5 +1,5 @@
-<%@page import="bookshop.DAO.ShopBookDAO"%>
-<%@page import="bookshop.VO.ShopBookVo"%>
+<%@page import="shop.DAO.ShopBookDAO"%>
+<%@page import="shop.VO.ShopBookVo"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

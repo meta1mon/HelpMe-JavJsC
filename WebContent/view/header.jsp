@@ -37,7 +37,7 @@ $(document).ready(function(){
 			<a href="<%=request.getContextPath()%>/qnalist">질문방</a> 
 			<a href="<%=request.getContextPath()%>/studylist">스터디방</a> 
 			<a href="" id="reviewBtn">리뷰방</a> 
-			 <a href="<%=request.getContextPath()%>/shop/shopIntro.jsp">쇼핑방</a> 
+			 <a href="<%=request.getContextPath()%>/shopmain">쇼핑방</a> 
 			<a href="<%=request.getContextPath()%>/rccalendar">공채캘린더</a>
 			<a href="" id="aboutusBtn">자사소개</a>
 		</div>

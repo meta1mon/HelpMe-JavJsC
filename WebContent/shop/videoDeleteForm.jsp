@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<%
-
-	int vid = Integer.parseInt(request.getParameter("vid"));
-	String vkind = request.getParameter("vkind");
-%>
 
 <html>
 <head>
@@ -14,14 +10,14 @@
 </head>
 <body>
 	<p>영상 삭제</p>
-	<form action="<%=request.getContextPath()%>/videodelete?vid=<%=vid %>&vkind=<%=vkind %>" method="post">
+	<form action="<%=request.getContextPath()%>/videodelete?vid=${video.vid}" method="post">
 		<table>
 		<tr>
 		<td>
-		<a href="<%=request.getContextPath() %>/shop/videoList.jsp?vkind=<%=vkind %>">목록으로</a><br>
+		<a href="<%=request.getContextPath() %>/videolist">목록으로</a><br>
 		</td>
 		<tr>
-		<td>영상 번호<input type="hidden" value="<%= vid %>" name="vid" readonly> </td>
+		<td>영상 번호<input type="hidden" value="${video.vid}" name="vid" readonly> </td>
 		</tr>
 		<tr>
 		<td>

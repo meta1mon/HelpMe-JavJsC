@@ -1,24 +1,19 @@
+<%@page import="shop.DAO.VideocartVO"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="common.jdbc.JDBCConnectionPool"%>
-<%@page import="bookshop.VO.VideocartVO"%>
-<%@page import="bookshop.DAO.VideocartDAO"%>
+<%@page import="shop.DAO.VideocartDAO"%>
 <%@page import="java.text.NumberFormat"%>
-<%@page import="bookshop.DAO.BuyDAO"%>
+<%@page import="shop.DAO.BuyDAO"%>
 <%@page import="member.dao.MemberDao"%>
-<%@page import="bookshop.DAO.BookcartDAO"%>
-<%@page import="bookshop.VO.BookcartVO"%>
+<%@page import="shop.DAO.BookcartDAO"%>
+<%@page import="shop.VO.BookcartVO"%>
 <%@page import="java.util.List"%>
 <%@page import="member.vo.Member"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@include file="../view/header.jsp"%>
-
-<%
-	Member vo = (Member) request.getSession().getAttribute("loginMember");
-	String bkind = request.getParameter("bkind");
-	String vkind = request.getParameter("vkind");
-	String id = vo.getId();
-%>
 
 <html>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -70,35 +65,14 @@ function sample6_execDaumPostcode() {
 <meta charset="UTF-8">
 <title>구매창</title>
 </head>
-<body class="">
+<body class="content">
 	<%
-		List<BookcartVO> bookcartLists = null;
-		List<VideocartVO> videocartLists = null;
-		List<String> accountLists = null;
-		BookcartVO bookcartList = null;
-		VideocartVO videocartList = null;
-		Member member = null;
+	
 		int number = 0; int number2 = 0;
 		int total = 0; int total2=0;
-		
-		if(session.getAttribute("loginMember")==null){
-			response.sendRedirect("#");
-		}else{
-			BookcartDAO bookprocess = BookcartDAO.getInstance();
-			bookcartLists = bookprocess.getBookCart(id); //서비스구현
-			
-			VideocartDAO videoprocess = VideocartDAO.getInstance();
-			videocartLists = videoprocess.getVideoCart(id);
-			
-			Connection conn = JDBCConnectionPool.getConnection();
-			MemberDao memberprocess = new MemberDao();
-			member = memberprocess.login(conn, id);
-			
-			BuyDAO buyprocess = new BuyDAO();
-			accountLists = buyprocess.getAccount();
 	%>
 		<p>구매 목록</p>
-		<form action="<%=request.getContextPath()%>/bookUpdateForm.jsp">
+		<form name="bookcart">
 		<table border="1px;">
 		<tr>
 			<td width="50">책 번호</td>
@@ -107,41 +81,37 @@ function sample6_execDaumPostcode() {
 			<td width="150">수량</td>
 			<td width="150">금액</td>
 		</tr>	
-		<%
-			for(int i=0; i<bookcartLists.size(); i++){
-			bookcartList = bookcartLists.get(i);	
-		%>
+		<c:forEach items="${book }" var="b"   >
 			<tr>
 			<td width="50"><%= ++ number %></td>
 			<td width="300" align="left">
-			<img src="imageFile/<%=bookcartList.getBimage()%>" border="0" width="30"
+			<img src="imageFile/${b.bimage}" border="0" width="30"
 					height="50" align="middle" alt="bookimg">
-			<%= bookcartList.getBtitle() %>
+			${b.btitle}
 			</td>
 			<td width="100">
-			<%=NumberFormat.getInstance().format(bookcartList.getBprice()) %>
+			${b.bprice}
 			</td>
 			<td width="150">
-			<%=bookcartList.getBuycount() %>
+			${b.buycount}
 			</td>
 			<td width="150">
-			<%total += bookcartList.getBuycount() * bookcartList.getBprice(); %>
-			<%= NumberFormat.getInstance().format(bookcartList.getBuycount() * bookcartList.getBprice()) %>
-			</td>
-			</tr>		
-			<% 
-			}
-			%>
-			<tr>
-			<td colspan="5" align="right">
-			<b>책 구매금액 : <%=NumberFormat.getInstance().format(total) %></b>
+			<c:set var="bprice" value="${bprice+ (b.buycount * b.bprice)}"></c:set>
+			${(b.buycount * b.bprice)}
 			</td>
 			</tr>
-		</table>
+			</c:forEach>
+			</table>		
+			<tr>
+			<td colspan="5" align="right">
+			<b>책 구매금액 : 
+			<c:out value="${bprice}"/>
+			</b>
+			</td>
+			</tr>
+	
 		</form>
-		<%
-		}
-		%>
+		
 		<br>
 		<form>
 		<table border="1px;">
@@ -152,40 +122,39 @@ function sample6_execDaumPostcode() {
 			<td width="150">수량</td>
 			<td width="150">금액</td>
 		</tr>	
-		<%
-			for(int i=0; i<videocartLists.size(); i++){
-				videocartList = videocartLists.get(i);	
-		%>
+			<c:forEach items="${video }" var="v"   >
 			<tr>
 			<td width="50"><%= ++ number2 %></td>
 			<td width="300" align="left">
-			<img src="../imageFile/<%=videocartList.getVimage() %>" 
+			<img src="../imageFile/${v.vimage}" 
 			width="30" height="50" align="middle">
-			<%= videocartList.getVtitle() %>
+			${v.vtitle}
 			</td>
 			<td width="100">
-			<%=NumberFormat.getInstance().format(videocartList.getVprice()) %>
+			${v.vprice}
 			</td>
 			<td width="150">
 			1
 			</td>
 			<td width="150">
-			<%total2 += videocartList.getBuycount() * videocartList.getVprice(); %>
-			<%= NumberFormat.getInstance().format(videocartList.getBuycount() * videocartList.getVprice()) %>
-			</td>
-			</tr>		
-			<% 
-			}
-			%>
-			<tr>
-			<td colspan="5" align="right">
-			<b>영상 구매금액 : <%=NumberFormat.getInstance().format(total2) %></b>
+			${v.vprice}
+			<c:set var="vprice" value="${vprice + v.vprice}"></c:set>
 			</td>
 			</tr>
+			</c:forEach>
+		</table>		
 			<tr>
-			<td colspan="5" align="right"><b>총 금액 :<%=NumberFormat.getInstance().format(total + total2)%></b></td>
-				</tr>
-		</table>
+			<td colspan="5" align="right">
+			<b>영상 구매금액 :
+			<c:out value="${vprice}"/>
+			 </b>
+			</td>
+			</tr>
+			
+				
+		<div>
+		총금액 : <c:out value="${bprice+vprice}"/>
+		</div>
 		</form>
 		<form method="post" action="<%=request.getContextPath() %>/bookbuy">
 			<table border="1px">
@@ -196,31 +165,27 @@ function sample6_execDaumPostcode() {
 			</tr>
 			<tr>
 			<td width="200" height="40" align="center">성명</td>
-			<td width="400" align="left"><%=member.getNickname() %></td>
+			<td width="400" align="left">${member.nickname}</td>
 			</tr>
 			<tr>
 			<td width="200" height="40" align="center">전화번호</td>
-			<td width="400" align="left"><%=member.getTel() %></td>
+			<td width="400" align="left">${member.tel}</td>
 			</tr>
 			<tr>
 			<td width="200" height="40" align="center">주소</td>
-			<td width="400" align="left"><%=member.getAddress1() %></td>
+			<td width="400" align="left">${member.address1}</td>
 			</tr>
 			<tr>
 			<td width="200" height="40" align="left">결제계좌</td>
 			<td width="400" align="left">
 			<select name="account">
-			<%
-			for(int i=0; i<accountLists.size(); i++){
-				String accountList = accountLists.get(i);
-			%>
-			<option value="<%=accountList %>">
-			<%=accountList %>
+			<c:forEach items="${account }" var="a"   >
+			<option value="${a}">
+			${a}
 			</option>
-			<%
-			}
-			%>
+			</c:forEach>			
 			</select>
+			
 			</td>
 			</tr>
 		
@@ -258,7 +223,7 @@ function sample6_execDaumPostcode() {
 			<input type="submit" value="구매하기">
 			<input type="button" value="취소"
 			onclick="javascript:window.location='#'">
-			<input type="hidden" name="buyprice" value="<%= total + total2 %>">
+			<input type="hidden" name="buyprice" value="<">
 			
 			
 			</td>
@@ -267,5 +232,5 @@ function sample6_execDaumPostcode() {
 			
 		</form>
 </body>
+<%@include file="../../view/footer.jsp"%>
 </html>
-<%@include file="../view/footer.jsp"%>
