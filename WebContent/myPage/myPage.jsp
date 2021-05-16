@@ -454,10 +454,10 @@ $(document).ready(function(){
 										if(calcDay >= 2){
 											// 하루종일 일정이 2일 이상일 경우 달력에 표기 시 db 날짜 보다 하루를 더해야 정상출력
 											startDay = moment(e.scheStart).format('YYYY-MM-DD');
-											endDay = moment(e.scheEnd).add(1, 'days').format('YYYY-MM-DD'); 	
+											endDay = moment(e.scheEnd).add(1, 'days').format('YYYY-MM-DD HH:mm'); 	
 										}else{
 											startDay = moment(e.scheStart).format('YYYY-MM-DD');
-											endDay = moment(e.scheEnd).subtract(1, 'minutes').format('YYYY-MM-DD');
+											endDay = moment(e.scheEnd).subtract(1, 'minutes').format('YYYY-MM-DD HH:mm');
 										}
 									}
 									
@@ -522,6 +522,7 @@ $(document).ready(function(){
 								
 			    	        success: function (response) {
 			    	        	console.log(response);
+			    	        	alert("일정 삭제 성공");
 			    	        },
 			    	        error: function(request, status, error ){
 				        		console.log("일정 삭제 실패");
@@ -548,7 +549,7 @@ $(document).ready(function(){
 					
 					if (allDay == true) {
 					    var startRs = moment(start).format('YYYY-MM-DD HH:mm');
-					    var endRs = moment(end).subtract(1, 'days').format('YYYY-MM-DD HH:mm');
+					    var endRs = moment(end).subtract(1, 'minutes').format('YYYY-MM-DD HH:mm');
 					  } else {
 					    startRs = moment(start).format('YYYY-MM-DD HH:mm');
 					    endRs = moment(end).format('YYYY-MM-DD HH:mm');
@@ -568,7 +569,7 @@ $(document).ready(function(){
 					      data: data2,
 					      dataType: "text",
 					      success: function (response) {
-					        alert('수정: ' + start + ' ~ ' + end);
+					        alert('일정 수정 완료');
 					      }
 					    });
 				
@@ -589,7 +590,7 @@ $(document).ready(function(){
 					
 					if (allDay == true) {
 					    var startRs = moment(start).format('YYYY-MM-DD HH:mm');
-					    var endRs = moment(end).subtract(1, 'days').format('YYYY-MM-DD HH:mm');
+					    var endRs = moment(end).subtract(1, 'minutes').format('YYYY-MM-DD HH:mm');
 					  } else {
 					    startRs = moment(start).format('YYYY-MM-DD HH:mm');
 					    endRs = moment(end).format('YYYY-MM-DD HH:mm');
@@ -609,7 +610,7 @@ $(document).ready(function(){
 					      data: data2,
 					      dataType: "text",
 					      success: function (response) {
-					        alert('수정: ' + start + ' ~ ' + end);
+					    	  alert('일정 수정 완료');
 					      }
 					    });
 				} // eventDrop 끝
@@ -698,7 +699,7 @@ $(document).ready(function(){
 			// 모달창 초기화	   		
 	       	editAllDay.prop('checked', true);
 		    editTitle.val('');
-			editType.val('');
+			editType.val('1');
 			editCont.val(''); 
 			
 			//SELECT 색 변경
