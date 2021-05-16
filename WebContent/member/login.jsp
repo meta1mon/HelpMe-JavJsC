@@ -131,7 +131,7 @@ input {
 			<a href="passfind.jsp" id="findpass">비밀번호 찾기</a>
 			<div id="buttonbox">
 				<button type="submit" onclick="return login();" class="darkbutton">로그인하기</button>
-				<button type="button" onclick="location.href='signup.jsp'" class="darkbutton">회원가입</button>
+				<button type="button" onclick="location.href='<%=request.getContextPath()%>/member/signup.jsp'" class="darkbutton">회원가입</button>
 			</div>
 		</form>
 	</div>

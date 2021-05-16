@@ -114,14 +114,12 @@ $(document).ready(function() {
 			<li id="buychart"><a href="#">BUY CHARTS<i class="fa fa-chevron-down"></i></a>
 				<ul>
 					<li><a href="<%=request.getContextPath()%>/realbook">책 실시간 구매 현황</a></li>
-					<li><a href="<%=request.getContextPath()%>/top5book">책 구매 TOP5</a></li>
 					<li><a href="<%=request.getContextPath()%>/realvideo">비디오 실시간 구매 현황</a></li>
-					<li><a href="<%=request.getContextPath()%>/top5video">비디오 구매 TOP5</a></li>
 				</ul>
 			</li>
 			<li id="adminshop"><a href="#">상품 관리<i class="fa fa-chevron-down"></i></a>
 				<ul>
-					<li><a href="<%=request.getContextPath()%>/bookinsert">판매 도서 등록</a></li>
+					<li ><a href="<%=request.getContextPath()%>/bookinsert">판매 도서 등록</a></li>
 					<li><a href="<%=request.getContextPath()%>/booklist">판매 도서 리스트</a></li>
 					<li><a href="<%=request.getContextPath()%>/videoinsert">판매 영상 등록</a></li>
 					<li><a href="<%=request.getContextPath()%>/booklist">판매 영상 리스트</a></li>
@@ -131,12 +129,6 @@ $(document).ready(function() {
 				<ul>
 					<li><a href="<%=request.getContextPath()%>/memberlist">회원 리스트</a></li>
 				</ul>
-			</li>
-			<li id="adminboard"><a href="#">게시글 관리<i class="fa fa-chevron-down"></i></a>
-				<ul>
-					<li><a href="#">질문 게시판</a></li>
-					<li><a href="#">스터디 게시판</a></li>
-				</ul> 
 			</li>
 		</ul>
 	</div>

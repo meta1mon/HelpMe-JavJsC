@@ -76,7 +76,10 @@ int number=0;
 							<input type="hidden" name="bid" value="${b.bid}">
 					</li>
 					</ul>
-					</c:forEach>
+					</form>
+				</div>
+			</center>
+		</c:forEach>
 	
 </div>
 </body>
