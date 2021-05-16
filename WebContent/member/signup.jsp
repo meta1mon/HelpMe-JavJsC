@@ -8,7 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원가입</title>
 <style>
-
 [type='text'], [type='password'] {
 	width: 400px;
 	height: 40px;
@@ -18,12 +17,14 @@
 td {
 	padding: 5px 5px;
 }
+
 tr td:nth-of-type(3) {
 	width: 320px;
 }
 
-tr:nth-of-type(1) td:nth-of-type(3) div, tr:nth-of-type(2) td:nth-of-type(3) div {
-	float:left;
+tr:nth-of-type(1) td:nth-of-type(3) div, tr:nth-of-type(2) td:nth-of-type(3) div
+	{
+	float: left;
 }
 
 table {
@@ -47,7 +48,7 @@ table {
 
 .desc {
 	font-size: 13px;
-	text-align:left;
+	text-align: left;
 }
 
 #btnEnroll {
@@ -73,7 +74,7 @@ table {
 	font-size: 15px;
 }
 
-.findPostCode:hover{
+.findPostCode:hover {
 	color: #1abc9c;
 }
 </style>
@@ -343,25 +344,33 @@ table {
 	<div class="enrollFrm">
 		<h1>회원가입</h1>
 		<form action="<%=request.getContextPath()%>/memberinsert"
-			method="post" style="margin-bottom:20px">
+			method="post" style="margin-bottom: 20px">
 			<table>
 				<tr>
 					<td>아이디<span class="required">(필수)</span></td>
 					<td><input type="text" name="id" id="id"></td>
-					<td><div><span id="idcheck">중복확인</span></div>&nbsp;<div><span class="desc"> 4~15자의 영문자, 숫자만 사용
-							가능합니다.</span></div></td>
+					<td><div>
+							<span id="idcheck">중복확인</span>
+						</div>&nbsp;
+						<div>
+							<span class="desc"> 4~15자의 영문자, 숫자만 사용 가능합니다.</span>
+						</div></td>
 				</tr>
 				<tr>
 					<td>닉네임<span class="required">(필수)</span></td>
 					<td><input type="text" name="nickname" id="nickname"></td>
-					<td><div><span id="nicknamecheck">중복확인</span></div><div><span class="desc"> 1~8자의 한글, 영문자, 숫자만 사용
-							가능합니다.</span></div></td>
+					<td><div>
+							<span id="nicknamecheck">중복확인</span>
+						</div>
+						<div>
+							<span class="desc"> 1~8자의 한글, 영문자, 숫자만 사용 가능합니다.</span>
+						</div></td>
 				</tr>
 				<tr>
 					<td>비밀번호<span class="required">(필수)</span></td>
-					<td><input type="password" name="password1" id="password1" ></td>
-					<td><span class="desc"> 8~15자의 영문자, 숫자,
-							특수문자(!, @, #, $, %, ^, &, *)만 사용 가능합니다.</span></td>
+					<td><input type="password" name="password1" id="password1"></td>
+					<td><span class="desc"> 8~15자의 영문자, 숫자, 특수문자(!, @, #,
+							$, %, ^, &, *)만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인<span class="required">(필수)</span></td>
@@ -381,37 +390,32 @@ table {
 				<tr>
 					<td>비밀번호 답변<span class="required">(필수)</span></td>
 					<td><input type="text" name="passanswer" id="passanswer"></td>
-					<td><span class="desc"> 1~20자의 한글, 영문자, 숫자만
-							사용 가능합니다.</span></td>
+					<td><span class="desc"> 1~20자의 한글, 영문자, 숫자만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>
 					<td>주소<span class="optional">(선택)</span></td>
 					<td><input type="text" id="sample6_postcode" name="postcode"
-						readonly style="margin-bottom: 5px"
-						 ></td>
-					<td style="padding-top: 0px; text-align: left;"><input type="button"
-						onclick="sample6_execDaumPostcode()" value="주소 검색"
+						readonly style="margin-bottom: 5px"></td>
+					<td style="padding-top: 0px; text-align: left;"><input
+						type="button" onclick="sample6_execDaumPostcode()" value="주소 검색"
 						class="findPostCode"></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><input type="text" id="sample6_address" name="address1"
-						readonly style="margin-bottom: 5px"
-						></td>
+						readonly style="margin-bottom: 5px"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><input type="text" id="sample6_detailAddress"
-						name="address2" style="margin-bottom: 5px"
-						></td>
+						name="address2" style="margin-bottom: 5px"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><input type="text" id="sample6_extraAddress"
-						name="address3" readonly style="margin-bottom: 5px"
-						></td>
+						name="address3" readonly style="margin-bottom: 5px"></td>
 					<td></td>
 				</tr>
 				<tr>
@@ -422,18 +426,18 @@ table {
 				<tr>
 					<td>이메일<span class="optional">(선택)</span></td>
 					<td><input type="text" name="email" id="email"></td>
-					<td><span class="desc"> 8~15자의 영문자, 숫자,
-							특수문자(@)만 사용 가능합니다.</span></td>
+					<td><span class="desc"> 8~15자의 영문자, 숫자, 특수문자(@)만 사용
+							가능합니다.</span></td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align:left"><label><input type="checkbox"
-							name="agree" value="1" id="agelimit"> 만 14세 이상 회원가입에
-							동의합니다(필수)</label></td>
+					<td colspan="2" style="text-align: left"><label><input
+							type="checkbox" id="agelimit"> 만 14세 이상 회원가입에 동의합니다(필수)</label></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td colspan="2"  style="text-align:left"><label><input type="checkbox"
-							name="agree" value="2"> 도와줘 잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
+					<td colspan="2" style="text-align: left"><label><input
+							type="checkbox" name="rcvmail" value="1"> 도와줘 잡스씨의 다양한
+							소식을 받아보겠습니다(선택)</label></td>
 					<td></td>
 				</tr>
 				<tr>

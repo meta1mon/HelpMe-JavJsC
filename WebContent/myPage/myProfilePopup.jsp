@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="member.vo.Member"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,7 @@
 				$("nickname").focus();
 				return;
 			}
+
 			$.ajax({
 				url : "<%=request.getContextPath()%>/uniquenickname",
 				type : "post",
@@ -117,11 +119,6 @@
 		var email = $("#email").val().trim();
 		var reg6 = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/g;
 
-		if (!reg1.test(id)) {
-			alert("아이디 형식이 잘못되었습니다");
-			$("#id").focus();
-			return false;
-		}
 		if (!reg2.test(nickname)) {
 			alert("닉네임 형식이 잘못되었습니다");
 			$("#nickname").focus();
@@ -175,12 +172,11 @@
 		if (passequal() == false) {
 			return false;
 		}
-
-		if (idcheck == false) {
-			alert("아이디 중복확인이 필요합니다");
-			return false;
+		
+		if($("#nickname").val().trim() == "${loginMember.nickname}") {
+			nicknamecheck = true;
 		}
-
+		
 		if (nicknamecheck == false) {
 			alert("닉네임 중복확인이 필요합니다");
 			return false;
@@ -354,10 +350,18 @@ tr td:first-child {
 				<td><span class="desc"> 8~15자의 영문자, 숫자, 특수문자(@)만 사용
 						가능합니다.</span></td>
 			</tr>
-			<tr>
-				<td colspan="3"><label><input type="checkbox"
-						name="agree" value="2"> 도와줘~ 잡스!의 다양한 소식을 받아보겠습니다(선택)</label></td>
-			</tr>
+			<c:if test="${loginMember.rcvmail.equals('1') }">
+				<tr>
+					<td colspan="3"><label><input
+							type="checkbox" name="rcvmail" value="1" checked>
+							도와줘 잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
+				</tr>
+			</c:if>
+			<c:if test="${!loginMember.rcvmail.equals('1') }">
+				<td colspan="3"><label><input
+						type="checkbox" name="rcvmail" value="1"> 도와줘
+						잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
+			</c:if>
 			<tr>
 				<td colspan="3"><button type="submit"
 						onclick="return modify();" class="darkbutton">수정 완료</button>

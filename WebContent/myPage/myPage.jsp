@@ -1,5 +1,7 @@
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style/main.css" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style/calendarStyle.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/style/main.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/style/calendarStyle.css" />
 <%@page import="java.util.ArrayList"%>
 <%@page import="board.qna.vo.Qna"%>
 <%@page import="member.vo.Member"%>
@@ -182,7 +184,6 @@ td {
 tr td:first-child {
 	text-align: center;
 }
-
 </style>
 <!-- qlist.jsp의 디자인 -->
 <style>
@@ -779,16 +780,19 @@ $(document).ready(function(){
 </script>
 </head>
 <body class="content">
-	<div style="width: 800px; margin-left:auto; margin-right: auto;">
+	<div style="width: 800px; margin-left: auto; margin-right: auto;">
 		<!-- 이미지 + 닉네임 표시 -->
 		<div class="welcome" style="padding-bottom: 20px;">
-			<div class="picBtn" style="margin-top: 20px; float: left; background-color:white; border: 1px solid white;">
+			<div class="picBtn"
+				style="margin-top: 20px; float: left; background-color: white; border: 1px solid white;">
 				<img class="pic" alt="profilePic"
 					src="<%=request.getContextPath()%>/images/user.png" width="50"
-					height="50" onmouseover="this.src='<%=request.getContextPath()%>/images/userhover2.png'">
+					height="50"
+					onmouseover="this.src='<%=request.getContextPath()%>/images/userhover2.png'">
 			</div>
-			<p style="text-align: left; padding-top: 30px; padding-left: 60px; font-weight: bold;">${loginMember.nickname}님의 마이페이지
-			</p>
+			<p
+				style="text-align: left; padding-top: 30px; padding-left: 60px; font-weight: bold;">${loginMember.nickname}님의
+				마이페이지</p>
 		</div>
 		<!-- 마이 페이지 메인 탭메뉴 -->
 		<div class="onoff tab-main">
@@ -816,7 +820,7 @@ $(document).ready(function(){
 						<tr>
 							<td>비밀번호<span class="required">(필수)</span></td>
 							<td><input type="password" name="password1" id="password1"
-								readonly class="readonly"value="${loginMember.password}"></td>
+								readonly class="readonly" value="${loginMember.password}"></td>
 						</tr>
 						<tr>
 							<td>비밀번호 확인<span class="required">(필수)</span></td>
@@ -828,7 +832,7 @@ $(document).ready(function(){
 							<td><select name="passquestion" id="passquestion"
 								style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif"
 								onFocus='this.initialSelect = this.selectedIndex;'
-								onChange='this.selectedIndex = this.initialSelect;'>
+								onChange='this.selectedIndex = this.initialSelect;' readonly>
 									<option value="0"
 										style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">비밀번호
 										질문을 선택해주세요</option>
@@ -854,42 +858,49 @@ $(document).ready(function(){
 						<tr>
 							<td>주소<span class="optional">(선택)</span></td>
 							<td><input type="text" id="sample6_postcode" name="postcode"
-								style="margin-bottom: 5px"
-								readonly class="readonly" value="${loginMember.postcode}"></td>
+								style="margin-bottom: 5px" readonly class="readonly"
+								value="${loginMember.postcode}"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><input type="text" id="sample6_address" name="address1"
-								style="margin-bottom: 5px"
-								readonly class="readonly" value="${loginMember.address1}"></td>
+								style="margin-bottom: 5px" readonly class="readonly"
+								value="${loginMember.address1}"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><input type="text" id="sample6_detailAddress"
-								name="address2" style="margin-bottom: 5px"
-								readonly class="readonly" value="${loginMember.address2}"></td>
+								name="address2" style="margin-bottom: 5px" readonly
+								class="readonly" value="${loginMember.address2}"></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td><input type="text" id="sample6_extraAddress"
-								name="address3" style="margin-bottom: 5px"
-								readonly class="readonly" value="${loginMember.address3}"></td>
+								name="address3" style="margin-bottom: 5px" readonly
+								class="readonly" value="${loginMember.address3}"></td>
 						</tr>
 						<tr>
 							<td>전화번호<span class="optional">(선택)</span></td>
-							<td><input type="text" name="tel" id="tel"
-								readonly class="readonly" value="${loginMember.tel}"></td>
+							<td><input type="text" name="tel" id="tel" readonly
+								class="readonly" value="${loginMember.tel}"></td>
 						</tr>
 						<tr>
 							<td>이메일<span class="optional">(선택)</span></td>
-							<td><input type="text" name="email" id="email"
-								readonly class="readonly" value="${loginMember.email}"></td>
+							<td><input type="text" name="email" id="email" readonly
+								class="readonly" value="${loginMember.email}"></td>
 						</tr>
-						<tr>
+						<c:if test="${loginMember.rcvmail.equals('1') }">
+							<tr>
+								<td colspan="2" style="text-align: left"><label><input
+										type="checkbox" name="rcvmail" value="1" checked readonly> 도와줘
+										잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
+							</tr>
+						</c:if>
+						<c:if test="${!loginMember.rcvmail.equals('1') }">
 							<td colspan="2" style="text-align: left"><label><input
-									type="checkbox" name="agree" value="2"> 도와줘 잡스씨의 다양한
-									소식을 받아보겠습니다(선택)</label></td>
-						</tr>
+									type="checkbox" name="rcvmail" value="1" readonly> 도와줘
+									잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
+						</c:if>
 						<tr>
 							<td colspan="2"><input type="button" value="수정"
 								class="darkbutton"
@@ -913,8 +924,8 @@ $(document).ready(function(){
 									<table class="modal-tbl">
 										<tr>
 											<td><label for="edit-allDay">하루종일</label></td>
-											<td><input class="allDayEvent" name="scheAllDay" id="edit-allDay"
-												type="checkbox"></td>
+											<td><input class="allDayEvent" name="scheAllDay"
+												id="edit-allDay" type="checkbox"></td>
 										</tr>
 
 										<tr>
@@ -974,7 +985,8 @@ $(document).ready(function(){
 								<button type="button" class="btn btn-primary" id="save-schedule">저장</button>
 							</div>
 							<div class="modal-footer modalBtnContainer-modifySchedule">
-								<button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">닫기</button>
+								<button type="button" class="btn btn-default" id="cancel"
+									data-dismiss="modal">닫기</button>
 								<button type="button" class="btn btn-danger" id="deleteSchedule">삭제</button>
 							</div>
 							<!-- modal-footer 끝 -->
@@ -1013,23 +1025,23 @@ $(document).ready(function(){
 											</tr>
 										</c:if>
 										<c:if test="${qlist.size() != 0 }">
-										<c:forEach items="${qlist }" var='q'>
-											<tr style="border-bottom: 1px solid #eeeeee;">
-												<td style="width: 60px; font-size: 14px;"><a
-													style="font-size: 18px;">${q.qviewcnt }</a><br>조회</td>
-												<td style="width: 60px;"><a style="font-size: 18px;">${q.qlikecnt }</a><br>좋아요</td>
-												<td style="width: 60px;"><a style="font-size: 18px;">${q.rqnacnt }</a><br>답변</td>
-												<td style="text-align: left; width: 450px;"><a
-													href="qnaread?qno=${q.qno}" id="subject">${q.qsubject }</a>
-													<br> <c:choose>
-														<c:when test="${q.qtag ==1}">Java</c:when>
-														<c:when test="${q.qtag ==2}">C</c:when>
-														<c:when test="${q.qtag ==3}">Python</c:when>
-													</c:choose></td>
-												<td><a style="color: #0054FF; text-align: left;">${q.qwriter }</a>
-													<br> <a style="font-size: 13px;">${q.qdate }</a></td>
-											</tr>
-										</c:forEach>
+											<c:forEach items="${qlist }" var='q'>
+												<tr style="border-bottom: 1px solid #eeeeee;">
+													<td style="width: 60px; font-size: 14px;"><a
+														style="font-size: 18px;">${q.qviewcnt }</a><br>조회</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${q.qlikecnt }</a><br>좋아요</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${q.rqnacnt }</a><br>답변</td>
+													<td style="text-align: left; width: 450px;"><a
+														href="qnaread?qno=${q.qno}" id="subject">${q.qsubject }</a>
+														<br> <c:choose>
+															<c:when test="${q.qtag ==1}">Java</c:when>
+															<c:when test="${q.qtag ==2}">C</c:when>
+															<c:when test="${q.qtag ==3}">Python</c:when>
+														</c:choose></td>
+													<td><a style="color: #0054FF; text-align: left;">${q.qwriter }</a>
+														<br> <a style="font-size: 13px;">${q.qdate }</a></td>
+												</tr>
+											</c:forEach>
 										</c:if>
 									</table>
 								</div>
@@ -1045,23 +1057,23 @@ $(document).ready(function(){
 											</tr>
 										</c:if>
 										<c:if test="${slist.size() != 0 }">
-										<c:forEach items="${slist }" var='s'>
-											<tr style="border-bottom: 1px solid #eeeeee;">
-												<td style="width: 60px; font-size: 14px;"><a
-													style="font-size: 18px;">${s.sviewcnt }</a><br>조회</td>
-												<td style="width: 60px;"><a style="font-size: 18px;">${s.slikecnt }</a><br>좋아요</td>
-												<td style="width: 60px;"><a style="font-size: 18px;">${s.rstudycnt }</a><br>답변</td>
-												<td style="text-align: left; width: 450px;"><a
-													href="studyread?sno=${s.sno}" id="subject">${s.ssubject }</a>
-													<br> <c:choose>
-														<c:when test="${s.stag ==1}">Java</c:when>
-														<c:when test="${s.stag ==2}">C</c:when>
-														<c:when test="${s.stag ==3}">Python</c:when>
-													</c:choose></td>
-												<td><a style="color: #0054FF; text-align: left;">${s.swriter }</a>
-													<br> <a style="font-size: 13px;">${s.sdate }</a></td>
-											</tr>
-										</c:forEach>
+											<c:forEach items="${slist }" var='s'>
+												<tr style="border-bottom: 1px solid #eeeeee;">
+													<td style="width: 60px; font-size: 14px;"><a
+														style="font-size: 18px;">${s.sviewcnt }</a><br>조회</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${s.slikecnt }</a><br>좋아요</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${s.rstudycnt }</a><br>답변</td>
+													<td style="text-align: left; width: 450px;"><a
+														href="studyread?sno=${s.sno}" id="subject">${s.ssubject }</a>
+														<br> <c:choose>
+															<c:when test="${s.stag ==1}">Java</c:when>
+															<c:when test="${s.stag ==2}">C</c:when>
+															<c:when test="${s.stag ==3}">Python</c:when>
+														</c:choose></td>
+													<td><a style="color: #0054FF; text-align: left;">${s.swriter }</a>
+														<br> <a style="font-size: 13px;">${s.sdate }</a></td>
+												</tr>
+											</c:forEach>
 										</c:if>
 									</table>
 								</div>
@@ -1080,23 +1092,23 @@ $(document).ready(function(){
 											</tr>
 										</c:if>
 										<c:if test="${rqlist.size() != 0 }">
-										<c:forEach items="${rqlist }" var='r'>
-											<tr style="border-bottom: 1px solid #eeeeee;">
-												<td style="width: 60px; font-size: 14px;"><a
-													style="font-size: 18px;">${r.qviewcnt }</a><br>조회</td>
-												<td style="width: 60px;"><a style="font-size: 18px;">${r.qlikecnt }</a><br>좋아요</td>
-												<td style="width: 60px;"><a style="font-size: 18px;">${r.rqnacnt }</a><br>답변</td>
-												<td style="text-align: left; width: 450px;"><a
-													href="qnaread?qno=${r.qno}" id="subject">${r.qsubject }</a>
-													<br> <c:choose>
-														<c:when test="${r.qtag ==1}">Java</c:when>
-														<c:when test="${r.qtag ==2}">C</c:when>
-														<c:when test="${r.qtag ==3}">Python</c:when>
-													</c:choose></td>
-												<td><a style="color: #0054FF; text-align: left;">${r.qwriter }</a>
-													<br> <a style="font-size: 13px;">${r.qdate }</a></td>
-											</tr>
-										</c:forEach>
+											<c:forEach items="${rqlist }" var='r'>
+												<tr style="border-bottom: 1px solid #eeeeee;">
+													<td style="width: 60px; font-size: 14px;"><a
+														style="font-size: 18px;">${r.qviewcnt }</a><br>조회</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${r.qlikecnt }</a><br>좋아요</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${r.rqnacnt }</a><br>답변</td>
+													<td style="text-align: left; width: 450px;"><a
+														href="qnaread?qno=${r.qno}" id="subject">${r.qsubject }</a>
+														<br> <c:choose>
+															<c:when test="${r.qtag ==1}">Java</c:when>
+															<c:when test="${r.qtag ==2}">C</c:when>
+															<c:when test="${r.qtag ==3}">Python</c:when>
+														</c:choose></td>
+													<td><a style="color: #0054FF; text-align: left;">${r.qwriter }</a>
+														<br> <a style="font-size: 13px;">${r.qdate }</a></td>
+												</tr>
+											</c:forEach>
 										</c:if>
 									</table>
 								</div>
@@ -1112,23 +1124,23 @@ $(document).ready(function(){
 											</tr>
 										</c:if>
 										<c:if test="${rslist.size() != 0 }">
-										<c:forEach items="${rslist }" var='k'>
-											<tr style="border-bottom: 1px solid #eeeeee;">
-												<td style="width: 60px; font-size: 14px;"><a
-													style="font-size: 18px;">${k.sviewcnt }</a><br>조회</td>
-												<td style="width: 60px;"><a style="font-size: 18px;">${k.slikecnt }</a><br>좋아요</td>
-												<td style="width: 60px;"><a style="font-size: 18px;">${k.rstudycnt }</a><br>답변</td>
-												<td style="text-align: left; width: 450px;"><a
-													href="studyread?sno=${k.sno}" id="subject">${k.ssubject }</a>
-													<br> <c:choose>
-														<c:when test="${k.stag ==1}">Java</c:when>
-														<c:when test="${k.stag ==2}">C</c:when>
-														<c:when test="${k.stag ==3}">Python</c:when>
-													</c:choose></td>
-												<td><a style="color: #0054FF; text-align: left;">${k.swriter }</a>
-													<br> <a style="font-size: 13px;">${k.sdate }</a></td>
-											</tr>
-										</c:forEach>
+											<c:forEach items="${rslist }" var='k'>
+												<tr style="border-bottom: 1px solid #eeeeee;">
+													<td style="width: 60px; font-size: 14px;"><a
+														style="font-size: 18px;">${k.sviewcnt }</a><br>조회</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${k.slikecnt }</a><br>좋아요</td>
+													<td style="width: 60px;"><a style="font-size: 18px;">${k.rstudycnt }</a><br>답변</td>
+													<td style="text-align: left; width: 450px;"><a
+														href="studyread?sno=${k.sno}" id="subject">${k.ssubject }</a>
+														<br> <c:choose>
+															<c:when test="${k.stag ==1}">Java</c:when>
+															<c:when test="${k.stag ==2}">C</c:when>
+															<c:when test="${k.stag ==3}">Python</c:when>
+														</c:choose></td>
+													<td><a style="color: #0054FF; text-align: left;">${k.swriter }</a>
+														<br> <a style="font-size: 13px;">${k.sdate }</a></td>
+												</tr>
+											</c:forEach>
 										</c:if>
 									</table>
 								</div>
@@ -1136,7 +1148,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</div>
-			<!-- 탭4 구매한 영상 목록 -->
+				<!-- 탭4 구매한 영상 목록 -->
 				<div class="cont">
 					<p>수정중</p>
 				</div>
@@ -1161,9 +1173,10 @@ $(document).ready(function(){
 		};
 
 	function myrslist() {
-		window.open("<%=request.getContextPath()%>/myrslist", "myRstudy", "width=1000px, height=500px, resizable = no, left= 100, top=100");
+		window.open("<%=request.getContextPath()%>/myrslist", "myRstudy",
+							"width=1000px, height=500px, resizable = no, left= 100, top=100");
 
-	};
+		};
 	</script>
 </body>
 </html>

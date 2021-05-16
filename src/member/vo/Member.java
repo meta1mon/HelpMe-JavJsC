@@ -13,11 +13,12 @@ public class Member {
 	private String address3;
 	private String tel;
 	private String email;
+	private String rcvmail;
 	    
 	public Member() {}
 
 	public Member(String id, String nickname, String password, String passquestion, String passanswer, String regdate,
-			String postcode, String address1, String address2, String address3, String tel, String email) {
+			String postcode, String address1, String address2, String address3, String tel, String email, String rcvmail) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -31,6 +32,7 @@ public class Member {
 		this.address3 = address3;
 		this.tel = tel;
 		this.email = email;
+		this.rcvmail = rcvmail;
 	}
 
 	public String getId() {
@@ -129,13 +131,13 @@ public class Member {
 		this.email = email;
 	}
 
-	@Override
-	public String toString() {
-		return "Member [id=" + id + ", nickname=" + nickname + ", password=" + password + ", passquestion="
-				+ passquestion + ", passanswer=" + passanswer + ", regdate=" + regdate + ", postcode=" + postcode
-				+ ", address1=" + address1 + ", address2=" + address2 + ", address3=" + address3 + ", tel=" + tel
-				+ ", email=" + email + "]";
+	public String getRcvmail() {
+		return rcvmail;
 	}
-	
+
+	public void setRcvmail(String rcvmail) {
+		this.rcvmail = rcvmail;
+	}
+
 	
 }

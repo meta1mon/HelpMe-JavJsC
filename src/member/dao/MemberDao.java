@@ -14,9 +14,9 @@ public class MemberDao {
 
 // 회원 전체 불러오기
 	public ArrayList<Member> getMember(Connection conn, int start, int end, String search) {
-		
+
 		ArrayList<Member> list = null;
-	// 최신 회원 가입 순으로 정렬
+		// 최신 회원 가입 순으로 정렬
 		String sql = "select * from member order by regdate desc";
 		if (search != null) {
 			sql = "select * from member where id like '%" + search + "%' or nickname like '%" + search
@@ -30,7 +30,7 @@ public class MemberDao {
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			rs = pstmt.executeQuery();
-			
+
 			if (rs.next()) {
 				list = new ArrayList<Member>();
 				do {
@@ -47,6 +47,7 @@ public class MemberDao {
 					vo.setAddress3(rs.getString("address3"));
 					vo.setTel(rs.getString("tel"));
 					vo.setEmail(rs.getString("email"));
+					vo.setRcvmail(rs.getString("rcvmail"));
 					list.add(vo);
 				} while (rs.next());
 				return list;
@@ -65,10 +66,10 @@ public class MemberDao {
 	public Member selectSearch(Connection conn, String str, int tag) {
 		Member vo = null;
 		String sql = "";
-		if(tag == 1) { // 회원 검색 기준이 아이디
+		if (tag == 1) { // 회원 검색 기준이 아이디
 			sql = "select * from member where id like '%" + str + "%'";
-		} else if(tag == 2) { // 회원 검색 기준이 닉네임
-			sql = "select * from member where nickname like '%" + str + "%'";			
+		} else if (tag == 2) { // 회원 검색 기준이 닉네임
+			sql = "select * from member where nickname like '%" + str + "%'";
 		} else {
 			System.out.println("회원 검색 시, 문제 발생함");
 		}
@@ -92,6 +93,7 @@ public class MemberDao {
 					vo.setAddress3(rs.getString("address3"));
 					vo.setTel(rs.getString("tel"));
 					vo.setEmail(rs.getString("email"));
+					vo.setRcvmail(rs.getString("rcvmail"));
 				}
 			}
 		} catch (SQLException e) {
@@ -107,7 +109,7 @@ public class MemberDao {
 	public int insert(Connection conn, Member vo) {
 		int result = 0;
 
-		String sql = "insert into member values(?, ?, ?, ?, ?, to_char(sysdate, 'YYYY-MM-DD HH:MI:SS'), ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into member values(?, ?, ?, ?, ?, to_char(sysdate, 'YYYY-MM-DD HH:MI:SS'), ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -121,6 +123,8 @@ public class MemberDao {
 			pstmt.setString(9, vo.getAddress3());
 			pstmt.setString(10, vo.getTel());
 			pstmt.setString(11, vo.getEmail());
+			pstmt.setString(12, vo.getRcvmail());
+			System.out.println(vo.getRcvmail() + "dao 안에서 값 적용되는가?");
 			result = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -133,7 +137,7 @@ public class MemberDao {
 	}
 
 	// 회원 정보 변경
-	public int update(Connection conn, String originNick, Member vo) {
+	public int update(Connection conn, String originNick, Member vo) throws SQLException {
 		int result = 0;
 // 닉네임 바뀌면 자기가 썼던 게시글과 댓글의 작성자도 바뀌게 하기
 		String sql1 = "update qna set qwriter = ? where qwriter = ?";
@@ -141,53 +145,56 @@ public class MemberDao {
 		String sql3 = "update study set swriter = ? where swriter = ?";
 		String sql4 = "update rstudy set rswriter = ? where rswriter = ?";
 
-		String sql = "update member set nickname = ? , password = ? , passquestion = ? , passanswer = ? , postcode = ? , address1 = ? , address2 = ? , address3 = ? , tel = ? , email = ? where id = ?";
+		String sql = "update member set nickname = ? , password = ? , passquestion = ? , passanswer = ? , postcode = ? , address1 = ? , address2 = ? , address3 = ? , tel = ? , email = ?, rcvmail = ? where id = ?";
 
 		try {
-			pstmt = conn.prepareStatement(sql1);
-			pstmt.setString(1, vo.getNickname());
-			pstmt.setString(2, originNick);
-			result = pstmt.executeUpdate();
-			if(result > 0) {
-				System.out.println("qna 글 작성자 변경 완료");
-			} else {
-				System.out.println("qna에 작성된 글이 없음 ");
+			if (!originNick.equals(vo.getNickname())) {
+
+				pstmt = conn.prepareStatement(sql1);
+				pstmt.setString(1, vo.getNickname());
+				pstmt.setString(2, originNick);
+				result = pstmt.executeUpdate();
+				if (result > 0) {
+					System.out.println("qna 글 작성자 변경 완료");
+				} else {
+					System.out.println("qna에 작성된 글이 없음 ");
+				}
+				close(pstmt);
+
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setString(1, vo.getNickname());
+				pstmt.setString(2, originNick);
+				result = pstmt.executeUpdate();
+				if (result > 0) {
+					System.out.println("qna 댓글 작성자 변경 완료");
+				} else {
+					System.out.println("qna에 작성된 댓글이 없음 ");
+				}
+				close(pstmt);
+
+				pstmt = conn.prepareStatement(sql3);
+				pstmt.setString(1, vo.getNickname());
+				pstmt.setString(2, originNick);
+				result = pstmt.executeUpdate();
+				if (result > 0) {
+					System.out.println("study 글 작성자 변경 완료");
+				} else {
+					System.out.println("study에 작성된 글이 없음 ");
+				}
+				close(pstmt);
+
+				pstmt = conn.prepareStatement(sql4);
+				pstmt.setString(1, vo.getNickname());
+				pstmt.setString(2, originNick);
+				result = pstmt.executeUpdate();
+				if (result > 0) {
+					System.out.println("study 댓글 작성자 변경 완료");
+				} else {
+					System.out.println("study에 작성된 댓글이 없음 ");
+				}
+				close(pstmt);
+
 			}
-			close(pstmt);
-			
-			pstmt = conn.prepareStatement(sql2);
-			pstmt.setString(1, vo.getNickname());
-			pstmt.setString(2, originNick);
-			result = pstmt.executeUpdate();
-			if(result > 0) {
-				System.out.println("qna 댓글 작성자 변경 완료");
-			} else {
-				System.out.println("qna에 작성된 댓글이 없음 ");
-			}
-			close(pstmt);
-			
-			pstmt = conn.prepareStatement(sql3);
-			pstmt.setString(1, vo.getNickname());
-			pstmt.setString(2, originNick);
-			result = pstmt.executeUpdate();
-			if(result > 0) {
-				System.out.println("study 글 작성자 변경 완료");
-			} else {
-				System.out.println("study에 작성된 글이 없음 ");
-			}
-			close(pstmt);
-			
-			pstmt = conn.prepareStatement(sql4);
-			pstmt.setString(1, vo.getNickname());
-			pstmt.setString(2, originNick);
-			result = pstmt.executeUpdate();
-			if(result > 0) {
-				System.out.println("study 댓글 작성자 변경 완료");
-			} else {
-				System.out.println("study에 작성된 댓글이 없음 ");
-			}
-			close(pstmt);
-			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getNickname());
 			pstmt.setString(2, vo.getPassword());
@@ -199,10 +206,9 @@ public class MemberDao {
 			pstmt.setString(8, vo.getAddress3());
 			pstmt.setString(9, vo.getTel());
 			pstmt.setString(10, vo.getEmail());
-			pstmt.setString(11, vo.getId());
+			pstmt.setString(11, vo.getRcvmail());
+			pstmt.setString(12, vo.getId());
 			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
@@ -227,7 +233,7 @@ public class MemberDao {
 
 		return result;
 	}
-	
+
 // 로그인
 	public Member login(Connection conn, String id) {
 
@@ -255,6 +261,7 @@ public class MemberDao {
 					vo.setAddress3(rs.getString("address3"));
 					vo.setTel(rs.getString("tel"));
 					vo.setEmail(rs.getString("email"));
+					vo.setRcvmail(rs.getString("rcvmail"));
 				}
 
 			}

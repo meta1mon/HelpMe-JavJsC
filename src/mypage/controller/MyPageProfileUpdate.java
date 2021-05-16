@@ -2,6 +2,7 @@ package mypage.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,17 +57,29 @@ public class MyPageProfileUpdate extends HttpServlet {
 		String address3 = request.getParameter("address3");
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
-		
-		Member vo2 = new Member(id, newNick, password1, passquestion, passanswer, null, postcode, address1, address2, address3, tel, email);
-		int result = new MemberService().update(originNick, vo2);
+		String rcvmail = null;
+		if(request.getParameter("rcvmail") == null) { // 이메일 수신 체크 안함
+			rcvmail = "0";
+		} else { // 이메일 수신 체크함
+			rcvmail = request.getParameter("rcvmail");
+		}
+		Member vo2 = new Member(id, newNick, password1, passquestion, passanswer, null, postcode, address1, address2, address3, tel, email, rcvmail);
+		int result = 0;
+		try {
+			result = new MemberService().update(originNick, vo2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		PrintWriter out = response.getWriter();
 		if(result > 0) {
 			out.println("<script>alert('수정 완료!');</script>");
 			request.getSession().removeAttribute("loginMember");
 			request.getSession().setAttribute("loginMember", vo2);
+			System.out.println("수정 성공" + result);
 		} else {
 			out.println("<script>alert('수정 실패!')</script>");
+			System.out.println("수정 실패" + result);
 		}
 		out.print("<script>window.opener.parent.location.reload();</script>");
 		out.print("<script>window.close();</script>");

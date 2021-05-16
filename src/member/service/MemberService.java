@@ -3,6 +3,7 @@ package member.service;
 import static common.jdbc.JDBCConnectionPool.*;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import member.dao.MemberDao;
@@ -35,7 +36,7 @@ public class MemberService {
 		return result;
 	}
 	
-	public int update(String originNick, Member vo) {
+	public int update(String originNick, Member vo) throws SQLException {
 		Connection conn = getConnection();
 		int result = new MemberDao().update(conn, originNick, vo);
 		if (result > 0) {

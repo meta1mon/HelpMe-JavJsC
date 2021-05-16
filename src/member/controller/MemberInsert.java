@@ -49,8 +49,14 @@ public class MemberInsert extends HttpServlet {
 		String address3 = request.getParameter("address3");
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
-		
-		Member vo = new Member(id, nickname, password1, passquestion, passanswer, null, postcode, address1, address2, address3, tel, email);
+		String rcvmail = null;
+		if(request.getParameter("rcvmail") == null) { // 이메일 수신 체크를 안했다면
+			rcvmail = "0";
+		} else { // 이메일 수신 체크를 했다면
+			rcvmail = request.getParameter("rcvmail");
+		}
+		System.out.println(rcvmail + "rcvmail 동의여부 회원 가입 시.");
+		Member vo = new Member(id, nickname, password1, passquestion, passanswer, null, postcode, address1, address2, address3, tel, email, rcvmail);
 		int result = new MemberService().insert(vo);
 		
 		PrintWriter out = response.getWriter();
