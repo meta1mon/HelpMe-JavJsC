@@ -1,9 +1,4 @@
-<%@page import="shop.DAO.ShopvideoDAO"%>
-<%@page import="shop.VO.VideoVO"%>
-<%@page import="shop.DAO.BookcartDAO"%>
 <%@page import="java.text.NumberFormat"%>
-<%@page import="shop.DAO.ShopBookDAO"%>
-<%@page import="shop.VO.ShopBookVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

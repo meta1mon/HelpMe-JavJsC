@@ -1,7 +1,4 @@
 <%@page import="java.text.NumberFormat"%>
-<%@page import="shop.DAO.ShopBookDAO"%>
-<%@page import="shop.VO.ShopBookVo"%>
-<%@page import="shop.VO.VideoVO"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

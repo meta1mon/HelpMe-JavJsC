@@ -1,5 +1,4 @@
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="board.qna.dao.QnaDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,7 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JSP 게시판 웹 사이트</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 
@@ -266,7 +264,7 @@ hr {
 </head>
 <%@include file="../../view/header.jsp"%>
 <body class="content">
-	<div style="width: 800px; margin: 0 auto 0 auto; color:#7E7E7E;">
+	<div style="width: 840px; margin: 0 auto 0 auto; color: #99ADB6; background:#ffffff; padding:20px; border-radius: 4px;">
 		<div class="qna">Q&A 게시판</div><br>
 		<table id="table">
 			<tr>
@@ -332,13 +330,12 @@ hr {
 		<c:if test="${reply != null}">
 			<c:forEach items="${reply }" var="r">
 					<div id="rlike">
-						<img src="<%=request.getContextPath() %>/images/like.png"
-							onclick="rqlike(${r.rqno})" style="cursor: pointer;"> <br>
+						<img src="<%=request.getContextPath() %>/images/like.png" onclick="rqlike(${r.rqno})" style="cursor: pointer;"> <br>
 						${r.rqlikecnt }
 					</div>
 					<div id="rcontent">${r.rqwriter}<br>${r.rqcontent }
 						<div style="float: right;">
- 						<c:if test="${loginMember.id == r.rqwriter}">
+ 						<c:if test="${loginMember.nickname == r.rqwriter}">
 							<button type="button" id="update"
 								onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', '_blank')">수정</button>
 							<button type="button" id="delete"
@@ -373,7 +370,13 @@ hr {
 	</div>
 	<script>
 	function open_win(url, name){
-		window.open(url, name, "width=1000px, height=500px, resizable = no, left= 100, top=100");
+		var popupX = (window.screen.width/2) - (200/2);
+		// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+		var popupY= (window.screen.height/2) - (300/2);
+		// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+
+		window.open(url, name, "width=555px, height=500px, resizable = no, left='+ popupX + ', top='+ popupY");
 	};
 	
 	function qlike() {
@@ -421,9 +424,7 @@ hr {
 			});
 		}
 	}
-</script>
 
-	<script>
 	function show()
 	{
 		var pmt = ('수정 시 첨부한 파일은 삭제됩니다.');

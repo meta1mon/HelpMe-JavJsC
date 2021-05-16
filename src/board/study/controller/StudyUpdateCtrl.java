@@ -59,21 +59,21 @@ public class StudyUpdateCtrl extends HttpServlet {
 
 
 		Study vo = new Study();
+
 		// 파일 첨부 기능
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
 		int maxSize = 10 * 1024 * 1024; // 파일 크기 10M 제한
 		String encType = "UTF-8";
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		String saveDirectory = getServletContext().getRealPath("/board/study/files"); // 파일 저장 경로
+
+		String saveDirectory = getServletContext().getRealPath("/board/qna/files"); // 파일 저장 경로
 		System.out.println(saveDirectory);
 
 		if (!ServletFileUpload.isMultipartContent(request))
 			response.sendRedirect("view/error/Error.jsp");
 
 		File path = new File(saveDirectory);
-		String root = getServletContext().getRealPath("/");
 		if (!path.exists()) {
 			path.mkdirs(); // 해당 경로에 파일을 저장하는 폴더가 없으면 생성해줌.
 		}
@@ -94,18 +94,17 @@ public class StudyUpdateCtrl extends HttpServlet {
 			fileName = mReq.getFilesystemName(file);
 
 			File f1 = mReq.getFile(file);
-			if (f1 == null) { // 업로드 실패 시
+			if (f1 == null || f1.equals("")) { // 업로드 실패 시
 				System.out.println("파일 업로드 실패");
+				continue;
 			} else { // 업로드 성공 시
+				fileNames += fileName + ",";// 다중 파일들을 db에 넣을 때 뒤에 쉼표를 찍어서 넣는다.
 				System.out.println("파일 업로드 성공");
+				vo.setSfilepath(fileNames);
 			}
-			fileNames += fileName + ",";// 다중 파일들을 db에 넣을 때 뒤에 쉼표를 찍어서 넣는다.
+
 		}
 
-		if (!fileNames.equals("")) {
-			System.out.println("fileNames: " + fileNames);
-			vo.setSfilepath(fileNames);
-		} // 초기화
 		if (fileNames.length() > 1800) {
 			System.out.println("DBfilename 크기보다 큽니다.");
 		}

@@ -12,6 +12,7 @@
 	width: 400px;
 	height: 40px;
 	font-size: 17px;
+	padding-left: 10px;
 }
 
 td {
@@ -151,10 +152,10 @@ table {
 
 			if (pass1 == pass2) {
 				$("#passcheck").text("비밀번호가 일치합니다.");
-				$("#passcheck").css("color", "blue").css("font-size", "1px");
+				$("#passcheck").css("color", "blue").css("font-size", "15px");
 			} else {
 				$("#passcheck").text("비밀번호가 일치하지 않습니다.");
-				$("#passcheck").css("color", "red").css("font-size", "1px");
+				$("#passcheck").css("color", "red").css("font-size", "15px");
 			}
 		});
 	});
@@ -292,7 +293,12 @@ table {
 			alert("닉네임 중복확인이 필요합니다");
 			return false;
 		}
-
+		
+		if(($("[name='rcvmail']").is(":checked") == true) && ($("#email").val().trim() == "")) {
+			alert("소식을 전달 받을 이메일 주소를 입력해주세요");
+			$("#email").focus();
+			return false;
+		}
 		// 다 충족 되었다면
 		return true;
 	};
@@ -369,17 +375,19 @@ table {
 				<tr>
 					<td>비밀번호<span class="required">(필수)</span></td>
 					<td><input type="password" name="password1" id="password1"></td>
-					<td><span class="desc"> 8~15자의 영문자, 숫자, 특수문자(!, @, #,
-							$, %, ^, &, *)만 사용 가능합니다.</span></td>
+					<td><span class="desc" style="float: left;"> 8~15자의
+							영문자, 숫자, <br>특수문자 (!, @, #, $, %, ^, &, *)만 사용 가능합니다.
+					</span></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인<span class="required">(필수)</span></td>
 					<td><input type="password" name="password2" id="password2"></td>
-					<td><span id="passcheck"></span></td>
+					<td><span id="passcheck" style="float: left;"></span></td>
 				</tr>
 				<tr>
 					<td>비밀번호 질문<span class="required">(필수)</span></td>
-					<td><select name="passquestion" id="passquestion">
+					<td><select name="passquestion" id="passquestion"
+						style="padding-left: 10px; background-color: rgba(255, 255, 255, 0.5);">
 							<option value="0">비밀번호 질문을 선택해주세요</option>
 							<option value="1">첫 수학여행 장소는?</option>
 							<option value="2">가장 친한 친구의 이름은?</option>
@@ -390,7 +398,8 @@ table {
 				<tr>
 					<td>비밀번호 답변<span class="required">(필수)</span></td>
 					<td><input type="text" name="passanswer" id="passanswer"></td>
-					<td><span class="desc"> 1~20자의 한글, 영문자, 숫자만 사용 가능합니다.</span></td>
+					<td><span class="desc" style="float: left;"> 1~20자의 한글,
+							영문자, 숫자만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>
 					<td>주소<span class="optional">(선택)</span></td>
@@ -421,24 +430,23 @@ table {
 				<tr>
 					<td>전화번호<span class="optional">(선택)</span></td>
 					<td><input type="text" name="tel" id="tel"></td>
-					<td><span class="desc"> 10~13자의 숫자만 사용 가능합니다.</span></td>
+					<td><span class="desc" style="float: left;"> 10~13자의
+							숫자만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>
 					<td>이메일<span class="optional">(선택)</span></td>
 					<td><input type="text" name="email" id="email"></td>
-					<td><span class="desc"> 8~15자의 영문자, 숫자, 특수문자(@)만 사용
-							가능합니다.</span></td>
+					<td><span class="desc" style="float: left;"> 8~15자의
+							영문자, 숫자, @만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: left"><label><input
+					<td colspan="3" style="text-align: center"><label><input
 							type="checkbox" id="agelimit"> 만 14세 이상 회원가입에 동의합니다(필수)</label></td>
-					<td></td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: left"><label><input
+					<td colspan="3" style="text-align: center"><label><input
 							type="checkbox" name="rcvmail" value="1"> 도와줘 잡스씨의 다양한
 							소식을 받아보겠습니다(선택)</label></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="submit" value="회원가입"

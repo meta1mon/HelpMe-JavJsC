@@ -20,11 +20,14 @@ input{
 	width: 400px;
 	height: 40px;
 	font-size: 17px;
+	padding-left: 10px;
 }
 
 select {
-	width: 408px;
+	width: 400px;
 	height: 40px;
+	background-color:rgba(255, 255, 255, 0.5);
+	padding-left: 10px;
 }
 
 span {
@@ -105,7 +108,7 @@ span {
 				</select></td>
 			</tr>
 			<tr>
-				<td><div><span id="passanswercheck"> </span></div><br><input type="text" name="passanswer" placeholder="답변을 입력해주세요" id="passanswer"></td>
+				<td><div><span id="passanswercheck"> </span></div><br><input type=text name="passanswer" placeholder="답변을 입력해주세요" id="passanswer"></td>
 			</tr>
 			<tr>
 				<td><button type="submit" onclick="return findPass();" >비밀번호 찾기</button></td>

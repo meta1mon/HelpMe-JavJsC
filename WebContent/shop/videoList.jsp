@@ -1,5 +1,3 @@
-<%@page import="shop.DAO.ShopvideoDAO"%>
-<%@page import="shop.VO.VideoVO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

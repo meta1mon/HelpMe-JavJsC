@@ -375,7 +375,7 @@ $(document).ready(function(){
 			},
 			handleWindowResize: true,
 			dayMaxEvents: false,
-			displayEventTime: true,
+			displayEventTime: false,
 			displayEventEnd: false,
 			eventDisplay: 'block',
 			eventTimeFormat: 
@@ -507,7 +507,7 @@ $(document).ready(function(){
 			
 			eventClick : function(arg) {
 				
-				if(!confirm('일정을 지우시겠습니까?')){
+				if(!confirm('일정을 지우시겠습니까? 확인: 일정 삭제, 취소: 상세 일정 확인')){
 					//모달창 open
 					checkSchedule(arg.event);
 				}else{
@@ -732,6 +732,12 @@ $(document).ready(function(){
 			modalTitle.html('일정 확인');
 		    editTitle.val(event.title);
 		    
+		    if(event.allDay == true){
+			    editAllDay.prop('checked', true);
+		    } else {
+			    editAllDay.prop('checked', false);
+		    }
+
 		    if(editAllDay.is(':checked')){
 		    	editStart.val(moment(event.start).format('YYYY-MM-DD HH:mm'));
 		    	editEnd.val(moment(event.end).subtract(1, 'minutes').format('YYYY-MM-DD HH:mm'));
@@ -747,11 +753,6 @@ $(document).ready(function(){
 		    editCont.val(event._def.extendedProps.content);
 		    console.log(event._def.extendedProps.content);
 		    
-		    if(event.allDay == true){
-			    editAllDay.prop('checked', true);
-		    } else {
-			    editAllDay.prop('checked', false);
-		    }
 
 		    
 		    if(modifyBtnContainer.css("display") == "none"){
@@ -921,7 +922,7 @@ $(document).ready(function(){
 							<td><select name="passquestion" id="passquestion"
 								style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif"
 								onFocus='this.initialSelect = this.selectedIndex;'
-								onChange='this.selectedIndex = this.initialSelect;' readonly>
+								onChange='this.selectedIndex = this.initialSelect;'>
 									<option value="0"
 										style="font-family: 'GmarketSansMedium', 'GmarketSansMedium', serif">비밀번호
 										질문을 선택해주세요</option>
@@ -981,13 +982,13 @@ $(document).ready(function(){
 						<c:if test="${loginMember.rcvmail.equals('1') }">
 							<tr>
 								<td colspan="2" style="text-align: left"><label><input
-										type="checkbox" name="rcvmail" value="1" checked readonly> 도와줘
+										type="checkbox" name="rcvmail" value="1" checked disabled="disabled"> 도와줘
 										잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
 							</tr>
 						</c:if>
 						<c:if test="${!loginMember.rcvmail.equals('1') }">
 							<td colspan="2" style="text-align: left"><label><input
-									type="checkbox" name="rcvmail" value="1" readonly> 도와줘
+									type="checkbox" name="rcvmail" value="1"  disabled="disabled"> 도와줘
 									잡스씨의 다양한 소식을 받아보겠습니다(선택)</label></td>
 						</c:if>
 						<tr>

@@ -1,8 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.NumberFormat"%>
-<%@page import="shop.DAO.BuyDAO"%>
-<%@page import="shop.VO.BuyVO"%>
 <%@page import="java.util.List"%>
 <%@page import="member.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

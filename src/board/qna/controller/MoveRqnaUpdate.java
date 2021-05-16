@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.qna.service.QnaService;
 import board.qna.service.RqnaService;
-import board.qna.vo.Qna;
 import board.qna.vo.Rqna;
 
 /**
