@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>admin login</title>
+<title>도와줘 잡스씨 관리자</title>
 <style>
 <%@include file="../style/admin.css"%>
 </style>

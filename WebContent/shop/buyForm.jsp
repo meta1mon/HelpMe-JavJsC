@@ -63,7 +63,6 @@ function sample6_execDaumPostcode() {
 
 <head>
 <meta charset="UTF-8">
-<title>구매창</title>
 <style>
 <%@include file="../style/shop3.css"%>
 </style>

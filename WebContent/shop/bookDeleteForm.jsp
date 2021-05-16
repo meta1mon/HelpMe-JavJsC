@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>책 삭제</title>
 </head>
 <body>
 	<p>책 삭제</p>

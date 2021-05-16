@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>도와줘 잡스씨 관리자</title>
 <%@include file="../admin/adminAside.jsp" %>
 <script>
 $(document).ready(function(){

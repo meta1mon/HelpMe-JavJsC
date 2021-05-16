@@ -312,10 +312,12 @@ hr {
                     </c:if>
 								<br>
 							</c:forTokens>
-							<c:if test="${loginMember.nickname == review.rwriter}">
+							<c:if test="${(loginMember.nickname == review.rwriter) || (loginMember.nickname == '관리자')}">
 								<button type="button" id="delete"
 									onclick="location.href='<%=request.getContextPath()%>/reviewdelete?rno=${review.rno }'"
 									style="float: right;">삭제</button>
+							</c:if>
+							<c:if test="${(loginMember.nickname == review.rwriter)}">
 								<button type="button" id="update"
 									onclick="location.href='<%=request.getContextPath()%>/movereviewupdate?rno=${review.rno }'"
 									style="float: right;">수정</button>
@@ -338,6 +340,8 @@ hr {
  						<c:if test="${loginMember.nickname == r.rrwriter}">
 							<button type="button" id="update"
 								onclick="open_win('<%=request.getContextPath()%>/moverreviewupdate?rrno=${r.rrno }', '_blank')">수정</button>
+						</c:if>
+						<c:if test="${(loginMember.nickname == r.rrwriter) || (loginMember.nickname == '관리자')}">
 							<button type="button" id="delete"
 								onclick="location.href='<%=request.getContextPath()%>/rreviewdelete?rrno=${r.rrno }&rno=${r.rno }'">삭제</button>
  						</c:if>

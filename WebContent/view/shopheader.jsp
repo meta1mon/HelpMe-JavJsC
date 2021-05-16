@@ -5,9 +5,6 @@
 <%@include file="../style/common2.css" %>
 <%@include file="../style/header.css" %>
 </style>
-<title>
-	구해줘! 잡스
-</title>
 <body>
 <div class="header">
 	<div class="header-content">

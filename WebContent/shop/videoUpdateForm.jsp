@@ -12,7 +12,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
 <meta charset="UTF-8">
-<title>책 수정하기</title>
 <script>
 	$.datepicker.setDefaults({
 		dateFormat : 'yy-mm-dd',

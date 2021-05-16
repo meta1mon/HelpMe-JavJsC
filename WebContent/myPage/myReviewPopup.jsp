@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>도와줘 잡스씨</title>
+
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <style>
@@ -96,7 +98,6 @@
     text-decoration: none;
 	}
 </style>
-<title>Insert title here</title>
 </head>
 <body>
 		<table id="table" style="border:1;">

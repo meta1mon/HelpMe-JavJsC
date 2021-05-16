@@ -44,7 +44,6 @@ public class RqnaDeleteCtrl extends HttpServlet {
 
 	private void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("들어는 옴");
 		int rqno = Integer.parseInt(request.getParameter("rqno"));
 		int qno = Integer.parseInt(request.getParameter("qno"));
 		int result = 0;

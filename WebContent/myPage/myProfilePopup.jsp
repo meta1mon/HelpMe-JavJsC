@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>도와줘 잡스씨</title>
+
 <style></style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script

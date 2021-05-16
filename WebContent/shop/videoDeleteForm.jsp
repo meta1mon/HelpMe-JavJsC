@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>영상 삭제</title>
 </head>
 <body>
 	<p>영상 삭제</p>
