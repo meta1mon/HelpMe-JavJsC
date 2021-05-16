@@ -34,11 +34,11 @@ $(document).ready(function(){
 		<img alt="logo" src="<%=request.getContextPath() %>/images/logo.png" width="128" height="80" id="logo">
 		</a>
 		<div class="nav">
-			<a href="<%=request.getContextPath()%>/qnalist">질문방</a> 
-			<a href="<%=request.getContextPath()%>/studylist">스터디방</a> 
-			<a href="<%=request.getContextPath()%>/reviewlist">리뷰방</a> 
-			 <a href="<%=request.getContextPath()%>/shopmain">쇼핑방</a> 
-			<a href="<%=request.getContextPath()%>/rccalendar">공채캘린더</a>
+			<a href="<%=request.getContextPath()%>/qnalist">질문</a> 
+			<a href="<%=request.getContextPath()%>/studylist">스터디</a> 
+			<a href="<%=request.getContextPath()%>/reviewlist">리뷰</a> 
+			 <a href="<%=request.getContextPath()%>/shopmain">쇼핑</a> 
+			<a href="<%=request.getContextPath()%>/rccalendar">공채 캘린더</a>
 			<a href="" id="aboutusBtn">자사소개</a>
 		</div>
 
