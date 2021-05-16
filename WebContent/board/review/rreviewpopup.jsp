@@ -9,6 +9,8 @@
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 <style>
+
+	<%@include file="../../style/common.css" %>
 .ck.ck-editor {
 	max-width: 500px;
 	min-width: 500px;
@@ -94,13 +96,14 @@ body {
 		<td><input type="hidden" name="rrno" value="${rreview.rrno }"></td>
 		<td><textarea id="editor" name="rrcontent" maxlength="4000">${rreview.rrcontent }</textarea></td>
 		<td><button type="submit" id="submit">수정</button></td> 
-		<input type="button" value="취소" id="cancel" onclick="close();">
+		<input type="button" value="취소" id="cancel" name="cancel">
 		</div>
 	</form>
 
 	<script>
-	function close() {
-	}
+	$("input[name='cancel']").on("click", function(e) { //삭제 버튼
+		window.close();
+	});
 						    ClassicEditor
 						        .create( document.querySelector( '#editor' ), {
 						            cloudServices: {

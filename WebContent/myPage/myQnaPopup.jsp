@@ -23,7 +23,7 @@
 	width: 800px;
 	margin: 0 auto 100px auto;
 	border-collapse: collapse;
-	border-radius: 20px;
+	border:1px solid black;
 }
 
 #table tr {
@@ -58,10 +58,10 @@
 
 </head>
 
-<body class="content" style="padding:30px; width:900px">
+<body class="content" style="padding:0 30px 30px 30px; width:900px;">
 	<div style="color: #99ADB6; padding:20px;">
 	
-<div class="qna">Q&A 게시판</div>
+<div class="qna">나의 질문</div>
 		<table id="table">
 			<c:forEach items="${qlist }" var='q'>
 				<tr>

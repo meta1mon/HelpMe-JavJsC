@@ -312,12 +312,10 @@ hr {
                     </c:if>
 								<br>
 							</c:forTokens>
-							<c:if test="${(loginMember.nickname == review.rwriter) || (loginMember.nickname == '관리자')}">
+							<c:if test="${loginMember.nickname == review.rwriter}">
 								<button type="button" id="delete"
 									onclick="location.href='<%=request.getContextPath()%>/reviewdelete?rno=${review.rno }'"
 									style="float: right;">삭제</button>
-							</c:if>
-							<c:if test="${(loginMember.nickname == review.rwriter)}">
 								<button type="button" id="update"
 									onclick="location.href='<%=request.getContextPath()%>/movereviewupdate?rno=${review.rno }'"
 									style="float: right;">수정</button>
@@ -328,7 +326,7 @@ hr {
 			</tr>
 		</table>
 
-		<h3 style="clear: both; text-align: left;">${review.rreviewcnt } 답변</h3>
+		<h3 style="clear: both; text-align: left;">${review.rreviewcnt } 댓글</h3>
 		<c:if test="${reply != null}">
 			<c:forEach items="${reply }" var="r">
 					<div id="rlike">
@@ -340,8 +338,6 @@ hr {
  						<c:if test="${loginMember.nickname == r.rrwriter}">
 							<button type="button" id="update"
 								onclick="open_win('<%=request.getContextPath()%>/moverreviewupdate?rrno=${r.rrno }', '_blank')">수정</button>
-						</c:if>
-						<c:if test="${(loginMember.nickname == r.rrwriter) || (loginMember.nickname == '관리자')}">
 							<button type="button" id="delete"
 								onclick="location.href='<%=request.getContextPath()%>/rreviewdelete?rrno=${r.rrno }&rno=${r.rno }'">삭제</button>
  						</c:if>
@@ -364,7 +360,7 @@ hr {
 				</form>
 			</c:if>
 			<c:if test="${loginMember == null }">
-					<div id="login">답변을 하려면 로그인이 필요합니다.</div>
+					<div id="login">댓글 작성은 로그인이 필요합니다.</div>
 			</c:if>
 			<br><hr style="border:#ffffff;">
 			<button type="button" id="list"
