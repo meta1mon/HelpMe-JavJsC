@@ -1,10 +1,12 @@
-<%@page import="bookshop.DAO.BuyDAO"%>
+<%@page import="shop.DAO.BuyDAO"%>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-<hmtl>
+<html>
+<%@include file="../admin/adminAside.jsp" %>
+<head>
 <style>
 .highcharts-figure, .highcharts-data-table table {
     min-width: 360px; 
@@ -42,8 +44,9 @@
 
 
 </style>
-<body>
-
+</head>
+<main>
+<div style="padding: 50px; margin-left: 200px;">
 <figure class="highcharts-figure">
     <div id="container"></div>
 </figure>
@@ -114,5 +117,7 @@ Highcharts.chart('container', {
 
 });
 </script>
-</body>
-</hmtl>
+
+</div>
+</main>
+</html>

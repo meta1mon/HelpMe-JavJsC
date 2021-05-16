@@ -5,7 +5,10 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <html>
+<head>
+<%@include file="../admin/adminAside.jsp" %>
 <style>
+
 .highcharts-figure, .highcharts-data-table table {
     min-width: 360px; 
     max-width: 800px;
@@ -13,7 +16,6 @@
 }
 
 .highcharts-data-table table {
-   font-family: Verdana, sans-serif;
    border-collapse: collapse;
    border: 1px solid #EBEBEB;
    margin: 10px auto;
@@ -42,8 +44,9 @@
 
 
 </style>
-<body>
-
+</head>
+<main>
+<div style="padding: 50px; margin-left: 200px;">
 <figure class="highcharts-figure">
     <div id="container"></div>
 </figure>
@@ -97,8 +100,7 @@ Highcharts.chart('container', {
            ['b00013', ${bCnt[12]}],
            ['b00014', ${bCnt[13]}],
            ['b00015', ${bCnt[14]}],
-        ]
-        
+       ]
     }],
 
     responsive: {
@@ -111,13 +113,12 @@ Highcharts.chart('container', {
                     layout: 'horizontal',
                     align: 'center',
                     verticalAlign: 'bottom'
-                }
+          		}
             }
         }]
-    
     }
-
 });
 </script>
-</body>
+</div>
+</main>
 </html>

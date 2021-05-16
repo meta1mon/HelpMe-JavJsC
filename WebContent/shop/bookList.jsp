@@ -6,13 +6,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%!SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");%>
-
+<%@include file="../admin/adminAside.jsp" %>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>등록된 책 목록</title>
 </head>
-<body>
+<main>
+	<div style="padding: 50px; margin-left: 200px;">
 	<div>
 	<!-- 자바의 스위치문과 비슷 -->
 		<c:choose>
@@ -21,7 +22,7 @@
 			<c:when test="${bkind == 300}">HTML</c:when>
 		</c:choose>
 	</div>
-	<table border="2">
+	<table border="1" style="border-collapse: collapse">
 		<tr>
 			<td>번호</td>
 			<td>책분류</td>
@@ -62,5 +63,6 @@
 			</c:forEach>
 		</c:if>
 	</table>
-</body>
+	</div>>
+</main>
 </html>

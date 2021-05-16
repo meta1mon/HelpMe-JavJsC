@@ -39,7 +39,14 @@
 	color: white;
 	text-decoration: none;
 }
-
+.afterLogin a{
+	color: black;
+	
+}
+.afterLogin a:visited{
+	color: black;
+	
+}
 a:viseted {
 	color: white;
 }
