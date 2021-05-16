@@ -1,10 +1,12 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.NumberFormat"%>
-<%@page import="bookshop.DAO.BuyDAO"%>
-<%@page import="bookshop.VO.BuyVO"%>
+<%@page import="shop.DAO.BuyDAO"%>
+<%@page import="shop.VO.BuyVO"%>
 <%@page import="java.util.List"%>
 <%@page import="member.vo.Member"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@include file="../view/header.jsp"%>
@@ -23,32 +25,19 @@ currentTime = new Timestamp(System.currentTimeMillis());
 </head>
 <body class="content">
 	<%
-		List<BuyVO> buyLists = null;
-			BuyVO buyList = null;
 			int count = 0;
 			int number = 0;
 			int number2 = 0;
 			int total = 0;
-
-			if (session.getAttribute("loginMember") == null) {
-		response.sendRedirect("#");
-			} else {
-		BuyDAO buyProcess = new BuyDAO();
-		count = buyProcess.getListCount(id);
-
-		if (count == 0) {
 	%>
+	<c:if test="${count == 0}">
 	<h3>구매목록</h3>
 	<table>
 		<tr>
 			<td>구매 목록이 없습니다.</td>
 		</tr>
 	</table>
-	<input type="button" onclick="javascript:window.location='#'">
-	<%
-		} else {
-		buyLists = buyProcess.getBuyList_id(id);
-	%>
+	</c:if>
 	<h4>
 		<b>결제가 완료되었습니다 ♥</b>
 	</h4>
@@ -65,35 +54,31 @@ currentTime = new Timestamp(System.currentTimeMillis());
 						<td width="150">금액</td>
 					</tr>
 			<td>
-				<%
-					for (int i = 0; i < buyLists.size(); i++) {
-							buyList = buyLists.get(i);
-
-				%>
-				<% if(buyList.getVid()==null){%>
 				
+				
+				<c:forEach items="${buy }" var="b" >
+				<c:if test="${b.vid == null}">
 					<tr>
-						<td align="center" width="150"><%=buyList.getBid()%></td>
+						<td align="center" width="150">${b.bid}</td>
 					</tr>
 					<tr>
 						<td width="300" align="left"><img
-							src="../imageFile/<%=buyList.getBimage()%>" width="30"
-							height="50" align="middle"> <%=buyList.getBtitle()%></td>
+							src="imageFile/${b.bimage}" width="30"
+							height="50" align="middle"> ${b.btitle}</td>
 						<td width="300" align="left">
-						<td width="100">\<%=NumberFormat.getInstance().format(buyList.getBprice())%>
+						<td width="100">\
+						<fmt:formatNumber value="${b.bprice}" type="number" />
 						</td>
-						<td width="50"><%=buyList.getBuycount()%></td>
+						<td width="50">
+						${b.buycount}</td>
 						<td width="150">
-							<%
-								total += buyList.getBuycount() * buyList.getBuyprice();
-							%> \ <%=NumberFormat.getInstance().format(buyList.getBuycount() * buyList.getBprice())%>
+							<c:set var="bprice" value="${bprice+ (b.buycount * b.buyprice)}"></c:set>
+							${(b.buycount * b.buyprice)}
 						</td>
 					
 					</tr>
-					
-					<%
-					}}
-					%>
+					</c:if>
+					</c:forEach>
 				</table>
 					<table border="1">
 				<p>영상 구매목록</p>
@@ -104,38 +89,35 @@ currentTime = new Timestamp(System.currentTimeMillis());
 						<td width="50">수량</td>
 						<td width="150">금액</td>
 					</tr>
-			<td>
-				<%
-					for (int i = 0; i < buyLists.size(); i++) {
-							buyList = buyLists.get(i);
-
-				%>
-				<%if(buyList.getBid()==null){ %>
+			
+			<c:forEach items="${buy }" var="v"   >
+				<c:if test="${v.bid == null}">
 				
 					<tr>
-						<td align="center" width="150"><%=buyList.getVid()%></td>
+						<td align="center" width="150">${v.vid}</td>
 					</tr>
 					<tr>
 						<td width="300" align="left"><img
-							src="../imageFile/<%=buyList.getVimage()%>" width="30"
-							height="50" align="middle"> <%=buyList.getVtitle()%></td>
+							src="imageFile/${v.vimage}" width="30"
+							height="50" align="middle"> ${v.vtitle}</td>
 						<td width="300" align="left">
-						<td width="100">\<%=NumberFormat.getInstance().format(buyList.getVprice())%>
+						<td width="100">\<fmt:formatNumber value="${v.vprice}" type="number" />
 						</td>
 						<td width="50">1</td>
 						<td width="150">
-							<%
-								total += 1 * buyList.getBuyprice();
-							%> \ <%=NumberFormat.getInstance().format(buyList.getVprice())%>
+							${v.buyprice}
+						<c:set var="vprice" value="${vprice + v.vprice}"></c:set>
 						</td>
 					</tr>
 					
-					<%
-					}}
-					%>
+					</c:if>
+					</c:forEach>	
+			
 				</table>
 					<tr>
-						<td colspan="5" align="right"><b>총 금액: \ <%=buyList.getBuyprice()%></b>
+						<td colspan="5" align="right"><b>총 금액: \ 
+						<c:out value="${bprice+vprice}"/>
+						</b>
 						</td>
 					</tr>
 					
@@ -143,10 +125,7 @@ currentTime = new Timestamp(System.currentTimeMillis());
 		</tr>
 	</table>
 	<br>
-	<%
-		}
-	}
-	%>
+	
 	<input type="button" value="메인으로" onclick="javascript:window.location"='#'">
 	
 

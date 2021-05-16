@@ -1,12 +1,12 @@
-<%@page import="bookshop.DAO.ShopvideoDAO"%>
-<%@page import="bookshop.VO.VideoVO"%>
-<%@page import="bookshop.DAO.BookcartDAO"%>
+<%@page import="shop.DAO.ShopvideoDAO"%>
+<%@page import="shop.VO.VideoVO"%>
+<%@page import="shop.DAO.BookcartDAO"%>
 <%@page import="java.text.NumberFormat"%>
-<%@page import="com.sun.xml.internal.bind.CycleRecoverable.Context"%>
-<%@page import="bookshop.DAO.ShopBookDAO"%>
-<%@page import="bookshop.VO.ShopBookVo"%>
+<%@page import="shop.DAO.ShopBookDAO"%>
+<%@page import="shop.VO.ShopBookVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -14,60 +14,15 @@
 </head>
 <body class="content">
 <%@include file="../view/header.jsp"%>
-<div>
-<h3>신간소개</h3>
-<%
-	ShopBookVo bookLists[] = null;
-	int number = 0;
-	String book_kindName= "";
-	
 
-	
-	ShopBookDAO bookprocess = ShopBookDAO.getinstance();
-	for(int i=1; i<=3; i++){
-		bookLists = bookprocess.getBooks(i +"00", 3);
-		if(bookLists[0].getBkind().equals("100")){
-			book_kindName = "JAVA";
-		}else if(bookLists[0].getBkind().equals("200")){
-			book_kindName = "JSP";
-		}else if(bookLists[0].getBkind().equals("300")){
-			book_kindName = "HTML";
-		}	
-	%>
-	<div>
-	<br><font size="+1"><b><%=book_kindName %><b>분류의 신간 목록</b>
-	<img src="../imageFile/<% %>">
-	<a class ="more" href="introList.jsp?bkind=<%=bookLists[0].getBkind()%>">구경하러가기</a>
-	</font>
-	</div>
- <%
-	}
- %>
- 
- 
-	<%
-		VideoVO videoLists[] = null;
-		String video_kindName= " ";
-		
-		
-		ShopvideoDAO videoprocess= ShopvideoDAO.getinstance();
-		for(int j=1; j <= 3; j++){
-			videoLists = videoprocess.getVideos( j+"00", 3);
-			if(videoLists[0].getVkind().equals("100")){
-				video_kindName = "JAVA";
-			}else if(videoLists[0].getVkind().equals("200")){
-				video_kindName = "JSP";
-			}else if(videoLists[0].getVkind().equals("300")){
-				video_kindName = "HTML";
-			}
-	%>
-		<div>
-	<br><font size="+1"><b><%=video_kindName %><b>분류의 신간 목록</b>
-	<a class ="more" href="videoIntroList.jsp?vkind=<%= videoLists[0].getVkind()%>">구경하러가기</a>
-	</font>
-	</div>	
-	<%
-		}
-	%>	
+
+<h3>쇼핑몰 메이</h3>
+	<button><a href="<%=request.getContextPath()%>/bookIntro?bkind=${bkind1}">자바</a></button>
+	<button><a href="<%=request.getContextPath()%>/bookIntro?bkind=${bkind2}">자바</a></button>
+	<button><a href="<%=request.getContextPath()%>/bookIntro?bkind=${bkind3}">자바</a></button>
+	<button><a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind1}">자바</a></button>
+	<button><a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind2}">자바</a></button>
+	<button><a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind3}">자바</a></button>
 </body>
+<%@include file="../../view/footer.jsp"%>
 </html>
