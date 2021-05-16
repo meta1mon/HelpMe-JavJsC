@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>도와줘 잡스씨 관리자</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -110,11 +111,8 @@ $(document).ready(function() {
 	 $("#memberlist").click(function(){
 		 location.href="<%=request.getContextPath()%>/memberlist";
 	 })
-	 
  })
 </script>
-<header>
-</header>
 <aside style="height:100vh; width: 200px; background-color:#809bbf; float: left;">
 <div class="contenedor-menu">
 		<ul class="menu">
@@ -130,8 +128,10 @@ $(document).ready(function() {
 			</li>
 			<li id="adminshop"><a href="#">상품 관리<i class="fa fa-chevron-down"></i></a>
 				<ul>
-					<li><a href="<%=request.getContextPath()%>/bookinsert">판매 책 등록</a></li>
+					<li><a href="<%=request.getContextPath()%>/bookinsert">판매 도서 등록</a></li>
+					<li><a href="#">판매 도서 리스트</a></li>
 					<li><a href="<%=request.getContextPath()%>/videoinsert">판매 영상 등록</a></li>
+					<li><a href="#">판매 영상 리스트</a></li>
 				</ul>
 			</li>
 			<li id="adminmember"><a href="#">회원 관리<i class="fa fa-chevron-down"></i></a>

@@ -1,4 +1,4 @@
-<%@page import="bookshop.DAO.BuyDAO"%>
+<%@page import="shop.DAO.BuyDAO"%>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>

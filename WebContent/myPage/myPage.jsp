@@ -798,14 +798,102 @@ $(document).ready(function(){
 		<!-- 마이 페이지 메인 탭메뉴 -->
 		<div class="onoff tab-main">
 			<ul class="tab">
+				<li><a href="#" class="title">일정 관리</a></li>
 				<li><a href="#" class="title">나의 프로필</a></li>
-				<li><a href="#" class="title">일정관리</a></li>
-				<li><a href="#" class="title">내가쓴글</a></li>
-				<li><a href="#" class="title">내영상보기</a></li>
+				<li><a href="#" class="title">내가 쓴 글</a></li>
+				<li><a href="#" class="title">내 영상 보기</a></li>
 			</ul>
 			<!-- 탭 컨텐츠 -->
 			<div class="tab-cont">
-				<!-- 탭1 내 정보 확인 -->
+				
+
+				<!-- 탭1 마이 캘린더 -->
+				<div class="cont">
+					<div id="calendar"></div>
+					<!-- 일정 추가 modal -->
+					<div class="modal" id="scheModal">
+						<div class="modal-content">
+							<div class="modal-header">
+								<span class="close">&#10006;</span>
+								<h4 class="modal-title"></h4>
+							</div>
+							<div class="modal-body">
+								<form class="sche-form" id="frm">
+									<table class="modal-tbl">
+										<tr>
+											<td><label for="edit-allDay">하루종일</label></td>
+											<td><input class="allDayEvent" name="scheAllDay" id="edit-allDay"
+												type="checkbox"></td>
+										</tr>
+
+										<tr>
+											<td><label for="edit-title">일정명</label></td>
+											<td><input class="inputModal" type="text"
+												name="scheName" id="edit-title" required="required" />
+										</tr>
+
+										<tr>
+											<td><label for="edit-start">시작일</label></td>
+											<td><input class="inputModal" type="text"
+												name="scheStart" id="edit-start" /></td>
+										</tr>
+
+										<tr>
+											<td><label for="edit-end">마감일</label></td>
+											<td><input class="inputModal" type="text" name="scheEnd"
+												id="edit-end" /></td>
+										</tr>
+
+										<tr>
+											<td><label for="edit-type">일정 종류</label></td>
+											<td><select class="inputModal" name="scheCode"
+												id="edit-type">
+													<option value="1" selected>공채 일정 - 신입</option>
+													<option value="2">공채 일정 - 경력</option>
+													<option value="3">개인 일정</option>
+											</select></td>
+										</tr>
+										<tr>
+											<td><label for="edit-color">색상</label></td>
+											<td><select class="inputModal" name="scheColor"
+												id="edit-color">
+													<option value="#D25565" style="color: '#D25565';">빨간색</option>
+													<option value="#9775fa" style="color: #9775fa;">보라색</option>
+													<option value="#ffa94d" style="color: #ffa94d;">주황색</option>
+													<option value="#74c0fc" style="color: #74c0fc;">파란색</option>
+													<option value="#f06595" style="color: #f06595;">핑크색</option>
+													<option value="#63e6be" style="color: #63e6be;">민트색</option>
+													<option value="#a9e34b" style="color: #a9e34b;">초록색</option>
+													<option value="#4d638c" style="color: #4d638c;">남색</option>
+													<option value="#495057" style="color: #495057;">검정색</option>
+											</select></td>
+										</tr>
+										<tr>
+											<td><label for="edit-cont">설명</label></td>
+											<td><textarea rows="4" cols="50" class="inputModal"
+													name="scheContent" id="edit-cont"></textarea></td>
+										</tr>
+									</table>
+								</form>
+							</div>
+							<!-- modal-body 끝 -->
+							<div class="modal-footer modalBtnContainer-addSchedule">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">취소</button>
+								<button type="button" class="btn btn-primary" id="save-schedule">저장</button>
+							</div>
+							<div class="modal-footer modalBtnContainer-modifySchedule">
+								<button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">닫기</button>
+							</div>
+							<!-- modal-footer 끝 -->
+						</div>
+						<!-- modal-content 끝 -->
+					</div>
+					<!-- scheModal 끝 -->
+
+				</div>
+				
+				<!-- 탭2 내 정보 확인 -->
 				<div class="cont" id="profile">
 					<table class="profileFrm">
 						<tr>
@@ -909,93 +997,6 @@ $(document).ready(function(){
 						</tr>
 					</table>
 				</div>
-
-					<!-- 탭2 마이 캘린더 -->
-				<div class="cont">
-					<div id="calendar"></div>
-					<!-- 일정 추가 modal -->
-					<div class="modal" id="scheModal">
-						<div class="modal-content">
-							<div class="modal-header">
-								<span class="close">&#10006;</span>
-								<h4 class="modal-title"></h4>
-							</div>
-							<div class="modal-body">
-								<form class="sche-form" id="frm">
-									<table class="modal-tbl">
-										<tr>
-											<td><label for="edit-allDay">하루종일</label></td>
-											<td><input class="allDayEvent" name="scheAllDay" id="edit-allDay"
-												type="checkbox"></td>
-										</tr>
-
-										<tr>
-											<td><label for="edit-title">일정명</label></td>
-											<td><input class="inputModal" type="text"
-												name="scheName" id="edit-title" required="required" />
-										</tr>
-
-										<tr>
-											<td><label for="edit-start">시작일</label></td>
-											<td><input class="inputModal" type="text"
-												name="scheStart" id="edit-start" /></td>
-										</tr>
-
-										<tr>
-											<td><label for="edit-end">마감일</label></td>
-											<td><input class="inputModal" type="text" name="scheEnd"
-												id="edit-end" /></td>
-										</tr>
-
-										<tr>
-											<td><label for="edit-type">일정 종류</label></td>
-											<td><select class="inputModal" name="scheCode"
-												id="edit-type">
-													<option value="1" selected>공채 일정 - 신입</option>
-													<option value="2">공채 일정 - 경력</option>
-													<option value="3">개인 일정</option>
-											</select></td>
-										</tr>
-										<tr>
-											<td><label for="edit-color">색상</label></td>
-											<td><select class="inputModal" name="scheColor"
-												id="edit-color">
-													<option value="#D25565" style="color: '#D25565';">빨간색</option>
-													<option value="#9775fa" style="color: #9775fa;">보라색</option>
-													<option value="#ffa94d" style="color: #ffa94d;">주황색</option>
-													<option value="#74c0fc" style="color: #74c0fc;">파란색</option>
-													<option value="#f06595" style="color: #f06595;">핑크색</option>
-													<option value="#63e6be" style="color: #63e6be;">민트색</option>
-													<option value="#a9e34b" style="color: #a9e34b;">초록색</option>
-													<option value="#4d638c" style="color: #4d638c;">남색</option>
-													<option value="#495057" style="color: #495057;">검정색</option>
-											</select></td>
-										</tr>
-										<tr>
-											<td><label for="edit-cont">설명</label></td>
-											<td><textarea rows="4" cols="50" class="inputModal"
-													name="scheContent" id="edit-cont"></textarea></td>
-										</tr>
-									</table>
-								</form>
-							</div>
-							<!-- modal-body 끝 -->
-							<div class="modal-footer modalBtnContainer-addSchedule">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">취소</button>
-								<button type="button" class="btn btn-primary" id="save-schedule">저장</button>
-							</div>
-							<div class="modal-footer modalBtnContainer-modifySchedule">
-								<button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">닫기</button>
-							</div>
-							<!-- modal-footer 끝 -->
-						</div>
-						<!-- modal-content 끝 -->
-					</div>
-					<!-- scheModal 끝 -->
-
-				</div>
-
 				<!-- 탭3 내 글 목록-->
 				<div class="cont">
 					<div class="onoff tab-sub">

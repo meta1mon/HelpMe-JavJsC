@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-#mainImg {
-	text-align: center;
+span{
+	cursor: pointer;
 }
 
 /*전원 버튼*/
@@ -15,6 +15,7 @@
 	border-radius: 15px;
 	transition-property:width, background-color;
 	transition-duration: 1.5s;
+	cursor: pointer;
 }
 
 .power:hover{
