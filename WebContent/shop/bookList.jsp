@@ -66,13 +66,26 @@ location.href="<%=request.getContextPath()%>/booklist?bkind="+$("#kind option:se
    <div style="padding: 50px; margin-left: 200px;">
    <h1 class="page-header">도서 리스트</h1>
    <div>
-   <!-- 자바의 스위치문과 비슷 -->
    <select id="kind" onchange="move();">
-   	
-      <option value="100">Java</option>
+   	<c:choose>
+   	 <c:when test="${bkind == 100}">
+      <option value="100" selected>Java</option>
       <option value="200">Jsp</option>
       <option value="300">HTML</option>
+   	 </c:when>
+   	 <c:when test="${bkind == 200}">
+      <option value="100">Java</option>
+      <option value="200" selected>Jsp</option>
+      <option value="300">HTML</option>
+   	 </c:when>
+   	 <c:when test="${bkind == 300}">
+      <option value="100">Java</option>
+      <option value="200">Jsp</option>
+      <option value="300" selected>HTML</option>
+   	 </c:when>
+   	 </c:choose>
    </select>
+   <!-- 자바의 스위치문과 비슷 -->
       <c:choose>
          <c:when test="${bkind == 100}">Java</c:when>
          <c:when test="${bkind == 200}">Jsp</c:when>

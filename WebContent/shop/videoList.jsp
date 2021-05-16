@@ -72,12 +72,25 @@ function move(){
 	<h1 class="page-header">영상 리스트</h1>
 	
 	<div>
-		<select id="kind" onchange="move();">
-			<option value="">영상 종류</option>
-			<option value="100"> Java</option>
-			<option value="200"> Jsp</option>
-			<option value="300"> HTML</option>
-		</select>
+			<select id="kind" onchange="move();">
+				<c:choose>
+					<c:when test="${bkind == 100}">
+						<option value="100" selected>Java</option>
+						<option value="200">Jsp</option>
+						<option value="300">HTML</option>
+					</c:when>
+					<c:when test="${bkind == 200}">
+						<option value="100">Java</option>
+						<option value="200" selected>Jsp</option>
+						<option value="300">HTML</option>
+					</c:when>
+					<c:when test="${bkind == 300}">
+						<option value="100">Java</option>
+						<option value="200">Jsp</option>
+						<option value="300" selected>HTML</option>
+					</c:when>
+				</c:choose>
+			</select>
 			<!-- 자바의 스위치문과 비슷 -->
 		<c:choose>
 			<c:when test="${vkind == 100}">Java</c:when>
