@@ -375,7 +375,7 @@ $(document).ready(function(){
 			},
 			handleWindowResize: true,
 			dayMaxEvents: false,
-			displayEventTime: true,
+			displayEventTime: false,
 			displayEventEnd: false,
 			eventDisplay: 'block',
 			eventTimeFormat: 
@@ -507,7 +507,7 @@ $(document).ready(function(){
 			
 			eventClick : function(arg) {
 				
-				if(!confirm('일정을 지우시겠습니까?')){
+				if(!confirm('일정을 지우시겠습니까? 확인: 일정 삭제, 취소: 상세 일정 확인')){
 					//모달창 open
 					checkSchedule(arg.event);
 				}else{
@@ -732,6 +732,12 @@ $(document).ready(function(){
 			modalTitle.html('일정 확인');
 		    editTitle.val(event.title);
 		    
+		    if(event.allDay == true){
+			    editAllDay.prop('checked', true);
+		    } else {
+			    editAllDay.prop('checked', false);
+		    }
+
 		    if(editAllDay.is(':checked')){
 		    	editStart.val(moment(event.start).format('YYYY-MM-DD HH:mm'));
 		    	editEnd.val(moment(event.end).subtract(1, 'minutes').format('YYYY-MM-DD HH:mm'));
@@ -747,11 +753,6 @@ $(document).ready(function(){
 		    editCont.val(event._def.extendedProps.content);
 		    console.log(event._def.extendedProps.content);
 		    
-		    if(event.allDay == true){
-			    editAllDay.prop('checked', true);
-		    } else {
-			    editAllDay.prop('checked', false);
-		    }
 
 		    
 		    if(modifyBtnContainer.css("display") == "none"){
