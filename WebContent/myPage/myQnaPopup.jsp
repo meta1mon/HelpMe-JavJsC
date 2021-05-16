@@ -18,12 +18,12 @@
 }
 
 #table {
-	background:#F7F8FA;
+	background:#ffffff;
 	float:left;
 	width: 800px;
 	margin: 0 auto 100px auto;
 	border-collapse: collapse;
-	border:1px solid black;
+	border-radius: 20px;
 }
 
 #table tr {

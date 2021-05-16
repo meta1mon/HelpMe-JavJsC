@@ -18,12 +18,12 @@
 }
 
 #table {
-	background:#F7F8FA;
+	background:#ffffff;
 	float:left;
 	width: 800px;
 	margin: 0 auto 100px auto;
 	border-collapse: collapse;
-	border:1px solid black;
+	border-radius: 20px;
 }
 
 #table tr {
@@ -70,7 +70,7 @@
 					<td style="width: 50px; font-size: 14px;"><a
 						style="font-size: 18px;">${r.rlikecnt }</a><br>좋아요</td>
 					<td style="width: 50px; font-size: 14px;"><a
-						style="font-size: 18px;">${r.rstudycnt }</a><br>답변</td>
+						style="font-size: 18px;">${r.rreviewcnt }</a><br>답변</td>
 					<td style="text-align: left; width: 500px;"><a
 						href="studyread?sno=${r.rno}" id="subject">${r.rsubject }</a> <br>
 						<div id="tag">

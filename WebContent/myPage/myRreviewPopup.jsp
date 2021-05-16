@@ -18,12 +18,12 @@
 }
 
 #table {
-	background:#F7F8FA;
+	background:#ffffff;
 	float:left;
 	width: 800px;
 	margin: 0 auto 100px auto;
 	border-collapse: collapse;
-	border:1px solid black;
+	border-radius: 20px;
 }
 
 #table tr {
@@ -61,6 +61,35 @@
 <body class="content" style="padding:0 30px 30px 30px; width:900px;">
 	<div style="color: #99ADB6; padding:20px;">
 	
+<div class="review">나의 게시글</div>
+		<table id="table">
+			<c:forEach items="${rlist }" var='r'>
+				<tr>
+					<td style="width: 50px; font-size: 14px;"><a
+						style="font-size: 18px;">${r.rviewcnt }</a><br>조회</td>
+					<td style="width: 50px; font-size: 14px;"><a
+						style="font-size: 18px;">${r.rlikecnt }</a><br>좋아요</td>
+					<td style="width: 50px; font-size: 14px;"><a
+						style="font-size: 18px;">${r.rstudycnt }</a><br>답변</td>
+					<td style="text-align: left; width: 500px;"><a
+						href="studyread?sno=${r.rno}" id="subject">${r.rsubject }</a> <br>
+						<div id="tag">
+							<c:choose>
+								<c:when test="${r.rtag ==1}">Java</c:when>
+								<c:when test="${r.rtag ==2}">C</c:when>
+								<c:when test="${r.rtag ==3}">Python</c:when>
+							</c:choose>
+						</div></td>
+					<td style="text-align: left;"><a style="color: #0054FF;">${r.rwriter }</a>
+						<br> <a style="font-size: 13px;">${r.rdate }</a></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+</body>
+</html>
+
+
 <div class="review">나의 댓글</div>
 		<table id="table">
 			<c:forEach items="${rrlist }" var='r'>
@@ -70,7 +99,7 @@
 					<td style="width: 50px; font-size: 14px;"><a
 						style="font-size: 18px;">${r.rlikecnt }</a><br>좋아요</td>
 					<td style="width: 50px; font-size: 14px;"><a
-						style="font-size: 18px;">${r.rstudycnt }</a><br>답변</td>
+						style="font-size: 18px;">${r.rreviewcnt }</a><br>답변</td>
 					<td style="text-align: left; width: 500px;"><a
 						href="studyread?sno=${r.rno}" id="subject">${r.rsubject }</a> <br>
 						<div id="tag">
