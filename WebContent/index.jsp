@@ -44,7 +44,7 @@
 <%@include file="../view/header.jsp"%>
 <body class="content">
 	<div id="animation" style="display: block;">
-		<div class="power" id="power">
+		<div class="power" id="power" style="cursor: pointer;">
 			<span class="fas fa-power-off"
 				style="width: 1em; height: 1em; margin-top: 5px; position: relative"></span>
 				<span style="padding:0 5px 5px 5px; margin-top:2px;">도와줘 잡스씨</span>

@@ -21,6 +21,7 @@ input {
 	width: 400px;
 	height: 40px;
 	font-size: 17px;
+	padding-left: 10px;
 }
 
 #idcheck, #passcheck {
