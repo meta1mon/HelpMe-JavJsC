@@ -68,6 +68,7 @@ public class realTimeBookCtrl extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		request.setAttribute("pidArr", pidArr);
 		request.setAttribute("bCnt", bCntArr);
 		request.getRequestDispatcher("admin/realtimeBook.jsp").forward(request, response);
 

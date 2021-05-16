@@ -59,8 +59,8 @@ Highcharts.chart('container', {
 
     
     	xAxis: {
-    		 categories: ['v00001', 'v00002', 'v00003', 'v00004', 'v00005', 'v00006',
-    	         'v00007', 'v00008', 'v00009']
+    		 categories: ['${pidArr[0]}', '${pidArr[1]}',  '${pidArr[2]}', '${pidArr[3]}', '${pidArr[4]}', '${pidArr[5]}', '${pidArr[6]}', '${pidArr[7]}',
+    			 '${pidArr[8]}']
         },
     
 
@@ -85,15 +85,15 @@ Highcharts.chart('container', {
     series: [{
        name : 'video',
        data : [
-          ['v00001', ${vCnt[0]}],
-          ['v00002', ${vCnt[1]}],
-          ['v00003', ${vCnt[2]}],
-          ['v00004', ${vCnt[3]}],
-          ['v00005', ${vCnt[4]}],
-          ['v00006', ${vCnt[5]}],
-          ['v00007', ${vCnt[6]}],
-          ['v00008', ${vCnt[7]}],
-          ['v00009', ${vCnt[8]}]
+           ['${pidArr[0]}', ${vCnt[0]}],
+           ['${pidArr[1]}', ${vCnt[1]}],
+           ['${pidArr[2]}', ${vCnt[2]}],
+           ['${pidArr[3]}', ${vCnt[3]}],
+           ['${pidArr[4]}', ${vCnt[4]}],
+           ['${pidArr[5]}', ${vCnt[5]}],
+           ['${pidArr[6]}', ${vCnt[6]}],
+           ['${pidArr[7]}', ${vCnt[7]}],
+           ['${pidArr[8]}', ${vCnt[8]}]
    
        ]
         

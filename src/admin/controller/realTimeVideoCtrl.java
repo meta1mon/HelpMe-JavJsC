@@ -64,7 +64,10 @@ public class realTimeVideoCtrl extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
+		for (int i = 0; i < vCntArr.length; i++) {
+			System.out.println(vCntArr[i]);
+		}
+		request.setAttribute("pidArr", pidArr);
 		request.setAttribute("vCnt", vCntArr);
 		request.getRequestDispatcher("admin/realtimeVideo.jsp").forward(request, response);
 

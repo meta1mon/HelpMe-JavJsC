@@ -54,13 +54,11 @@
 Highcharts.chart('container', {
 
     title: {
-        text: 'book realtime'
+        text: 'top 5 best-selling books'
     },
 
-    
     	xAxis: {
-    		 categories: [ '${pidArr[0]}', '${pidArr[1]}',  '${pidArr[2]}', '${pidArr[3]}', '${pidArr[4]}', '${pidArr[5]}', '${pidArr[6]}', '${pidArr[7]}',
-    			 '${pidArr[8]}', '${pidArr[9]}', '${pidArr[10]}', '${pidArr[11]}', '${pidArr[12]}', '${pidArr[13]}', '${pidArr[14]}']
+    		 categories: [ '${blist[0][0]}', '${blist[1][0]}',  '${blist[2][0]}', '${blist[3][0]}', '${blist[4][0]}' ]
         },
     
 
@@ -80,26 +78,14 @@ Highcharts.chart('container', {
         
     },
 
-
-
     series: [{
        name : 'book',
        data : [
-           ['${pidArr[0]}', ${bCnt[0]}],
-           ['${pidArr[1]}', ${bCnt[1]}],
-           ['${pidArr[2]}', ${bCnt[2]}],
-           ['${pidArr[3]}', ${bCnt[3]}],
-           ['${pidArr[4]}', ${bCnt[4]}],
-           ['${pidArr[5]}', ${bCnt[5]}],
-           ['${pidArr[6]}', ${bCnt[6]}],
-           ['${pidArr[7]}', ${bCnt[7]}],
-           ['${pidArr[8]}', ${bCnt[8]}],
-           ['${pidArr[9]}', ${bCnt[9]}],
-           ['${pidArr[10]}', ${bCnt[10]}],
-           ['${pidArr[11]}', ${bCnt[11]}],
-           ['${pidArr[12]}', ${bCnt[12]}],
-           ['${pidArr[13]}', ${bCnt[13]}],
-           ['${pidArr[14]}', ${bCnt[14]}]
+           ['${blist[0][0]}', ${blist[0][1]}],
+           ['${blist[1][0]}', ${blist[1][1]}],
+           ['${blist[2][0]}', ${blist[2][1]}],
+           ['${blist[3][0]}', ${blist[3][1]}],
+           ['${blist[4][0]}', ${blist[4][1]}]
         ]
     }],
 

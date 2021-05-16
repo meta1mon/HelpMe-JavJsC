@@ -178,7 +178,6 @@ public class MyPageEnter extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 			request.setAttribute("rrlist", list6);
 			request.getRequestDispatcher("myPage/myPage.jsp").forward(request, response);
 		} else {

@@ -3,6 +3,7 @@ package admin.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class BuyCountDao {
 	private PreparedStatement pstmt = null;
@@ -20,8 +21,6 @@ public class BuyCountDao {
 			while (rs.next()) {
 				tot += rs.getInt("buycount");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			if (rs != null)
 				rs.close();
@@ -43,8 +42,6 @@ public class BuyCountDao {
 			while (rs.next()) {
 				tot += rs.getInt("buycount");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			if (rs != null)
 				rs.close();
@@ -52,5 +49,55 @@ public class BuyCountDao {
 				pstmt.close();
 		}
 		return tot;
+	}
+
+	public String[][] getTop5Book(Connection conn) throws Exception {
+		String[][] arr = null;
+		int i = 0;
+		String sql = "select rownum, e.* from (select pid, sum(buycount) from buy group by pid having pid like 'b%' order by 2 desc) e where rownum <= 5";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs != null) {
+				arr = new String[5][2];
+				while (rs.next()) {
+					arr[i][0] = rs.getString(2);
+					arr[i][1] = rs.getString(3);
+					i++;
+				}
+			}
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+		}
+		return arr;
+
+	}
+	
+	public String[][] getTop5Video(Connection conn) throws Exception {
+		String[][] arr = null;
+		int i = 0;
+		String sql = "select rownum, e.* from (select pid, sum(buycount) from buy group by pid having pid like 'v%' order by 2 desc) e where rownum <= 5";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs != null) {
+				arr = new String[5][2];
+				while (rs.next()) {
+					arr[i][0] = rs.getString(2);
+					arr[i][1] = rs.getString(3);
+					i++;
+				}
+			}
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+		}
+		return arr;
+
 	}
 }
