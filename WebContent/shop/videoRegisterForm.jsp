@@ -138,7 +138,7 @@ input[type="file"] {
 <main>
 	<div style="padding: 50px; margin-left: 200px;">
    	<h1 class="page-header">영상 등록</h1>
-	<form action="<%=request.getContextPath()%>/videoregister" method="post"
+	<form action="<%=request.getContextPath()%>/vregister" method="post"
 		name="writeForm" enctype="multipart/form-data">
 		<table class="table">
 			<tr>

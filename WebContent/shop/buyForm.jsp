@@ -1,12 +1,7 @@
-<%@page import="shop.DAO.VideocartVO"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="common.jdbc.JDBCConnectionPool"%>
-<%@page import="shop.DAO.VideocartDAO"%>
 <%@page import="java.text.NumberFormat"%>
-<%@page import="shop.DAO.BuyDAO"%>
 <%@page import="member.dao.MemberDao"%>
-<%@page import="shop.DAO.BookcartDAO"%>
-<%@page import="shop.VO.BookcartVO"%>
 <%@page import="java.util.List"%>
 <%@page import="member.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

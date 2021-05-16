@@ -294,7 +294,7 @@ table {
 			return false;
 		}
 		
-		if(($("[name='rcvmail']").val() == "1") && ($("#email").val().trim() == "")) {
+		if(($("[name='rcvmail']").is(":checked") == true) && ($("#email").val().trim() == "")) {
 			alert("소식을 전달 받을 이메일 주소를 입력해주세요");
 			$("#email").focus();
 			return false;
@@ -375,17 +375,19 @@ table {
 				<tr>
 					<td>비밀번호<span class="required">(필수)</span></td>
 					<td><input type="password" name="password1" id="password1"></td>
-					<td><span class="desc" style="float:left;"> 8~15자의 영문자, 숫자, <br>특수문자 (!, @, #,
-							$, %, ^, &, *)만 사용 가능합니다.</span></td>
+					<td><span class="desc" style="float: left;"> 8~15자의
+							영문자, 숫자, <br>특수문자 (!, @, #, $, %, ^, &, *)만 사용 가능합니다.
+					</span></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인<span class="required">(필수)</span></td>
 					<td><input type="password" name="password2" id="password2"></td>
-					<td><span id="passcheck" style="float:left;"></span></td>
+					<td><span id="passcheck" style="float: left;"></span></td>
 				</tr>
 				<tr>
 					<td>비밀번호 질문<span class="required">(필수)</span></td>
-					<td><select name="passquestion" id="passquestion" style="padding-left: 10px; background-color:rgba(255, 255, 255, 0.5);">
+					<td><select name="passquestion" id="passquestion"
+						style="padding-left: 10px; background-color: rgba(255, 255, 255, 0.5);">
 							<option value="0">비밀번호 질문을 선택해주세요</option>
 							<option value="1">첫 수학여행 장소는?</option>
 							<option value="2">가장 친한 친구의 이름은?</option>
@@ -396,7 +398,8 @@ table {
 				<tr>
 					<td>비밀번호 답변<span class="required">(필수)</span></td>
 					<td><input type="text" name="passanswer" id="passanswer"></td>
-					<td><span class="desc" style="float:left;"> 1~20자의 한글, 영문자, 숫자만 사용 가능합니다.</span></td>
+					<td><span class="desc" style="float: left;"> 1~20자의 한글,
+							영문자, 숫자만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>
 					<td>주소<span class="optional">(선택)</span></td>
@@ -427,13 +430,14 @@ table {
 				<tr>
 					<td>전화번호<span class="optional">(선택)</span></td>
 					<td><input type="text" name="tel" id="tel"></td>
-					<td><span class="desc" style="float:left;"> 10~13자의 숫자만 사용 가능합니다.</span></td>
+					<td><span class="desc" style="float: left;"> 10~13자의
+							숫자만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>
 					<td>이메일<span class="optional">(선택)</span></td>
 					<td><input type="text" name="email" id="email"></td>
-					<td><span class="desc" style="float:left;"> 8~15자의 영문자, 숫자, @만 사용
-							가능합니다.</span></td>
+					<td><span class="desc" style="float: left;"> 8~15자의
+							영문자, 숫자, @만 사용 가능합니다.</span></td>
 				</tr>
 				<tr>
 					<td colspan="3" style="text-align: center"><label><input

@@ -1,7 +1,3 @@
-<%@page import="shop.VO.VideocartVO"%>
-<%@page import="shop.DAO.VideocartDAO"%>
-<%@page import="shop.VO.BookcartVO"%>
-<%@page import="shop.DAO.BookcartDAO"%>
 <%@page import="member.vo.Member"%>
 <%@page import="java.text.NumberFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
