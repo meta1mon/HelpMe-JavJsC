@@ -61,7 +61,7 @@
 <body class="content" style="padding:0 30px 30px 30px; width:900px;">
 	<div style="color: #99ADB6; padding:20px;">
 	
-<div class="qna">나의 답변</div>
+<div class="qna">답변한 글</div>
 		<table id="table">
 			<c:forEach items="${rqlist }" var='r'>
 				<tr>

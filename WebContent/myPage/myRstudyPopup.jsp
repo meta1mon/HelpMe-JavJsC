@@ -61,7 +61,7 @@
 <body class="content" style="padding:0 30px 30px 30px; width:900px;">
 	<div style="color: #99ADB6; padding:20px;">
 	
-<div class="study">나의 댓글</div>
+<div class="study">댓글 단 글</div>
 		<table id="table">
 			<c:forEach items="${rslist }" var='r'>
 				<tr>
