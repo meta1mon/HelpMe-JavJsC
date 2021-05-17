@@ -34,12 +34,12 @@ $(document).ready(function(){
 		<img alt="logo" src="<%=request.getContextPath() %>/images/logo.png" width="128" height="80" id="logo">
 		</a>
 		<div class="nav">
-			<a href="<%=request.getContextPath()%>/qnalist">질문</a> 
-			<a href="<%=request.getContextPath()%>/studylist">스터디</a> 
-			<a href="<%=request.getContextPath()%>/reviewlist">리뷰</a> 
-			 <a href="<%=request.getContextPath()%>/shopmain">쇼핑</a> 
+			<a href="<%=request.getContextPath()%>/aboutus">1조Mac직!</a>
+			<a href="<%=request.getContextPath()%>/qnalist">질문 게시판</a> 
+			<a href="<%=request.getContextPath()%>/studylist">스터디/모임 게시판</a> 
+			<a href="<%=request.getContextPath()%>/reviewlist">책/영상 리뷰 게시판</a> 
 			<a href="<%=request.getContextPath()%>/rccalendar">공채 캘린더</a>
-			<a href="<%=request.getContextPath()%>/aboutus">자사소개</a>
+			 <a href="<%=request.getContextPath()%>/shopmain">쇼핑몰</a> 
 		</div>
 		<c:choose>
 			<c:when test="${loginMember == null }">
