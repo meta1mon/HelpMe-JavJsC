@@ -56,6 +56,7 @@ public class MemberLogin extends HttpServlet {
 				if (vo.getId().equals("semi01")) {
 					System.out.println("관리자 로그인");
 					request.getSession().setAttribute("loginMember", vo);
+					request.getSession().setAttribute("AdminNickname", "관리자");
 					response.sendRedirect("javcsecond");
 				} else {
 					// 일반 회원 로그인 시

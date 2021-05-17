@@ -34,6 +34,7 @@ public class MemberLogout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().removeAttribute("loginMember");
+		request.getSession().removeAttribute("AdminNickname");
 		response.sendRedirect("javcstart");
 	}
 
