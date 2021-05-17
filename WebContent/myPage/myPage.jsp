@@ -1004,7 +1004,10 @@ $(document).ready(function(){
 						<tr>
 							<td colspan="2"><input type="button" value="수정"
 								class="darkbutton"
-								onclick="showPopup('<%=request.getContextPath()%>/myPage/myProfilePopup.jsp', 'popup');"></td>
+								onclick="showPopup('<%=request.getContextPath()%>/myPage/myProfilePopup.jsp', 'popup');">
+								<input type="button" value="회원 탈퇴"
+								class="darkbutton"
+								onclick="location.href='<%=request.getContextPath()%>/memberwithdraw?id=${loginMember.id }'"></td>
 						</tr>
 					</table>
 				</div>
@@ -1341,6 +1344,7 @@ $(document).ready(function(){
 		window.open("<%=request.getContextPath()%>/myvideolist", "myVideoList", "width=1000px, height=500px, resizable = no, left= 100, top=100");
 
 		};	
+		
 	</script>
 </body>
 </html>

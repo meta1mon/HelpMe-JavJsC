@@ -1,6 +1,8 @@
 package member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,28 +47,29 @@ public class MemberLogin extends HttpServlet {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		Member vo = new MemberService().login(id);
-		
+
+		PrintWriter out = response.getWriter();
 		if (vo == null) {
-			System.out.println("존재하지 않는 아이디입니다");
-			response.sendRedirect("javclogin");
+			out.println("<script>alert('존재하지 않는 아이디입니다');</script>");
+			out.println("<script>location.href='javclogin';</script>");
 		} else {
 			if (vo.getPassword().equals(password)) {
 
 				// 관리자로 로그인 시
 				if (vo.getId().equals("semi01")) {
-					System.out.println("관리자 로그인");
 					request.getSession().setAttribute("loginMember", vo);
 					request.getSession().setAttribute("AdminNickname", "관리자");
-					response.sendRedirect("javcsecond");
+					out.println("<script>alert('관리자 로그인 성공');</script>");
+					out.println("<script>location.href='javcsecond';</script>");
 				} else {
 					// 일반 회원 로그인 시
-					System.out.println("로그인에 성공하였습니다");
 					request.getSession().setAttribute("loginMember", vo);
-					response.sendRedirect("javcsecond");
+					out.println("<script>alert('로그인 성공');</script>");
+					out.println("<script>location.href='javcsecond';</script>");
 				}
 			} else {
-				System.out.println("잘못된 비밀번호입니다");
-				response.sendRedirect("javcsecond");
+				out.println("<script>alert('비밀번호가 틀렸습니다');</script>");
+				out.println("<script>location.href='javcsecond';</script>");
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-package admin.controller;
+package member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,14 +15,14 @@ import member.service.MemberService;
 /**
  * Servlet implementation class MemberDelete
  */
-@WebServlet("/memberdelete")
-public class MemberDelete extends HttpServlet {
+@WebServlet("/memberwithdraw")
+public class MemberWithdraw extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public MemberDelete() {
+	public MemberWithdraw() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -54,12 +54,13 @@ public class MemberDelete extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (result > 0) {
 			System.out.println("삭제 완료");
-			out.print("<script>alert('성공적으로 회원이 제거되었습니다');</script>");
-			out.print("<script>location.href='memberlist';</script>");
+			request.getSession().removeAttribute("loginMember");
+			out.print("<script>alert('회원 탈퇴 완료. 다시 돌아올거죠..?');</script>");
+			out.print("<script>location.href='secondPage.jsp';</script>");
 		} else {
 			System.out.println("삭제 실패");
-			out.print("<script>alert('회원 제거에 실패했습니다');</script>");
-			out.print("<script>location.href='memberlist';</script>");
+			out.print("<script>alert('회원 탈퇴 실패. 관리자에게 문의하세요');</script>");
+			out.print("<script>location.href='secondPage.jsp';</script>");
 			
 		}
 	}
