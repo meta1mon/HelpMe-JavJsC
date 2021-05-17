@@ -124,7 +124,7 @@
 		</table>
 	<br><br><br>
 	<i style="font-size:80px; color:#d5d5d5;" class="fas fa-users"></i><br>
-	<div style="font-size:35px; padding:20px;">OUT AMAING TEAM</div>
+	<div style="font-size:35px; padding:20px;">OUR AMAING TEAM</div>
 	<div style="font-size:25px;">일조맥직<br>一條驀直<br></div>하나의 길로만 부지런히 똑바로 가라는 뜻.<br>
 	
 <table id="table2">
