@@ -1247,6 +1247,7 @@ $(document).ready(function(){
 								</tr>
 								
 								<c:forEach items="${myBook }" var='b'>
+								   <c:if test="${b.bid != null}">
 									<tr>
 										<td align="left" width="300"><img
 											src="imageFile/${b.bimage}" width="30" height="50"
@@ -1259,6 +1260,7 @@ $(document).ready(function(){
 										<td>${b.buydate }</td>
 										<td>${b.saction }</td>
 									</tr>
+									</c:if>
 								</c:forEach>
 							</c:if>
 						</table>
@@ -1283,6 +1285,7 @@ $(document).ready(function(){
 									<td><b>배송 상태</b></td>
 								</tr>
 								<c:forEach items="${myVideo }" var='v'>
+								   <c:if test="${v.vid != null}">
 									<tr>
 										<td align="left" width="300"><img
 											src="imageFile/${v.vimage}" width="30" height="50"
@@ -1295,6 +1298,7 @@ $(document).ready(function(){
 										<td>${v.buydate }</td>
 										<td>${v.saction }</td>
 									</tr>
+									</c:if>
 								</c:forEach>
 							</c:if>
 						</table>
