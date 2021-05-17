@@ -30,15 +30,21 @@ td {
 $(function(){
 	$("#purchase").click(function(){
 		$("#buychart").addClass('activado');
-		$("li").not("#buychart").removeClass('activado')
+		$("#buychart").children('ul').slideDown();
+		$(".menu li").not("#buychart").removeClass('activado')
+		$(".menu li ul").not($("#buychart").children("ul")).slideUp();
 	});
 	$("#shop").click(function(){
 		$("#adminshop").addClass('activado');		
-		$("li").not("#adminshop").removeClass('activado')
+		$("#adminshop").children('ul').slideDown();
+		$(".menu li").not("#adminshop").removeClass('activado')
+		$(".menu li ul").not($("#adminshop").children("ul")).slideUp();
 	});
 	$("#manage").click(function(){
 		$("#adminmember").addClass('activado');		
-		$("li").not("#adminmember").removeClass('activado')
+		$("#adminmember").children('ul').slideDown();
+		$(".menu li").not("#adminmember").removeClass('activado')
+		$(".menu li ul").not($("#adminmember").children("ul")).slideUp();
 	});
 })
 </script>
