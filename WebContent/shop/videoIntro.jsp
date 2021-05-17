@@ -17,6 +17,7 @@
 <head>
 <meta charset="UTF-8">
 
+<title>Video Shopping Mall</title>
 <style>
 	<%@include file="../style/shop.css" %>
 </style>

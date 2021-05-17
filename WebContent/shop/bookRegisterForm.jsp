@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>상품 등록</title>
 <style>
 <%@include file="../style/common.css" %>
 </style>

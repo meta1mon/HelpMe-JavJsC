@@ -48,7 +48,7 @@ public class BookList extends HttpServlet {
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 // 어딘지 모를 이전 페이지에서, 특정 버튼을 누르면 bkind를 받아온다 - 미구현
-		String bkind = request.getParameter("bkind");
+		String bkind = (String)request.getAttribute("bkind");
 //		String bkind = "100";
 		
 		

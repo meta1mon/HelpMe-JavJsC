@@ -33,7 +33,11 @@
 				$("nickname").focus();
 				return;
 			}
-
+			if((nickname.indexOf("관리자") != -1)) {
+				alert("'관리자'가 포함된 닉네임은 사용할 수 없습니다");
+				$("nickname").focus();
+				return;
+			}
 			$.ajax({
 				url : "<%=request.getContextPath()%>/uniquenickname",
 				type : "post",

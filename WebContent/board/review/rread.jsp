@@ -328,7 +328,7 @@ hr {
 			</tr>
 		</table>
 
-		<h3 style="clear: both; text-align: left;">${review.rreviewcnt } 답변</h3>
+		<h3 style="clear: both; text-align: left;">${review.rreviewcnt } 댓글</h3>
 		<c:if test="${reply != null}">
 			<c:forEach items="${reply }" var="r">
 					<div id="rlike">
@@ -364,7 +364,7 @@ hr {
 				</form>
 			</c:if>
 			<c:if test="${loginMember == null }">
-					<div id="login">답변을 하려면 로그인이 필요합니다.</div>
+					<div id="login">댓글 작성은 로그인이 필요합니다.</div>
 			</c:if>
 			<br><hr style="border:#ffffff;">
 			<button type="button" id="list"

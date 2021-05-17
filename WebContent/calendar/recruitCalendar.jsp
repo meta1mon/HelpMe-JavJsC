@@ -1,16 +1,34 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style/main.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style/rcCalendarStyle.css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../view/header.jsp"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+
+$.datepicker.setDefaults({
+    dateFormat: 'yy-mm-dd',
+    prevText: '이전 달',
+    nextText: '다음 달',
+    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    showMonthAfterYear: true,
+    yearSuffix: '년'
+   
+  });
+
+  $(function() {
+    $("#edit-start, #edit-end").datepicker();
+  });
+
 
 
 $(document).ready(function(){
@@ -33,31 +51,40 @@ $(document).ready(function(){
 	
 	 var calendar = new FullCalendar.Calendar(calendarEl, {
 	    initialView: 'dayGridMonth',
+	    height: 700,
 	    timeZone: "local",
 	    locale: "ko",
 	    headerToolbar: {
 	      center: 'addEventButton'
 	    },
-	  
+	    handleWindowResize: true,
+		dayMaxEvents: false,
+		displayEventTime: false,
+		displayEventEnd: false,
+		eventDisplay: 'block',
+	    editable: false,
 	    customButtons: {
 	      addEventButton: {
 	        text: '공채 일정 추가',
 	        click: function() {
+	        		
+	        	
+	        	//var memberId = "<%=session.getAttribute("loginMember")%>"
+				//var memberId = ${loginMember}
+	        	
 	        	
     			// 새로운 일정 등록 모달창 기본 설정
-    			// 모달창 초기화	   		
     			modalTitle.text('새로운 일정 등록');
     			$('#edit-start').val('');
     			$('#edit-end').val('');
     		    editTitle.val('');
-    			editType.val('');
+    			editType.val('1');
     			editCont.val(''); 
     			
     			if(addBtnContainer.css("display") == "none"){
     				modifyBtnContainer.hide();
     				addBtnContainer.show();
     			}
-    		
     		
     			$("#scheModal").css("display", "block");
 
@@ -69,43 +96,135 @@ $(document).ready(function(){
     			$(".btn-default").on("click", function() {
     				$("#scheModal").css("display", "none");
     			});
+	        		
+	        	} // click 끝
 	        	
-	        	
-	        	var title = editTitle.val();
-	        	var dateStrStart = editStart.val();
-	        	var dateStrEnd = editEnd.val();
-	        	var dateStart = new Date(dateStrStart);
-	        	var dateEnd = new Date(dateStrEnd);
-	        	
-	        	   if (!isNaN(date.valueOf())) { // valid?
-	                   calendar.addEvent({
-	                     title: title,
-	                     start: dateStart,
-	                     end: dateEnd,
-	                     allDay: true
-	                   });
-	        	   
-	                 } else {
-	                   alert('일정 등록 실패');
-	                 }
-       			}
+    		} // addEventButton 끝
         	
-   		}
       
-	    },
+	    }, // customButton 끝
+	    
+		events : function (info, successCallback, failureCallback) {
+			console.log(info);
+	   		  $.ajax({
+	 				url:"<%=request.getContextPath()%>/rcscheduleview",
+	 				type:"post",
+	 				dataType:"json",
+	 				
+	 				success:function(data){	
+	 					var events = [];
+	 					if(data != null){
+		 					$.each(data,function(index,e) {
+								console.log(data);
+		 						console.log(e);
+								console.log(e.rcScheName);
+
+								var title = e.rcScheName;
+								console.log(title);
+								
+								
+								
+								startDay = moment(e.rcScheStart);
+								endDay = moment(e.rcScheEnd);
+
+								//var startDay = e.rcScheStart; 
+								console.log("startDay : " + e.rcScheStart);
+								
+	//							var endDay = e.rcScheEnd;
+								console.log("endDay : " + endDay);
+								console.log("e.rcScheEnd : " + e.rcScheEnd);
+								
+								
+								var calcDay = moment(endDay.diff(startDay)).format('D');
+								
+								
+								if(calcDay >= 2){
+									console.log("if문 들어옴");
+									console.log("startDay: " + startDay);
+									console.log("endDay : " + endDay);
+									console.log("cacDay : " + calcDay);
+									
+									// 하루종일 일정이 2일 이상일 경우 달력에 표기 시 db 날짜 보다 하루를 더해야 정상출력
+									startDay = moment(e.rcScheStart).format('YYYY-MM-DD');
+									endDay = moment(e.rcScheEnd).add(1, 'days').format('YYYY-MM-DD'); 
+									
+								} else{
+									startDay = moment(e.rcScheStart).format('YYYY-MM-DD');
+									endDay = moment(e.rcScheEnd).format('YYYY-MM-DD');
+								}
+								
+								
+								var type = e.rcScheCode;
+								console.log(type);
+								
+								var content = e.rcScheContent;
+								console.log(content);
+								
+								
+								var backgroundColor = '';
+								if(type == 1){
+									backgroundColor = '#8cdeb8'	
+								}else{
+									backgroundColor = '#8cded4'
+								}
+								
+								events.push({
+									title : title,
+									start : startDay, 
+									end : endDay,
+									allDay : true,
+									backgroundColor : backgroundColor,
+									type: type,
+									content : content
+									
+								}); // push
+								console.log(events);
+							}); // each 끝
+	 						
+	 					} // if 끝
+						console.log(events); 
+						successCallback(events); 
+	 				}, // success 끝
+	 				error: function(request, status, error ){
+		        		console.log("일정 load 실패");
+						alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
+					} 
+	 				}); // ajax 끝
+	 				
+	   		  }, 
+	    
+	    
+	    
 	    eventClick: function(arg) {
 			
-			if(!confirm('일정을 지우시겠습니까?')){
+	    	
+	    	
+	    	
+	    	if(!confirm('일정을 지우시겠습니까? 확인: 일정 삭제, 취소: 상세 일정 확인')){
 				//모달창 open
 				checkSchedule(arg.event);
 			}else{
 				arg.event.remove();
-				 
+				var title = arg.event.title;
+				$.ajax({
+		    	        type: "post",
+		    	        url: "<%=request.getContextPath()%>/rcscheduledelete",
+						data:{
+							title : title
+						},
+							
+		    	        success: function (response) {
+		    	        	console.log(response);
+		    	        	alert("일정 삭제 성공");
+		    	        },
+		    	        error: function(request, status, error ){
+			        		console.log("일정 삭제 실패");
+							alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
+						} 
+		    	  })
 			}
-	
 			
-			}, /* eventClick 끝*/
-	      editable: true
+			} /* eventClick 끝*/
 	  });
 	
 	  calendar.render();
@@ -114,41 +233,86 @@ $(document).ready(function(){
 		$("#save-schedule").on('click', function(e){
 		    e.preventDefault();
 			console.log("저장함수 호출");
-			var scheduleData = {
-				title: editTitle.val(),
-				start: editStart.val(),
-				end: editEnd.val(),
-				type: editType.val(),
-				backgroundColor: editColor.val(),
-				content: editCont.val(),
-				textColor: "fff",
-				allDay: false
-			};
+				
+
+        	var title = editTitle.val();
+        	console.log("title : " + title);
+        	
+        	var dateStrStart = editStart.val();
+        	console.log("dateStrStart : " + dateStrStart);
+        	
+        	var dateStrEnd = editEnd.val();
+        	console.log("dateStrEnd : " + dateStrEnd);
+        	
+        	var dateStart = new Date(dateStrStart);
+        	console.log("dateStart : " + dateStart);
+        	
+        	var dateEnd = new Date(dateStrEnd);
+        	console.log("dateEnd : " + dateEnd);
+        	
+        	var type = editType.val();
+        	console.log("type : " + type);
+        	
+        	var content = editCont.val();
+        	console.log("content : " + content);
+		
 			
 			console.log("저장함수 닫기");
 			// 일정 시작 날짜보다 마감 날짜가 앞설 경우 
-			if(scheduleData.start > scheduleData.end) {
+			if(dateStart > dateEnd) {
 				alert('일정 마감 날짜가 앞설 수 없습니다.');
 				return false;
 			}
 			// 일정명을 기입하지 않았을 경우
-			if(scheduleData.title === ''){
+			if(title === ''){
 				alert('일정명은 필수입니다.')
 				return false;
 			}
 			
-			if(scheduleData.type === ''){
+			if(type === ''){
 				alert('일정 종류를 선택해주세요.')
 				return false;
 			}
 			
-			console.log("calendar.addEvent(scheduleData) 호출"+ scheduleData);
+			console.log("calendar.addEvent() 호출");
 			
-			calendar.addEvent(scheduleData);
+			  if (!isNaN(dateStart.valueOf())) { // valid?
+	                   calendar.addEvent({
+	                     title: title,
+	                     start: dateStart,
+	                     end: dateEnd,
+	                     type: type,
+	                     content: content,
+	                     allDay: true
+	                   });
+	        	   
+	                 } else {
+	                   alert('일정 등록 실패');
+	                 }
 			
 			$("#scheModal").css("display", "none");
 			//console.log(scheduleData);
 			
+			
+			  // 입력한 새로운 일정 저장
+	        var datastring = $("#frm").serialize();
+	        console.log(datastring);
+	        $.ajax({
+	        	type: "post",
+	        	url: "<%=request.getContextPath()%>/rcscheduleinsert",
+	        	data: datastring,
+	        	
+	        	success: function(data){
+	        		console.log("일정 등록 성공");
+	        	},
+	        	error: function(request, status, error ){
+	        		console.log("일정 등록 실패");
+					alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
+				} 
+	        })
+	        
+	        
+	        
 	     
 		}) // 저장버튼 클릭 끝
 		
@@ -160,13 +324,9 @@ $(document).ready(function(){
 			modalTitle.html('일정 확인');
 		    editTitle.val(event.title);
 		    
-		    if(editAllDay.is(':checked')){
-		    	editStart.val(moment(event.start).format('YYYY-MM-DD HH:mm'));
-		    	editEnd.val(moment(event.end).subtract(1, 'minutes').format('YYYY-MM-DD HH:mm'));
-		    }else{
-			    editStart.val(moment(event.start).format('YYYY-MM-DD HH:mm'));
-			    editEnd.val(moment(event.end).format('YYYY-MM-DD HH:mm'));
-		    }
+		    	editStart.val();
+		    	editEnd.val();
+			    
 		    
 		    editType.val(event._def.extendedProps.type);
 		    console.log(event._def.extendedProps.type);
@@ -175,12 +335,6 @@ $(document).ready(function(){
 		    editCont.val(event._def.extendedProps.content);
 		    console.log(event._def.extendedProps.content);
 		    
-		    if(event.allDay == true){
-			    editAllDay.prop('checked', true);
-		    } else {
-			    editAllDay.prop('checked', false);
-		    }
-
 		    
 		    if(modifyBtnContainer.css("display") == "none"){
 		    	addBtnContainer.hide();
@@ -206,7 +360,9 @@ $(document).ready(function(){
 </script>
 </head>
 <body class="content">
+	<div style="width: 840px; margin: 0 auto 0 auto; color: #99ADB6; background:#ffffff; padding:20px; border-radius: 4px;">
 	<div id="calendar"></div>
+	</div>
 	
 	<!-- 일정 추가 modal -->
 	<div class="modal" id="scheModal">

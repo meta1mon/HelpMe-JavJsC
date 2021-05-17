@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +22,8 @@ import board.study.service.RstudyService;
 import board.study.service.StudyService;
 import board.study.vo.Study;
 import member.vo.Member;
+import shop.VO.BuyVO;
+import shop.service.Buyservice;
 
 /**
  * Servlet implementation class MyPageEnter
@@ -179,6 +182,36 @@ public class MyPageEnter extends HttpServlet {
 				e.printStackTrace();
 			}
 			request.setAttribute("rrlist", list6);
+			
+			
+// 내 구매내역 불러오기
+			// 책
+			List<BuyVO> list7 = null;
+			Boolean bigSize = false;
+			String id = vo.getId();
+			try {
+				list7 = new Buyservice().getMyBook(id, bigSize);
+				if (list7 == null) {
+					System.out.println("책 구매내역 없음");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("myBook", list7);
+			
+			// 영상
+			List<BuyVO> list8 = null;
+			try {
+				list8 = new Buyservice().getMyVideo(id, bigSize);
+				if (list8 == null) {
+					System.out.println("비디오 구매내역 없음");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("myVideo", list8);
+			
+			
 			request.getRequestDispatcher("myPage/myPage.jsp").forward(request, response);
 		} else {
 			out.print("<script>alert('비밀번호가 일치하지 않습니다.');</script>");

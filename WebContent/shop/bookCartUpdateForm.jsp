@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>책 장바구니 수정</title>
 </head>
 <body class="content">
 	<%

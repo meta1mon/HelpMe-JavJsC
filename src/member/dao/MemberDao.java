@@ -144,6 +144,8 @@ public class MemberDao {
 		String sql2 = "update rqna set rqwriter = ? where rqwriter = ?";
 		String sql3 = "update study set swriter = ? where swriter = ?";
 		String sql4 = "update rstudy set rswriter = ? where rswriter = ?";
+		String sql5 = "update review set rwriter = ? where rwriter = ?";
+		String sql6 = "update rreview set rrwriter = ? where rrwriter = ?";
 
 		String sql = "update member set nickname = ? , password = ? , passquestion = ? , passanswer = ? , postcode = ? , address1 = ? , address2 = ? , address3 = ? , tel = ? , email = ?, rcvmail = ? where id = ?";
 
@@ -191,6 +193,28 @@ public class MemberDao {
 					System.out.println("study 댓글 작성자 변경 완료");
 				} else {
 					System.out.println("study에 작성된 댓글이 없음 ");
+				}
+				close(pstmt);
+
+				pstmt = conn.prepareStatement(sql5);
+				pstmt.setString(1, vo.getNickname());
+				pstmt.setString(2, originNick);
+				result = pstmt.executeUpdate();
+				if (result > 0) {
+					System.out.println("review 글 작성자 변경 완료");
+				} else {
+					System.out.println("review에 작성된 글이 없음 ");
+				}
+				close(pstmt);
+
+				pstmt = conn.prepareStatement(sql6);
+				pstmt.setString(1, vo.getNickname());
+				pstmt.setString(2, originNick);
+				result = pstmt.executeUpdate();
+				if (result > 0) {
+					System.out.println("review 댓글 작성자 변경 완료");
+				} else {
+					System.out.println("review에 작성된 댓글이 없음 ");
 				}
 				close(pstmt);
 

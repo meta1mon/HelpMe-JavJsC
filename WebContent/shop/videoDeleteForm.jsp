@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>영상 삭제</title>
 </head>
 <body>
 	<p>영상 삭제</p>
@@ -17,6 +18,7 @@
 		</td>
 		<tr>
 		<td>영상 번호<input type="hidden" value="${video.vid}" name="vid" readonly> </td>
+		<td>영상 번호<input type="hidden" value="${video.vkind}" name="vkind"> </td>
 		</tr>
 		<tr>
 		<td>

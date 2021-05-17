@@ -180,6 +180,7 @@ public class BuyDAO {
 //		//buy테이블의 전체 목록을 얻어내는 메소드
 	public List<BuyVO> getBuyBookList(Connection conn) throws Exception {
 		List<BuyVO> lists = null;
+		BuyVO buybook = null;
 		String sql = "select bimage, btitle, bprice, vimage, vtitle, vprice ";
 		sql += " buy.* , book.bid, video.vid ";
 		sql += " from buy left join book";
@@ -274,7 +275,6 @@ public class BuyDAO {
 		}
 		return lists;
 	}
-	
 	public List<BuyVO> getMyBook(Connection conn, String id, boolean bigSize) throws Exception {
 		List<BuyVO> lists = null;
 		BuyVO buy = null;
