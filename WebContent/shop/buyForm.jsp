@@ -94,7 +94,7 @@ function sample6_execDaumPostcode() {
 			${b.btitle}
 			</td>
 			<td width="100">
-			<fmt:formatNumber value="${b.bprice}" type="number" />
+			<fmt:formatNumber value="${b.bprice * (100- b.discountRate)/100}" type="number" />
 			
 			</td>
 			<td width="150">
@@ -138,7 +138,7 @@ function sample6_execDaumPostcode() {
 			${v.vtitle}
 			</td>
 			<td width="100">
-			<fmt:formatNumber value="${v.vprice}" type="number" />
+			<fmt:formatNumber value="${v.vprice * (100- v.discountRate)/100}" type="number" />
 			</td>
 			<td width="150">
 			1

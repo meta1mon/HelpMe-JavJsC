@@ -4,6 +4,8 @@
 <%@page import="shop.VO.ShopBookVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+		 integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <%@include file="../view/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -98,8 +100,15 @@ try {
 						</dd>
 					</dl>
 					<div class="order_quantity">
-						<label for="order-quantity">주문수량</label> <input type="number"
-							id="order-quantity" value="1" maxlength="3" name="buycount" />
+					  <div class="num">
+                            <div class="updown">
+                            <label for="order-quantity">주문수량
+                                <input type="text" name="buycount" id="p_num2" size="2" maxlength="4" class="p_num" value="1" onkeyup="javascript:basket.changePNum(2);">
+                                <span onclick="javascript:basket.changePNum(2);"><i class="fas fa-arrow-alt-circle-up up"></i></span>
+                                <span onclick="javascript:basket.changePNum(2);"><i class="fas fa-arrow-alt-circle-down down"></i></span>
+                            </div>
+                        </div>
+					
 					</div>
 					
 				<c:if test="${b.bcount == 0}">
@@ -128,6 +137,45 @@ try {
 </form>
 
 </div>
+<script>
+let basket = {
+	    totalCount: 0, 
+	    totalPrice: 0,
+	 
+	    //개별 수량 변경
+	    changePNum: function (pos) {
+	        var item = document.querySelector('input[name=buycount]');
+	        var p_num = parseInt(item.getAttribute('value'));
+	        var newval = event.target.classList.contains('up') ? p_num+1 : event.target.classList.contains('down') ? p_num-1 : event.target.value;
+	        
+	        if (parseInt(newval) < 1 || parseInt(newval) > 99) { return false; }
+
+	        item.setAttribute('value', newval);
+	        item.value = newval;
+
+	        var price = item.parentElement.parentElement.previousElementSibling.firstElementChild.getAttribute('value');
+	        item.parentElement.parentElement.nextElementSibling.textContent = (newval * price).formatNumber()+"원";
+	        //AJAX 업데이트 전송
+
+	        //전송 처리 결과가 성공이면    
+	        this.reCalc();
+	        this.updateUI();
+	    },
+	    delItem: function () {
+	        event.target.parentElement.parentElement.parentElement.remove();
+	    }
+	}
+
+	// 숫자 3자리 콤마찍기
+	Number.prototype.formatNumber = function(){
+	    if(this==0) return 0;
+	    let regex = /(^[+-]?\d+)(\d{3})/;
+	    let nstr = (this + '');
+	    while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
+	    return nstr;
+	};
+
+</script>
 </body>
 <%@include file="../view/footer.jsp"%>
 </html>

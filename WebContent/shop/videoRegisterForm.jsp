@@ -133,7 +133,6 @@ input[type="file"] {
 		}); 
 </script>
 
-
 </head>
 <main>
 	<div style="padding: 50px; margin-left: 200px;">
