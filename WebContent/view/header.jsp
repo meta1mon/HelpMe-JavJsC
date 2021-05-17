@@ -48,7 +48,7 @@ $(document).ready(function(){
 					<button type="button" id="btnEnroll" onclick="location.href='<%=request.getContextPath()%>/signup'">회원가입</button>
 				</div>
 			</c:when>
-s			<c:when test="${loginMember.id == 'semi01' }">
+			<c:when test="${loginMember.id == 'semi01' }">
 				<div class="afterLogin">
 					<div class="dropdown">
 						<div class="picBtn" id="picBtn">
