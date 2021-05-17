@@ -58,7 +58,7 @@ public class MemberInsert extends HttpServlet {
 		System.out.println(rcvmail + "rcvmail 동의여부 회원 가입 시.");
 		Member vo = new Member(id, nickname, password1, passquestion, passanswer, null, postcode, address1, address2, address3, tel, email, rcvmail);
 		int result = new MemberService().insert(vo);
-		
+		System.out.println(result);
 		PrintWriter out = response.getWriter();
 		if(result > 0) {
 			out.println("<script>alert('회원가입에 성공하였습니다');</script>");

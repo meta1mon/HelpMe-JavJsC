@@ -124,7 +124,6 @@ public class MemberDao {
 			pstmt.setString(10, vo.getTel());
 			pstmt.setString(11, vo.getEmail());
 			pstmt.setString(12, vo.getRcvmail());
-			System.out.println(vo.getRcvmail() + "dao 안에서 값 적용되는가?");
 			result = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
