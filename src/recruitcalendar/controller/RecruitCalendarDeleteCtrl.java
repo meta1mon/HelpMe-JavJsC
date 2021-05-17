@@ -55,11 +55,11 @@ public class RecruitCalendarDeleteCtrl extends HttpServlet {
 
 		String dbId = memVo.getId();
 
-		// 관리자로 로그인 시에만 일정 등록 가능
+		// 관리자로 로그인 시에만 일정 삭제 가능
 		if (memVo != null) {
 			if (!memVo.getId().equals("semi01")) {
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('일정 등록 권한이 없습니다.');</script>");
+				out.println("<script>alert('일정 삭제 권한이 없습니다.');</script>");
 				response.sendRedirect("rccalendar");
 			    //out.println("<script>location.href='rccalendar'</script>");
 				

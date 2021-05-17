@@ -62,6 +62,7 @@ $(document).ready(function(){
 		displayEventTime: false,
 		displayEventEnd: false,
 		eventDisplay: 'block',
+		eventBorderColor: '#fff',
 	    editable: false,
 	    customButtons: {
 	      addEventButton: {
@@ -69,9 +70,12 @@ $(document).ready(function(){
 	        click: function() {
 	        		
 	        	
-	        	//var memberId = "<%=session.getAttribute("loginMember")%>"
-				//var memberId = ${loginMember}
+	        	var memberId1 = "<%=session.getAttribute("loginMember")%>"
+				var memberId2 = '${loginMember}'
 	        	
+				console.log("memberId1" + memberId1);
+				console.log("memberId2" + memberId2);
+				
 	        	
     			// 새로운 일정 등록 모달창 기본 설정
     			modalTitle.text('새로운 일정 등록');
@@ -197,8 +201,6 @@ $(document).ready(function(){
 	    
 	    eventClick: function(arg) {
 			
-	    	
-	    	
 	    	
 	    	if(!confirm('일정을 지우시겠습니까? 확인: 일정 삭제, 취소: 상세 일정 확인')){
 				//모달창 open
