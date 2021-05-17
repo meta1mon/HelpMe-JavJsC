@@ -189,7 +189,7 @@ tr td:first-child {
 <!-- qlist.jsp의 디자인 -->
 <style>
 .board {
-	margin: 0 0 20px 10px;
+	margin: 0 0 0 10px;
 	text-align: left;
 	font-size: 17px;
 }
@@ -1219,6 +1219,7 @@ $(document).ready(function(){
 				<!-- 탭4 구매한 영상 목록 -->
 				<div class="bcont" style="display:none">
 					<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
+					<br>
 						<div class="board">
 							책 구매내역 <a onclick="myBookList();">더보기</a>
 						</div>
@@ -1244,7 +1245,7 @@ $(document).ready(function(){
 									<tr>
 										<td align="left" width="300"><img
 											src="imageFile/${b.bimage}" width="30" height="50"
-											align="middle"> ${b.btitle}</td>
+											align="middle"  style="float:left;"> ${b.btitle}</td>
 										<td>\ ${b.bprice}</td>
 										<td>${b.buycount}</td>
 										<td><c:set var="bprice"
@@ -1282,7 +1283,7 @@ $(document).ready(function(){
 									<tr>
 										<td align="left" width="300"><img
 											src="imageFile/${v.vimage}" width="30" height="50"
-											align="middle"> ${v.vtitle}</td>
+											align="middle"   style="float:left;"> ${v.vtitle}</td>
 										<td>\ ${v.vprice}</td>
 										<td>${v.buycount}</td>
 										<td><c:set var="vprice"

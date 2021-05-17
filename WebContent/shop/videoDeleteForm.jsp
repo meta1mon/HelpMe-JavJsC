@@ -19,27 +19,28 @@
 <body>
 
 	<center>
-	<div class="delete">
-	<p>영상 삭제</p>
-	<form action="<%=request.getContextPath()%>/videodelete?vid=${video.vid}" method="post">
-		<table>
-		<tr>
-		<td>
-		<a href="<%=request.getContextPath() %>/videolist">목록으로</a><br>
-		</td>
-		<tr>
-		<td>영상 번호<input type="hidden" value="${video.vid}" name="vid" readonly> </td>
-		<td>영상 번호<input type="hidden" value="${video.vkind}" name="vkind"> </td>
-		</tr>
-		<tr>
-		<td>
-		<input type="submit" value="영상 삭제">
-		</td>
-		</tr>
-		</table>
-	
-	</form>
-	</div>
+		<div class="delete">
+			<p>영상 삭제</p>
+			<form
+				action="<%=request.getContextPath()%>/videodelete?vid=${video.vid}"
+				method="post">
+				<table>
+						<td><input type="hidden" value="${video.vid}" name="vid"
+							readonly></td>
+						<td><input type="hidden" value="${video.vkind}" name="vkind">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:center;"><input type="submit" value="영상 삭제"></td>
+					</tr>
+					<tr>
+						<td><a href="<%=request.getContextPath()%>/videolist">목록으로</a><br>
+						</td>
+					<tr>
+				</table>
+
+			</form>
+		</div>
 	</center>
 </body>
 </html>

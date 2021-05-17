@@ -223,8 +223,10 @@
 	<div style="width: 840px; margin: 0 auto 0 auto; color: #99ADB6; background:#ffffff; padding:20px; border-radius: 4px;">
 
 		<div class="qna">Q&A 게시판</div>
+		<c:if test="${loginMember != null }">
 		<input id="write" type="button" value="새 글 쓰기"
 			onclick="location.href = 'board/qna/qwrite.jsp'">
+		</c:if>
 
 		<form action="qnalist" method="get">
 			<select id="searchType" name="searchType">

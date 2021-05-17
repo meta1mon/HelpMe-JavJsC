@@ -79,7 +79,7 @@ try {
 					</dl>
 					<div class="order_quantity">
 						<label for="order-quantity">주문수량</label> <input type="text"
-							id="order-quantity" value="1" maxlength="3" name="buycount" />
+							id="order-quantity" value="1" maxlength="3" name="buycount" readonly/>
 					</div>
 
 					<%
@@ -101,7 +101,7 @@ try {
 
 					
 					<input type="button" value="목록으로" id="backbtn"
-						onclick="javascript:window.location='<%=request.getContextPath()%>/videoIntro'">
+                  onclick="location.href='javascript:history.back()';">
 					<input type="button" value="메인으로" id="mainbtn"
 						onclick="javascript:window.location='<%=request.getContextPath()%>/shopmain'">
 

@@ -67,7 +67,7 @@
 			</tr>
 			<tr>
 				<td>저자</td>
-				<td><input type="text" name="author" value="${book.author }">원</td>
+				<td><input type="text" name="author" value="${book.author }"></td>
 			</tr>
 			<tr>
 				<td>출판사</td>

@@ -180,7 +180,7 @@ input[type="file"] {
 			</tr>
 			<tr>
 				<td style="border-right: 1px solid #ddd; text-align: center;">영상길이</td>
-				<td><input type="text" name="vsize"></td>
+				<td><input type="text" name="vsize" placeholder="분 단위로 기입"></td>
 			</tr>
 			<tr>
 				<td colspan="2" style="border-right: 1px solid #ddd; text-align: center;">

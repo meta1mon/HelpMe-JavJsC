@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../view/header.jsp"%>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.js"></script>
@@ -208,8 +209,10 @@ $(document).ready(function(){
 				//모달창 open
 				checkSchedule(arg.event);
 			}else{
+				<c:if test="${sessionScope.AdminNickname != '관리자'}">
 				alert("일정 삭제 권한이 없습니다");
-				<c:if test="${sessionScope.AdminNickname ne null}">
+		    	</c:if>
+				<c:if test="${sessionScope.AdminNickname == '관리자'}">
 				arg.event.remove();
 				
 				var title = arg.event.title;
@@ -229,7 +232,7 @@ $(document).ready(function(){
 							alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
 						} 
 		    	  })
-		    	  </c:if>
+		    	</c:if>
 			}
 			
 			} /* eventClick 끝*/

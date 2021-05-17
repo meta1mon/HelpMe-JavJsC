@@ -73,22 +73,22 @@ function move(){
    <div>
          <select id="kind" onchange="move();">
             <c:choose>
-               <c:when test="${bkind == null}">
+               <c:when test="${vkind == null}">
                   <option value="100">Java</option>
                   <option value="200">Jsp</option>
                   <option value="300">HTML</option>
                </c:when>
-               <c:when test="${bkind == 100}">
+               <c:when test="${vkind == 100}">
                   <option value="100" selected>Java</option>
                   <option value="200">Jsp</option>
                   <option value="300">HTML</option>
                </c:when>
-               <c:when test="${bkind == 200}">
+               <c:when test="${vkind == 200}">
                   <option value="100">Java</option>
                   <option value="200" selected>Jsp</option>
                   <option value="300">HTML</option>
                </c:when>
-               <c:when test="${bkind == 300}">
+               <c:when test="${vkind == 300}">
                   <option value="100">Java</option>
                   <option value="200">Jsp</option>
                   <option value="300" selected>HTML</option>

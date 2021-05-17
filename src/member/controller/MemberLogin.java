@@ -64,7 +64,6 @@ public class MemberLogin extends HttpServlet {
 				} else {
 					// 일반 회원 로그인 시
 					request.getSession().setAttribute("loginMember", vo);
-					out.println("<script>alert('로그인 성공');</script>");
 					out.println("<script>location.href='javcsecond';</script>");
 				}
 			} else {

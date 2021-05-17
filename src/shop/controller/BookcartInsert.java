@@ -1,6 +1,8 @@
 package shop.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +42,6 @@ public class BookcartInsert extends HttpServlet {
 		execute(request, response);
 	}
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("북카트 들어옴~");
 		Member vo = (Member) request.getSession().getAttribute("loginMember");
 		String bkind = request.getParameter("bkind");
 		String bid = request.getParameter("bid");

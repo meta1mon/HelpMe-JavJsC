@@ -106,9 +106,9 @@
 				<td>영상유효기간</td>
 				<td><lable>시작일<input type="text" id="startDate"
 						name=startDate value="${video.startDate}"></lable> <img
-					src="../images/calendar.gif"> <label>종료일<input
+					src="<%=request.getContextPath() %>/images/calendar.gif"> <label>종료일<input
 						type="text" id="endDate" name="endDate" value="${video.endDate}"></label>
-					<img src="../images/calendar.gif"></td>
+					<img src="<%=request.getContextPath() %>/images/calendar.gif"></td>
 			</tr>
 			<tr>
 				<td>영상길이</td>

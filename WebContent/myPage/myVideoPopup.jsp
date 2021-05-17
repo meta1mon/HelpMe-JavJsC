@@ -39,17 +39,19 @@
 				<td><b>배송 상태</b></td>
 			</tr>
 			<c:forEach items="${myVideo }" var='v'>
-				<tr>
-					<td align="left" width="300"><img src="imageFile/${v.vimage}"
-						width="30" height="50" align="middle"> ${v.vtitle}</td>
-					<td>\ ${v.vprice}</td>
-					<td>${v.buycount}</td>
-					<td><c:set var="vprice"
-							value="${vprice+ (v.buycount * v.buyprice)}"></c:set>
-						${(v.buycount * v.buyprice)}</td>
-					<td>${v.buydate }</td>
-					<td>${v.saction }</td>
-				</tr>
+				<c:if test="${v.vid != null}">
+					<tr>
+						<td align="left" width="300"><img src="imageFile/${v.vimage}"
+							width="30" height="50" align="middle"> ${v.vtitle}</td>
+						<td>\ ${v.vprice}</td>
+						<td>${v.buycount}</td>
+						<td><c:set var="vprice"
+								value="${vprice+ (v.buycount * v.buyprice)}"></c:set>
+							${(v.buycount * v.buyprice)}</td>
+						<td>${v.buydate }</td>
+						<td>${v.saction }</td>
+					</tr>
+				</c:if>
 			</c:forEach>
 		</c:if>
 	</table>

@@ -1,28 +1,23 @@
-package shop.controller;
+package page.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shop.VO.ShopBookVo;
-import shop.service.Bookservice;
-
 /**
- * Servlet implementation class bookdeleteForm
+ * Servlet implementation class PassFindCtrl
  */
-@WebServlet("/bookdeleteForm")
-public class BookdeleteForm extends HttpServlet {
+@WebServlet("/passfind")
+public class PassFindCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookdeleteForm() {
+    public PassFindCtrl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,31 +34,11 @@ public class BookdeleteForm extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		execute(request, response);
+
 	}
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("이동 서블릿 들어옴");
+		request.getRequestDispatcher("/member/passfind.jsp").forward(request, response);
 		
-		String bid = request.getParameter("bid");
-		String bkind = request.getParameter("bkind");
-		ShopBookVo vo = null;
-		System.out.println(bid);
-		System.out.println(bkind);
-		try {
-			vo = new Bookservice().getBook(bid);
-			if(vo != null) {
-				System.out.println("삭제할 책 불러옴11111111111111111");
-			}else {
-				System.out.println("존재하지 않음");
-		}
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println(vo.getBid());
-		request.setAttribute("book", vo);
-		request.setAttribute("bkind", bkind);
-		String url = "./shop/bookDeleteForm.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-		dispatcher.forward(request, response);
 	}
-
 }

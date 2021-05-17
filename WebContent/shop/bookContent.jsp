@@ -115,6 +115,13 @@ try {
 					<font color="red">등록된 책 없음</font>
 				</c:if>
 					<c:set var="vprice" value="$"/>
+										<%
+						if (id.equals("not")) {
+					%>
+					<font color="red">로그인 후 구매 가능합니다.</font>
+					<%
+						} else {
+					%>
 					<input type="hidden" name="bid" value="${b.bid}"> <input
 						type="hidden" name="bimage" value="${b.bimage}">
 					<input type="hidden" name="btitle"
@@ -123,8 +130,8 @@ try {
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
   <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
 </svg>
-					<input type="button" value="목록으로" id="backbtn"
-						onclick="javascript:window.location='<%=request.getContextPath()%>/booklist';">
+<input type="button" value="목록으로" id="backbtn"
+                  onclick="location.href='javascript:history.back()';">
 					<input type="button" value="메인으로" id="mainbtn"
 						onclick="javascript:window.location='<%=request.getContextPath()%>/shopmain'">
 
@@ -137,6 +144,9 @@ try {
 </form>
 
 </div>
+<%
+						}
+%>
 <script>
 let basket = {
 	    totalCount: 0, 
