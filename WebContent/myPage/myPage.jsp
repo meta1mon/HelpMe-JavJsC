@@ -809,9 +809,9 @@ $(document).ready(function(){
 		<div class="onoff tab-main">
 			<ul class="tab">
 				<li><a href="#" class="title">일정 관리</a></li>
-				<li><a href="#" class="title">나의 프로필</a></li>
-				<li><a href="#" class="title">내가 쓴 글</a></li>
-				<li><a href="#" class="title">내 영상 보기</a></li>
+				<li><a href="#" class="title">내 프로필</a></li>
+				<li><a href="#" class="title">내 글 목록</a></li>
+				<li><a href="#" class="title">내 구매 목록</a></li>
 			</ul>
 			<!-- 탭 컨텐츠 -->
 			<div class="tab-cont">
