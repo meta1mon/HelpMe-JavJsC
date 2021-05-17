@@ -208,7 +208,10 @@ $(document).ready(function(){
 				//모달창 open
 				checkSchedule(arg.event);
 			}else{
+				alert("일정 삭제 권한이 없습니다");
+				<c:if test="${sessionScope.AdminNickname ne null}">
 				arg.event.remove();
+				
 				var title = arg.event.title;
 				$.ajax({
 		    	        type: "post",
@@ -226,6 +229,7 @@ $(document).ready(function(){
 							alert("code: "+ request.status + "\n" + "message: "+ request.responseText + "\n" + "error: "+ error );
 						} 
 		    	  })
+		    	  </c:if>
 			}
 			
 			} /* eventClick 끝*/
@@ -338,9 +342,11 @@ $(document).ready(function(){
 			modalTitle.html('일정 확인');
 		    editTitle.val(event.title);
 		    
-		    	editStart.val();
-		    	editEnd.val();
-			    
+		    editStart.val(event.startStr);
+		    
+		    var renderEnd = moment(event.end).subtract(1, 'days').format('YYYY-MM-DD');
+		    editEnd.val(renderEnd);
+		    
 		    
 		    editType.val(event._def.extendedProps.type);
 		    console.log(event._def.extendedProps.type);
