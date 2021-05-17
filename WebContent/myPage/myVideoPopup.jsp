@@ -9,11 +9,20 @@
 <style>
 <%@include file="../../style/common.css"%>
 <%@include file="../../style/header.css"%>
+#table{
+	color:black;
+	}
+	
+	div{
+		background:#fff;
+		border:1px solid black;
+	}
 </style>
 <title>도와줘 잡스씨</title>
 
 </head>
 <body>
+<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
 	<table id="table" style="border: 1; text-align: center;">
 		<c:if test="${myVideo.size() == 0 }">
 			<tr>
@@ -22,12 +31,12 @@
 		</c:if>
 		<c:if test="${myVideo.size() != 0 }">
 			<tr>
-				<td>영상 이름</td>
-				<td>판매가격</td>
-				<td>수량</td>
-				<td>총 금액</td>
-				<td>구매 날짜</td>
-				<td>배송 상태</td>
+				<td><b>영상 이름</b></td>
+				<td><b>판매가격</b></td>
+				<td><b>수량</b></td>
+				<td><b>총 금액</b></td>
+				<td><b>구매 날짜</b></td>
+				<td><b>배송 상태</b></td>
 			</tr>
 			<c:forEach items="${myVideo }" var='v'>
 				<tr>
@@ -44,5 +53,6 @@
 			</c:forEach>
 		</c:if>
 	</table>
+	</div>
 </body>
 </html>
