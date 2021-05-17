@@ -9,9 +9,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import calendar.DAO.CalendarDAO;
+import calendar.VO.CalendarVO;
 import recruitcalendar.DAO.RecruitCalendarDAO;
 import recruitcalendar.VO.RecruitCalendarVO;
-
 
 public class RecruitCalendarService {
 
@@ -22,7 +23,36 @@ public class RecruitCalendarService {
 		close(conn);
 		return list;
 	}
-	
-	
-	
+
+	// insert
+	public int insertSchedule(RecruitCalendarVO vo) throws SQLException {
+		int result = 0;
+
+		Connection conn = getConnection();
+		RecruitCalendarDAO dao = new RecruitCalendarDAO();
+		result = dao.insertSchedule(conn, vo);
+		if (result != 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	// delete
+	public int deleteSchedule(String scheName) throws SQLException {
+		int result = 0;
+
+		Connection conn = getConnection();
+		RecruitCalendarDAO dao = new RecruitCalendarDAO();
+		result = dao.deleteSchedule(conn, scheName);
+		if (result != 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

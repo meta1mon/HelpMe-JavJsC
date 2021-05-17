@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import member.vo.Member;
 import recruitcalendar.Service.RecruitCalendarService;
 import recruitcalendar.VO.RecruitCalendarVO;
 
@@ -47,8 +48,11 @@ public class RecruitCalendarViewCtrl extends HttpServlet {
 	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("서블릿 진입함");
 		PrintWriter out = response.getWriter();
+		//Member memVo = (Member) request.getSession().getAttribute("loginMember"); 
+		
 		
 		ArrayList<RecruitCalendarVO> list = null;
+		
 		
 		try {
 			list = new RecruitCalendarService().viewSchedule();
