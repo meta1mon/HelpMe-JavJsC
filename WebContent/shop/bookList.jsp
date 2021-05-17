@@ -67,11 +67,6 @@ location.href="<%=request.getContextPath()%>/abooklist?bkind="+$("#kind option:s
    <div>
    <select id="kind" onchange="move();">
       <c:choose>
-       <c:when test="${bkind == null}">
-      <option value="100">Java</option>
-      <option value="200">Jsp</option>
-      <option value="300">HTML</option>
-       </c:when>
        <c:when test="${bkind == 100}">
       <option value="100" selected>Java</option>
       <option value="200">Jsp</option>

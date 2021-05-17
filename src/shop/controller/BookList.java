@@ -50,6 +50,9 @@ public class BookList extends HttpServlet {
 // 어딘지 모를 이전 페이지에서, 특정 버튼을 누르면 bkind를 받아온다 - 미구현
 		String bkind = (String)request.getAttribute("bkind");
 //		String bkind = "100";
+		if(bkind == null) {
+			bkind = "100";
+		}
 		
 		
 		List<ShopBookVo> bookList = null;

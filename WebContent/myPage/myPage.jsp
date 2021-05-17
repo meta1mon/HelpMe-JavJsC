@@ -306,6 +306,7 @@ table>tr>td:first-child+td+td+td+td {
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- 탭 기능 -->
 <script>
+
 	$(document)
 			.ready(
 					function() {
@@ -328,7 +329,6 @@ table>tr>td:first-child+td+td+td+td {
 													.eq(index).show();
 										});
 					});
-
 </script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!-- 정보 수정 팝업 띄우기 -->
@@ -1306,6 +1306,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 		</div>
+	</div>
 	<!-- 탭3 내 글/댓글 목록 불러오기 -->
 	<script>
 		function myqlist() {
