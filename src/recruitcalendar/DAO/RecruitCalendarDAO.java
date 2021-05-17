@@ -71,14 +71,14 @@ public class RecruitCalendarDAO {
 		
 		
 		// 일정 삭제
-		public int deleteSchedule(Connection conn, String scheName) throws SQLException {
+		public int deleteSchedule(Connection conn, String rcscheName) throws SQLException {
 			int result = 0;
 			
-			String sql = "DELETE FROM schedule WHERE schename = ?";
+			String sql = "DELETE FROM rcschedule WHERE rcschename = ?";
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, scheName);
+				pstmt.setString(1, rcscheName);
 				
 				result = pstmt.executeUpdate();
 			}finally {
