@@ -107,7 +107,7 @@ initparticles();
 								</div>
 							</div>
 						</div></td>
-				<td class="ink"><a href="<%=request.getContextPath()%>/reviewlist"><div class="flip-box">
+				<td class="ink"><a href="<%=request.getContextPath()%>/qnalist"><div class="flip-box">
 							<div class="flip-box-inner">
 								<div class="flip-box-front">
 									<h2>REVIEW</h2>
@@ -146,7 +146,7 @@ initparticles();
 							</div>
 						</div></a></td>
 				<td class="ink"><a
-					href="<%=request.getContextPath()%>/aboutus">
+					href="#">
 					<div class="flip-box">
 							<div class="flip-box-inner">
 								<div class="flip-box-front">

@@ -43,7 +43,6 @@ public class BookdeleteForm extends HttpServlet {
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String bid = request.getParameter("bid");
-		String bkind = request.getParameter("bkind");
 		ShopBookVo vo = null;
 		
 		try {
@@ -59,7 +58,6 @@ public class BookdeleteForm extends HttpServlet {
 		}
 		
 		request.setAttribute("book", vo);
-		request.setAttribute("bkind", bkind);
 		String url = "./shop/bookDeleteForm.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

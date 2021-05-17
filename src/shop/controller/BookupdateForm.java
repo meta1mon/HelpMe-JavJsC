@@ -42,7 +42,6 @@ public class BookupdateForm extends HttpServlet {
 	}
 	private void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String bid = request.getParameter("bid");
-		String bkind = request.getParameter("bkind");
 		ShopBookVo vo = null;
 		try {
 			vo = new Bookservice().getBook(bid);
@@ -57,7 +56,6 @@ public class BookupdateForm extends HttpServlet {
 		}
 		
 		request.setAttribute("book", vo);
-		request.setAttribute("bkind", bkind);
 		String url = "./shop/bookUpdateForm.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

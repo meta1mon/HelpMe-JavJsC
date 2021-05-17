@@ -232,7 +232,7 @@
 				<option value="2">작성자</option>
 				<option value="3">글내용</option>
 			</select> <input type='search' id="search" name="search"
-				placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp게시글을 검색하세요.">
+				placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp질문을 검색하세요.">
 			<button type=submit id="btnsearch">검색</button>
 		</form>
 
@@ -244,7 +244,7 @@
 					<td style="width: 50px; font-size: 14px;"><a
 						style="font-size: 18px;">${s.slikecnt }</a><br>좋아요</td>
 					<td style="width: 50px; font-size: 14px;"><a
-						style="font-size: 18px;">${s.rstudycnt }</a><br>댓글</td>
+						style="font-size: 18px;">${s.rstudycnt }</a><br>답변</td>
 					<td style="text-align: left; width: 500px;"><a
 						href="studyread?sno=${s.sno}" id="subject">${s.ssubject }</a> <br>
 						<div id="tag">

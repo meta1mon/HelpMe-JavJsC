@@ -63,19 +63,18 @@ function sample6_execDaumPostcode() {
 
 <head>
 <meta charset="UTF-8">
-<title>구매창</title>
 <style>
 <%@include file="../style/shop3.css"%>
 </style>
 </head>
 <body class="content">
-<div style="width: 800px; margin: 0 auto 0 auto;" class="buywrap">
+<div style="width: 800px; margin: 0 auto 0 auto;">
 	<%
 	
 		int number = 0; int number2 = 0;
 		int total = 0; int total2=0;
 	%>
-		<h1>구매 목록</h1>
+		<p>구매 목록</p>
 		<form name="bookcart" >
 		<table id="bcart">
 		<tr>
@@ -109,10 +108,10 @@ function sample6_execDaumPostcode() {
 			</table>		
 			<tr>
 			<div class="buyprice">
-			<td colspan="5" align="right">
-			<h4>책 구매금액 : \
+			<td colspan="5" align="right" style="color:red">
+			책 구매금액 :
 			<fmt:formatNumber value="${bprice}" type="number" />
-			</h4>
+			</b>
 			</td>
 			</div>
 			</tr>
@@ -121,7 +120,7 @@ function sample6_execDaumPostcode() {
 		
 		<br>
 		<form>
-		<table id="vcart">
+		<table border="1px;">
 		<tr>
 			<td width="50">NO</td>
 			<td width="300">영상 이름</td>
@@ -133,7 +132,7 @@ function sample6_execDaumPostcode() {
 			<tr>
 			<td width="50"><%= ++ number2 %></td>
 			<td width="300" align="left">
-			<img src="imageFile/${v.vimage}" 
+			<img src="../imageFile/${v.vimage}" 
 			width="30" height="50" align="middle">
 			${v.vtitle}
 			</td>
@@ -153,22 +152,21 @@ function sample6_execDaumPostcode() {
 		</table>		
 			<tr>
 			<td colspan="5" align="right">
-			<h4>영상 구매금액 : \
+			<b>영상 구매금액 :
 			<fmt:formatNumber value="${vprice}" type="number" />
-			 </h4>
+			<c:out value="${vprice}"/>
+			 </b>
 			</td>
 			</tr>
 			
 				
 		<div>
-		<h2>총금액 : \ 
-		<fmt:formatNumber value="${bprice+vprice}" type="number" />
-		</h2>
+		총금액 
+		<fmt:parseNumber value="${bprice+vprice}" type="number" integerOnly="true" />
 		</div>
 		</form>
-		<center>
 		<form method="post" action="<%=request.getContextPath() %>/bookbuy">
-			<table id="order">
+			<table border="1px">
 			<tr>
 			<td colspan="2" height="30"><font size = "+1">
 			<b>주문자정보</b></font>
@@ -189,7 +187,7 @@ function sample6_execDaumPostcode() {
 			<tr>
 			<td width="200" height="40" align="left">결제계좌</td>
 			<td width="400" align="left">
-			<select name="account" id="account">
+			<select name="account">
 			<c:forEach items="${account }" var="a"   >
 			<option value="${a}">
 			${a}
@@ -225,27 +223,23 @@ function sample6_execDaumPostcode() {
 						<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="deliveryadd2" style="margin-bottom:5px"><br>
 				<!-- 참고항목은 도로명 주소 클릭 시, 동을 표시한다 -->
 				<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="address3" readonly style="margin-bottom:5px"></td>
-					<td><input id="address" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+					<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
 			</tr>
 			
 			
 			<tr>
+			<td colspan="2" align="center">
+			<input type="submit" value="구매하기">
+			<input type="button" value="취소"
+			onclick="javascript:window.location='#'">
+			<input type="hidden" name="buyprice" value="<">
 			
-			<td colspan="2" align="center" style="border:none">
-			<div  id="buy2">
-			<button type="submit" id ="buybtn">구매하기</button>
-			<button type="submit" id ="shopbtn">
-			<a href="<%=request.getContextPath()%>/shopmain">
-			돌아가기</a>
-			</button>
-			</div>
 			
 			</td>
 			</tr>
 			</table>
 			
 		</form>
-		</center>
 </div>		
 </body>
 <%@include file="../../view/footer.jsp"%>

@@ -113,8 +113,7 @@ public class Bookupdate extends HttpServlet {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		request.setAttribute("bkind", bkind);
-		request.getRequestDispatcher("booklist").forward(request, response);
+		response.sendRedirect("booklist");
 	}
 
 }

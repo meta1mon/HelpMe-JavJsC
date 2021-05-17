@@ -36,10 +36,10 @@ public class Bookdelete extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		System.out.println("딜리트 들어옴");
 		
 		String bid = request.getParameter("bid");
-		String bkind = request.getParameter("bkind");
 		
 		int result  = 0;
 		try {
@@ -54,8 +54,8 @@ public class Bookdelete extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("bkind", bkind);
-		request.getRequestDispatcher("booklist").forward(request, response);
+		response.sendRedirect("booklist");
+	
 	}
 
 }

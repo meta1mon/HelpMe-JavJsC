@@ -95,7 +95,6 @@ public class VideoRegisterCtrl extends HttpServlet {
 		
 		video.setVid(vid);
 		video.setVkind(vkind);
-		System.out.println("reg"+ vkind);
 		video.setVtitle(vtitle);
 		video.setVprice(Integer.parseInt(vprice));
 		video.setDiscountRate(Integer.parseInt(discountRate));
@@ -117,10 +116,15 @@ public class VideoRegisterCtrl extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-System.out.println(vkind);
+
 // 삽입 성공 후 , 어디로 보낼지 추후 작성
+		//request.dispatcher
 		request.setAttribute("vkind", vkind);
 		request.getRequestDispatcher("videolist").forward(request, response);
+		
+		
+		
+		
 		
 	}
 	

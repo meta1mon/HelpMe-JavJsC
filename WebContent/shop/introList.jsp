@@ -16,7 +16,6 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Book Shopping Mall</title>
 </head>
 <body class="content">
 <div style="width: 800px; margin: 0 auto 0 auto;">

@@ -11,7 +11,6 @@
 <%@include file="../view/header.jsp"%>
 <head>
 <meta charset="UTF-8">
-<title>shopping mall</title>
 <style>
 <%@include file="../style/shop3.css"%>
 </style>
@@ -42,26 +41,26 @@
 				#HTML분류 책 바로가기 <br>
 			</a>
 		</div>
-		<h1>오늘의 영상</h1>
+		<h1>분류별 영상 바로가기</h1>
 		<div class="button-1"
-			style="background-image: url('imageFile/v00001.JPG');">
+			style="background-image: url('imageFile/html2.jpg');">
 			<div class="eff-1"></div>
 			<a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind1}">
-				#JAVA 수강하러 가기 <br>
+				분류 책 바로가기 <br>
 			</a>
 		</div>
 		<div class="button-1"
-			style="background-image: url('imageFile/v000022.JPG');">
+			style="background-image: url('imageFile/html2.jpg');">
 			<div class="eff-1"></div>
 			<a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind2}">
-				#JSP 수강하러 가기 <br>
+				분류 책 바로가기 <br>
 			</a>
 		</div>
 		<div class="button-1"
-			style="background-image: url('imageFile/v00004.JPG');">
+			style="background-image: url('imageFile/html2.jpg');">
 			<div class="eff-1"></div>
 			<a href="<%=request.getContextPath()%>/videoIntro?vkind=${vkind3}">
-				#HTML 수강하러 가기 <br>
+				분류 책 바로가기 <br>
 			</a>
 		</div>
 	</div>

@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>책 삭제</title>
 </head>
 <body>
 	<p>책 삭제</p>
@@ -17,7 +16,6 @@
 		</td>
 		<tr>
 		<td>글 번호<input type="hidden" value="${book.bid}" name="bid" readonly> </td>
-		<td>글 번호<input type="hidden" value="${book.bkind}" name="bkind" readonly> </td>
 		</tr>
 		<tr>
 		<td>

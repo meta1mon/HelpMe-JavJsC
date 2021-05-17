@@ -20,7 +20,6 @@ int total2 = 0;
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <style>
 <%@include file="../style/shop2.css"%>
 
@@ -94,7 +93,7 @@ int total2 = 0;
                         </div>
                           <div class="sum">
                           <c:set var="bprice" value="${bprice+ (b.buycount * b.bprice)}"></c:set>
-                         <fmt:formatNumber value="${(b.bprice * (100- b.discountRate)/100)*b.buycount}" type="number" />
+                         <fmt:formatNumber value="${b.bprice * b.buycount}" type="number" />
                          </div>
                     </div>
                     <div class="subdiv1">
@@ -147,7 +146,7 @@ int total2 = 0;
                     <div class="subdiv">
                         <div class="basketprice"><input type="hidden" name="p_price" id="p_price2" class="p_price" >
                         <p class="price2">
-                        <fmt:formatNumber value="${(v.vprice * (100- v.discountRate)/100)*v.buycount}" type="number" />
+                    <fmt:parseNumber value="${v.vprice * (100- v.discountRate)/100}" integerOnly="true" type="number" />
                     	원</div>
                         </p>
                         <div class="num">
@@ -157,7 +156,7 @@ int total2 = 0;
                         </div>
                            
                         <div class="sum">
-                        <fmt:formatNumber value="${(v.vprice * (100- v.discountRate)/100)*v.buycount}" type="number" />
+                        <fmt:formatNumber value="${v.vprice}" type="number" />
                          <c:set var="vprice" value="${vprice+ v.vprice}"/>
                          </div>
                     </div>
@@ -183,7 +182,7 @@ int total2 = 0;
 			</div>	
             <div class="bigtext right-align box blue summoney" id="sum_p_price">
             	합계금액:
-            	<fmt:formatNumber value="${bprice+vprice}" type="number" />
+			<c:out value="${bprice+vprice}"/>            	
                            원</div>
     
 				<%

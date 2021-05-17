@@ -302,20 +302,21 @@ hr {
 					<div id="content">
 						${qna.qcontent }<br>
 						<div id="file">
-						
 							<c:forTokens var="fileName" items="${qna.qfilepath}" delims=","
 								varStatus="st">
 								<a download="${fileName}"
 									href="<%=request.getContextPath() %>/board/qna/files/${fileName }">${fileName}</a>
 								<c:if test="${!st.last }">
-                        /
-                    </c:if>
+			                        /
+			                    </c:if>
 								<br>
 							</c:forTokens>
-							<c:if test="${loginMember.nickname == qna.qwriter}">
+							<c:if test="${(loginMember.nickname == qna.qwriter) || (loginMember.nickname == '관리자')}">
 								<button type="button" id="delete"
 									onclick="location.href='<%=request.getContextPath()%>/qnadelete?qno=${qna.qno }'"
 									style="float: right;">삭제</button>
+							</c:if>
+							<c:if test="${(loginMember.nickname == qna.qwriter)}">
 								<button type="button" id="update"
 									onclick="location.href='<%=request.getContextPath()%>/moveqnaupdate?qno=${qna.qno }'"
 									style="float: right;">수정</button>
@@ -335,9 +336,11 @@ hr {
 					</div>
 					<div id="rcontent">${r.rqwriter}<br>${r.rqcontent }
 						<div style="float: right;">
- 						<c:if test="${loginMember.nickname == r.rqwriter}">
+ 						<c:if test="${(loginMember.nickname == r.rqwriter)}">
 							<button type="button" id="update"
 								onclick="open_win('<%=request.getContextPath()%>/moverqnaupdate?rqno=${r.rqno }', '_blank')">수정</button>
+ 						</c:if>
+ 						<c:if test="${(loginMember.nickname == r.rqwriter) || (loginMember.nickname == '관리자')}">
 							<button type="button" id="delete"
 								onclick="location.href='<%=request.getContextPath()%>/rqnadelete?rqno=${r.rqno }&qno=${r.qno }'">삭제</button>
  						</c:if>
@@ -351,7 +354,7 @@ hr {
 				<form action="<%=request.getContextPath()%>/rqnawrite" method="post">
 					<div style="float: right; margin-top: 10px;">
 						<input type="hidden" name="qno" value="${qna.qno }">
-						<textarea placeholder="답변하기" id="editor" name="rqcontent"
+						<textarea placeholder="댓글 쓰기" id="editor" name="rqcontent"
 							maxlength="4000"></textarea>
 					</div>
 					<div style="clear: both; float: right; padding-top: 10px;">
