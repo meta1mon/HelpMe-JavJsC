@@ -124,7 +124,7 @@ $(document).ready(function() {
 					<li ><a href="<%=request.getContextPath()%>/bookinsert">판매 도서 등록</a></li>
 					<li><a href="<%=request.getContextPath()%>/booklist">판매 도서 리스트</a></li>
 					<li><a href="<%=request.getContextPath()%>/videoinsert">판매 영상 등록</a></li>
-					<li><a href="<%=request.getContextPath()%>/booklist">판매 영상 리스트</a></li>
+					<li><a href="<%=request.getContextPath()%>/videolist">판매 영상 리스트</a></li>
 				</ul>
 			</li>
 			<li id="adminmember"><a href="#">회원 관리<i class="fa fa-chevron-down"></i></a>

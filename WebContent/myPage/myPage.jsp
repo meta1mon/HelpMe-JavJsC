@@ -345,13 +345,6 @@ $(document).ready(function(){
     $("select option[value='${loginMember.passquestion}']").attr("selected", true);
 });
 </script>
-<!-- 마우스 클릭시 배경 회색으로 -->
-<script>
-$(document).ready(function(){
-	$("")
-	
-})
-</script>
 <!-- 캘린더 -->
 <script>
 	var calendar = null;
@@ -791,7 +784,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body class="content">
-	<div style="width: 800px; margin-left: auto; margin-right: auto;">
+	<div style="width: 800px; margin-left: auto; margin-right: auto;s">
 		<!-- 이미지 + 닉네임 표시 -->
 		<div class="welcome" style="padding-bottom: 20px;">
 			<div class="picBtn"
@@ -905,7 +898,7 @@ $(document).ready(function(){
 				</div>
 
 				<!-- 탭2 내 정보 확인 -->
-				<div class="cont" id="profile">
+				<div class="cont" id="profile" style="display:none">
 					<table class="profileFrm">
 						<tr>
 							<td>아이디<span class="required">(필수)</span></td>
@@ -1012,7 +1005,7 @@ $(document).ready(function(){
 					</table>
 				</div>
 				<!-- 탭3 내 글 목록-->
-				<div class="cont">
+				<div class="cont"  style="display:none">
 					<div class="onoff tab-sub">
 						<!-- 내 글 목록 상세 메뉴 -->
 						<ul class="tab">
@@ -1224,7 +1217,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<!-- 탭4 구매한 영상 목록 -->
-				<div class="bcont">
+				<div class="bcont" style="display:none">
 					<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
 						<div class="board">
 							책 구매내역 <a onclick="myBookList();">더보기</a>

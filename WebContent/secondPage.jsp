@@ -51,17 +51,12 @@ initparticles();
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner">
 								<div class="item active">
-									<img src="http://ipsumimage.appspot.com/750x500?l=예시1"
+									<img src="<%=request.getContextPath()%>/images/img_13.jpg"
 										style="width: 100%;">
 								</div>
 
 								<div class="item">
-									<img src="http://ipsumimage.appspot.com/750x500?l=예시2"
-										style="width: 100%;">
-								</div>
-
-								<div class="item">
-									<img src="http://ipsumimage.appspot.com/750x500?l=예시3"
+									<img src="<%=request.getContextPath()%>/images/img_14.jpg"
 										style="width: 100%;">
 								</div>
 							</div>
