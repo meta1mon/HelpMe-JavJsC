@@ -3,14 +3,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="../admin/adminAside.jsp" %>
 <html>
-<head>
-<title>책 수정하기</title>
+<style>
+#update{
+	border:1px solid black;
+	width: 1000px;
+	display:flex;
+	justify-content:center;
+}
+</style>
 </head>
 <body>
-	<p>책 수정</p>
+	<center><h1>책 수정</h1>
 	<form action="<%=request.getContextPath()%>/bookupdate" method="post"
-		name="writeform" enctype="multipart/form-data">
+		name="writeform" enctype="multipart/form-data" id="update">
 		<table>
 			<tr>
 				<td>분류 선택</td>
@@ -83,5 +90,6 @@
 
 		</table>
 	</form>
+	</center>
 </body>
 </html>

@@ -92,7 +92,7 @@ try {
 					<input type="hidden" name="vid" value="${v.vid}">
 					 <input type="hidden" name="vimage" value="${v.vimage}">
 					<input type="hidden" name="vtitle" value="${v.vtitle}"> 
-					<input type="hidden" name="buyprice" value="(${v.vprice} * (100-${v.discountRate} / 100))"> 
+					<input type="hidden" name="buyprice" value="${v.vprice * (100- v.discountRate)/100}"> 
 					<input type="hidden" name="vkind" value="${v.vkind}>"> 
 					<input	type="submit" value="장바구니 담기" id="cartbtn">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">

@@ -55,7 +55,7 @@ currentTime = new Timestamp(System.currentTimeMillis());
 						<td width="300">책 이름</td>
 						<td width="100">판매가격</td>
 						<td width="50">수량</td>
-						<td width="150">금액</td>
+						<td width="150">구매금액</td>
 					</tr>
 			<td>
 				
@@ -76,8 +76,8 @@ currentTime = new Timestamp(System.currentTimeMillis());
 						<td width="50">
 						${b.buycount}</td>
 						<td width="150">
-							<c:set var="bprice" value="${bprice+ (b.buycount * b.buyprice)}"></c:set>
-							${(b.buycount * b.buyprice)}
+							<c:set var="bprice" value="${(bprice + (b.bprice * (100- 10)/100)*b.buycount)}"></c:set>
+						  <fmt:formatNumber value="${(b.bprice * (100- 10)/100)*b.buycount}" type="number" />
 						</td>
 					
 					</tr>
@@ -91,7 +91,7 @@ currentTime = new Timestamp(System.currentTimeMillis());
 						<td width="300">책 이름</td>
 						<td width="100">판매가격</td>
 						<td width="50">수량</td>
-						<td width="150">금액</td>
+						<td width="150">구매금액</td>
 					</tr>
 			
 			<c:forEach items="${buy }" var="v"   >
@@ -109,8 +109,8 @@ currentTime = new Timestamp(System.currentTimeMillis());
 						</td>
 						<td width="50">1</td>
 						<td width="150">
-							${v.buyprice}
-						<c:set var="vprice" value="${vprice + v.vprice}"></c:set>
+						 <fmt:formatNumber value="${(v.vprice * (100- 10)/100)*v.buycount}" type="number" />
+						<c:set var="vprice" value="${vprice + (v.vprice * (100- 10)/100)*v.buycount }"></c:set>
 						</td>
 					</tr>
 					

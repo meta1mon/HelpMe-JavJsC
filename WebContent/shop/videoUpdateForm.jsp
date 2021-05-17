@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="../admin/adminAside.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,12 +35,20 @@
 		$("#startDate, #endDate").datepicker();
 	});
 </script>
-
+<style>
+#update{
+	border:1px solid black;
+	width: 1000px;
+	display:flex;
+	justify-content:center;
+}
+</style>
 </head>
 <body>
+<center>
 	<p>영상 수정하기</p>
 	<form action="<%=request.getContextPath()%>/videoUpdate" method="post"
-		enctype="multipart/form-data">
+		enctype="multipart/form-data" id="update">
 		<table>
 			<tr>
 				<td>분류 선택</td>
@@ -112,6 +121,7 @@
 			</tr>
 		</table>
 	</form>
+	</center>
 </body>
 
 </html>

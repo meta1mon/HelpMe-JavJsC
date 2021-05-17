@@ -72,7 +72,7 @@ int total2 = 0;
 			 <div class="row data">
                     <div class="subdiv">
                         <div class="check"><input type="hidden" name="buy" value="260" checked="">&nbsp;</div>
-                        <div class="img"><img src="imageFile/${b.bimage}" width="60"></div>
+                        <div class="img"><img src="imageFile/${b.bimage}" width="60" height="60"></div>
                         <div class="pname">
                             <span>${b.btitle}</span>
                         </div>
@@ -80,12 +80,13 @@ int total2 = 0;
                     <div class="subdiv">
                         <div class="basketprice"><input type="hidden" name="p_price" id="p_price2" class="p_price" >
                         <p class="price2">
-                    	<fmt:parseNumber value="${b.bprice * (100- b.discountRate)/100}" integerOnly="true" type="number" />
+                    	  <fmt:formatNumber value="${(b.bprice * (100- b.discountRate)/100)*b.buycount}" type="number" />
                     	원</div>
                         </p>
                         <div class="num">
                             <div class="updown">
-                                <input type="text" name="p_num1" id="buycount" size="2" maxlength="4" class="p_num" value="${b.buycount}">
+                                <input type="text" name="p_num1" id="buycount" size="2" maxlength="4" class="p_num" value="${b.buycount}"
+                                readonly>
                               
                                
                                 <a href="<%=request.getContextPath()%>/bookupdateCartForm?bcid=${b.bcid}&buycount=${b.buycount}" id="abutton"
@@ -93,7 +94,7 @@ int total2 = 0;
                             </div>
                         </div>
                           <div class="sum">
-                          <c:set var="bprice" value="${bprice+ (b.buycount * b.bprice)}"></c:set>
+                          <c:set var="bprice" value="${bprice+ (b.bprice * (100- b.discountRate)/100)*b.buycount}"></c:set>
                          <fmt:formatNumber value="${(b.bprice * (100- b.discountRate)/100)*b.buycount}" type="number" />
                          </div>
                     </div>
@@ -139,7 +140,7 @@ int total2 = 0;
 			 <div class="row data">
                     <div class="subdiv">
                         <div class="check"><input type="hidden" name="buy" value="260" checked="">&nbsp;</div>
-                        <div class="img"><img src="imageFile/${v.vimage}" width="60"></div>
+                        <div class="img"><img src="imageFile/${v.vimage}" width="60" height="60"></div>
                         <div class="pname">
                             <span>${v.vtitle}</span>
                         </div>
@@ -152,13 +153,13 @@ int total2 = 0;
                         </p>
                         <div class="num">
                             <div class="updown">
-                                <input type="text" name="p_num1" id="buycount" size="2" maxlength="4" class="p_num" value="1">
+                                <input type="text" name="p_num1" id="buycount" size="2" maxlength="4" class="p_num" value="1" readonly>
                             </div>
                         </div>
                            
                         <div class="sum">
-                        <fmt:formatNumber value="${(v.vprice * (100- v.discountRate)/100)*v.buycount}" type="number" />
-                         <c:set var="vprice" value="${vprice+ v.vprice}"/>
+                       <fmt:formatNumber value="${(v.vprice * (100- v.discountRate)/100)*v.buycount}" type="number" />
+                         <c:set var="vprice" value="${vprice + (v.vprice * (100- v.discountRate)/100)* v.buycount}"/>
                          </div>
                     </div>
                     <div class="subdiv1">
