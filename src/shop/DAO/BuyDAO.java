@@ -68,12 +68,21 @@ public class BuyDAO {
 				pstmt.setString(10, deliveryadd2);
 
 				result = pstmt.executeUpdate();
+				if(result > 0) {
+					System.out.println("구매 테이블로 이동 완료");
+				} else {
+					System.out.println("책 구매 이동 실패");
+				}
 				pstmt.close();
-
 				pstmt = conn.prepareStatement("delete from bookcart where id=?"); // 상품이 구매되면 장바구니 테이블에 있던 구매자 자동 삭제
 				// 아이디로 로그인 했을 때 장바구니에 담겨있던 상품이 구매되면 자동으로 장바구니에서도 사라짐
 				pstmt.setString(1, id);
-				pstmt.executeUpdate();
+				result = pstmt.executeUpdate();
+				if(result > 0) {
+					System.out.println("책바구니 테이블 비우기 완료");
+				} else {
+					System.out.println("책바구니 테이블 비우기 실패");
+				}
 				pstmt.close();
 
 			}
@@ -90,6 +99,7 @@ public class BuyDAO {
 
 	public int insertBuy2(Connection conn, List<VideocartVO> vlists, String id, String account, String deliveryname,
 			String deliverytel, String deliveryadd1, String deliveryadd2) throws Exception {
+		System.out.println("insertBuy2 들어옴 ");
 		int result1 = 0;
 		Timestamp regDate = null;
 		String sql = "";
@@ -114,11 +124,20 @@ public class BuyDAO {
 				pstmt.setString(10, deliveryadd2);
 
 				result1 = pstmt.executeUpdate();
+				if(result1 > 0) {
+					System.out.println("영상 구매 테이블로 이동 완료");
+				} else {
+					System.out.println("영 구매 이동 실패");
+				}
 				pstmt.close();
-
 				pstmt = conn.prepareStatement("delete from videocart where id=?");
 				pstmt.setString(1, id);
-				pstmt.executeUpdate();
+				result1 = pstmt.executeUpdate();
+				if(result1 > 0) {
+					System.out.println("영상 제거 완료");
+				} else {
+					System.out.println("영상 제거 실패");
+				}
 				pstmt.close();
 			}
 
