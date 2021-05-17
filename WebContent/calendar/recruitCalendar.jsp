@@ -54,9 +54,11 @@ $(document).ready(function(){
 	    height: 700,
 	    timeZone: "local",
 	    locale: "ko",
+	    <c:if test="${sessionScope.AdminNickname ne null}">
 	    headerToolbar: {
-	      center: 'addEventButton'
-	    },
+	       center: 'addEventButton'
+	       },
+	    </c:if>
 	    handleWindowResize: true,
 		dayMaxEvents: false,
 		displayEventTime: false,
@@ -167,9 +169,9 @@ $(document).ready(function(){
 								
 								var backgroundColor = '';
 								if(type == 1){
-									backgroundColor = '#8cdeb8'	
+									backgroundColor = '#809bbf'	
 								}else{
-									backgroundColor = '#8cded4'
+									backgroundColor = '#add9d4'
 								}
 								
 								events.push({
@@ -276,6 +278,15 @@ $(document).ready(function(){
 				return false;
 			}
 			
+			var backgroundColor = '';
+			if(type == 1){
+				backgroundColor = '#809bbf'	
+			}else{
+				backgroundColor = '#add9d4'
+			}
+			
+			
+			
 			console.log("calendar.addEvent() 호출");
 			
 			  if (!isNaN(dateStart.valueOf())) { // valid?
@@ -284,6 +295,7 @@ $(document).ready(function(){
 	                     start: dateStart,
 	                     end: dateEnd,
 	                     type: type,
+	                     backgroundColor: backgroundColor,
 	                     content: content,
 	                     allDay: true
 	                   });
@@ -398,8 +410,8 @@ $(document).ready(function(){
 							<td><label for="edit-type">일정 구분</label></td>
 							<td><select class="inputModal" name="scheCode"
 								id="edit-type">
-									<option value="1" style="color: #8cdeb8;">공채 일정 - 신입</option>
-									<option value="2" style="color: #8cded4;">공채 일정 - 경력</option>
+									<option value="1" style="color: #809bbf;">공채 일정 - 신입</option>
+									<option value="2" style="color: #add9d4;">공채 일정 - 경력</option>
 							</select></td>
 						</tr>
 						
