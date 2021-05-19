@@ -82,8 +82,7 @@
 			</tr>
 			<tr>
 				<td>영상 번호</td>
-				<td><input type="text" name="vid" value="${video.vid} "
-					></td>
+				<td><input type="text" name="vid" value="${video.vid}" readonly></td>
 			</tr>
 			<tr>
 				<td>영상 제목</td>
@@ -104,8 +103,8 @@
 			</tr>
 			<tr>
 				<td>영상유효기간</td>
-				<td><lable>시작일<input type="text" id="startDate"
-						name=startDate value="${video.startDate}"></lable> <img
+				<td><label>시작일<input type="text" id="startDate"
+						name=startDate value="${video.startDate}"></label> <img
 					src="<%=request.getContextPath() %>/images/calendar.gif"> <label>종료일<input
 						type="text" id="endDate" name="endDate" value="${video.endDate}"></label>
 					<img src="<%=request.getContextPath() %>/images/calendar.gif"></td>

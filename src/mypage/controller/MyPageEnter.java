@@ -157,7 +157,6 @@ public class MyPageEnter extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 			request.setAttribute("rlist", list5);
 
 // 내가 댓글쓴 글 불러오기. MyRrlistCtrl.java 참고

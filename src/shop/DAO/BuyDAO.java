@@ -299,11 +299,9 @@ public class BuyDAO {
 		BuyVO buy = null;
 		String sql = "";
 		if(bigSize == true) { // 더보기로 들어온 경우,
-			System.out.println("더보기");
-			sql = "select null, buycount, bimage, btitle, bprice, buyprice, buydate, saction, book.bid FROM buy left join book on buy.pid = book.bid  where id = ? order by buydate desc";
+			sql = "select null, buycount, bimage, btitle, bprice, buyprice, buydate, saction, book.bid FROM buy left join book on buy.pid = book.bid  where id = ? and book.bid is not null  order by buydate desc";
 		} else { // 마이페이지에 출력하는 경우
-			System.out.println("마이페이지");
-			sql = "select rownum, e.* from (select buycount, bimage, btitle, bprice, buyprice, buydate, saction, book.bid FROM buy left join book on buy.pid = book.bid where id = ? order by buydate desc) e where rownum <= 4";
+			sql = "select rownum, e.* from (select buycount, bimage, btitle, bprice, buyprice, buydate, saction, book.bid FROM buy left join book on buy.pid = book.bid where id = ? and book.bid is not null order by buydate desc) e where rownum <= 4";
 		}
 		
 		try {
@@ -337,16 +335,14 @@ public class BuyDAO {
 		return lists;
 	}
 	
-	public List<BuyVO> getMyVideo(Connection conn, String id, Boolean bigSize) throws Exception {
+	public List<BuyVO> getMyVideo(Connection conn, String id, boolean bigSize) throws Exception {
 		List<BuyVO> lists = null;
 		BuyVO buy = null;
 		String sql = "";
 		if(bigSize == true) { // 더보기로 들어온 경우,
-			System.out.println("더보기");
-			sql = "select null, buycount, vimage, vtitle, vprice, buyprice, buydate, saction, video.vid FROM buy left join video on buy.pid = video.vid where id = ? order by buydate desc";
+			sql = "select null, buycount, vimage, vtitle, vprice, buyprice, buydate, saction, video.vid FROM buy left join video on buy.pid = video.vid where id = ? and video.vid is not null order by buydate desc";
 		} else { // 마이페이지에 출력하는 경우
-			System.out.println("마이페이지");
-			sql = "select rownum, e.* from (select buycount, vimage, vtitle, vprice, buyprice, buydate, saction, video.vid FROM buy left join video on buy.pid = video.vid where id = ? order by buydate desc) e where rownum <= 4";
+			sql = "select rownum, e.* from (select buycount, vimage, vtitle, vprice, buyprice, buydate, saction, video.vid FROM buy left join video on buy.pid = video.vid where id = ? and video.vid is not null order by buydate desc) e where rownum <= 4";
 		}
 		
 		try {

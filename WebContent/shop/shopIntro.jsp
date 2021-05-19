@@ -18,7 +18,9 @@
 </head>
 <body class="content" style="height:1183">
 	<div style="width: 800px; margin: 0 auto 0 auto;">
-
+<c:if test="${loginMember != null }">
+      <button type="button" id="shopbtn" onclick="location.href='<%=request.getContextPath()%>/cartlist'">내 장바구니 바로가기</button>
+   </c:if>
 		<h1>오늘의 책</h1>
 
 		<div class="button-1"

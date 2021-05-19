@@ -2,8 +2,6 @@ package shop.controller;
 
 import java.io.IOException;
 
-
-
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -29,28 +27,31 @@ import shop.service.Cartservice;
 @WebServlet("/bookbuy")
 public class Bookbuy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Bookbuy() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Bookbuy() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		System.out.println("구매서블렛 들어옴");
-		
+
 		HttpSession session = request.getSession();
 		Member vo = (Member) request.getSession().getAttribute("loginMember");
 		String id = vo.getId();
@@ -59,58 +60,53 @@ public class Bookbuy extends HttpServlet {
 		String deliverytel = request.getParameter("deliverytel");
 		String deliveryadd1 = request.getParameter("deliveryadd1");
 		String deliveryadd2 = request.getParameter("deliveryadd2");
-		
+
 		BookcartDAO book = BookcartDAO.getInstance();
-		
+
 		VideocartDAO video = VideocartDAO.getInstance();
-		
-				
+
 		BuyVO buy = new BuyVO();
-		
+
 		buy.setAccount(account);
 		buy.setDeliveryname(deliveryname);
 		buy.setDeliverytel(deliverytel);
 		buy.setDeliveryadd1(deliveryadd1);
 		buy.setDeliveryadd2(deliveryadd2);
-			Buyservice sv = new Buyservice();
-			
-			List<BookcartVO> lists = null;	
-			int result = 0;
-			List<VideocartVO> vlists = null;
-			int result1 = 0;
-			
+		Buyservice sv = new Buyservice();
+
+		List<BookcartVO> lists = null;
+		int result = 0;
+		List<VideocartVO> vlists = null;
+		int result1 = 0;
+
 		try {
 			lists = new Cartservice().getBookCart(id);
 			vlists = new Cartservice().getVideoCart(id);
-			if(lists == null) {
-				System.out.println("책 구매 안함");
+			if (lists == null) {
 
 			} else {
-				result = sv.insertBuy1(lists,id, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2);
-				if(result > 0) {
+				result = sv.insertBuy1(lists, id, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2);
+				if (result > 0) {
 				} else {
-				System.out.println("책카트 처리중 오류 발생");
+					System.out.println("책카트 처리중 오류 발생");
 				}
 			}
-			
-			
-			if(vlists == null) {
+
+			if (vlists == null) {
 				System.out.println("비디오 구매 안함");
 			} else {
-				result1 = sv.insertBuy2(vlists, id, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2);	
-				if(result1 > 0) {
-					
+				result1 = sv.insertBuy2(vlists, id, account, deliveryname, deliverytel, deliveryadd1, deliveryadd2);
+				if (result1 > 0) {
+
 				} else {
 					System.out.println("비디오카트 처리중 오류 발생");
 				}
 			}
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println();
+
 		request.getRequestDispatcher("buylist").forward(request, response);
 	}
 

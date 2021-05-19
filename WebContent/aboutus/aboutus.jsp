@@ -87,7 +87,7 @@
 		<div class="img-cover"></div>
 	</div>
 	<div
-		style="width: 1200px; margin: 0; color: black; background: #ffffff; border-radius: 4px; text-align: center; padding: 100px 0 100px 0; position: relative; bottom: 80px; height:2000px">
+		style="width: 1200px; margin: 0; color: black; background: #ffffff; border-radius: 4px; text-align: center; padding: 100px 0 100px 0; position: relative; bottom: 80px; height:2100px">
 
 		<img src="<%=request.getContextPath()%>/images/logo.png"
 				class="logo">
@@ -129,36 +129,36 @@
 	
 <table id="table2">
 			<tr>
-				<td style><i class="fas fa-user"
-					style="font-size: 100px; color: #black;"></i><br>
+				<td><img src="<%=request.getContextPath()%>/images/승연.png" style="width:200px;">
+					<br>
 					<div
-						style="font-size: 20px; text-align: center; padding: 30px 0 0 10px;">김연준</div>
+						style="font-size: 20px; text-align: center; padding: 0 0 0 10px;">이승연</div>
 					 Developer</td>
 
-				<td><i class="fas fa-user"
-					style="font-size: 100px; color: #black;"></i><br>
+				<td rowspan="2"><img src="<%=request.getContextPath()%>/images/재훈.png" style="width:200px;">
+					<br>
 					<div
-						style="font-size: 20px; text-align: center; padding: 30px 0 0 10px;">이승연</div>
+						style="font-size: 20px; text-align: center; padding: 0 0 0 10px;">정재훈</div>
 					 Developer</td>
 
-				<td><i class="fas fa-user"
-					style="font-size: 100px; color: #black;"></i><br>
+				<td><img src="<%=request.getContextPath()%>/images/연준.png" style="width:200px;">
+				<br>
 					<div
-						style="font-size: 20px; text-align: center; padding: 30px 0 0 10px;">정재훈</div>
+						style="font-size: 20px; text-align: center; padding: 0 0 0 10px;">김연준</div>
 					 Developer</td>
 			</tr>
 			
 			<tr>
-				<td><i class="fas fa-user"
-					style="font-size: 100px; color: #black;"></i><br>
+				<td><img src="<%=request.getContextPath()%>/images/승하.png" style="width:200px;">
+				<br>
 					<div
-						style="font-size: 20px; text-align: center; padding: 30px 0 0 10px;">제승하</div>
+						style="font-size: 20px; text-align: center; padding: 0 0 0 10px;">제승하</div>
 					 Developer</td>
 
-				<td><i class="fas fa-user"
-					style="font-size: 100px; color: #black;"></i><br>
+				<td><img src="<%=request.getContextPath()%>/images/도경.png" style="width:200px;">
+				<br>
 					<div
-						style="font-size: 20px; text-align: center; padding: 30px 0 0 10px;">하도경</div>
+						style="font-size: 20px; text-align: center; padding: 0 0 0 10px;">하도경</div>
 					 Developer</td>
 			</tr>
 		</table>

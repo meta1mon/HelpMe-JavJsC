@@ -104,18 +104,18 @@ function move(){
    </div>
       <table class="table">
       <tr>
-         <td>번호</td>
-         <td>영상분류</td>
-         <td>영상 제목</td>
-         <td>가격</td>
-         <td>영상 썸네일</td>
-         <td>할인율</td>
-         <td>등록일</td>
-         <td>시청 가능 시작일</td>
-         <td>시청 종료일</td>
-         <td>영상길이</td>
-         <td>수정</td>
-         <td>삭제</td>
+         <td style="width:93px;">번호</td>
+         <td style="width:80px;">영상분류</td>
+         <td style="width:300px;">영상 제목</td>
+         <td style="width:80px;">가격</td>
+         <td style="width:53px;">영상 썸네일</td>
+         <td style="width:71px;">할인율</td>
+         <td style="width:227px;">등록일</td>
+         <td style="width:140px;">시청 가능 시작일</td>
+         <td style="width:140px;">시청 종료일</td>
+         <td style="width:80px;">영상길이</td>
+         <td style="width:50px;">수정</td>
+         <td style="width:50px;">삭제</td>
       </tr>
       <!-- el태그는 if문은 else 안된다-->
          <c:if test="${videolist.size() == 0 }">

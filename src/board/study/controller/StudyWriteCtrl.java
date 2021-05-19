@@ -52,7 +52,7 @@ public class StudyWriteCtrl extends HttpServlet {
 		int maxSize = 10 * 1024 * 1024; // 파일 크기 10M 제한
 		String encType = "UTF-8";
 
-		String saveDirectory = getServletContext().getRealPath("/board/qna/files"); // 파일 저장 경로
+		String saveDirectory = getServletContext().getRealPath("/board/study/files"); // 파일 저장 경로
 		System.out.println(saveDirectory);
 
 		if (!ServletFileUpload.isMultipartContent(request))

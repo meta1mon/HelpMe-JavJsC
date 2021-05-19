@@ -1021,8 +1021,8 @@ $(document).ready(function(){
 							<div class="cont">
 								<div
 									style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
-									<div class="board">
-										Q&A 게시판 <a onclick="myqlist();">더보기</a>
+									<div class="board"	style="position:relative; color:black;">
+										Q&A 게시판 <a onclick="myqlist();" style="position:absolute; right: 40;  color:#1abc9c; text-decoration: underline;">전체 글 보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
 										<c:if test="${qlist.size() == 0 }">
@@ -1051,10 +1051,11 @@ $(document).ready(function(){
 										</c:if>
 									</table>
 								</div>
+								<br>
 								<div
 									style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
-									<div class="board">
-										Study 게시판 <a onclick="myslist();">더보기</a>
+									<div class="board"	style="position:relative;  color:black;">
+										Study 게시판 <a onclick="myslist();" style="position:absolute; right: 40;  color:#1abc9c; text-decoration: underline;">전체 글 보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
 										<c:if test="${slist.size() == 0 }">
@@ -1083,9 +1084,10 @@ $(document).ready(function(){
 										</c:if>
 									</table>
 								</div>
+								<br>
 								<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
-									<div class="board">
-										Review 게시판 <a onclick="myrlist();">더보기</a>
+									<div class="board"	style="position:relative; color:black;">
+										Review 게시판 <a onclick="myrlist();" style="position:absolute; right: 40; color:#1abc9c; text-decoration: underline;">전체 글 보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
 										<c:if test="${rlist.size() == 0 }">
@@ -1118,8 +1120,8 @@ $(document).ready(function(){
 							<!-- 탭3-2 내가 댓글 단 목록-->
 							<div class="cont">
 								<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
-									<div class="board">
-										Q&A 게시판 <a onclick="myrqlist();">더보기</a>
+									<div class="board"	style="position:relative;  color:black;">
+										Q&A 게시판 <a onclick="myrqlist();" style="position:absolute; right: 40;  color:#1abc9c; text-decoration: underline;">전체 글 보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
 										<c:if test="${rqlist.size() == 0 }">
@@ -1148,10 +1150,11 @@ $(document).ready(function(){
 										</c:if>
 									</table>
 								</div>
+								<br>
 								<div
 									style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
-									<div class="board">
-										Study 게시판 <a onclick="myrslist();">더보기</a>
+									<div class="board"	style="position:relative;  color:black;">
+										Study 게시판 <a onclick="myrslist();" style="position:absolute; right: 40;  color:#1abc9c; text-decoration: underline;">전체 글 보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
 										<c:if test="${rslist.size() == 0 }">
@@ -1180,10 +1183,11 @@ $(document).ready(function(){
 										</c:if>
 									</table>
 								</div>
+								<br>
 								<div
 									style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
-									<div class="board">
-										Review 게시판 <a onclick="myrrlist();">더보기</a>
+									<div class="board"	style="position:relative;  color:black;">
+										Review 게시판 <a onclick="myrrlist();" style="position:absolute; right: 40; color:#1abc9c; text-decoration: underline;">전체 글 보기</a>
 									</div>
 									<table id="table" style="border: 1; text-align: center;">
 										<c:if test="${rrlist.size() == 0 }">
@@ -1220,8 +1224,8 @@ $(document).ready(function(){
 				<div class="bcont" style="display:none">
 					<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;">
 					<br>
-						<div class="board">
-							책 구매내역 <a onclick="myBookList();">더보기</a>
+						<div class="board"	style="position:relative; color:black;">
+							책 구매내역 <a onclick="myBookList();" style="position:absolute; right: 40;  color:#1abc9c; text-decoration: underline;">전체 구매내역 보기</a>
 						</div>
 						<table id="table" style="border: 1; text-align: center;">
 							<c:if test="${myBook.size() == 0 }">
@@ -1260,8 +1264,8 @@ $(document).ready(function(){
 						</table>
 					</div>
 					<div style="width: 800px; margin: 0 auto 0 auto; color: #aca4ae;" >
-						<div class="board">
-							영상 구매내역 <a onclick="myVideoList();">더보기</a>
+						<div class="board"	style="position:relative; color:black;">
+							영상 구매내역 <a onclick="myVideoList();" style="position:absolute; right: 40;  color:#1abc9c; text-decoration: underline;">전체 구매내역 보기</a>
 						</div>
 						<table id="table" style="border: 1; text-align: center;">
 							<c:if test="${myVideo.size() == 0 }">

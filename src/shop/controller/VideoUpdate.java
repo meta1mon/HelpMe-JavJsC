@@ -46,7 +46,6 @@ public class VideoUpdate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("서블릿 들어옴");
 		
 		String realFolder = "";// 웹 어플리케이션 상의 절대 경로
 		String filename = "";
@@ -88,7 +87,6 @@ public class VideoUpdate extends HttpServlet {
 		String vsize = imageUp.getParameter("vsize");
 		String startDate = imageUp.getParameter("startDate");
 		String endDate = imageUp.getParameter("endDate");
-		
 		
 		video.setVid(vid);
 		video.setVkind(vkind);

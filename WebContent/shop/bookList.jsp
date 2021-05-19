@@ -10,55 +10,51 @@
 <head>
 <meta charset="UTF-8">
 <style>
-
 .page-header {
-   font-weight: bold;
-   margin: 0 20px 20px 40px;
+	font-weight: bold;
+	margin: 0 20px 20px 40px;
 }
 
 .table {
-   border-collapse: collapse;
-   width: 1500px;
-   margin: 20px;
+	border-collapse: collapse;
+	width: 1500px;
+	margin: 20px;
 }
 
+.table tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
 
-.table tr:nth-child(odd){background-color: #f2f2f2;}
-
-
-.table td{
-   padding: 8px;
-   line-height: 1.42857143;
-   border-top: 1px solid #ddd;
-   border-bottom: 1px solid #ddd;
-   vertical-align: middle;
-} 
+.table td {
+	padding: 8px;
+	line-height: 1.42857143;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	vertical-align: middle;
+}
 
 select {
-   width: 10%;
-   padding: 8px;
-   margin-left: 40px;
-   display: inline-block;
-   border: 1px solid #ccc;
-   border-radius: 4px;
-   box-sizing: border-box;
+	width: 10%;
+	padding: 8px;
+	margin-left: 40px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
-
 
 .fas.fa-times-circle {
-   color: red;
+	color: red;
 }
 
-.fas.fa-edit{
-   color: #3d5a73;
+.fas.fa-edit {
+	color: #3d5a73;
 }
-
 </style>
 <script>
-function move(){
-   
-location.href="<%=request.getContextPath()%>/abooklist?bkind="+$("#kind option:selected").val();
-}
+	function move() {
+
+		location.href = "<%=request.getContextPath()%>/abooklist?bkind="+$("#kind option:selected").val();}
 </script>
 </head>
 <main>
@@ -93,18 +89,18 @@ location.href="<%=request.getContextPath()%>/abooklist?bkind="+$("#kind option:s
    </div>
    <table class="table">
       <tr>
-         <td>번호</td>
-         <td>책분류</td>
-         <td>책 제목</td>
-         <td>가격</td>
-         <td>수량</td>
-         <td>저자</td>
-         <td>출판사</td>
-         <td>책이미지</td>
-         <td>할인율</td>
-         <td>등록일</td>
-         <td>수정</td>
-         <td>삭제</td>
+         <td style="width:93px;">번호</td>
+         <td style="width:71px;">책분류</td>
+         <td style="width:424px;">책 제목</td>
+         <td style="width:80px;">가격</td>
+         <td style="width:53px;">수량</td>
+         <td style="width:133px;">저자</td>
+         <td style="width:140px;">출판사</td>
+         <td style="width:108px;">책이미지</td>
+         <td style="width:71px;">할인율</td>
+         <td style="width:227px;">등록일</td>
+         <td style="width:50px;">수정</td>
+         <td style="width:50px;">삭제</td>
       </tr>
    <!-- el태그는 if문은 else 안된다-->
       <c:if test="${booklist.size() == 0 }">

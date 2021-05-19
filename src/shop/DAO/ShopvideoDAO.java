@@ -127,7 +127,6 @@ public class ShopvideoDAO {
 			pstmt.setDate(8, video.getEndDate());
 			pstmt.setString(9, video.getVid());
 			result = pstmt.executeUpdate();
-			System.out.println("업데이트 들어옴!!!!!.다오");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
