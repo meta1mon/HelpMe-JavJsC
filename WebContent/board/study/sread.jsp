@@ -49,7 +49,7 @@
 	margin:10px;
 	float:left;
 	font-size:12px;
-	color:#D3DAE6;
+	color:#99ADB6;
 	background-color:none;
 }
 
