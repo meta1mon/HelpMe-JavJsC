@@ -214,7 +214,7 @@ public class MyPageEnter extends HttpServlet {
 			request.getRequestDispatcher("myPage/myPage.jsp").forward(request, response);
 		} else {
 			out.print("<script>alert('비밀번호가 일치하지 않습니다.');</script>");
-			out.print("<script>location.href='javcsecond'</script>");
+			out.print("<script>location.href=''</script>");
 		}
 
 		out.flush();
