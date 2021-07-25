@@ -75,20 +75,18 @@
 
 
 ## Document
-### 1. 개발일정
-![schedule]() <br>
-[개발일정 전체보기]()
-
-### 2. 유스케이스
+### 1. 유스케이스
 ![유스케이스](https://user-images.githubusercontent.com/82925724/126890632-9a5044a2-9488-47de-a262-75e68f4e9f3c.gif)
 
-### 3. ERD
+### 2. ERD
 ![게시판 관련](https://user-images.githubusercontent.com/82925724/126888986-cb32d788-97be-4339-8c41-54276c5bc637.png)
 ![세미 나머지 부분](https://user-images.githubusercontent.com/82925724/126888989-b143eec5-c0db-40bc-92c9-c5e5b1aa490f.png)
 
-### 4. 요구사항 명세서
+### 3. 요구사항 명세서
 ![요구사항 명세서](https://user-images.githubusercontent.com/82925724/126890636-32d3485c-bd3c-4464-8b9b-aefee33a6625.gif)
 
-### 5. 화면설계서
-![슬라이드7]()
-[화면설계서 전체보기]()
+### 4. 화면설계서
+
+### 5. 테이블 정의서
+[테이블 정의서.docx](https://github.com/meta1mon/HelpMe-JavJsC/files/6873497/default.docx)
+
