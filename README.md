@@ -133,7 +133,8 @@
 
 **7. 공채 캘린더**<br>
 ---
-<left><img src="" width="700" height="400" /></left>
+<left><img src="https://user-images.githubusercontent.com/79201561/126900893-db334d32-2d1b-4d13-bc52-e5d29789581b.gif" width="700" height="400" /></left>
+<left><img src="https://user-images.githubusercontent.com/79201561/126901805-b2942884-14d3-4b5d-b885-ad9d4e3e6f44.gif" width="700" height="400" /></left>
 - 권한 설정
   - 로그인한 사용자의 닉네임이 '관리자'인 경우에만 '공채 일정 등록' 버튼 활성화
 - 공채 일정 관리 기능
