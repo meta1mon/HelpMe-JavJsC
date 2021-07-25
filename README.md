@@ -1,5 +1,4 @@
 # HelpMe-JavJsC
-## [War 링크 넣을 곳](http://www.naver.com)
 ## [시연 영상 바로 보기](https://youtu.be/4LbEk86pi1w) 
 ##### 팀원 : 김연준, 이승연, 정재훈, 제승하, 하도경
 ---
@@ -40,7 +39,7 @@
 |Document|Google Drive, KakaoOven, ERDCloud, diagrams.net, StarUML|
 |CI|Github|
 |DateBase|SQL Developer, Oracle(11g)|
-|API| CKeditor5
+|API| CKeditor5, Highcharts, FullCalendar
 
 ---
 ## 프로젝트 기능구현
@@ -173,6 +172,7 @@
 ### 4. 화면설계서
 ![슬라이드3](https://user-images.githubusercontent.com/82923946/126899074-f19b3809-baa8-4c97-98f5-322c83f4d5fa.PNG)
 ![슬라이드6](https://user-images.githubusercontent.com/82923946/126899080-9dacc0e9-9fec-45e0-8f2d-70193c34eb45.PNG)
+[화면설계서.zip](https://github.com/meta1mon/HelpMe-JavJsC/files/6874082/default.zip)
 
 ### 5. 테이블 정의서
 ![테이블 정의서](https://user-images.githubusercontent.com/82925724/126890928-dfa80858-535f-4866-a19e-7b259a1630c6.png)
