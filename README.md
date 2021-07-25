@@ -83,8 +83,8 @@
 ![usecase]()
 
 ### 3. ERD
-![erd_board]()
-![erd_investment]()
+![ERD](https://user-images.githubusercontent.com/82925724/126888109-bb5ad9e5-1085-4550-8861-8011462d21f3.png)
+
 
 ### 4. 요구사항 정의서 및 분석서
 ![requirements_def]() <br>
