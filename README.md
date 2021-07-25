@@ -25,7 +25,8 @@
 
 ---
 ## 개발환경
-![environment](https://user-images.githubusercontent.com/82936574/125957241-02971626-a1f4-400a-95b4-8219c22470b7.png)
+![사용기술](https://user-images.githubusercontent.com/82925724/126887934-9267543d-35ad-4f67-823c-b398fbf5191a.png)
+
 
 
 |Category|Detail|
