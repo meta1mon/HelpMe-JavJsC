@@ -68,7 +68,7 @@
 **2. 회원가입**<br>
 ---
 <left><img src="https://user-images.githubusercontent.com/79201561/126900943-80404e85-ae88-40ed-8a6a-3d4dcdfdb11e.gif" width="700" height="400" /></left>
-<left><img src="https://user-images.githubusercontent.com/79201561/126900980-b88c1d22-8cbc-46fc-807c-3f7eba078dad.gif" width="700" height="400" /></left>
+<left><img src="https://user-images.githubusercontent.com/79201561/126902445-5b5f3fb8-7334-42e5-9807-bd6deb204550.gif" width="700" height="400" /></left>
 - 정규식 활용
   - 필수 항목 입력 여부
   - 아이디, 닉네임, 비밀번호, 전화번호, 이메일 형식 유효성 검사
@@ -83,12 +83,17 @@
 **3. 로그인**<br>
 ---
 <left><img src="https://user-images.githubusercontent.com/79201561/126900990-3e5b47f5-cca2-495b-832e-dda35d0a29f0.gif" width="700" height="400" /></left>
-<left><img src="https://user-images.githubusercontent.com/79201561/126901004-102bfd25-7239-4320-be7e-968e3e74e315.gif" width="700" height="400" /></left>
 - 아이디, 비밀번호 형식 유효성 검사
+
+
+**4. 비밀번호 찾기**<br>
+---
+<left><img src="https://user-images.githubusercontent.com/79201561/126901004-102bfd25-7239-4320-be7e-968e3e74e315.gif" width="700" height="400" /></left>
 - 비밀번호 찾기 기능: 회원가입 시 입력한 비밀번호 질문과 답변의 일치 여부를 확인 후 해당 아이디의 비밀번호 제공
 - 비밀번호 보기: 보호되어 보이지 않는 비밀번호의 입력 내용을 볼 수 있는 기능
 
-**4. 마이 페이지**<br>
+
+**5. 마이 페이지**<br>
 ---
 <left><img src="https://user-images.githubusercontent.com/82923903/126899270-2bada07c-acf9-4e7c-aba9-535f8bdb1657.gif" width="700" height="400" /></left>
 - 비밀번호 일치 여부 확인 후, 마이 페이지로 이동
@@ -103,7 +108,7 @@
 - 구매한 영상 및 도서 확인 기능
 - 회원 탈퇴 기능
 
-**5. 게시판**<br>
+**6. 게시판**<br>
 ---
 <left><img src="https://user-images.githubusercontent.com/82923946/126897384-38432a94-0dd1-4e41-b086-187ed0bbd3cc.gif"  width="700" height="400" /></left>
 - CK Editor API 사용
@@ -115,7 +120,7 @@
 - 파일 업로드 기능(cos 라이브러리 사용)
 
 
-**6. 쇼핑몰**<br>
+**7. 쇼핑몰**<br>
 ---
 <left><img src="https://user-images.githubusercontent.com/80940458/126895483-bc2d7393-876b-45b2-8ddb-4adbac07dac4.gif"  width="700" height="400" /></left>
 - 상품 조회
@@ -131,17 +136,21 @@
   - 장바구니 비우기 : 구매 완료된 상품 장바구니에서 삭제 
 
 
-**7. 공채 캘린더**<br>
+**8. 공채 캘린더**<br>
 ---
 <left><img src="https://user-images.githubusercontent.com/79201561/126900893-db334d32-2d1b-4d13-bc52-e5d29789581b.gif" width="700" height="400" /></left>
+- 일반 사용자 / 비회원
+  - '공채 일정 추가' 버튼 생성 X
+  - 등록된 일정 조회 / 일정 상세 내용 조회 기능
+  
 <left><img src="https://user-images.githubusercontent.com/79201561/126901805-b2942884-14d3-4b5d-b885-ad9d4e3e6f44.gif" width="700" height="400" /></left>
-- 권한 설정
-  - 로그인한 사용자의 닉네임이 '관리자'인 경우에만 '공채 일정 등록' 버튼 활성화
+- 관리자
+  - 로그인한 사용자의 닉네임이 '관리자'인 경우에만 '공채 일정 추가' 버튼 활성화
 - 공채 일정 관리 기능
   - 일정 등록 / 상세 내용 확인 / 일정 삭제 기능 
-- 일반 사용자의 경우 등록된 공채일정과 상세 내용 확인 가능
 
-**8. 관리자 페이지**<br>
+
+**9. 관리자 페이지**<br>
 ---
 <left><img src="https://user-images.githubusercontent.com/82925724/126891364-f3cde214-5e6f-414e-bea4-e603cc15116e.gif"  width="700" height="400" /></left>
 - 관리자 계정(semi01)으로 로그인 시에만 관리자 페이지 접근 가능(POST)
