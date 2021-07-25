@@ -57,9 +57,9 @@
 
 ---
 ## 주요기능
-**1. 메인페이지**<br>
+**1. 메인페이지 및 자사소개**<br>
 ---
-<left><img src=""  width="700" height="400" /></left>
+<left><img src="https://user-images.githubusercontent.com/79201561/126900838-1b291573-2791-4e00-a90a-6825e0a24919.gif"  width="700" height="400" /></left>
 - 뉴스 플로팅 메뉴 제공(Cryptonews API 사용)
 - 표, 차트로 주요 코인 실시간 조회(bithumb, upbit, Trading View API 사용)
 - BTMI, BTAI 지수 조회(Highcharts API 사용)
@@ -67,10 +67,27 @@
 
 **2. 회원가입**<br>
 ---
+<left><img src="https://user-images.githubusercontent.com/79201561/126900943-80404e85-ae88-40ed-8a6a-3d4dcdfdb11e.gif" width="700" height="400" /></left>
+<left><img src="https://user-images.githubusercontent.com/79201561/126900980-b88c1d22-8cbc-46fc-807c-3f7eba078dad.gif" width="700" height="400" /></left>
+- 정규식 활용
+  - 필수 항목 입력 여부
+  - 아이디, 닉네임, 비밀번호, 전화번호, 이메일 형식 유효성 검사
+- 개인 정보 입력
+  - 아이디, 닉네임 중복검사 기능
+  - 닉네임에 '관리자가 포함되어 있을 경우 가입 불가'
+  - 비밀번호, 비밀번호 확인 일치 여부 확인 기능
+  - 비밀번호 질문 및 답변 등록
+  - 다음 주소 API 활용
+  - 체크박스: 필수 체크박스 선택 여부 확인 기능 / 선택 사항 선택 시 이메일 입력 여부 확인 기능
 
 **3. 로그인**<br>
 ---
-
+<left><img src="https://user-images.githubusercontent.com/79201561/126900990-3e5b47f5-cca2-495b-832e-dda35d0a29f0.gif" width="700" height="400" /></left>
+<left><img src="https://user-images.githubusercontent.com/79201561/126901004-102bfd25-7239-4320-be7e-968e3e74e315.gif" width="700" height="400" /></left>
+- 아이디, 비밀번호 형식 유효성 검사
+- 비밀번호 찾기 기능: 회원가입 시 입력한 비밀번호 질문과 답변의 일치 여부를 확인 후 해당 아이디의 비밀번호 제공
+- 비밀번호 보기: 보호되어 보이지 않는 비밀번호의 입력 내용을 볼 수 있는 기능
+- 
 **4. 마이 페이지**<br>
 ---
 <left><img src="https://user-images.githubusercontent.com/82923903/126899270-2bada07c-acf9-4e7c-aba9-535f8bdb1657.gif"/></left>
@@ -114,8 +131,18 @@
   - 장바구니 비우기 : 구매 완료된 상품 장바구니에서 삭제 
 
 
+**7. 공채 캘린더**<br>
+---
+<left><img src="" width="700" height="400" /></left>
+- 권한 설정
+  - 로그인한 사용자의 닉네임이 '관리자'인 경우에만 '공채 일정 등록' 버튼 활성화
+- 공채 일정 관리 기능
+  - 일정 등록 / 상세 내용 확인 / 일정 삭제 기능 
+- 일반 사용자의 경우 등록된 공채일정과 상세 내용 확인 가능
 
-**14. 관리자 페이지**<br>
+
+
+**8. 관리자 페이지**<br>
 ---
 <left><img src="https://user-images.githubusercontent.com/82925724/126891364-f3cde214-5e6f-414e-bea4-e603cc15116e.gif"  width="700" height="400" /></left>
 - 관리자 계정(semi01)으로 로그인 시에만 관리자 페이지 접근 가능(POST)
