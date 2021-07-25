@@ -73,7 +73,7 @@
 
 **4. 마이 페이지**<br>
 ---
-<left><img src="https://user-images.githubusercontent.com/82923903/126897981-1c729e0d-3454-42b5-bef6-a327e94e9e98.gif"  width="700" height="400" /></left>
+<left><img src="https://user-images.githubusercontent.com/82923903/126897981-1c729e0d-3454-42b5-bef6-a327e94e9e98.gif"/></left>
 - 비밀번호 일치 여부 확인 후, 마이 페이지 입장
 - 개인 일정 관리 기능
 - 개인 정보 확인 기능
