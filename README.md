@@ -91,7 +91,7 @@
 - 다중 파일 첨부 기능 cos 라이브러리 사용
 
 
-**5. 쇼핑몰 **<br>
+**6. 쇼핑몰**<br>
 ---
 <left><img src="https://user-images.githubusercontent.com/80940458/126895483-bc2d7393-876b-45b2-8ddb-4adbac07dac4.gif"  width="700" height="400" /></left>
 - 상품 목록 조회 : 관리자 사이트에서 등록한 상품의 리스트 조회
