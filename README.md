@@ -123,7 +123,8 @@
 
 ### 2. ERD
 ![게시판 관련](https://user-images.githubusercontent.com/82925724/126888986-cb32d788-97be-4339-8c41-54276c5bc637.png)
-![세미 나머지 부분](https://user-images.githubusercontent.com/82925724/126888989-b143eec5-c0db-40bc-92c9-c5e5b1aa490f.png)
+![세미 나머지 부분](https://user-images.githubusercontent.com/80940458/126898825-2cfc5833-07a6-4dd5-8730-ea536929eb1c.png)
+
 
 ### 3. 요구사항 명세서
 ![요구사항 명세서](https://user-images.githubusercontent.com/82925724/126890636-32d3485c-bd3c-4464-8b9b-aefee33a6625.gif)
