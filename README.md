@@ -67,7 +67,7 @@
 
 **14. 관리자 페이지**<br>
 ---
-<left><img src="![관리자 페이지](https://user-images.githubusercontent.com/82925724/126891364-f3cde214-5e6f-414e-bea4-e603cc15116e.gif)"  width="700" height="400" /></left>
+<left><img src="https://user-images.githubusercontent.com/82925724/126891364-f3cde214-5e6f-414e-bea4-e603cc15116e.gif"  width="700" height="400" /></left>
 - 관리자 계정(semi01)으로 로그인 시에만 관리자 페이지 접근 가능(POST)
 - 구매 차트 : 책/비디오 상품의 실시간 구매 차트와 판매량 TOP-5 차트, HIGH-CHART API 사용
 - 상품 관리 : 책/비디오 상품 카테고리별 조회, 등록, 수정, 삭제 기능
