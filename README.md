@@ -64,6 +64,15 @@
 - BTMI, BTAI 지수 조회(Highcharts API 사용)
 - 커뮤니티 인기 게시글 조회
 
+**14. 관리자 페이지**<br>
+---
+<left><img src="https://user-images.githubusercontent.com/82925724/126887604-99bada4c-dfa3-4fa8-a91b-4aeadab2c148.gif"  width="700" height="400" /></left>
+- 관리자 계정(semi01)으로 로그인 시에만 관리자 페이지 접근 가능(POST)
+- 구매 차트 : 책/비디오 상품의 실시간 구매 차트와 판매량 TOP-5 차트, HIGH-CHART API 사용
+- 상품 관리 : 책/비디오 상품 카테고리별 조회, 등록, 수정, 삭제 기능
+- 회원 관리 : 회원 정보 검색, 조회, 삭제
+
+
 ## Document
 ### 1. 개발일정
 ![schedule]() <br>
