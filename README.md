@@ -76,7 +76,7 @@
 
 **6. 쇼핑몰 (상품 결제 및 장바구니 비우기) **<br>
 ---
-<left><img src="" width="700" height="400" /></left>
+<left><img src="https://user-images.githubusercontent.com/80940458/126893707-ad69a01d-f5b2-48ee-bc9c-7aa55f1d987c.gif" width="700" height="400" /></left>
 - 배송지 입력 : 가입 시 입력한 주문자 정보 불러오기 가능 / 주소 검색 API로 새로운 배송지 등록 가능, 다음 주소검색 API사용 
 - 구매하기 : 장바구니에 담긴 상품 구매 
 - 구매완료 : 구매완료된 상품의 목록 조회
