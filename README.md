@@ -90,7 +90,7 @@
 - 
 **4. 마이 페이지**<br>
 ---
-<left><img src="https://user-images.githubusercontent.com/82923903/126899270-2bada07c-acf9-4e7c-aba9-535f8bdb1657.gif"/></left>
+<left><img src="https://user-images.githubusercontent.com/82923903/126899270-2bada07c-acf9-4e7c-aba9-535f8bdb1657.gif" width="700" height="400" /></left>
 - 비밀번호 일치 여부 확인 후, 마이 페이지로 이동
 - 개인 일정 관리 기능
   - 조회, 등록, 일정 색상 지정, 삭제, 드래그앤드롭, 리사이즈
