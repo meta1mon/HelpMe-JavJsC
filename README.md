@@ -68,7 +68,7 @@
 
 **5. 쇼핑몰 **<br>
 ---
-<left><img src="https://user-images.githubusercontent.com/80940458/126894688-32d10a68-253e-4839-8bad-3f2548a69313.gif"  width="700" height="400" /></left>
+<left><img src="https://user-images.githubusercontent.com/80940458/126895483-bc2d7393-876b-45b2-8ddb-4adbac07dac4.gif"  width="700" height="400" /></left>
 - 상품 목록 조회 : 관리자 사이트에서 등록한 상품의 리스트 조회
 - 상품 상세 조회 : 목록에서 선택한 상품 정보 상세 조회 및 장바구니에 담을 상품의 수량 선택 가능
 - 장바구니 : 마음에 드는 상품 장바구니 담기
