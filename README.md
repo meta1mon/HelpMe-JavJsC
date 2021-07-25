@@ -86,9 +86,12 @@
 ---
 <left><img src="https://user-images.githubusercontent.com/82923946/126897384-38432a94-0dd1-4e41-b086-187ed0bbd3cc.gif"  width="700" height="400" /></left>
 - CK Editor API 사용
+- 3가지 각각 다른 성격의 게시판 존재 (질문 게시판, 스터디/모임 게시판, 책/영상 리뷰 게시판)
 - 게시글 (조회, 등록, 수정, 삭제, 좋아요), 댓글(조회, 등록, 수정, 삭제, 좋아요) 기능
+- 조회수 기능
+- 게시글 목록 페이징 처리 기능
 - 카테고리별(글제목, 작성자, 글내용) 게시글 검색 기능
-- 다중 파일 첨부 기능 cos 라이브러리 사용
+- 파일 업로드 기능(cos 라이브러리 사용)
 
 
 **6. 쇼핑몰**<br>
@@ -130,6 +133,8 @@
 ![요구사항 명세서](https://user-images.githubusercontent.com/82925724/126890636-32d3485c-bd3c-4464-8b9b-aefee33a6625.gif)
 
 ### 4. 화면설계서
+![슬라이드3](https://user-images.githubusercontent.com/82923946/126899074-f19b3809-baa8-4c97-98f5-322c83f4d5fa.PNG)
+![슬라이드6](https://user-images.githubusercontent.com/82923946/126899080-9dacc0e9-9fec-45e0-8f2d-70193c34eb45.PNG)
 
 ### 5. 테이블 정의서
 ![테이블 정의서](https://user-images.githubusercontent.com/82925724/126890928-dfa80858-535f-4866-a19e-7b259a1630c6.png)
