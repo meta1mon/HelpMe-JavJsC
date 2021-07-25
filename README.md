@@ -68,7 +68,7 @@
 
 **4. 게시판**<br>
 ---
-<left><img src=""  width="700" height="400" /></left>
+<left><img src="https://user-images.githubusercontent.com/82923946/126897384-38432a94-0dd1-4e41-b086-187ed0bbd3cc.gif"  width="700" height="400" /></left>
 - CK Editor API 사용
 - 게시글 (조회, 등록, 수정, 삭제, 좋아요), 댓글(조회, 등록, 수정, 삭제, 좋아요) 기능
 - 카테고리별(글제목, 작성자, 글내용) 게시글 검색 기능
