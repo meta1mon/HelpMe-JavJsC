@@ -83,8 +83,8 @@
 ![usecase]()
 
 ### 3. ERD
-![ERD](https://user-images.githubusercontent.com/82925724/126888109-bb5ad9e5-1085-4550-8861-8011462d21f3.png)
-
+![게시판 관련](https://user-images.githubusercontent.com/82925724/126888986-cb32d788-97be-4339-8c41-54276c5bc637.png)
+![세미 나머지 부분](https://user-images.githubusercontent.com/82925724/126888989-b143eec5-c0db-40bc-92c9-c5e5b1aa490f.png)
 
 ### 4. 요구사항 정의서 및 분석서
 ![requirements_def]() <br>
