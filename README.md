@@ -89,5 +89,6 @@
 
 ### 5. 테이블 정의서
 ![테이블 정의서](https://user-images.githubusercontent.com/82925724/126890928-dfa80858-535f-4866-a19e-7b259a1630c6.png)
+<br>
 [테이블 정의서 전체보기](https://github.com/meta1mon/HelpMe-JavJsC/files/6873497/default.docx)
 
